@@ -1,6 +1,6 @@
 package com.skilldistillery.critique.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.critique.entities.User;
+import com.skilldistillery.critique.entities.Category;
 
-class UserTest {
+class CategoryTest {
 	private EntityManager em;
 	private EntityManagerFactory emf;
-	private User user;
+	private Category cat;
 	
 	@BeforeEach
 	public void setup() {
 		emf = Persistence.createEntityManagerFactory("CritiqueMe");
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		cat = em.find(Category.class, 1);
 	}
 	
 	@AfterEach
@@ -31,12 +31,7 @@ class UserTest {
 	}
 	
 	@Test
-	void test_user() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	void test_one_user_can_have_many_friends() {
+	void test_many_categories_can_be_in_one_post() {
 		fail("Not yet implemented");
 	}
 

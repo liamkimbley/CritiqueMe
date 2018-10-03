@@ -1,6 +1,6 @@
 package com.skilldistillery.critique.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,18 +10,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.critique.entities.User;
+import com.skilldistillery.critique.entities.Comment;
 
-class UserTest {
+class CommentTest {
 	private EntityManager em;
 	private EntityManagerFactory emf;
-	private User user;
+	private Comment com;
 	
 	@BeforeEach
 	public void setup() {
 		emf = Persistence.createEntityManagerFactory("CritiqueMe");
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		com = em.find(Comment.class, 1);
 	}
 	
 	@AfterEach
@@ -31,12 +31,27 @@ class UserTest {
 	}
 	
 	@Test
-	void test_user() {
+	void test_comment() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
-	void test_one_user_can_have_many_friends() {
+	void test_many_comments_can_be_in_one_post() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void test_many_comments_can_come_from_one_profile() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void test_one_comment_can_have_many_votes() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void test_one_comment_can_only_have_one_vote_per_profile() {
 		fail("Not yet implemented");
 	}
 
