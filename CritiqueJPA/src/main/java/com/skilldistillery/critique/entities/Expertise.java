@@ -3,6 +3,6 @@ package com.skilldistillery.critique.entities;
 import javax.persistence.Entity;
 
 @Entity
-public class Profile {
-	// test 
+public class Expertise {
+
 }
