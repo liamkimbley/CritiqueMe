@@ -8,7 +8,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities -->
-    <!-- <class>com.skilldistillery.critique.entities.?</class> -->
+    <class>com.skilldistillery.critique.entities.User</class>
     
 
     <properties>
