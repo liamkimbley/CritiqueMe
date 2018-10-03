@@ -10,6 +10,12 @@
     <!-- entities -->
     <class>com.skilldistillery.critique.entities.User</class>
     <class>com.skilldistillery.critique.entities.Profile</class>
+    <class>com.skilldistillery.critique.entities.Category</class>
+    <class>com.skilldistillery.critique.entities.Comment</class>
+    <class>com.skilldistillery.critique.entities.Expertise</class>
+    <class>com.skilldistillery.critique.entities.Location</class>
+    <class>com.skilldistillery.critique.entities.Post</class>
+    <class>com.skilldistillery.critique.entities.Vote</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url"
