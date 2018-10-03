@@ -21,7 +21,7 @@ war {
   destinationDir = file("./")      // project root directory
 }
 
-group = 'com.skilldistillery.todoapp'
+group = 'com.skilldistillery.critique'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 

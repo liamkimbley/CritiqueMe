@@ -21,16 +21,7 @@ eclipse {
 }
 
 // explicitly configure the sourced files of the application for compilation
-sourceSets {
-  main {
-    java.srcDirs 'src'
-    resources.srcDirs 'src/resources'
- }
-test {
-    java.srcDirs 'test'
-    resources.srcDirs 'src'
-  }
-}
+
 
 // set query location for dependencies
 repositories {
