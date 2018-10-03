@@ -7,3 +7,4 @@ gradle*
 application.properties
 .settings
 /.metadata/
+.recommenders/

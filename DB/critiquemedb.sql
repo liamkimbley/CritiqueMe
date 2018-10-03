@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(1000) NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
   PRIMARY KEY (`id`))
@@ -58,6 +57,8 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `location_id` INT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
+  INDEX `fk_profile_location_idx` (`location_id` ASC),
+  INDEX `fk_user_profile_idx` (`user_id` ASC),
   CONSTRAINT `fk_profile_location`
     FOREIGN KEY (`location_id`)
     REFERENCES `location` (`id`)
@@ -69,10 +70,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_profile_location_idx` ON `profile` (`location_id` ASC);
-
-CREATE INDEX `fk_user_profile_idx` ON `profile` (`user_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -87,14 +84,13 @@ CREATE TABLE IF NOT EXISTS `post` (
   `update_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `content` TEXT NULL,
   PRIMARY KEY (`id`),
+  INDEX `fk_post_profile_idx` (`profile_id` ASC),
   CONSTRAINT `fk_post_profile`
     FOREIGN KEY (`profile_id`)
     REFERENCES `profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_post_profile_idx` ON `post` (`profile_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -117,6 +113,8 @@ DROP TABLE IF EXISTS `post_category` ;
 CREATE TABLE IF NOT EXISTS `post_category` (
   `post_id` INT NOT NULL,
   `category_id` INT NOT NULL,
+  INDEX `fk_post_category_post_idx` (`post_id` ASC),
+  INDEX `fk_post_category_category_idx` (`category_id` ASC),
   CONSTRAINT `fk_post_category_post`
     FOREIGN KEY (`post_id`)
     REFERENCES `post` (`id`)
@@ -128,10 +126,6 @@ CREATE TABLE IF NOT EXISTS `post_category` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_post_category_post_idx` ON `post_category` (`post_id` ASC);
-
-CREATE INDEX `fk_post_category_category_idx` ON `post_category` (`category_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -147,6 +141,8 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `profile_id` INT NOT NULL,
   `post_id` INT NOT NULL,
   PRIMARY KEY (`id`),
+  INDEX `fk_comment_post_idx` (`post_id` ASC),
+  INDEX `fk_comment_profile_idx` (`profile_id` ASC),
   CONSTRAINT `fk_comment_profile`
     FOREIGN KEY (`profile_id`)
     REFERENCES `profile` (`id`)
@@ -159,10 +155,6 @@ CREATE TABLE IF NOT EXISTS `comment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_comment_post_idx` ON `comment` (`post_id` ASC);
-
-CREATE INDEX `fk_comment_profile_idx` ON `comment` (`profile_id` ASC);
-
 
 -- -----------------------------------------------------
 -- Table `friend`
@@ -172,6 +164,8 @@ DROP TABLE IF EXISTS `friend` ;
 CREATE TABLE IF NOT EXISTS `friend` (
   `user_id` INT NOT NULL,
   `friend_id` INT NOT NULL,
+  INDEX `fk_Friend_User1_idx` (`user_id` ASC),
+  INDEX `fk_Friend_User2_idx` (`friend_id` ASC),
   CONSTRAINT `fk_user_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
@@ -184,10 +178,6 @@ CREATE TABLE IF NOT EXISTS `friend` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_Friend_User1_idx` ON `friend` (`user_id` ASC);
-
-CREATE INDEX `fk_Friend_User2_idx` ON `friend` (`friend_id` ASC);
-
 
 -- -----------------------------------------------------
 -- Table `vote`
@@ -198,7 +188,8 @@ CREATE TABLE IF NOT EXISTS `vote` (
   `comment_id` INT NOT NULL,
   `profile_id` INT NOT NULL,
   `vote` TINYINT NULL,
-  `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `fk_vote_profile_idx` (`profile_id` ASC),
+  INDEX `fk_vote_comment_idx` (`comment_id` ASC),
   PRIMARY KEY (`comment_id`, `profile_id`),
   CONSTRAINT `fk_vote_comment`
     FOREIGN KEY (`comment_id`)
@@ -211,10 +202,6 @@ CREATE TABLE IF NOT EXISTS `vote` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_vote_profile_idx` ON `vote` (`profile_id` ASC);
-
-CREATE INDEX `fk_vote_comment_idx` ON `vote` (`comment_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -237,6 +224,8 @@ DROP TABLE IF EXISTS `profile_expertise` ;
 CREATE TABLE IF NOT EXISTS `profile_expertise` (
   `profile_id` INT NOT NULL,
   `expertise_id` INT NOT NULL,
+  INDEX `fk_profile_expertise_expertise_idx` (`expertise_id` ASC),
+  INDEX `fk_profile_expertise_profile_idx` (`profile_id` ASC),
   CONSTRAINT `fk_profile_expertise_profile`
     FOREIGN KEY (`profile_id`)
     REFERENCES `profile` (`id`)
@@ -248,10 +237,6 @@ CREATE TABLE IF NOT EXISTS `profile_expertise` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_profile_expertise_expertise_idx` ON `profile_expertise` (`expertise_id` ASC);
-
-CREATE INDEX `fk_profile_expertise_profile_idx` ON `profile_expertise` (`profile_id` ASC);
 
 SET SQL_MODE = '';
 DROP USER IF EXISTS critique@localhost;
@@ -269,8 +254,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `active`, `role`) VALUES (1, 'test', 'test', 'test@test.com', 1, DEFAULT);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `active`, `role`) VALUES (2, 'test2', 'test2', 'test2@test.com', 1, DEFAULT);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test', 'test', 1, DEFAULT);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mjones@gmail.com', 'who', 1, DEFAULT);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'jeffy@yahoo.com', 'mynameisjeff', DEFAULT, DEFAULT);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mbyrde@aol.com', 'moneylaundering', DEFAULT, DEFAULT);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'wwchemist@hotmail.com', 'skylar', DEFAULT, DEFAULT);
 
 COMMIT;
 
@@ -280,8 +268,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `location` (`id`, `city`, `state`, `country`) VALUES (1, 'Denver', 'CO', 'US');
-INSERT INTO `location` (`id`, `city`, `state`, `country`) VALUES (2, 'test', 'test', 'test');
+INSERT INTO `location` (`id`, `city`, `state`, `country`) VALUES (DEFAULT, 'Denver', 'CO', 'US');
+INSERT INTO `location` (`id`, `city`, `state`, `country`) VALUES (DEFAULT, 'Houston', 'TX', 'US');
+INSERT INTO `location` (`id`, `city`, `state`, `country`) VALUES (DEFAULT, 'Los Angeles', 'CA', 'US');
+INSERT INTO `location` (`id`, `city`, `state`, `country`) VALUES (DEFAULT, 'Ozarks', 'MO', 'US');
+INSERT INTO `location` (`id`, `city`, `state`, `country`) VALUES (DEFAULT, 'Albequerque', 'NM', 'US');
 
 COMMIT;
 
@@ -292,7 +283,10 @@ COMMIT;
 START TRANSACTION;
 USE `critiquemedb`;
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 1);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'test2', 'test2', 'test2', 2, 2);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Mike', 'Jones', 'who is mike jones?', 2, 2);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Jeff', 'Jefferson', 'my name is jeff', 3, 3);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Marty', 'Byrde', 'come check out my lakehouse', 4, 4);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Walter', 'White', 'chemisty teacher', 5, 5);
 
 COMMIT;
 
@@ -302,8 +296,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (1, 1, DEFAULT, DEFAULT, 'test post 1');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (2, 1, DEFAULT, DEFAULT, 'test post 2 ');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 2, DEFAULT, DEFAULT, 'buy my album');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 3, DEFAULT, DEFAULT, 'my name is jeff');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 4, DEFAULT, DEFAULT, 'Anyone want to invest with me?');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 5, DEFAULT, DEFAULT, 'How does my carwash look?');
 
 COMMIT;
 
@@ -313,26 +309,24 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `category` (`id`, `name`) VALUES (1, 'Travel');
-INSERT INTO `category` (`id`, `name`) VALUES (2, 'Music');
-INSERT INTO `category` (`id`, `name`) VALUES (3, 'Sports');
-INSERT INTO `category` (`id`, `name`) VALUES (4, 'Fashion');
-INSERT INTO `category` (`id`, `name`) VALUES (5, 'Technology');
-INSERT INTO `category` (`id`, `name`) VALUES (6, 'Food');
-INSERT INTO `category` (`id`, `name`) VALUES (7, 'Politics');
-INSERT INTO `category` (`id`, `name`) VALUES (8, 'Business');
-INSERT INTO `category` (`id`, `name`) VALUES (9, 'Finance');
-INSERT INTO `category` (`id`, `name`) VALUES (10, 'Social');
-INSERT INTO `category` (`id`, `name`) VALUES (11, 'Home Improvement');
-INSERT INTO `category` (`id`, `name`) VALUES (12, 'Event Planning');
+INSERT INTO `category` (`id`, `name`) VALUES (1, 'Music');
+INSERT INTO `category` (`id`, `name`) VALUES (2, 'Sports');
+INSERT INTO `category` (`id`, `name`) VALUES (3, 'Fashion');
+INSERT INTO `category` (`id`, `name`) VALUES (4, 'Technology');
+INSERT INTO `category` (`id`, `name`) VALUES (5, 'Food');
+INSERT INTO `category` (`id`, `name`) VALUES (6, 'Political');
+INSERT INTO `category` (`id`, `name`) VALUES (7, 'Business');
+INSERT INTO `category` (`id`, `name`) VALUES (8, 'Finance');
+INSERT INTO `category` (`id`, `name`) VALUES (9, 'Social');
+INSERT INTO `category` (`id`, `name`) VALUES (10, 'Travel');
+INSERT INTO `category` (`id`, `name`) VALUES (11, 'Event Planning');
+INSERT INTO `category` (`id`, `name`) VALUES (12, 'Home Improvement');
 INSERT INTO `category` (`id`, `name`) VALUES (13, 'Medical');
 INSERT INTO `category` (`id`, `name`) VALUES (14, 'Fitness');
-INSERT INTO `category` (`id`, `name`) VALUES (15, 'Lifestyle');
-INSERT INTO `category` (`id`, `name`) VALUES (16, 'Pets');
-INSERT INTO `category` (`id`, `name`) VALUES (17, 'Art');
+INSERT INTO `category` (`id`, `name`) VALUES (15, 'Pets');
+INSERT INTO `category` (`id`, `name`) VALUES (16, 'Lifestyle');
+INSERT INTO `category` (`id`, `name`) VALUES (17, 'Jobs');
 INSERT INTO `category` (`id`, `name`) VALUES (18, 'Collectables');
-INSERT INTO `category` (`id`, `name`) VALUES (19, 'Jobs');
-INSERT INTO `category` (`id`, `name`) VALUES (20, 'Literature');
 
 COMMIT;
 
@@ -342,49 +336,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (1, 2);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (2, 4);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (1, 5);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `comment`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `critiquemedb`;
-INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (1, 'what a great post ', DEFAULT, DEFAULT, 1, 2);
-INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (2, 'this post sucks', DEFAULT, DEFAULT, 2, 2);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `expertise`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `critiquemedb`;
-INSERT INTO `expertise` (`id`, `title`) VALUES (1, 'Medicine');
-INSERT INTO `expertise` (`id`, `title`) VALUES (2, 'Art');
-INSERT INTO `expertise` (`id`, `title`) VALUES (3, 'Education');
-INSERT INTO `expertise` (`id`, `title`) VALUES (4, 'Botany');
-INSERT INTO `expertise` (`id`, `title`) VALUES (5, 'Zoology');
-INSERT INTO `expertise` (`id`, `title`) VALUES (6, 'Law');
-INSERT INTO `expertise` (`id`, `title`) VALUES (7, 'Software Development');
-INSERT INTO `expertise` (`id`, `title`) VALUES (8, 'Engineering');
-INSERT INTO `expertise` (`id`, `title`) VALUES (9, 'Mechanic');
-INSERT INTO `expertise` (`id`, `title`) VALUES (10, 'Design');
-INSERT INTO `expertise` (`id`, `title`) VALUES (11, 'Culinary');
-INSERT INTO `expertise` (`id`, `title`) VALUES (12, 'Athletics');
-INSERT INTO `expertise` (`id`, `title`) VALUES (13, 'Lingustics ');
-INSERT INTO `expertise` (`id`, `title`) VALUES (14, 'Anthropology');
-INSERT INTO `expertise` (`id`, `title`) VALUES (15, 'Psychology');
-INSERT INTO `expertise` (`id`, `title`) VALUES (16, 'Theology');
-INSERT INTO `expertise` (`id`, `title`) VALUES (17, 'Philosophy');
-INSERT INTO `expertise` (`id`, `title`) VALUES (18, 'Cartographer');
-INSERT INTO `expertise` (`id`, `title`) VALUES (19, 'Electrician');
-INSERT INTO `expertise` (`id`, `title`) VALUES (20, 'Java Architecture');
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (3, 8);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (4, 7);
 
 COMMIT;
 
