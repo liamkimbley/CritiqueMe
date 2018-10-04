@@ -1,3 +1,11 @@
-<p>
-  navigation works!
-</p>
+<nav>
+  <div class="container">
+    <ul>
+      <li><a [routerLink]="['/home']">Home</a></li>
+      <li><a [routerLink]="['/todo']">Todo</a></li>
+      <li><a [routerLink]="['/register']">Register</a></li>
+      <li><app-login></app-login></li>
+      <li><app-logout></app-logout></li>
+        </ul>
+  </div>
+</nav>
