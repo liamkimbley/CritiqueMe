@@ -1,3 +1,6 @@
+import { AuthService } from './auth.service';
+import { ProfileService } from './profile.service';
+import { CommentService } from './comment.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +15,9 @@ import { PostComponent } from './post/post.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HomeService } from './home.service';
+import { PostService } from './post.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,14 @@ import { AppRoutingModule } from './app-routing.module';
     NgbModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    HomeService,
+    CommentService,
+    PostService,
+    ProfileService,
+    AuthService,
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
