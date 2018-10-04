@@ -8,5 +8,4 @@ public interface UserService {
 	public User findOneUserByUsername(String name);
 	public User findByEmail(String email);
 	public List<User> findByActive(Boolean active);
-	public List<User> findByRole(String role);
 }

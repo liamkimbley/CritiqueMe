@@ -34,9 +34,4 @@ public class UserController {
 		return us.findByActive(active);
 	}
 	
-	@RequestMapping(path = "users/{role}", method = RequestMethod.GET)
-	public List<User> findByRole(@PathVariable String role) {
-		return us.findByRole(role);
-	}
-	
 }
