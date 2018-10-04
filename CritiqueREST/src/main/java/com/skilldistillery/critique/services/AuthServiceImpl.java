@@ -35,8 +35,8 @@ public class AuthServiceImpl implements AuthService {
 		try {
 			user = om.readValue(json, User.class);
 
-			String encodedPW = encoder.encode(user.getPassword());
-			user.setPassword(encodedPW); // only persist encoded password
+//			String encodedPW = encoder.encode(user.getPassword());
+//			user.setPassword(encodedPW); // only persist encoded password
 
 			// set other fields to default values
 			user.setActive(true);
