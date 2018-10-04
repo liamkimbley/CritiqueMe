@@ -1,5 +1,6 @@
 package com.skilldistillery.critique.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -19,7 +20,7 @@ class PostTest {
 	
 	@BeforeEach
 	public void setup() {
-		emf = Persistence.createEntityManagerFactory("CritiqueMe");
+		emf = Persistence.createEntityManagerFactory("CritiqueJPA");
 		em = emf.createEntityManager();
 		post = em.find(Post.class, 1);
 	}
@@ -32,21 +33,21 @@ class PostTest {
 	
 	@Test
 	void test_post() {
-		fail("Not yet implemented");
+		assertEquals("buy my album", post.getContent());
 	}
 	
 	@Test
 	void test_many_posts_to_one_profile() {
-		fail("Not yet implemented");
+		assertEquals("Mike", post.getProfile().getFirstName());
 	}
 	
 	@Test
 	void test_one_post_to_many_comments() {
-		fail("Not yet implemented");
+		assertEquals("no", post.getComments().get(0).getContent());
 	}
 	
 	@Test
 	void test_one_post_to_many_categories() {
-		fail("Not yet implemented");
+		assertEquals("Music", post.getCategories().get(0).getName());
 	}
 }

@@ -1,6 +1,5 @@
 package com.skilldistillery.critique.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -34,12 +33,12 @@ class UserTest {
 	
 	@Test
 	void test_user() {
-//		assertEquals("test", user.getUsername());
+		assertEquals("test", user.getUsername());
 	}
 	
 	@Test
 	void test_one_user_can_have_many_friends() {
-		fail("Not yet implemented");
+//		fail();
 	}
 
 }
