@@ -6,8 +6,10 @@ import com.skilldistillery.critique.entities.Comment;
 
 public interface CommentService {
 	
-	public List<Comment> findCommentsByPost(int id);
-	public Comment createNewCommentOnPost(int id, Comment comment);
-	public boolean deleteCommentById(int cid);
-
+	public List<Comment> findCommentsByPost(Integer id);
+	public Comment createNewCommentOnPost(Integer id, Comment comment);
+	public boolean deleteCommentById(Integer cid);
+	public Comment findByCommentId(Integer id);
+	public Comment update(Integer id, Comment com);
+	
 }
