@@ -327,6 +327,7 @@ INSERT INTO `category` (`id`, `name`) VALUES (15, 'Pets');
 INSERT INTO `category` (`id`, `name`) VALUES (16, 'Lifestyle');
 INSERT INTO `category` (`id`, `name`) VALUES (17, 'Jobs');
 INSERT INTO `category` (`id`, `name`) VALUES (18, 'Collectables');
+INSERT INTO `category` (`id`, `name`) VALUES (19, 'Entertainment');
 
 COMMIT;
 
@@ -336,8 +337,89 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (1, 1);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (2, 19);
 INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (3, 8);
 INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (4, 7);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `critiquemedb`;
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (1, 'no', DEFAULT, DEFAULT, 3, 1);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (2, 'make me', DEFAULT, DEFAULT, 4, 1);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (3, 'I might be interested', DEFAULT, DEFAULT, 5, 3);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (4, 'Looks good, I might stop by ;)', DEFAULT, DEFAULT, 4, 4);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `friend`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `critiquemedb`;
+INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (4, 5);
+INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (5, 4);
+INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (2, 3);
+INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (3, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vote`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `critiquemedb`;
+INSERT INTO `vote` (`comment_id`, `profile_id`, `vote`) VALUES (3, 5, 1);
+INSERT INTO `vote` (`comment_id`, `profile_id`, `vote`) VALUES (4, 4, 1);
+INSERT INTO `vote` (`comment_id`, `profile_id`, `vote`) VALUES (1, 1, 0);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `expertise`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `critiquemedb`;
+INSERT INTO `expertise` (`id`, `title`) VALUES (1, 'Education');
+INSERT INTO `expertise` (`id`, `title`) VALUES (2, 'Software Developer');
+INSERT INTO `expertise` (`id`, `title`) VALUES (3, 'Medicine');
+INSERT INTO `expertise` (`id`, `title`) VALUES (4, 'Athletics');
+INSERT INTO `expertise` (`id`, `title`) VALUES (5, 'Music');
+INSERT INTO `expertise` (`id`, `title`) VALUES (6, 'Art');
+INSERT INTO `expertise` (`id`, `title`) VALUES (7, 'Photography');
+INSERT INTO `expertise` (`id`, `title`) VALUES (8, 'Cartography');
+INSERT INTO `expertise` (`id`, `title`) VALUES (9, 'Business');
+INSERT INTO `expertise` (`id`, `title`) VALUES (10, 'Law');
+INSERT INTO `expertise` (`id`, `title`) VALUES (11, 'Literature');
+INSERT INTO `expertise` (`id`, `title`) VALUES (12, 'History');
+INSERT INTO `expertise` (`id`, `title`) VALUES (13, 'Psychology');
+INSERT INTO `expertise` (`id`, `title`) VALUES (14, 'Economics');
+INSERT INTO `expertise` (`id`, `title`) VALUES (15, 'Government');
+INSERT INTO `expertise` (`id`, `title`) VALUES (16, 'Automobiles');
+INSERT INTO `expertise` (`id`, `title`) VALUES (17, 'Design');
+INSERT INTO `expertise` (`id`, `title`) VALUES (18, 'Mechanical');
+INSERT INTO `expertise` (`id`, `title`) VALUES (19, 'Pop Culture');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `profile_expertise`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `critiquemedb`;
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (5, 9);
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (4, 9);
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (3, 19);
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (2, 5);
 
 COMMIT;
 
