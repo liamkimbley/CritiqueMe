@@ -3,6 +3,7 @@ package com.skilldistillery.critique.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +42,7 @@ public class Profile {
 	@OneToMany(mappedBy = "profile")
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy = "profile")
+	@OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST)
 	private List<Post> posts;
 
 	@ManyToMany(mappedBy = "profiles")

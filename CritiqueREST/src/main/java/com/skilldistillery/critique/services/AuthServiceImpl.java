@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.entities.User;
 import com.skilldistillery.critique.repositories.UserRepository;
 
@@ -31,6 +32,7 @@ public class AuthServiceImpl implements AuthService {
 	public User register(String json) {
 		ObjectMapper om = new ObjectMapper();
 		User user = null;
+		Profile defaultProfile = new Profile();
 
 		try {
 			user = om.readValue(json, User.class);
@@ -41,6 +43,9 @@ public class AuthServiceImpl implements AuthService {
 			// set other fields to default values
 			user.setActive(true);
 			user.setRole("standard");
+			defaultProfile.setFirstName("");
+			defaultProfile.setLastName("");
+			defaultProfile.setUser(user);
 
 			userRepo.saveAndFlush(user);
 		} catch (Exception e) {
