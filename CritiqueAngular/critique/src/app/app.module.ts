@@ -11,6 +11,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PostComponent } from './post/post.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,13 @@ import { RegisterComponent } from './register/register.component';
     ProfileComponent,
     PostComponent
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, NgbModule.forRoot()],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule.forRoot(),
+    AppRoutingModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
