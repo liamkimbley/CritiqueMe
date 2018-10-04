@@ -11,17 +11,17 @@ import com.skilldistillery.critique.entities.Profile;
 public interface ProfileRepository extends JpaRepository<Profile, Integer>{
 
 	// find by first name
-	public List<Profile> findByFirstname(String firstName);
+	public List<Profile> findByFirstName(String firstName);
 	
 	// find by last name 
-	public List<Profile> findByLastname(String lastName);
+	public List<Profile> findByLastName(String lastName);
 	
 	// find by first and last name 
 	@Query("SELECT p FROM Profile p WHERE p.firstName = :fname AND p.lastName = :lname")
 	public List<Profile> findByFirstNameAndLastName(@Param("fname") String fname, @Param("lname") String lname);
 	
-	// find by name LIKE
-	public List<Profile> findByFirstNameContainingOrLastNameContaining(String name);
+//	// find by name LIKE
+//	public List<Profile> findByFirstNameContainingOrLastNameContaining(String name);
 	
 	// find by city
 	@Query("SELECT p from Profile p WHERE p.location.city = :city")

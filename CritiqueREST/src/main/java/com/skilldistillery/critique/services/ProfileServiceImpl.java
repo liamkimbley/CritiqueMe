@@ -15,12 +15,12 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public List<Profile> findByFirstname(String firstName) {
-		return profRepo.findByFirstname(firstName);
+		return profRepo.findByFirstName(firstName);
 	}
 
 	@Override
 	public List<Profile> findByLastname(String lastName) {
-		return profRepo.findByLastname(lastName);
+		return profRepo.findByLastName(lastName);
 	}
 
 	@Override
@@ -28,11 +28,11 @@ public class ProfileServiceImpl implements ProfileService {
 		return profRepo.findByFirstNameAndLastName(fname, lname);
 	}
 	
-	@Override
-	public List<Profile> findByFirstNameContainingOrLastNameContaining(String name) {
-		String nameContaining = "%" + name + "%";
-		return profRepo.findByFirstNameContainingOrLastNameContaining(nameContaining);
-	}
+//	@Override
+//	public List<Profile> findByFirstNameContainingOrLastNameContaining(String name) {
+//		String nameContaining = "%" + name + "%";
+//		return profRepo.findByFirstNameContainingOrLastNameContaining(nameContaining);
+//	}
 
 
 	@Override
