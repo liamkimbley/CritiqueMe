@@ -21,6 +21,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 public class Post {
 
+	/* Fields */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -38,15 +40,17 @@ public class Post {
 	@UpdateTimestamp
 	@Column(name = "update_date")
 	private LocalDate updatedDate;
-	
+
 	@ManyToMany
-	@JoinTable(name="post_category",
-	joinColumns = @JoinColumn(name="post_id"),
-	inverseJoinColumns = @JoinColumn(name="category_id"))
+	@JoinTable(name = "post_category", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories;
-	
-	@OneToMany(mappedBy="post")
+
+	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
+
+	/* Fields */
+
+	/* Constructors */
 
 	public Post() {
 	}
@@ -59,6 +63,10 @@ public class Post {
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 	}
+
+	/* Constructors */
+
+	/* Getters and Setters */
 
 	public int getId() {
 		return id;
@@ -107,15 +115,19 @@ public class Post {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
-	
+
 	public List<Comment> getComments() {
 		return comments;
 	}
-	
+
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
+
+	/* Getters and Setters */
+
+	/* Helpers */
+
 	public void addCategory(Category category) {
 		if (categories == null) {
 			categories = new ArrayList<>();
@@ -125,15 +137,15 @@ public class Post {
 			category.addPost(this);
 		}
 	}
-	
+
 	public void removeCategory(Category category) {
 		if (categories != null && categories.contains(category)) {
 			categories.remove(category);
 			category.removePost(this);
-			
+
 		}
 	}
-	
+
 	public void addComment(Comment comment) {
 		if (comments == null) {
 			comments = new ArrayList<>();
@@ -152,6 +164,64 @@ public class Post {
 		if (this.comments != null) {
 			comments.remove(comment);
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((updatedDate == null) ? 0 : updatedDate.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Post other = (Post) obj;
+		if (categories == null) {
+			if (other.categories != null)
+				return false;
+		} else if (!categories.equals(other.categories))
+			return false;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
+		if (createdDate == null) {
+			if (other.createdDate != null)
+				return false;
+		} else if (!createdDate.equals(other.createdDate))
+			return false;
+		if (id != other.id)
+			return false;
+		if (profile == null) {
+			if (other.profile != null)
+				return false;
+		} else if (!profile.equals(other.profile))
+			return false;
+		if (updatedDate == null) {
+			if (other.updatedDate != null)
+				return false;
+		} else if (!updatedDate.equals(other.updatedDate))
+			return false;
+		return true;
 	}
 
 	@Override

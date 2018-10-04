@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Profile {
 
+	/* Fields */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -38,12 +40,16 @@ public class Profile {
 
 	@OneToMany(mappedBy = "profile")
 	private List<Comment> comments;
-	
+
 	@OneToMany(mappedBy = "profile")
 	private List<Post> posts;
 
 	@ManyToMany(mappedBy = "profiles")
 	private List<Expertise> skills;
+
+	/* Fields */
+
+	/* Constructors */
 
 	public Profile() {
 	}
@@ -57,6 +63,10 @@ public class Profile {
 		this.location = location;
 		this.user = user;
 	}
+
+	/* Constructors */
+
+	/* Getters and Setters */
 
 	public int getId() {
 		return id;
@@ -130,6 +140,10 @@ public class Profile {
 		this.skills = professions;
 	}
 
+	/* Getters and Setters */
+
+	/* Helpers */
+
 	public void addComment(Comment comment) {
 		if (this.comments == null) {
 			comments = new ArrayList<>();
@@ -149,7 +163,7 @@ public class Profile {
 			comments.remove(comment);
 		}
 	}
-	
+
 	public void addExpertise(Expertise skill) {
 		if (this.skills == null) {
 			skills = new ArrayList<>();
@@ -159,14 +173,14 @@ public class Profile {
 			skill.addProfile(this);
 		}
 	}
-	
+
 	public void removeExpertise(Expertise skill) {
 		skill.setProfiles(null);
 		if (this.skills != null) {
 			skills.remove(skill);
 		}
 	}
-	
+
 	public void addPost(Post post) {
 		if (this.posts == null) {
 			posts = new ArrayList<>();
@@ -179,12 +193,82 @@ public class Profile {
 			post.setProfile(this);
 		}
 	}
-	
+
 	public void removePost(Post post) {
 		post.setProfile(null);
 		if (this.posts != null) {
 			posts.remove(post);
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
+		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profile other = (Profile) obj;
+		if (bio == null) {
+			if (other.bio != null)
+				return false;
+		} else if (!bio.equals(other.bio))
+			return false;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (posts == null) {
+			if (other.posts != null)
+				return false;
+		} else if (!posts.equals(other.posts))
+			return false;
+		if (skills == null) {
+			if (other.skills != null)
+				return false;
+		} else if (!skills.equals(other.skills))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
 	}
 
 	@Override

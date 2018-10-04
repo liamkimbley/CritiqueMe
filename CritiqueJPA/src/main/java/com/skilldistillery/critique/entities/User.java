@@ -14,19 +14,23 @@ import javax.persistence.ManyToMany;
 @Entity
 public class User {
 
+	/* Fields */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private String email;
 	private String username;
 	private String password;
 	private String role;
 	private Boolean active;
+
 	@ManyToMany
-	@JoinTable(name = "friend", 
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	@JoinTable(name = "friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<User> friends;
+
+	/* Fields */
 
 	public User() {
 	}
@@ -39,6 +43,10 @@ public class User {
 		this.role = role;
 		this.active = active;
 	}
+
+	/* Fields */
+
+	/* Getters and Setters */
 
 	public int getId() {
 		return id;
@@ -87,6 +95,7 @@ public class User {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+
 	public List<User> getFriends() {
 		return friends;
 	}
@@ -94,6 +103,10 @@ public class User {
 	public void setFriends(List<User> friends) {
 		this.friends = friends;
 	}
+
+	/* Getters and Setters */
+
+	/* Helpers */
 
 	public void addFriend(User friend) {
 		if (friends == null)
@@ -111,6 +124,64 @@ public class User {
 			friends.remove(friend);
 			friend.getFriends().remove(this);
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((active == null) ? 0 : active.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((friends == null) ? 0 : friends.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (active == null) {
+			if (other.active != null)
+				return false;
+		} else if (!active.equals(other.active))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (friends == null) {
+			if (other.friends != null)
+				return false;
+		} else if (!friends.equals(other.friends))
+			return false;
+		if (id != other.id)
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 
 	@Override
