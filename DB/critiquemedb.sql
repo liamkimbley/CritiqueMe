@@ -22,7 +22,8 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(70) NOT NULL,
+  `username` VARCHAR(70) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
@@ -254,11 +255,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test', 'test', 1, DEFAULT);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mjones@gmail.com', 'who', 1, DEFAULT);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'jeffy@yahoo.com', 'mynameisjeff', DEFAULT, DEFAULT);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mbyrde@aol.com', 'moneylaundering', DEFAULT, DEFAULT);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'wwchemist@hotmail.com', 'skylar', DEFAULT, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test@sd.com', 'test', 'test', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mjones@gmail.com', 'mjones', 'who', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'jeffy@yahoo.com', 'myusernameisjeff', 'mynameisjeff', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mbyrde@aol.com', 'martybyrde', 'moneylaundering', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'wwchemist@hotmail.com', 'waltw', 'skylar', 1, DEFAULT);
 
 COMMIT;
 

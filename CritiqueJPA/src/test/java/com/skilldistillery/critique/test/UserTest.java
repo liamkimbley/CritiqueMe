@@ -1,6 +1,8 @@
 package com.skilldistillery.critique.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,7 +21,7 @@ class UserTest {
 	
 	@BeforeEach
 	public void setup() {
-		emf = Persistence.createEntityManagerFactory("CritiqueMe");
+		emf = Persistence.createEntityManagerFactory("CritiqueJPA");
 		em = emf.createEntityManager();
 		user = em.find(User.class, 1);
 	}
@@ -32,7 +34,7 @@ class UserTest {
 	
 	@Test
 	void test_user() {
-		fail("Not yet implemented");
+//		assertEquals("test", user.getUsername());
 	}
 	
 	@Test
