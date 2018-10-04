@@ -1,6 +1,7 @@
 package com.skilldistillery.critique.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,12 +17,17 @@ class ProfileTest {
 	private EntityManager em;
 	private EntityManagerFactory emf;
 	private Profile prof;
+	private Profile prof2;
+	private Profile prof3;
 	
 	@BeforeEach
 	public void setup() {
-		emf = Persistence.createEntityManagerFactory("CritiqueMe");
+		emf = Persistence.createEntityManagerFactory("CritiqueJPA");
 		em = emf.createEntityManager();
 		prof = em.find(Profile.class, 1);
+		prof2 = em.find(Profile.class, 2);
+		prof3 = em.find(Profile.class, 3);
+
 	}
 	
 	@AfterEach
@@ -32,37 +38,44 @@ class ProfileTest {
 	
 	@Test
 	void test_profile() {
-		fail("Not yet implemented");
+		assertEquals("test", prof.getFirstName());
+		assertEquals("test", prof.getBio());
 	}
 	
 	@Test
 	void test_one_profile_to_one_user() {
-		fail("Not yet implemented");
+		assertEquals("test", prof.getUser().getUsername());
+		assertEquals("test@sd.com", prof.getUser().getEmail());
 	}
 	
 	@Test
-	void test_many_profiles_to_one_location() {
-		fail("Not yet implemented");
+	void test_profile_has_a_location() {
+		assertEquals("Denver", prof.getLocation().getCity());
 	}
 	
-	@Test
-	void test_one_profile_can_have_many_votes() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	void test_one_profile_can_have_many_votes() {
+//		
+//	}
 	
-	@Test
-	void test_one_profile_can_only_vote_once_per_comment() {
-		fail("Not yet implemented");
-	}
-	
+//	@Test
+//	void test_one_profile_can_only_vote_once_per_comment() {
+//	}
+//	
 	@Test
 	void test_one_profile_can_have_many_expertises() {
-		fail("Not yet implemented");
+		assertNotEquals(0, prof2.getSkills().size());
+		assertEquals("Music", prof2.getSkills().get(0).getTitle());
 	}
 	
 	@Test
 	void test_one_profile_can_have_many_posts() {
-		fail("Not yet implemented");
+		assertNotEquals(0, prof2.getPosts().size());
+	}
+	
+	@Test
+	void test_one_profile_can_have_many_comments() {
+		assertNotEquals(0, prof3.getComments().size());
 	}
 
 }

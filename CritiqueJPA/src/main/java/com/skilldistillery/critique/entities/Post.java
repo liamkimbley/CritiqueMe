@@ -32,11 +32,11 @@ public class Post {
 	private String content;
 
 	@CreationTimestamp
-	@Column(name = "created_date")
+	@Column(name = "create_date")
 	private LocalDate createdDate;
 
 	@UpdateTimestamp
-	@Column(name = "updated_date")
+	@Column(name = "update_date")
 	private LocalDate updatedDate;
 	
 	@ManyToMany
