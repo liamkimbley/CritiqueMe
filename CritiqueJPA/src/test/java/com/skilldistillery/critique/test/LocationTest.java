@@ -1,5 +1,6 @@
 package com.skilldistillery.critique.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -19,7 +20,7 @@ class LocationTest {
 	
 	@BeforeEach
 	public void setup() {
-		emf = Persistence.createEntityManagerFactory("CritiqueMe");
+		emf = Persistence.createEntityManagerFactory("CritiqueJPA");
 		em = emf.createEntityManager();
 		loc = em.find(Location.class, 1);
 	}
@@ -32,11 +33,11 @@ class LocationTest {
 	
 	@Test
 	void test_location() {
-		fail("Not yet implemented");
+		assertEquals("Denver", loc.getCity());
 	}
 
 	@Test
 	void test_one_location_has_many_profiles() {
-		fail("Not yet implemented");
+		assertEquals("test", loc.getProfiles().get(0).getFirstName());
 	}
 }

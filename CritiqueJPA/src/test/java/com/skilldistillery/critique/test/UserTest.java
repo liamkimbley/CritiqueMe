@@ -38,7 +38,8 @@ class UserTest {
 	
 	@Test
 	void test_one_user_can_have_many_friends() {
-//		fail();
+		user = em.find(User.class, 2);
+		assertEquals("myusernameisjeff", user.getFriends().get(0).getUsername());
 	}
 
 }
