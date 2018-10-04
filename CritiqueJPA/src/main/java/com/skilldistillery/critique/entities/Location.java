@@ -1,9 +1,13 @@
 package com.skilldistillery.critique.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Location {
@@ -15,6 +19,9 @@ public class Location {
 	private String city;
 	private String state;
 	private String country;
+	
+	@OneToMany(mappedBy="location")
+	private List<Profile> profiles;
 
 	public Location() {
 	}
@@ -58,6 +65,34 @@ public class Location {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
+	}
+
+	public void addProfile(Profile profile) {
+        if (profiles == null)
+            profiles = new ArrayList<>();
+
+        if (!profiles.contains(profile)) {
+            profiles.add(profile);
+            if (profile.getLocation() != null) {
+                profile.getLocation().getProfiles().remove(profile);
+            }
+            profile.setLocation(this);
+        }
+    }
+
+    public void removeProfile(Profile profile) {
+        profile.setLocation(null);
+        if (profiles != null) {
+            profiles.remove(profile);
+        }
+    }
 
 	@Override
 	public String toString() {
