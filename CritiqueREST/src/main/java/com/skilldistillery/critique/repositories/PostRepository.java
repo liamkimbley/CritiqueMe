@@ -16,6 +16,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	@Query("SELECT p FROM Post p JOIN FETCH p.comments WHERE p.id = :id")
 	public Post queryForPostWithCommentsByPostId(Integer id);
 	
-	@Query("SELECT p FROM Post p WHERE p.category.id = :cid")
-	public List<Post> queryForPostByCategoryId(@Param ("cid") Integer cid);
+	@Query("SELECT p FROM Post p, Category c WHERE  c.id = :cid")
+	public List<Post> queryForPostsByCategoryId(@Param ("cid") Integer cid);
 }
