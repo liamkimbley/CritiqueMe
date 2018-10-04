@@ -1,5 +1,6 @@
 package com.skilldistillery.critique.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -19,7 +20,7 @@ class CommentTest {
 	
 	@BeforeEach
 	public void setup() {
-		emf = Persistence.createEntityManagerFactory("CritiqueMe");
+		emf = Persistence.createEntityManagerFactory("CritiqueJPA");
 		em = emf.createEntityManager();
 		com = em.find(Comment.class, 1);
 	}
@@ -32,27 +33,21 @@ class CommentTest {
 	
 	@Test
 	void test_comment() {
-		fail("Not yet implemented");
+		assertEquals("no", com.getContent());
 	}
 	
 	@Test
-	void test_many_comments_can_be_in_one_post() {
-		fail("Not yet implemented");
+	void test_comment_has_one_post() {
+		assertEquals("buy my album", com.getPost().getContent());
 	}
 	
 	@Test
-	void test_many_comments_can_come_from_one_profile() {
-		fail("Not yet implemented");
+	void test_comment_has_one_profile() {
+		assertEquals("Jeff", com.getProfile().getFirstName());
 	}
 	
-	@Test
-	void test_one_comment_can_have_many_votes() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	void test_one_comment_can_only_have_one_vote_per_profile() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	void test_one_comment_can_have_many_votes() {
+//	}
 
 }

@@ -19,9 +19,9 @@ class ExpertiseTest {
 	
 	@BeforeEach
 	public void setup() {
-		emf = Persistence.createEntityManagerFactory("CritiqueMe");
+		emf = Persistence.createEntityManagerFactory("CritiqueJPA");
 		em = emf.createEntityManager();
-		exp = em.find(Expertise.class, 1);
+		exp = em.find(Expertise.class, 9);
 	}
 	
 	@AfterEach
@@ -31,8 +31,13 @@ class ExpertiseTest {
 	}
 	
 	@Test
+	void test_expertise() {
+		assertEquals("Business", exp.getTitle());
+	}
+	
+	@Test
 	void test_one_expertise_can_be_in_many_profiles() {
-		fail("Not yet implemented");
+		assertNotEquals(0, exp.getProfiles().size());
 	}
 
 }
