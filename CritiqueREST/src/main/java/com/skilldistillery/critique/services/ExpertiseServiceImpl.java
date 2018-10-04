@@ -16,7 +16,11 @@ public class ExpertiseServiceImpl implements ExpertiseService {
 	
 	@Override
 	public List<Expertise> index() {
-		return expRepo.findAll();
+		List<Expertise> skills = expRepo.findAll();
+		if (skills.isEmpty()) {
+			return null;
+		}
+		return skills;
 		
 	}
 
