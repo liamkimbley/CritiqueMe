@@ -16,7 +16,11 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<Category> index() {
-		return catRepo.findAll();
+		List<Category> categories = catRepo.findAll();
+		if (categories.isEmpty()) {
+			return null;
+		}
+		return categories;
 		
 	}
 
