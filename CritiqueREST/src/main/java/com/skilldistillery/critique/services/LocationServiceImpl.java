@@ -13,6 +13,15 @@ public class LocationServiceImpl implements LocationService {
 
 	@Autowired
 	private LocationRepository locRepo;
+	
+	@Override
+	public List<Location> index() {
+		List<Location> locations = locRepo.findAll();
+		if (locations.isEmpty()) {
+			return null;
+		}
+		return locations;
+	}
 
 	@Override
 	public List<Location> findLocationByCity(String city) {

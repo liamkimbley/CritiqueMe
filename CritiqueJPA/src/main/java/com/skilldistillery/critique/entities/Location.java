@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Location {
 
@@ -21,7 +23,8 @@ public class Location {
 	private String city;
 	private String state;
 	private String country;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "location")
 	private List<Profile> profiles;
 
