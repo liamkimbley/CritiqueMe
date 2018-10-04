@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">CritiqueMe</a>
+  <a class="navbar-brand" [routerLink]="['/home']">CritiqueMe</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon">
@@ -7,15 +7,15 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <ul class="navbar-nav">
-      <li><a class="nav-item nav-link" >Home </a></li>
-      <li><a class="nav-item nav-link" >About</a></li>
-      <!-- <li *ngIf='!navBarCheckLogin()'><a class="nav-item nav-link">Sign Up</a></li> -->
+      <li><a class="nav-item nav-link" [routerLink]="['/home']">Home </a></li>
+      <li><a class="nav-item nav-link" [routerLink]="['/register']">Sign Up</a></li>
     </ul>
   </div>
-  <!-- <div *ngIf='navBarCheckLogin()'>
+  <div>
     <app-logout></app-logout>
-  </div> -->
-  <!-- <div *ngIf="!navBarCheckLogin()">
-    <a class="btn btn-dark btn-sm" role="button">Log In <i class="fas fa-angle-double-right"></i></a>
-  </div> -->
+  </div>
+  <div>
+    <button class="btn btn-dark btn-sm">Log In</button>
+    <!-- <a class="btn btn-dark btn-sm" role="button">Log In</a> -->
+  </div>
 </nav>
