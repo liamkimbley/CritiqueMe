@@ -46,7 +46,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(path="users/{username}", method = RequestMethod.GET) 
+	@RequestMapping(path="users/search/username/{username}", method = RequestMethod.GET) 
 	public User findOneUserByUsername(@PathVariable String username, HttpServletRequest req, HttpServletResponse res) {
 		User u = us.findOneUserByUsername(username);
 		if (u != null) {
@@ -58,7 +58,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(path = "users/{email}", method = RequestMethod.GET)
+	@RequestMapping(path = "users/search/email/{email}", method = RequestMethod.GET)
 	public User findByEmail(@PathVariable String email, HttpServletRequest req, HttpServletResponse res) {
 		User u = us.findByEmail(email);
 		if (u != null) {
@@ -70,7 +70,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(path = "users/{active}", method = RequestMethod.GET)
+	@RequestMapping(path = "users/search/active/{active}", method = RequestMethod.GET)
 	public List<User> findByActive(@PathVariable Boolean active, HttpServletRequest req, HttpServletResponse res) {
 		List<User> users = us.findByActive(active);
 		if (users != null) {
