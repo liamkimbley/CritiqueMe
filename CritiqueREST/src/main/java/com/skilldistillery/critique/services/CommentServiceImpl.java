@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.critique.entities.Comment;
 import com.skilldistillery.critique.entities.Post;
+import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.repositories.CommentRepository;
 import com.skilldistillery.critique.repositories.PostRepository;
+import com.skilldistillery.critique.repositories.ProfileRepository;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -19,23 +21,34 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private PostRepository postRepo;
 
+	@Autowired
+	private ProfileRepository profRepo;
+
 	@Override
 	public List<Comment> findCommentsByPost(Integer id) {
 		return comRepo.findByPost_Id(id);
-		
+
 	}
 
 	@Override
-	public Comment createNewCommentOnPost(Integer id, Comment comment) {
+	public Comment createNewCommentOnPost(Integer id, Comment comment, Integer profId) {
 		Comment com = new Comment();
-		Post post = postRepo.findById(id).get();
-		if (post != null) {
-			com.setPost(post);
+		Optional<Post> op = postRepo.findById(id);
+		if (op.isPresent()) {
+			Post p = op.get();
+			Optional<Profile> pr = profRepo.findById(id);
+			if (pr.isPresent()) {
+				Profile prof = pr.get();
+
+				if (p != null) {
+					com.setPost(p);
+				}
+				com.setProfile(prof);
+				com.setContent(comment.getContent());
+			} 
 		}
-		com.setContent(comment.getContent());
-		
 		return comRepo.saveAndFlush(com);
-		
+
 	}
 
 	@Override
@@ -52,7 +65,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Comment findByCommentId(Integer id) {
 		Optional<Comment> c = comRepo.findById(id);
-		
+
 		if (c.isPresent()) {
 			return c.get();
 		}
@@ -62,7 +75,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Comment update(Integer id, Comment com) {
 		Optional<Comment> oc = comRepo.findById(id);
-		
+
 		if (oc.isPresent()) {
 			Comment c = oc.get();
 			if (com.getContent() != null && !com.getContent().equals("")) {
@@ -71,7 +84,7 @@ public class CommentServiceImpl implements CommentService {
 			return comRepo.saveAndFlush(c);
 		}
 		return null;
-		
+
 	}
-	
+
 }

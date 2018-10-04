@@ -27,13 +27,14 @@ public class CommentController {
 		return comServ.findByCommentId(cid);
 	}
 
+//	************************************* hard coded profile id into comments (same as post)
 	@RequestMapping(path = "posts/{pid}/comments", method = RequestMethod.POST)
 	public Comment createComment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer pid,
 			@RequestBody Comment com) {
-		return comServ.createNewCommentOnPost(pid, com);
+		return comServ.createNewCommentOnPost(pid, com, 1);
 	}
 
-	@RequestMapping(path="comments/{cid}", method=RequestMethod.POST)
+	@RequestMapping(path="comments/{cid}", method=RequestMethod.PUT)
 	public Comment updateComment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer cid, @RequestBody Comment com) {
 		Comment c = comServ.update(cid, com);
 		if (c == null) {
@@ -45,7 +46,7 @@ public class CommentController {
 		return c;
 	}
 
-	@RequestMapping(path="comments/{tid}", method=RequestMethod.DELETE)
+	@RequestMapping(path="comments/{cid}", method=RequestMethod.DELETE)
 	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer cid) {
 		if (comServ.findByCommentId(cid) != null) {
 			comServ.deleteCommentById(cid);
