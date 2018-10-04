@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.critique.entities.Post;
+import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.repositories.PostRepository;
+import com.skilldistillery.critique.repositories.ProfileRepository;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -16,8 +18,11 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	private PostRepository postRepo;
 
+	@Autowired
+	private ProfileRepository profRepo;
+
 	@Override
-	public List<Post> findPostsByCategoryId(int id) {
+	public List<Post> findPostsByCategoryId(Integer id) {
 		return postRepo.queryForPostsByCategoryId(id);
 
 	}
@@ -35,7 +40,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post findPostById(int id) {
+	public Post findPostById(Integer id) {
 		Post p = postRepo.queryForPostWithCommentsByPostId(id);
 
 		if (p != null) {
@@ -46,24 +51,25 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post create(Post post) {
+	public Post create(Post post, Integer id) {
 		Post p = new Post();
+		Optional<Profile> pr = profRepo.findById(id);
+		if (pr.isPresent()) {
+			Profile prof = pr.get();
 
-		if (post != null) {
-			if (post.getContent() != null && !post.getContent().equals("")) {
-				p.setContent(post.getContent());
-			}
-			if (post.getProfile() != null) {
-				p.setProfile(post.getProfile());
+			if (post != null) {
+				if (post.getContent() != null && !post.getContent().equals("")) {
+					p.setContent(post.getContent());
+				}
+				p.setProfile(prof);
 			}
 		}
-
 		return postRepo.saveAndFlush(p);
 
 	}
 
 	@Override
-	public Post update(int id, Post post) {
+	public Post update(Integer id, Post post) {
 		Optional<Post> op = postRepo.findById(id);
 
 		if (op.isPresent()) {
@@ -81,7 +87,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post replace(int id, Post post) {
+	public Post replace(Integer id, Post post) {
 		Optional<Post> op = postRepo.findById(id);
 
 		if (op.isPresent()) {
@@ -99,7 +105,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public boolean delete(int id) {
+	public boolean delete(Integer id) {
 		try {
 			postRepo.deleteById(id);
 			return true;

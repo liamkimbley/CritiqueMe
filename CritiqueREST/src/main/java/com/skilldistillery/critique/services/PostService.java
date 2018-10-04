@@ -7,12 +7,12 @@ import com.skilldistillery.critique.entities.Post;
 
 public interface PostService {
 
-	public List<Post> findPostsByCategoryId(int id);
+	public List<Post> findPostsByCategoryId(Integer id);
 	public List<Post> findPostsByCreateDate(LocalDate date);
 	public List<Post> findAllPosts();
-	public Post findPostById(int id);
-	public Post create(Post post);
-	public Post update(int id, Post post);
-	public Post replace(int id, Post post);
-	public boolean delete(int id);
+	public Post findPostById(Integer id);
+	public Post create(Post post, Integer id);
+	public Post update(Integer id, Post post);
+	public Post replace(Integer id, Post post);
+	public boolean delete(Integer id);
 }

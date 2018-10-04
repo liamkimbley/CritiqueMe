@@ -38,9 +38,10 @@ public class PostController {
 		return postServ.findPostById(pid);
 	}
 
+//	*****************************************
 	@RequestMapping(path = "posts", method = RequestMethod.POST)
 	public Post create(@RequestBody Post post, HttpServletResponse res) {
-		Post p = postServ.create(post);
+		Post p = postServ.create(post, 1);
 		if (p != null) {
 			res.setStatus(201);
 		} else {
