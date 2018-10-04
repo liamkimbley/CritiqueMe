@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.critique.entities.Profile;
@@ -49,6 +50,11 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public List<Profile> queryByCountryWithLocation(String country) {
 		return profRepo.queryByCountryWithLocation(country);
+	}
+	
+	@Override
+	public Profile queryByUsernameWithUser(String username) {
+		return profRepo.queryByUsernameWithUser(username);
 	}
 	
 	//

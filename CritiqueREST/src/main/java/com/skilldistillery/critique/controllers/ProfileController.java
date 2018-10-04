@@ -51,6 +51,11 @@ public class ProfileController {
 		return ps.queryByCityWithLocation(country);
 	}
 	
+	@RequestMapping(path = "profile/user/{username}", method = RequestMethod.GET)
+	public Profile findByUsernameWithUser(@PathVariable String username) {
+		return ps.queryByUsernameWithUser(username);
+	}
+	
 	// create when user creates an account
 	@RequestMapping(path = "profile", method = RequestMethod.POST)
 	public Profile createProfile(@RequestBody Profile p) {
