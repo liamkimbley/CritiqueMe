@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from '../models/post';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,7 +9,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  title = 'CritiqueMe';
+  posts: Post[] = [];
+  selected: Post = null;
+  newPost: Post = new Post();
+  editPost: Post = null;
+
+  reload = function() {
+    this.postService.index().subscribe(
+      data => { this.posts = data; },
+      err => {console.error('Observer got an error: ' + err.status); }
+      );
+  };
+
+  displayTable = function() {
+    this.selected = null;
+  };
+
+  addPost = function() {
+    this.postService.create(this.newPost).subscribe(
+      data => {this.reload(); },
+      err => {console.error('Observer got an error: ' + err.status); }
+      );
+      console.log(this.newPost);
+      this.newPost = new Post();
+  };
+
+  setEditPost = function() {
+    this.editPost = Object.assign({}, this.selected);
+  };
+
+  updatePost = function(post: Post) {
+    console.log(post);
+    this.postService.update(post).subscribe(
+      data => {
+        this.selected = data;
+        this.editPost = null;
+        this.reload(); },
+      err => {console.error('Observer got an error: ' + err.status); }
+    );
+  };
+
+  deletePost = function(id: number) {
+    this.postService.destroy(id).subscribe(
+      data => {
+        this.reload(); },
+      err => {console.error('Observer got an error: ' + err.status); }
+    );
+  };
+
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
   }
