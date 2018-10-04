@@ -19,7 +19,7 @@
 
     <properties>
       <property name="javax.persistence.jdbc.url"
-        value="critiquemedb" />
+        value="jdbc:mysql://localhost:3306/critiquemedb?useSSL=false" />
       <property name="javax.persistence.jdbc.user"
         value="critique"/>
       <property name="javax.persistence.jdbc.password"
