@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../profile.service';
+import { NgForm } from '@angular/forms';
+import { Profile } from '../models/profile';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
+    this.reload();
   }
+
+  reload = function() {
+
+  };
+
+  updateProfile = function(profile: NgForm) {
+
+  };
+
+  deleteProfile = function(profile: NgForm) {
+
+  };
 
 }
