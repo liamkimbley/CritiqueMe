@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(255) NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 

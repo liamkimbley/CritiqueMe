@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
-	public User findByUsername(String name) {
-		return userRepo.findByUsername(name);
+	public User findOneUserByUsername(String name) {
+		return userRepo.findOneUserByUsername(name);
 	}
 
 	@Override
@@ -24,12 +24,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findOneUserByUsername(String name) {
-		return userRepo.findOneUserByUsername(name);
-	}
-
-	@Override
 	public List<User> findByActive(Boolean active) {
+		// revisit later
+		active = true;
 		return userRepo.findByActive(active);
 	}
 
