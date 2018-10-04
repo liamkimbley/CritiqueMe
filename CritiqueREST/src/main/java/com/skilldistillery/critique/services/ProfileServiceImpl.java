@@ -57,6 +57,16 @@ public class ProfileServiceImpl implements ProfileService {
 		return profRepo.queryByUsernameWithUser(username);
 	}
 	
+	@Override
+	public Profile findProfileById(int id) {
+		Profile profile = null;
+		Optional<Profile> p = profRepo.findById(id);
+		if (p.isPresent()) {
+			profile = p.get();
+		}
+		return profile;
+	}
+	
 	//
 	public Profile create(Profile createdProfile) {
 		Profile newProfile = new Profile();
