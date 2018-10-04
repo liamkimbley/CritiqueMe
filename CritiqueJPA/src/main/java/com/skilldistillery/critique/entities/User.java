@@ -1,9 +1,15 @@
 package com.skilldistillery.critique.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
@@ -16,6 +22,11 @@ public class User {
 	private String password;
 	private String role;
 	private Boolean active;
+	@ManyToMany
+	@JoinTable(name = "friend", 
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	private List<User> friends;
 
 	public User() {
 	}
@@ -75,6 +86,31 @@ public class User {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+	public List<User> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<User> friends) {
+		this.friends = friends;
+	}
+
+	public void addFriend(User friend) {
+		if (friends == null)
+			friends = new ArrayList<>();
+
+		if (!friends.contains(friend)) {
+			friends.add(friend);
+			friend.getFriends().add(this);
+		}
+
+	}
+
+	public void removeFriend(User friend) {
+		if (friends != null && friends.contains(friend)) {
+			friends.remove(friend);
+			friend.getFriends().remove(this);
+		}
 	}
 
 	@Override
