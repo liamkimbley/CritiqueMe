@@ -12,7 +12,15 @@ import com.skilldistillery.critique.repositories.UserRepository;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
-
+	
+	@Override
+	public List<User> index() {
+		List<User> users = userRepo.findAll();
+		if (users.isEmpty()) {
+			return null;
+		}
+		return users;
+	}
 	@Override
 	public User findOneUserByUsername(String name) {
 		return userRepo.findOneUserByUsername(name);

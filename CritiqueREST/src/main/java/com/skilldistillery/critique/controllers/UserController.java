@@ -2,6 +2,9 @@ package com.skilldistillery.critique.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,19 +22,53 @@ public class UserController {
 	@Autowired
 	private UserService us;
 	
+	@RequestMapping(path = "users", method = RequestMethod.GET)
+	public List<User> indexUsers(HttpServletRequest req, HttpServletResponse res) {
+		List<User> users = us.index();
+		if(users != null) {
+			res.setStatus(200);
+			return users;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
+	}
+	
 	@RequestMapping(path="users/{username}", method = RequestMethod.GET) 
-	public User findOneUserByUsername(@PathVariable String username) {
-		return us.findOneUserByUsername(username);
+	public User findOneUserByUsername(@PathVariable String username, HttpServletRequest req, HttpServletResponse res) {
+		User u = us.findOneUserByUsername(username);
+		if (u != null) {
+			res.setStatus(200);
+			return u;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 
 	@RequestMapping(path = "users/{email}", method = RequestMethod.GET)
-	public User findByEmail(@PathVariable String email) {
-		return us.findByEmail(email);
+	public User findByEmail(@PathVariable String email, HttpServletRequest req, HttpServletResponse res) {
+		User u = us.findByEmail(email);
+		if (u != null) {
+			res.setStatus(200);
+			return u;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "users/{active}", method = RequestMethod.GET)
-	public List<User> findByActive(@PathVariable boolean active) {
-		return us.findByActive(active);
+	public List<User> findByActive(@PathVariable boolean active, HttpServletRequest req, HttpServletResponse res) {
+		List<User> users = us.findByActive(active);
+		if (users != null) {
+			res.setStatus(200);
+			return users;
+		}
+		else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 }
