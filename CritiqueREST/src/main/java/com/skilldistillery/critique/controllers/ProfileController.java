@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.critique.entities.Profile;
@@ -47,6 +49,22 @@ public class ProfileController {
 	@RequestMapping(path = "profile/{country}", method = RequestMethod.GET)
 	public List<Profile> findByCountryWithLocation(@PathVariable String country) {
 		return ps.queryByCityWithLocation(country);
+	}
+	
+	// create when user creates an account
+	@RequestMapping(path = "profile", method = RequestMethod.POST)
+	public Profile createProfile(@RequestBody Profile p) {
+		return ps.create(p);
+	}
+	
+	@RequestMapping(path = "profile/{id}", method = RequestMethod.PATCH)
+	public Profile updateProfile(@RequestParam Profile p, @PathVariable int id) {
+		return ps.update(id, p);
+	}
+	
+	@RequestMapping(path = "profile/{id}", method = RequestMethod.DELETE)
+	public boolean deleteProfile(@PathVariable int id) {
+		return ps.delete(id);
 	}
 
 	

@@ -261,6 +261,7 @@ INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VAL
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'jeffy@yahoo.com', 'myusernameisjeff', 'mynameisjeff', 1, DEFAULT);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mbyrde@aol.com', 'martybyrde', 'moneylaundering', 1, DEFAULT);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'wwchemist@hotmail.com', 'waltw', 'skylar', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test', 'test12', 'test', 1, DEFAULT);
 
 COMMIT;
 
@@ -289,6 +290,7 @@ INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `u
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Jeff', 'Jefferson', 'my name is jeff', 3, 3);
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Marty', 'Byrde', 'come check out my lakehouse', 4, 4);
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Walter', 'White', 'chemisty teacher', 5, 5);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 6);
 
 COMMIT;
 

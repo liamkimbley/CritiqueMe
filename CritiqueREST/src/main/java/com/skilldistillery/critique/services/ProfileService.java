@@ -12,4 +12,8 @@ public interface ProfileService {
 	public List<Profile> queryByCityWithLocation(String city);
 	public List<Profile> queryByStateWithLocation(String state);
 	public List<Profile> queryByCountryWithLocation(String country);
+	//
+	public Profile create(Profile createdProfile);
+	public Profile update(int id, Profile updatedProfile);
+	public boolean delete(int id);
 }

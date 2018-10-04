@@ -30,9 +30,4 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findByActive(active);
 	}
 
-	@Override
-	public List<User> findByRole(String role) {
-		return userRepo.findByRole(role);
-	}
-
 }
