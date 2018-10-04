@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Post {
 
@@ -27,6 +29,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
@@ -41,6 +44,7 @@ public class Post {
 	@Column(name = "update_date")
 	private LocalDate updatedDate;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "post_category", 
 	joinColumns = @JoinColumn(name = "post_id"), 

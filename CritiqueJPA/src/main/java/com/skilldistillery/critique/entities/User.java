@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -26,6 +28,7 @@ public class User {
 	private String role;
 	private Boolean active;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "friend", 
 	joinColumns = @JoinColumn(name = "user_id"), 
