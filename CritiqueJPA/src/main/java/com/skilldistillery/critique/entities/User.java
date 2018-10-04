@@ -27,7 +27,9 @@ public class User {
 	private Boolean active;
 
 	@ManyToMany
-	@JoinTable(name = "friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	@JoinTable(name = "friend", 
+	joinColumns = @JoinColumn(name = "user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<User> friends;
 
 	/* Fields */

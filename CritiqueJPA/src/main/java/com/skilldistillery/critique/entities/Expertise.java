@@ -1,3 +1,4 @@
+
 package com.skilldistillery.critique.entities;
 
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ public class Expertise {
 
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "profile_expertise", joinColumns = @JoinColumn(name = "expertise_id"), inverseJoinColumns = @JoinColumn(name = "profile_id"))
+	@JoinTable(name = "profile_expertise", 
+	joinColumns = @JoinColumn(name = "expertise_id"), 
+	inverseJoinColumns = @JoinColumn(name = "profile_id"))
 	private List<Profile> profiles;
 
 	/* Fields */
