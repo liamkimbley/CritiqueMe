@@ -24,8 +24,8 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
 	private UserRepository userRepo;
 
-	@Autowired
-	private PasswordEncoder encoder;
+//	@Autowired
+//	private PasswordEncoder encoder;
 
 	@Override
 	public User register(String json) {
