@@ -42,7 +42,7 @@ public class Profile {
 	@OneToMany(mappedBy = "profile")
 	private List<Post> posts;
 
-	@ManyToMany(mappedBy = "profile")
+	@ManyToMany(mappedBy = "profiles")
 	private List<Expertise> skills;
 
 	public Profile() {

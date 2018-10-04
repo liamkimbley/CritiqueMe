@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -43,6 +44,9 @@ public class Post {
 	joinColumns = @JoinColumn(name="post_id"),
 	inverseJoinColumns = @JoinColumn(name="category_id"))
 	private List<Category> categories;
+	
+	@OneToMany(mappedBy="post")
+	private List<Comment> comments;
 
 	public Post() {
 	}
@@ -104,6 +108,14 @@ public class Post {
 		this.categories = categories;
 	}
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+	
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
 	public void addCategory(Category category) {
 		if (categories == null) {
 			categories = new ArrayList<>();
@@ -119,6 +131,26 @@ public class Post {
 			categories.remove(category);
 			category.removePost(this);
 			
+		}
+	}
+	
+	public void addComment(Comment comment) {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		}
+		if (!comments.contains(comment)) {
+			comments.add(comment);
+			if (comment.getPost() != null) {
+				comment.getPost().getComments().remove(comment);
+			}
+			comment.setPost(this);
+		}
+	}
+
+	public void removeComment(Comment comment) {
+		comment.setPost(null);
+		if (this.comments != null) {
+			comments.remove(comment);
 		}
 	}
 

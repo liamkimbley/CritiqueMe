@@ -34,6 +34,7 @@ public class Comment {
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
 
+	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private Post post;
 
@@ -97,7 +98,7 @@ public class Comment {
 	public void setPost(Post post) {
 		this.post = post;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", content=" + content + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
