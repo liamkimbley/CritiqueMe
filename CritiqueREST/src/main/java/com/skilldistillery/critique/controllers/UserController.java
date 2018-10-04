@@ -34,6 +34,18 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping(path = "users/{id}", method = RequestMethod.GET)
+	public User showUser(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse res) {
+		User user = us.show(id);
+		if(user != null) {
+			res.setStatus(200);
+			return user;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
+	}
+	
 	@RequestMapping(path="users/{username}", method = RequestMethod.GET) 
 	public User findOneUserByUsername(@PathVariable String username, HttpServletRequest req, HttpServletResponse res) {
 		User u = us.findOneUserByUsername(username);
@@ -59,7 +71,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "users/{active}", method = RequestMethod.GET)
-	public List<User> findByActive(@PathVariable boolean active, HttpServletRequest req, HttpServletResponse res) {
+	public List<User> findByActive(@PathVariable Boolean active, HttpServletRequest req, HttpServletResponse res) {
 		List<User> users = us.findByActive(active);
 		if (users != null) {
 			res.setStatus(200);
