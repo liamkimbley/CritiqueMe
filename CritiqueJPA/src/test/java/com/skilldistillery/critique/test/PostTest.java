@@ -1,7 +1,6 @@
 package com.skilldistillery.critique.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,6 +33,7 @@ class PostTest {
 	@Test
 	void test_post() {
 		assertEquals("buy my album", post.getContent());
+		assertEquals("yo", post.getTitle());
 	}
 	
 	@Test

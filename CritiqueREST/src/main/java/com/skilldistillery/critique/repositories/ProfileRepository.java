@@ -20,9 +20,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer>{
 	@Query("SELECT p FROM Profile p WHERE p.firstName = :fname AND p.lastName = :lname")
 	public List<Profile> findByFirstNameAndLastName(@Param("fname") String fname, @Param("lname") String lname);
 	
-//	// find by name LIKE
-//	public List<Profile> findByFirstNameContainingOrLastNameContaining(String name);
-	
 	// find by city
 	@Query("SELECT p from Profile p WHERE p.location.city = :city")
 	public List<Profile> queryByCityWithLocation(@Param("city") String city);

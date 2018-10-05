@@ -39,7 +39,7 @@ class ProfileTest {
 	@Test
 	void test_profile() {
 		assertEquals("test", prof.getFirstName());
-		assertEquals("test", prof.getBio());
+		assertEquals("https://cdn2.vectorstock.com/i/1000x1000/20/76/question-mark-vector-972076.jpg", prof.getImageUrl());
 	}
 	
 	@Test

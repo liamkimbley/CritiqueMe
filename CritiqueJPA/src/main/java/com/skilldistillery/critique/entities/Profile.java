@@ -38,6 +38,9 @@ public class Profile {
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@Column(name = "image")
+	private String imageUrl;
 
 	@OneToMany(mappedBy = "profile")
 	private List<Comment> comments;
@@ -55,7 +58,7 @@ public class Profile {
 	public Profile() {
 	}
 
-	public Profile(int id, String firstName, String lastName, String bio, Location location, User user) {
+	public Profile(int id, String firstName, String lastName, String bio, Location location, User user, String imageUrl) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -63,6 +66,7 @@ public class Profile {
 		this.bio = bio;
 		this.location = location;
 		this.user = user;
+		this.imageUrl = imageUrl;
 	}
 
 	/* Constructors */
@@ -115,6 +119,14 @@ public class Profile {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public List<Comment> getComments() {
@@ -210,6 +222,7 @@ public class Profile {
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((imageUrl == null) ? 0 : imageUrl.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
@@ -243,6 +256,11 @@ public class Profile {
 		} else if (!firstName.equals(other.firstName))
 			return false;
 		if (id != other.id)
+			return false;
+		if (imageUrl == null) {
+			if (other.imageUrl != null)
+				return false;
+		} else if (!imageUrl.equals(other.imageUrl))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)

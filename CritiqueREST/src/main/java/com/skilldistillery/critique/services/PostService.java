@@ -10,6 +10,7 @@ public interface PostService {
 	public List<Post> findPostsByCategoryId(Integer id);
 	public List<Post> findPostsByCreateDate(LocalDate date);
 	public List<Post> findAllPosts();
+	public List<Post> findByTitleContaining(String title);
 	public Post findPostById(Integer id);
 	public Post create(Post post, Integer id);
 	public Post update(Integer id, Post post);

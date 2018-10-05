@@ -35,6 +35,10 @@ public class Post {
 	private Profile profile;
 
 	private String content;
+	
+	private String title;
+	
+	private String media;
 
 	@CreationTimestamp
 	@Column(name = "create_date")
@@ -61,11 +65,13 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(int id, Profile profile, String content, LocalDate createdDate, LocalDate updatedDate) {
+	public Post(int id, Profile profile, String content, String title, String media, LocalDate createdDate, LocalDate updatedDate) {
 		super();
 		this.id = id;
 		this.profile = profile;
 		this.content = content;
+		this.title = title;
+		this.media = media;
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 	}
@@ -96,6 +102,22 @@ public class Post {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getMedia() {
+		return media;
+	}
+
+	public void setMedia(String media) {
+		this.media = media;
 	}
 
 	public LocalDate getCreatedDate() {
@@ -181,7 +203,9 @@ public class Post {
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((media == null) ? 0 : media.hashCode());
 		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((updatedDate == null) ? 0 : updatedDate.hashCode());
 		return result;
 	}
@@ -217,10 +241,20 @@ public class Post {
 			return false;
 		if (id != other.id)
 			return false;
+		if (media == null) {
+			if (other.media != null)
+				return false;
+		} else if (!media.equals(other.media))
+			return false;
 		if (profile == null) {
 			if (other.profile != null)
 				return false;
 		} else if (!profile.equals(other.profile))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
 			return false;
 		if (updatedDate == null) {
 			if (other.updatedDate != null)

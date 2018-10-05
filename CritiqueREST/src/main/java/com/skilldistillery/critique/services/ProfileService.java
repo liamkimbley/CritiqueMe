@@ -10,7 +10,6 @@ public interface ProfileService {
 	public List<Profile> findByFirstname(String firstName);
 	public List<Profile> findByLastname(String lastName);
 	public List<Profile> findByFirstNameAndLastName(String fname, String lname);
-//	public List<Profile> findByFirstNameContainingOrLastNameContaining(String name);
 	public List<Profile> queryByCityWithLocation(String city);
 	public List<Profile> queryByStateWithLocation(String state);
 	public List<Profile> queryByCountryWithLocation(String country);

@@ -13,6 +13,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
 	public List<Post> findByProfile_Id(Integer id);
 	public List<Post> findByCreatedDate(LocalDate date);
+	public List<Post> findByTitleContaining(String title);
 	@Query("SELECT p FROM Post p JOIN FETCH p.comments WHERE p.id = :id")
 	public Post queryForPostWithCommentsByPostId(@Param ("id") Integer id);
 	

@@ -38,6 +38,12 @@ public class PostServiceImpl implements PostService {
 		return postRepo.findAll();
 
 	}
+	
+	@Override
+	public List<Post> findByTitleContaining(String title) {
+		String searchTitle = "%" + title + "%";
+		return postRepo.findByTitleContaining(searchTitle);
+	}
 
 	@Override
 	public Post findPostById(Integer id) {

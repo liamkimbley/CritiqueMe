@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.critique.entities.Profile;
@@ -29,13 +28,6 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<Profile> findByFirstNameAndLastName(String fname, String lname) {
 		return profRepo.findByFirstNameAndLastName(fname, lname);
 	}
-	
-//	@Override
-//	public List<Profile> findByFirstNameContainingOrLastNameContaining(String name) {
-//		String nameContaining = "%" + name + "%";
-//		return profRepo.findByFirstNameContainingOrLastNameContaining(nameContaining);
-//	}
-
 
 	@Override
 	public List<Profile> queryByCityWithLocation(String city) {
@@ -101,6 +93,9 @@ public class ProfileServiceImpl implements ProfileService {
 			}
 			if (updatedProfile.getUser() != null) {
 				profile.setUser(updatedProfile.getUser());
+			}
+			if (updatedProfile.getImageUrl() != null) {
+				profile.setImageUrl(updatedProfile.getImageUrl());
 			}
 			if (updatedProfile.getSkills() != null) {
 				profile.setSkills(updatedProfile.getSkills());

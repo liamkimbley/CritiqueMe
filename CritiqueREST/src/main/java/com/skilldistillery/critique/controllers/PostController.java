@@ -37,6 +37,11 @@ public class PostController {
 	public Post getSinglePost(@PathVariable Integer pid) {
 		return postServ.findPostById(pid);
 	}
+	
+	@RequestMapping(path = "posts/title/{title}", method = RequestMethod.GET)
+	public List<Post> getPostByTitle(@PathVariable String title) {
+		return postServ.findByTitleContaining(title);
+	}
 
 //	***************************************** hard coded profile id into post (same as comments)
 	@RequestMapping(path = "posts", method = RequestMethod.POST)
