@@ -23,7 +23,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SideNavLeftComponent } from './side-nav-left/side-nav-left.component';
 import { CommentComponent } from './comment/comment.component';
-import { LocationComponent } from './location/location.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { LocationComponent } from './location/location.component';
     ProfileComponent,
     PostComponent,
     SideNavLeftComponent,
-    CommentComponent,
-    LocationComponent
+    CommentComponent
   ],
   imports: [
     BrowserModule,
