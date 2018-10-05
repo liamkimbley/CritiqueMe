@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `bio` TEXT NULL,
   `location_id` INT NULL,
   `user_id` INT NOT NULL,
+  `image` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_profile_location_idx` (`location_id` ASC),
   INDEX `fk_user_profile_idx` (`user_id` ASC),
@@ -85,6 +86,8 @@ CREATE TABLE IF NOT EXISTS `post` (
   `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `content` TEXT NULL,
+  `title` VARCHAR(100) NOT NULL,
+  `media` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_post_profile_idx` (`profile_id` ASC),
   CONSTRAINT `fk_post_profile`
@@ -285,12 +288,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 1);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Mike', 'Jones', 'who is mike jones?', 2, 2);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Jeff', 'Jefferson', 'my name is jeff', 3, 3);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Marty', 'Byrde', 'come check out my lakehouse', 4, 4);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'Walter', 'White', 'chemisty teacher', 5, 5);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 6);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 1, 'https://cdn2.vectorstock.com/i/1000x1000/20/76/question-mark-vector-972076.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Mike', 'Jones', 'who is mike jones?', 2, 2, 'https://marriedwiki.com/uploads/bio/mike-jones.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Jeff', 'Jefferson', 'my name is jeff', 3, 3, 'https://i.kym-cdn.com/entries/icons/original/000/016/894/mynameehhjeff.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Marty', 'Byrde', 'come check out my lakehouse', 4, 4, 'https://static.wikia.nocookie.net/2a6c845c-c6e9-472e-abed-24863817b795/scale-to-width/300');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Walter', 'White', 'chemisty teacher', 5, 5, 'https://www.indiewire.com/wp-content/uploads/2018/07/breakingbadformon_wide-22d0f0aa716956d518b391936d3bc323dd7a3848-s900-c85.jpg?w=780');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 6, NULL);
 
 COMMIT;
 
@@ -300,10 +303,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 2, DEFAULT, DEFAULT, 'buy my album');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 3, DEFAULT, DEFAULT, 'my name is jeff');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 4, DEFAULT, DEFAULT, 'Anyone want to invest with me?');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`) VALUES (DEFAULT, 5, DEFAULT, DEFAULT, 'How does my carwash look?');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 2, DEFAULT, DEFAULT, 'buy my album', 'yo', NULL);
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 3, DEFAULT, DEFAULT, 'my name is jeff', 'hello', NULL);
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 4, DEFAULT, DEFAULT, 'Anyone want to invest with me?', 'investing', NULL);
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 5, DEFAULT, DEFAULT, 'How does my carwash look?', 'A1 Car Wash', NULL);
 
 COMMIT;
 
