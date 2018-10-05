@@ -1,5 +1,6 @@
 import { Location } from './location';
 import { User } from './user';
+
 export class Profile {
   id: number;
   firstName: string;
