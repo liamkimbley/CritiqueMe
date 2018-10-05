@@ -64,7 +64,7 @@ public class ProfileController {
 		}
 	}
 	
-	@RequestMapping(path = "profile/profile/{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "profile/{id}", method = RequestMethod.GET)
 	public Profile findProfileById(@PathVariable int id) {
 		return ps.findProfileById(id);
 	}
