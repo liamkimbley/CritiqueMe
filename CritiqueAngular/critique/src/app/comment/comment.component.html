@@ -1,0 +1,41 @@
+
+<!-- list of posts -->
+<div *ngFor="let post of posts">
+  <table>
+      <tr>
+        <td>{{post.title}}</td>
+        <td>{{post.content}}</td>
+        <td>{{post.media}}</td>
+        <td>{{post.createdDate}}</td>
+        <td>{{post.updatedDate}}</td>
+      </tr>
+  </table>
+</div>
+
+<!-- list of comments -->
+<div *ngIf="selectedPost">
+  <div *ngFor="let comment of comments">
+  <table>
+    <tr>
+      <td>{{comment.content}}</td>
+      <td>{{comment.createdAt}}</td>
+      <td>{{comment.updatedAt}}</td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+<!-- add a comment -->
+<div *ngIf="selectedPost">
+    <form #comment="ngForm">
+      <input type="text" name="content" placeholder="write your comment here" [(ngModel)]="newComment.content">
+      <button class="btn-outline-primary" type="submit" name="comment" (click)="addComment(selectedPost.id)">Comment</button>
+      <button class="btn-outline-primary" type="submit" name="cancel" selectedPost = null>Cancel</button>
+    </form>
+</div>
+
+<!-- update a comment -->
+
+<!-- delete a comment -->
+
+
