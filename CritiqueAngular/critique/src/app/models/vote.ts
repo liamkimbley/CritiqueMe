@@ -1,8 +1,10 @@
+import { VoteKey } from './vote-key';
+
 export class Vote {
-  id: number;
+  id: VoteKey;
   createdDate: string;
 
-  constructor(id?: number, createdDate?: string) {
+  constructor(id?: VoteKey, createdDate?: string) {
     this.id = id;
     this.createdDate = createdDate;
   }
