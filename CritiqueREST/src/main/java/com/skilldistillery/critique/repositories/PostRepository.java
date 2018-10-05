@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.skilldistillery.critique.entities.Category;
 import com.skilldistillery.critique.entities.Post;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
@@ -17,6 +18,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	@Query("SELECT p FROM Post p JOIN FETCH p.comments WHERE p.id = :id")
 	public Post queryForPostWithCommentsByPostId(@Param ("id") Integer id);
 	
-	@Query("SELECT p FROM Post p, Category c WHERE  c.id = :cid")
-	public List<Post> queryForPostsByCategoryId(@Param ("cid") Integer cid);
+	@Query("SELECT p FROM Post p WHERE :cat MEMBER OF p.categories")
+	public List<Post> queryForPostsByCategory(@Param ("cat") Category cat);
 }

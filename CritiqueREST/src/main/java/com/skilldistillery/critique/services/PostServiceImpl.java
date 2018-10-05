@@ -7,8 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.critique.entities.Category;
 import com.skilldistillery.critique.entities.Post;
 import com.skilldistillery.critique.entities.Profile;
+import com.skilldistillery.critique.repositories.CategoryRepository;
 import com.skilldistillery.critique.repositories.PostRepository;
 import com.skilldistillery.critique.repositories.ProfileRepository;
 
@@ -20,10 +22,18 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private ProfileRepository profRepo;
+	
+	@Autowired
+	private CategoryRepository catRepo;
 
 	@Override
 	public List<Post> findPostsByCategoryId(Integer id) {
-		return postRepo.queryForPostsByCategoryId(id);
+		Category cat = catRepo.findById(id).get();
+		List<Post> posts = postRepo.queryForPostsByCategory(cat);
+		if (posts.isEmpty()) {
+			return null;
+		}
+		return posts;
 
 	}
 

@@ -1,6 +1,12 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../category.service';
-import { Component, OnInit, ViewChild, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ChangeDetectorRef,
+  OnDestroy
+} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Category } from '../models/category';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -42,6 +48,20 @@ export class SideNavLeftComponent implements OnInit, OnDestroy {
       data => {
         console.log(data);
         this.categories = data;
+      },
+      err => console.error('Observer recieved an error: ' + err)
+    );
+  }
+
+  searchCategory(id: number) {
+    this.categoryService.indexCategory(id).subscribe(
+      data => {
+        if (data) {
+          this.categories = data;
+          console.log('Data: ' + data.values);
+        } else {
+          this.router.navigateByUrl('/notFound');
+        }
       },
       err => console.error('Observer recieved an error: ' + err)
     );

@@ -2,6 +2,7 @@ package com.skilldistillery.critique.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,15 @@ public class PostController {
 	}
 
 	@RequestMapping(path = "categories/{id}/posts", method = RequestMethod.GET)
-	public List<Post> postByCategory(@PathVariable Integer id) {
-		return postServ.findPostsByCategoryId(id);
+	public List<Post> postByCategory(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse res) {
+		List<Post> posts = postServ.findPostsByCategoryId(id);
+		if (posts != null) {
+			res.setStatus(200);
+			return posts;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 
 	@RequestMapping(path = "posts/{pid}", method = RequestMethod.GET)

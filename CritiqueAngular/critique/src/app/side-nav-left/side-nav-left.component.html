@@ -4,7 +4,7 @@
   <mat-sidenav #sidenav  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" (keydown.escape)="close('escape')" disableClose>
     <p><button mat-button (click)="close('toggle button')">Dismiss</button></p>
     <div *ngFor="let item of categories">
-      <p>{{item.name}}</p>
+      <button mat-button (click)="searchCategory(item.id)">{{item.name}}</button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -15,3 +15,4 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 <!-- Sidebar -->
+
