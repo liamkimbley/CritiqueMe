@@ -1,12 +1,51 @@
 
+<!-- display list of posts -->
 <div *ngIf="!selected">
-<!-- <div>
-  <button class="btn-danger" name="delete" type="submit" (click)="deletePost(selected.id)">X</button>
-  <p>{{selected.content}}</p>
-</div> -->
+    <div *ngFor="let post of posts">
+      <mat-card class="postCard">
+        <mat-card-header>
+          <div mat-card-avatar class="headerImage"></div>
+          <mat-card-title>{{post.id}}</mat-card-title>
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{post.content}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="displaySelected(post)">View More</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 
+<!-- display single post -->
+    <table *ngIf="selected">
+      <tr>
+        <th>{{selected.title}}</th>
+      </tr>
+      <tr>
+        <td>{{selected.content}}</td>
+      </tr>
+      <tr>
+        <td>{{selected.media}}</td>
+      </tr>
+      <tr>
+        <td>{{selected.createdDate}}</td>
+        <td>{{selected.updatedDate}}</td>
+      </tr>
+    </table>
+    <button class="btn-outline-primary" (click)="addPost(addNewPost)" >Comment</button>
+    <button class="btn-outline-primary" (click)="addPost(addNewPost)" >Make Your Own Post</button>
+    <!-- display comments for single post -->
+    <!--  not added yet -->
 
+<div *ngIf="selected">
+<!-- add post -->
 <div>
+  <h3>Add Post</h3>
   <form #addNewPost="ngForm">
     <input type="text" name="title" placeholder="Title" ngModel>
     <input type="text" name="content" placeholder="Text Content" ngModel/>
@@ -15,32 +54,39 @@
   </form>
 </div>
 
+<!-- update post -->
 <div>
+  <h3>Update Post</h3>
     <form #editPost="ngForm">
         <input type="text" name="title" ngModel>
         <input type="text" name="content" ngModel>
         <input type="text" name="media" ngModel>
         <button class="btn-outline-primary" (click)="updatePost(editPost)" >Update Post</button>
         <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selected.id)">Delete Post</button>
-      </form>
-</div>
+    </form>
 </div>
 
-<!-- display single post -->
+<!-- delete post -->
 <div>
-  <table *ngIf="selected">
-    <tr>
-      <td>{{selected.title}}</td>
-      <td>{{selected.content}}</td>
-      <td>{{selected.media}}</td>
-      <td>{{selected.createdDate}}</td>
-      <td>{{selected.updatedDate}}</td>
-    </tr>
-  </table>
+  <h3>Delete Post</h3>
+  <form>
+      <table>
+          <tr>
+            <td>{{selected.title}}</td>
+            <td>{{selected.content}}</td>
+            <td>{{selected.media}}</td>
+            <td>{{selected.createdDate}}</td>
+            <td>{{selected.updatedDate}}</td>
+          </tr>
+        </table>
+  </form>
+  <button class="btn-outline-primary" type="submit" name="delete" (click)="deletePost(selected.id)">Delete</button>
+  <button class="btn-outline-primary" type="submit" name="cancel" selectedPost = null>Cancel</button>
+</div>
+</div>
 
   <!-- tag for comments html -->
   <div>
     <app-comment></app-comment>
   </div>
-</div>
 

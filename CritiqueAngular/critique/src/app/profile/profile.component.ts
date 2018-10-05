@@ -1,12 +1,10 @@
 import { Expertise } from './../models/expertise';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
-import { NgForm } from '@angular/forms';
 import { Profile } from '../models/profile';
 import { UserService } from '../user.service';
 import { User } from '../models/user';
 import { Location } from '../models/location';
-
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +22,7 @@ export class ProfileComponent implements OnInit {
   selectedLoc: Location = null;
   selectedSkill: Expertise = null;
 
-  constructor(private userServ: UserService, private user: User, private profService: ProfileService) { }
+  constructor(private userServ: UserService, private profService: ProfileService) { }
 
   ngOnInit() {
     this.reload();

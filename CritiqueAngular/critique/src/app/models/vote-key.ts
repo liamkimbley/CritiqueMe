@@ -2,7 +2,6 @@ import { Comment } from './comment';
 import { Profile } from './profile';
 
 export class VoteKey {
-
   prof: Profile;
   com: Comment;
   vote: boolean;

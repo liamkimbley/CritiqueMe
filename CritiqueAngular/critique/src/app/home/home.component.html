@@ -1,24 +1,6 @@
-  <div *ngIf="!selected">
-  <div *ngFor="let post of posts">
-    <mat-card class="postCard">
-      <mat-card-header>
-        <div mat-card-avatar class="headerImage"></div>
-        <mat-card-title>{{post.id}}</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          {{post.content}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="displayPost(post)">View More</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  </div>
 
-  <div *ngIf="selected">
-    <app-post></app-post>
-  </div>
+<h1>home kinda works</h1>
+
+<div>
+    <a class="btn-outline-primary" [routerLink]="['/post']">Posts</a>
+</div>
