@@ -1,19 +1,20 @@
 <h1>Welcome to your profile</h1>
+<button class="btn-outline-primary" (click)="editProfile = selected">Edit Profile</button>
 
 <!-- profile pic -->
 <div>
-
+    <img src="{{selected.image}}" alt="{{selected.firstName}}">
 </div>
 
 <!-- user information -->
 <table>
   <tr>
     <th>First Name</th>
-    <td></td>
+    <td>{{selected.firstName}}</td>
   </tr>
   <tr>
     <th>Last Name</th>
-    <td></td>
+    <td>{{selected.lastName}}</td>
   </tr>
   <tr>
       <th>Location</th>
@@ -21,7 +22,7 @@
   </tr>
   <tr>
     <th>Bio</th>
-    <td></td>
+    <td>{{selected.bio}}</td>
   </tr>
   <tr>
     <th>Skills</th>
