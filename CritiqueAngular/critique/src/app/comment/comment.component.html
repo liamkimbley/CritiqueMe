@@ -22,18 +22,19 @@
 </div>
 
 <!-- update a comment -->
+<div *ngIf="selectedComment">
+<div *ngFor="let comment of comments">
+    <input type="text" value="{{comment.content}}">
+    <button class="btn-outline-primary" type="submit" name="update" (click)="updateComment(selectedPost.id)">Update</button>
+    <button class="btn-outline-primary" type="submit" name="cancel" selectedPost = null>Cancel</button>
+</div>
+</div>
 
 <!-- delete a comment -->
-
-<!-- list of posts -->
-<!-- <div *ngFor="let post of posts">
-  <table>
-      <tr>
-        <td>{{post.title}}</td>
-        <td>{{post.content}}</td>
-        <td>{{post.media}}</td>
-        <td>{{post.createdDate}}</td>
-        <td>{{post.updatedDate}}</td>
-      </tr>
-  </table>
-</div> -->
+<div *ngIf="selectedComment">
+<div *ngFor="let comment of comments">
+    <p>{{comment.content}}"</p>
+    <button class="btn-outline-primary" type="submit" name="update" (click)="deleteComment(selectedPost.id)">Delete</button>
+    <button class="btn-outline-primary" type="submit" name="cancel" selectedPost = null>Cancel</button>
+</div>
+</div>

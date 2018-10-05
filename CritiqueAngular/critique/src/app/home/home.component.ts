@@ -11,29 +11,18 @@ import { Post } from '../models/post';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // User can see posts but cannot open them to view comments
-  // When they click a comment, ask them to sign in or sign up
-  posts: Post[] = [];
-  selected: Post = null;
+  // posts: Post[] = [];
+  // selected: Post = null;
 
   reload() {
-    this.homeService.index().subscribe(
-      data => {
-        console.log(data);
-        this.posts = data;
-      },
-      err => console.error('Observer recieved an error: ' + err)
-    );
+    // this.homeService.index().subscribe(
+    //   data => {
+    //     console.log(data);
+    //     this.posts = data;
+    //   },
+    //   err => console.error('Observer recieved an error: ' + err)
+    // );
   }
-
-  displayPost = function(post: Post) {
-    this.selected = post;
-    console.log(post);
-  };
-
-  goBack = function() {
-    this.selected = null;
-  };
 
   constructor(
     private homeService: HomeService,

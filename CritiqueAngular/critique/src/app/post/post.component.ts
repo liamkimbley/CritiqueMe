@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { PostService } from '../post.service';
+import { DatePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -8,7 +10,8 @@ import { PostService } from '../post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
+  // User can see posts but cannot open them to view comments
+  // When they click a comment, ask them to sign in or sign up
   title = 'CritiqueMe';
   posts: Post[] = [];
   selected: Post = null;
@@ -17,12 +20,24 @@ export class PostComponent implements OnInit {
 
   reload = function() {
     this.postService.index().subscribe(
-      data => { this.posts = data; },
+      data => {
+        console.log(data);
+        this.posts = data;
+      },
       err => {console.error('Observer got an error: ' + err.status); }
       );
   };
 
-  displayTable = function() {
+  displaySelected = function(post: Post) {
+    this.selected = post;
+  };
+
+  displayPost = function(post: Post) {
+    this.selected = post;
+    console.log(post);
+  };
+
+  goBack = function() {
     this.selected = null;
   };
 
@@ -58,9 +73,14 @@ export class PostComponent implements OnInit {
     );
   };
 
-  constructor(private postService: PostService) { }
+  constructor(
+    private postService: PostService,
+    private datePipe: DatePipe,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    this.reload();
   }
 
 }
