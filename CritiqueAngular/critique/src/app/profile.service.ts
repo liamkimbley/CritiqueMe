@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { Profile } from './models/profile';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -94,5 +95,5 @@ export class ProfileService {
     }
   }
 
-  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(private userServ: UserService, private http: HttpClient, private auth: AuthService, private router: Router) { }
 }
