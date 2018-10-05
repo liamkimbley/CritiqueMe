@@ -20,6 +20,8 @@ import { PostService } from './post.service';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SideNavLeftComponent } from './side-nav-left/side-nav-left.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { MatCardModule } from '@angular/material/card';
     NavigationComponent,
     RegisterComponent,
     ProfileComponent,
-    PostComponent
+    PostComponent,
+    SideNavLeftComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { MatCardModule } from '@angular/material/card';
     NgbModule.forRoot(),
     AppRoutingModule,
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSidenavModule
   ],
   providers: [
     HomeService,
@@ -49,6 +53,6 @@ import { MatCardModule } from '@angular/material/card';
     AuthService,
     DatePipe
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, NavigationComponent]
 })
 export class AppModule {}
