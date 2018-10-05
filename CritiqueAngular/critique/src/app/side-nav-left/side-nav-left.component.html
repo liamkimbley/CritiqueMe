@@ -1,0 +1,14 @@
+<!-- Sidebar -->
+<!-- Link to Sidebar function information: https://material.angular.io/components/sidenav/api-->
+<mat-sidenav-container class="left-container" (backdropClick)="close('backdrop')">
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+    <p><button mat-button (click)="close('toggle button')">Dismiss</button></p>
+    <div *ngFor="let item of categories">
+      <p>{{item.name}}</p>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.open()">Categories</button></p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- Sidebar -->
