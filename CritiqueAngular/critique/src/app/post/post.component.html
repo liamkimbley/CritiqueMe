@@ -1,3 +1,24 @@
 <div>
-<p>{{selected.content}}</p>
+  <button class="btn-danger" name="delete" type="submit" (click)="deletePost(selected.id)">X</button>
+  <p>{{selected.content}}</p>
+</div>
+
+
+<div>
+  <form #addNewPost="ngForm">
+    <input type="text" name="title" placeholder="Title" [(ngModel)]="newPost.title">
+    <input type="text" name="content" placeholder="Text Content" [(ngModel)]="newPost.content">
+    <input type="text" name="media" placeholder="Media Content" [(ngModel)]="newPost.media">
+    <button class="btn-outline-primary" (click)="addPost()" >Submit Post</button>
+  </form>
+</div>
+
+<div>
+    <form #editPost="ngForm">
+        <input type="text" name="title" [(ngModel)]="selected.title">
+        <input type="text" name="content" [(ngModel)]="selected.content">
+        <input type="text" name="media" [(ngModel)]="selected.media">
+        <button class="btn-outline-primary" (click)="updatePost()" >Update Post</button>
+        <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selected.id)">Delete Post</button>
+      </form>
 </div>
