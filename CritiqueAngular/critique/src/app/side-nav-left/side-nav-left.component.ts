@@ -1,23 +1,32 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../category.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Category } from '../models/category';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-side-nav-left',
   templateUrl: './side-nav-left.component.html',
   styleUrls: ['./side-nav-left.component.css']
 })
-export class SideNavLeftComponent implements OnInit {
+export class SideNavLeftComponent implements OnInit, OnDestroy {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   @ViewChild('sidenav')
   sidenav: MatSidenav;
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
   reason = '';
 
@@ -42,6 +51,10 @@ export class SideNavLeftComponent implements OnInit {
   close(reason: string) {
     this.reason = reason;
     this.sidenav.close();
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   ngOnInit() {
