@@ -7,6 +7,7 @@ import { User } from '../models/user';
 import { Location } from '../models/location';
 import { PostService } from '../post.service';
 import { Post } from '../models/post';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -117,7 +118,7 @@ export class ProfileComponent implements OnInit {
     this.editPost = Object.assign({}, this.selectedPost);
   };
 
-  updatePost = function(post: Post) {
+  updatePost = function(post: NgModel) {
     console.log(post);
     this.postService.update(post).subscribe(
       data => {
