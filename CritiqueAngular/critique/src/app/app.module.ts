@@ -18,6 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeService } from './home.service';
 import { PostService } from './post.service';
 import { DatePipe } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    MatCardModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HomeService,

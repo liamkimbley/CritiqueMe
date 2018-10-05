@@ -1,7 +1,8 @@
-import { HomeService } from './../home.service';
-import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HomeService } from './../home.service';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   // User can see posts but cannot open them to view comments
   // When they click a comment, ask them to sign in or sign up
+  posts: Post[] = [];
+
+  reload() {
+    this.homeService.index().subscribe(
+      data => {
+        console.log(data);
+        this.posts = data;
+      },
+      err => console.error('Observer recieved an error: ' + err)
+    );
+  }
 
   constructor(
     private homeService: HomeService,
@@ -19,5 +31,7 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.reload();
+  }
 }
