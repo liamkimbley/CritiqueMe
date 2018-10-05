@@ -1,3 +1,4 @@
+import { PostService } from './../post.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../category.service';
 import {
@@ -21,8 +22,9 @@ export class SideNavLeftComponent implements OnInit, OnDestroy {
     private categoryService: CategoryService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    private changeDetectorRef: ChangeDetectorRef,
+    private media: MediaMatcher,
+    private postService: PostService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -54,7 +56,7 @@ export class SideNavLeftComponent implements OnInit, OnDestroy {
   }
 
   searchCategory(id: number) {
-    this.categoryService.indexCategory(id).subscribe(
+    this.postService.indexPostsByCategoryId(id).subscribe(
       data => {
         if (data) {
           this.categories = data;

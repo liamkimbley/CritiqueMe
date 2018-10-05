@@ -5,13 +5,16 @@ import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Post } from './models/post';
+import { Category } from './models/category';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-
-  private url = 'http://localhost:8080/api/posts/';
+  private uriPath = 'api/posts';
+  private url = environment.baseUrl + this.uriPath;
+  private catUrl = environment.baseUrl + 'api/categories';
 
   // public index(): Observable<Post []> {
   //   if (this.auth.checkLogin()) {
@@ -35,34 +38,52 @@ export class PostService {
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving posts: ' + 'Status: ' + err);
-
       })
     );
   }
 
-  public show(id): Observable<Post> {
-    if (this.auth.checkLogin()) {
-      const headers = new HttpHeaders().set(
-        'Authorization', `Basic ${this.auth.getToken()}`
+  public indexPostsByCategoryId(id: number): Observable<Category[]> {
+    return this.http
+      .get<Category[]>(this.catUrl + '/' + id + '/posts' + '?sorted=true')
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            'Error retrieving posts for requested category: ' + 'Status: ' + err
+          );
+        })
       );
-      return this.http.get<Post>(this.url + '/' + id, {headers})
-           .pipe(
-              catchError((err: any) => {
-              console.log(err);
-              return throwError('Error: ' + err.status);
-            })
-        );
-    } else {
-        this.router.navigateByUrl('login');
-    }
+  }
+
+  public show(id): Observable<Post> {
+    // if (this.auth.checkLogin()) {
+    // const headers = new HttpHeaders().set(
+    // 'Authorization',
+    // `Basic ${this.auth.getToken()}`
+    // );
+    // return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
+    //   catchError((err: any) => {
+    //     console.log(err);
+    //     return throwError('Error: ' + err.status);
+    //   })
+    // );
+    // } else {
+    //   this.router.navigateByUrl('login');
+    // }
+    return this.http.get<Post>(this.url + '/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+      })
+    );
   }
 
   public create(post: Post): Observable<Post> {
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': `Basic ${this.auth.getToken()}`
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${this.auth.getToken()}`
         })
       };
       console.log(post);
@@ -75,34 +96,40 @@ export class PostService {
   public update(post: Post) {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
-        'Authorization', `Basic ${this.auth.getToken()}`
+        'Authorization',
+        `Basic ${this.auth.getToken()}`
       );
-      return this.http.put(this.url + post.id, post, {headers}).pipe(
-          catchError((err: any) => {
+      return this.http.put(this.url + post.id, post, { headers }).pipe(
+        catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);
         })
       );
     } else {
       this.router.navigateByUrl('login');
+    }
   }
- }
 
   public destroy(id: number) {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
-        'Authorization', `Basic ${this.auth.getToken()}`
+        'Authorization',
+        `Basic ${this.auth.getToken()}`
       );
-        return this.http.delete(this.url + id, {headers}).pipe(
-          catchError((err: any) => {
+      return this.http.delete(this.url + id, { headers }).pipe(
+        catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);
         })
       );
-  } else {
-    this.router.navigateByUrl('login');
-  }
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
-  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 }

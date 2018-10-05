@@ -21,13 +21,13 @@ export class CategoryService {
     );
   }
 
-  public indexCategory(id: number): Observable<Category[]> {
-    return this.http.get<Category[]>(this.url + '/' + id + '/posts' + '?sorted=true').pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error retrieving posts for requested category: ' + 'Status: ' + err);
-      })
-    );
-  }
+  // public indexCategory(id: number): Observable<Category[]> {
+  //   return this.http.get<Category[]>(this.url + '/' + id + '/posts' + '?sorted=true').pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError('Error retrieving posts for requested category: ' + 'Status: ' + err);
+  //     })
+  //   );
+  // }
   constructor(private http: HttpClient) {}
 }

@@ -1,4 +1,3 @@
-
 <div *ngIf="selected">
   <button mat-button (click)="goBack()">Back</button>
 </div>
@@ -26,28 +25,30 @@
   </div>
 
 <!-- display single post -->
-    <table *ngIf="selected">
-      <tr>
-        <th>{{selected.title}}</th>
-      </tr>
-      <tr>
-        <td>{{selected.content}}</td>
-      </tr>
-      <tr>
-        <td>{{selected.media}}</td>
-      </tr>
-      <tr>
-        <td>{{selected.createdDate}}</td>
-        <td>{{selected.updatedDate}}</td>
-      </tr>
-    </table>
-    <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
-    <!-- <button class="btn-outline-primary" (click)="addPost(selected)" >Make Your Own Post</button> -->
+<div *ngIf="selected">
+  <table>
+    <tr>
+      <th>{{selected.title}}</th>
+    </tr>
+    <tr>
+      <td>{{selected.content}}</td>
+    </tr>
+    <tr>
+      <td>{{selected.media}}</td>
+    </tr>
+    <tr>
+      <td>{{selected.createdDate}}</td>
+      <td>{{selected.updatedDate}}</td>
+    </tr>
+  </table>
+  <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
+  <!-- <button class="btn-outline-primary" (click)="addPost(selected)" >Make Your Own Post</button> -->
 
-    <!-- display comments for single post -->
-    <!--  not added yet -->
+  <!-- display comments for single post -->
+  <!--  not added yet -->
 
   <!-- tag for comments html -->
   <div>
     <app-comment></app-comment>
   </div>
+</div>
