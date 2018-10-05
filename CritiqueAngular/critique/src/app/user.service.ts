@@ -11,7 +11,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class UserService {
 
-  private url = 'http://localhost:8080/api/profile/';
+  private url = 'http://localhost:8080/api/users/';
 
   public index(): Observable<User []> {
     if (this.auth.checkLogin()) {
