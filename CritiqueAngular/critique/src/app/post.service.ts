@@ -79,52 +79,71 @@ export class PostService {
   }
 
   public create(post: Post): Observable<Post> {
-    if (this.auth.checkLogin()) {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${this.auth.getToken()}`
-        })
-      };
-      console.log(post);
-      return this.http.post<Post>(this.url, post, httpOptions);
-    } else {
-      this.router.navigateByUrl('login');
-    }
+    // if (this.auth.checkLogin()) {
+    //   const httpOptions = {
+    //     headers: new HttpHeaders({
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Basic ${this.auth.getToken()}`
+    //     })
+    //   };
+    //   console.log(post);
+    //   return this.http.post<Post>(this.url, post, httpOptions);
+    // } else {
+    //   this.router.navigateByUrl('login');
+    // }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    console.log(post);
+    return this.http.post<Post>(this.url, post, httpOptions);
   }
 
   public update(post: Post) {
-    if (this.auth.checkLogin()) {
-      const headers = new HttpHeaders().set(
-        'Authorization',
-        `Basic ${this.auth.getToken()}`
-      );
-      return this.http.put(this.url + post.id, post, { headers }).pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error: ' + err.status);
-        })
-      );
-    } else {
-      this.router.navigateByUrl('login');
-    }
+    // if (this.auth.checkLogin()) {
+    //   const headers = new HttpHeaders().set(
+    //     'Authorization',
+    //     `Basic ${this.auth.getToken()}`
+    //   );
+    //   return this.http.put(this.url + post.id, post, { headers }).pipe(
+    //     catchError((err: any) => {
+    //       console.log(err);
+    //       return throwError('Error: ' + err.status);
+    //     })
+    //   );
+    // } else {
+    //   this.router.navigateByUrl('login');
+    // }
+    return this.http.put(this.url + post.id, post).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+      })
+    );
   }
 
   public destroy(id: number) {
-    if (this.auth.checkLogin()) {
-      const headers = new HttpHeaders().set(
-        'Authorization',
-        `Basic ${this.auth.getToken()}`
-      );
-      return this.http.delete(this.url + id, { headers }).pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error: ' + err.status);
-        })
-      );
-    } else {
-      this.router.navigateByUrl('login');
-    }
+    // if (this.auth.checkLogin()) {
+    //   const headers = new HttpHeaders().set(
+    //     'Authorization',
+    //     `Basic ${this.auth.getToken()}`
+    //   );
+    //   return this.http.delete(this.url + id, { headers }).pipe(
+    //     catchError((err: any) => {
+    //       console.log(err);
+    //       return throwError('Error: ' + err.status);
+    //     })
+    //   );
+    // } else {
+    //   this.router.navigateByUrl('login');
+    // }
+    return this.http.delete(this.url + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+      })
+    );
   }
 
   constructor(
