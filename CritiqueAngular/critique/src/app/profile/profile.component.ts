@@ -1,9 +1,11 @@
+import { Expertise } from './../models/expertise';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { NgForm } from '@angular/forms';
 import { Profile } from '../models/profile';
 import { UserService } from '../user.service';
 import { User } from '../models/user';
+import { Location } from '../models/location';
 
 
 @Component({
@@ -19,6 +21,8 @@ export class ProfileComponent implements OnInit {
   editProfile: Profile = null;
   selectedUser: User = null;
   users: User[] = [];
+  selectedLoc: Location = null;
+  selectedSkill: Expertise = null;
 
   constructor(private userServ: UserService, private user: User, private profService: ProfileService) { }
 
