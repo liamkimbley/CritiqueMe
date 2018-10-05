@@ -24,6 +24,12 @@ export class ProfileComponent implements OnInit {
   selectedLoc: Location = null;
   selectedSkill: Expertise = null;
 
+  // posts
+  posts: Post[] = [];
+  selectedPost: Post = null;
+  post: Post = new Post();
+  editPost: Post = null;
+
   constructor(private userServ: UserService,
               private profService: ProfileService,
               private postService: PostService) { }
@@ -46,6 +52,7 @@ export class ProfileComponent implements OnInit {
         data => { this.users = data; },
         err => {console.error('Observer got an error: ' + err.status); }
       );
+      this.loadPosts();
   };
 
   // addUser = function() {
@@ -92,30 +99,22 @@ export class ProfileComponent implements OnInit {
       );
   };
 
-  displaySelected = function(post: Post) {
-    this.selected = post;
-  };
-
   displayPost = function(post: Post) {
-    this.selected = post;
+    this.selectedPost = post;
     console.log(post);
   };
 
-  goBack = function() {
-    this.selected = null;
-  };
-
-  addPost = function() {
-    this.postService.create(this.newPost).subscribe(
-      data => {this.reload(); },
-      err => {console.error('Observer got an error: ' + err.status); }
-      );
-      console.log(this.newPost);
-      this.newPost = new Post();
-  };
+  // addPost = function() {
+  //   this.postService.create(this.newPost).subscribe(
+  //     data => {this.reload(); },
+  //     err => {console.error('Observer got an error: ' + err.status); }
+  //     );
+  //     console.log(this.newPost);
+  //     this.newPost = new Post();
+  // };
 
   setEditPost = function() {
-    this.editPost = Object.assign({}, this.selected);
+    this.editPost = Object.assign({}, this.selectedPost);
   };
 
   updatePost = function(post: Post) {
