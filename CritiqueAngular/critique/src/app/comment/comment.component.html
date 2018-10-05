@@ -1,17 +1,4 @@
 
-<!-- list of posts -->
-<div *ngFor="let post of posts">
-  <table>
-      <tr>
-        <td>{{post.title}}</td>
-        <td>{{post.content}}</td>
-        <td>{{post.media}}</td>
-        <td>{{post.createdDate}}</td>
-        <td>{{post.updatedDate}}</td>
-      </tr>
-  </table>
-</div>
-
 <!-- list of comments -->
 <div *ngIf="selectedPost">
   <div *ngFor="let comment of comments">
@@ -38,4 +25,15 @@
 
 <!-- delete a comment -->
 
-
+<!-- list of posts -->
+<!-- <div *ngFor="let post of posts">
+  <table>
+      <tr>
+        <td>{{post.title}}</td>
+        <td>{{post.content}}</td>
+        <td>{{post.media}}</td>
+        <td>{{post.createdDate}}</td>
+        <td>{{post.updatedDate}}</td>
+      </tr>
+  </table>
+</div> -->
