@@ -14,7 +14,7 @@ export class LogoutComponent implements OnInit {
     this.auth.logout();
     const logged = this.auth.checkLogin();
     if (logged) {
-      this.router.navigateByUrl('todos');
+      this.router.navigateByUrl('posts');
     } else {
       this.router.navigateByUrl('home');
     }
