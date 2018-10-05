@@ -13,21 +13,31 @@ export class PostService {
 
   private url = 'http://localhost:8080/api/posts/';
 
-  public index(): Observable<Post []> {
-    if (this.auth.checkLogin()) {
-      const headers = new HttpHeaders().set(
-        'Authorization', `Basic ${this.auth.getToken()}`
-      );
-      return this.http.get<Post[]>(this.url, {headers})
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error: ' + err.status);
-        })
-        );
-    } else {
-        this.router.navigateByUrl('login');
-    }
+  // public index(): Observable<Post []> {
+  //   if (this.auth.checkLogin()) {
+  //     const headers = new HttpHeaders().set(
+  //       'Authorization', `Basic ${this.auth.getToken()}`
+  //     );
+  //     return this.http.get<Post[]>(this.url, {headers})
+  //     .pipe(
+  //       catchError((err: any) => {
+  //         console.log(err);
+  //         return throwError('Error: ' + err.status);
+  //       })
+  //       );
+  //   } else {
+  //       this.router.navigateByUrl('login');
+  //   }
+  // }
+
+  public index(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.url + '?sorted=true').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving posts: ' + 'Status: ' + err);
+
+      })
+    );
   }
 
   public show(id): Observable<Post> {
