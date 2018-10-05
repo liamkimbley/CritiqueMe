@@ -1,3 +1,4 @@
+import { CommentService } from './../comment.service';
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { PostService } from '../post.service';
