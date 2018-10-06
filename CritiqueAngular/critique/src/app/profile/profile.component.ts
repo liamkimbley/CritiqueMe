@@ -38,26 +38,37 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.reload();
+  //  this.getOneProfile();
   }
-
-  displayTable = function() {
-    this.selected = null;
-    this.selectedUser = null;
-  };
 
   reload = function() {
     this.profService.index().subscribe(
       data => { this.profile = data; },
       err => {console.error('Observer got an error: ' + err.status); }
       );
-    this.userServ.index().subscribe(
+      this.userServ.index().subscribe(
         data => { this.users = data; },
         err => {console.error('Observer got an error: ' + err.status); }
-      );
-    this.loadPosts();
+        );
   };
 
-  // addUser = function() {
+  getOneProfile = function(id: number) {
+    this.profService.show(id).subscribe(
+      data => { this.profile = data; },
+      err => {console.error('Observer got an error: ' + err.status); }
+      );
+      this.userServ.index().subscribe(
+        data => { this.users = data; },
+        err => {console.error('Observer got an error: ' + err.status); }
+        );
+        this.loadPosts();
+  };
+
+  displayTable = function() {
+    this.selected = null;
+    this.selectedUser = null;
+  };
+      // addUser = function() {
   //   this.userService.create(this.newUser).subscribe(
   //     data => {this.reload(); },
   //     err => {console.error('Observer got an error: ' + err.status); }
