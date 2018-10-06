@@ -9,17 +9,22 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <ul class="navbar-nav">
       <li><a class="nav-item nav-link" [routerLink]="['/home']">Home </a></li>
-      <li><a class="nav-item nav-link" [routerLink]="['/register']">Sign Up</a></li>
+      <li><a class="nav-item nav-link" [routerLink]="['/post']">View Posts</a></li>
+      <li><a class="nav-item nav-link" [routerLink]="['/profile']">Profile</a></li>
+      <!-- *ngIf no user is not logged in -->
+        <li><a class="nav-item nav-link" [routerLink]="['/register']">Sign Up</a></li>
+      <!-- *ngIf no user is not logged in -->
     </ul>
   </div>
+  <!-- *ngIf the user is logged in, show this -->
   <div>
     <app-logout></app-logout>
   </div>
+
+  <!-- *ngIf the user is not logged in, or is not a user, show this -->
   <div>
-    <button class="btn btn-dark btn-sm">Log In</button>
-    <!-- <a class="btn btn-dark btn-sm" role="button">Log In</a> -->
+    <button mat-raised-button color="primary">Log In</button>
+    <!-- <a mat-button role="primary">Log In</a> -->
   </div>
 </nav>
 <!-- Top Navbar -->
-
-

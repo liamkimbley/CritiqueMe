@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "~bootstrap/dist/css/bootstrap.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 /* Sidebar */
 .left-container {
   position: fixed;
-  display: flex;
+  display: flow-root;
   flex-direction: column;
   position: absolute;
   top: 0;
@@ -13,4 +13,28 @@
   left: 0;
   right: 0;
 }
+.container {
+  padding: 30px;
+}
+#sidebarListItems {
+  padding-top: 15px;
+}
+#sidebarListItem {
+  padding: 1px;
+}
 /* Sidebar */
+#postsContainer {
+  padding-top: 15px;
+  padding-left: 10px;
+}
+/* Post Cards */
+#postImg {
+  width: 250px;
+  padding: 30px;
+}
+#postCards {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 10px;
+}
+/* Post Cards */

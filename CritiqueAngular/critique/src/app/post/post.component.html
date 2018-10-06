@@ -3,40 +3,44 @@
 <mat-sidenav-container class="left-container" (backdropClick)="close('backdrop')" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
   <mat-sidenav #sidenav [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" (keydown.escape)="close('escape')"
     disableClose>
-    <p><button mat-button (click)="close('toggle button')">Dismiss</button></p>
+    <div class="container-fluid" id="sidebarListItems">
+      <p><button mat-raised-button color="accent" (click)="close('toggle button')">Dismiss</button></p>
 
-    <div *ngFor="let item of categories">
-      <button mat-button (click)="selectedCategory = item" (click)="close('toggle button')">{{item.name}}</button>
+      <div *ngFor="let item of categories">
+        <div id="sidebarListItem">
+          <button mat-raised-button color="primary" (click)="selectedCategory = item" (click)="close('toggle button')">{{item.name}}</button>
+        </div>
+      </div>
     </div>
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <p><button mat-button (click)="sidenav.open()">Categories</button></p>
-    <div class="container">
+    <div class="container" id="postsContainer">
+        <p><button mat-raised-button color="accent" (click)="sidenav.open()"> Search Categories</button></p>
 <!-- Sidebar page content: everything wanted on the page goes in here -->
 
 
       <div *ngIf="selected">
-        <button mat-button (click)="goBack()">Back</button>
+        <button mat-raised-button color="primary" (click)="goBack()">Back</button>
       </div>
 
       <!-- display list of posts -->
       <div *ngIf="!selected">
-        <div *ngFor="let post of posts | category: selectedCategory">
+        <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
           <mat-card class="postCard">
             <mat-card-header>
               <div mat-card-avatar class="headerImage"></div>
               <mat-card-title>{{post.id}}</mat-card-title>
               <mat-card-subtitle>Dog Breed</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" id="postImg">
             <mat-card-content>
               <p>
                 {{post.content}}
               </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button (click)="displaySelected(post)">View More</button>
+              <button mat-raised-button color="primary" (click)="displaySelected(post)">View More</button>
             </mat-card-actions>
           </mat-card>
         </div>
