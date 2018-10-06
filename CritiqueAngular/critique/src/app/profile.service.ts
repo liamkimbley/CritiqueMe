@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 })
 export class ProfileService {
 
-  private url = 'http://localhost:8080/api/profile/';
+  private url = 'http://localhost:8080/api/profile';
 
   public index(): Observable<Profile []> {
     if (this.auth.checkLogin()) {
