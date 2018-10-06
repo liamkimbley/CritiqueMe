@@ -316,7 +316,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `category` (`id`, `name`) VALUES (1, 'Music');
+INSERT INTO `category` (`id`, `name`) VALUES (1, 'All');
 INSERT INTO `category` (`id`, `name`) VALUES (2, 'Sports');
 INSERT INTO `category` (`id`, `name`) VALUES (3, 'Fashion');
 INSERT INTO `category` (`id`, `name`) VALUES (4, 'Technology');
@@ -335,6 +335,7 @@ INSERT INTO `category` (`id`, `name`) VALUES (16, 'Lifestyle');
 INSERT INTO `category` (`id`, `name`) VALUES (17, 'Jobs');
 INSERT INTO `category` (`id`, `name`) VALUES (18, 'Collectables');
 INSERT INTO `category` (`id`, `name`) VALUES (19, 'Entertainment');
+INSERT INTO `category` (`id`, `name`) VALUES (20, 'Music');
 
 COMMIT;
 
