@@ -6,7 +6,7 @@
     <p><button mat-button (click)="close('toggle button')">Dismiss</button></p>
 
     <div *ngFor="let item of categories">
-      <button mat-button (click)="selectedCategory = item">{{item.name}}</button>
+      <button mat-button (click)="selectedCategory = item" (click)="close('toggle button')">{{item.name}}</button>
     </div>
 
   </mat-sidenav>
