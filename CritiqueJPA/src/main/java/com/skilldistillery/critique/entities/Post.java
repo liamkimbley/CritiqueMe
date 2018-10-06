@@ -48,7 +48,6 @@ public class Post {
 	@Column(name = "update_date")
 	private LocalDate updatedDate;
 
-	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "post_category", 
 	joinColumns = @JoinColumn(name = "post_id"), 

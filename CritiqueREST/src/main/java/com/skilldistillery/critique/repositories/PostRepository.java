@@ -20,4 +20,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	
 	@Query("SELECT p FROM Post p WHERE :cat MEMBER OF p.categories")
 	public List<Post> queryForPostsByCategory(@Param ("cat") Category cat);
+	
+	@Query("SELECT p FROM Post p JOIN FETCH p.categories")
+	public List<Post> queryForPostsWithCategories();
 }

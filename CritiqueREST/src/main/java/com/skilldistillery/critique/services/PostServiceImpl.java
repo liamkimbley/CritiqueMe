@@ -45,7 +45,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<Post> findAllPosts() {
-		return postRepo.findAll();
+		return postRepo.queryForPostsWithCategories();
 
 	}
 	
