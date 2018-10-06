@@ -50,40 +50,33 @@
   </div>
   </div>
 
+  <!-- display a post's full details when selected -->
   <div *ngIf="selectedPost">
       <table>
           <tr>
+            <td>Title</td>
             <td><input type="text" name="title" placeholder="{{selectedPost.title}}"/></td>
           </tr>
           <tr>
+            <td>Content</td>
             <td><input type="text" name="content" placeholder="{{selectedPost.content}}"/></td>
           </tr>
           <tr>
+            <td>Media</td>
             <td><input type="text" name="media" placeholder="{{selectedPost.media}}"/></td>
           </tr>
           <tr>
+            <td>Created/ Updated</td>
             <td><input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}"/></td>
             <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}"/></td>
           </tr>
         </table>
         <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Cancel</button>
-        <button class="btn-outline-primary" name="update" type="submit" (click)="setEditPost()">Update</button>
+        <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost()">Update</button>
         <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selected.id)">Delete</button>
+
         <!-- display comments for post -->
   </div>
-
-
-  <!-- update post -->
-  <!-- <div *ngIf="editPost">
-      <h3>Edit Post</h3>
-      <form #editPost="ngForm">
-        <input type="text" name="title" ngModel>
-        <input type="text" name="content" ngModel>
-        <input type="text" name="media" ngModel>
-        <button class="btn-outline-primary" (click)="updatePost(editPost)" >Update Post</button>
-        <button class="btn-outline-primary" name="cancelUpdate" type="submit" (click)="selectedPost = null">Cancel</button>
-      </form>
-    </div> -->
 
   <!-- add post -->
     <!-- <div>
@@ -95,3 +88,7 @@
         <button class="btn-outline-primary" (click)="addPost(addNewPost)" >Submit Post</button>
       </form>
     </div> -->
+
+
+    <!-- user can update their profile -->
+    <!-- user can edit their comments -->

@@ -17,6 +17,7 @@ import { NgModel } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   profiles: Profile[] = [];
+  profile: Profile = null;
   selected: Profile = null;
   newUser: User = new User();
   editProfile: Profile = null;
@@ -46,14 +47,14 @@ export class ProfileComponent implements OnInit {
 
   reload = function() {
     this.profService.index().subscribe(
-      data => { this.profiles = data; },
+      data => { this.profile = data; },
       err => {console.error('Observer got an error: ' + err.status); }
       );
-      this.userServ.index().subscribe(
+    this.userServ.index().subscribe(
         data => { this.users = data; },
         err => {console.error('Observer got an error: ' + err.status); }
       );
-      this.loadPosts();
+    this.loadPosts();
   };
 
   // addUser = function() {
@@ -113,10 +114,6 @@ export class ProfileComponent implements OnInit {
   //     console.log(this.newPost);
   //     this.newPost = new Post();
   // };
-
-  setEditPost = function() {
-    this.editPost = Object.assign({}, this.selectedPost);
-  };
 
   updatePost = function(post: NgModel) {
     console.log(post);
