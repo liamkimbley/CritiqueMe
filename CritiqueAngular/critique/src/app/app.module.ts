@@ -21,7 +21,6 @@ import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SideNavLeftComponent } from './side-nav-left/side-nav-left.component';
 import { CommentComponent } from './comment/comment.component';
 import { CategoryPipe } from './category.pipe';
 
@@ -35,7 +34,6 @@ import { CategoryPipe } from './category.pipe';
     RegisterComponent,
     ProfileComponent,
     PostComponent,
-    SideNavLeftComponent,
     CommentComponent,
     CategoryPipe
   ],

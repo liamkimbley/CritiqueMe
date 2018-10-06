@@ -1,49 +1,78 @@
-<div *ngIf="selected">
-  <button mat-button (click)="goBack()">Back</button>
-</div>
+<!-- Sidebar -->
+<!-- Link to Sidebar function information: https://material.angular.io/components/sidenav/api-->
+<mat-sidenav-container class="left-container" (backdropClick)="close('backdrop')" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav #sidenav [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" (keydown.escape)="close('escape')"
+    disableClose>
+    <p><button mat-button (click)="close('toggle button')">Dismiss</button></p>
 
-<!-- display list of posts -->
-<div *ngIf="!selected">
-    <div *ngFor="let post of posts | category: selectedCategory">
-      <mat-card class="postCard">
-        <mat-card-header>
-          <div mat-card-avatar class="headerImage"></div>
-          <mat-card-title>{{post.id}}</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            {{post.content}}
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button (click)="displaySelected(post)">View More</button>
-        </mat-card-actions>
-      </mat-card>
+    <div *ngFor="let item of categories | category: selectedCategory">
+      <button mat-button (click)="selectedCategory = item">{{item.name}}</button>
     </div>
-  </div>
 
-<!-- display single post -->
-<div *ngIf="selected">
-  <table>
-    <tr>
-      <th>{{selected.title}}</th>
-    </tr>
-    <tr>
-      <td>{{selected.content}}</td>
-    </tr>
-    <tr>
-      <td>{{selected.media}}</td>
-    </tr>
-    <tr>
-      <td>{{selected.createdDate}}</td>
-      <td>{{selected.updatedDate}}</td>
-    </tr>
-  </table>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p><button mat-button (click)="sidenav.open()">Categories</button></p>
+    <div class="container">
+<!-- Sidebar page content: everything wanted on the page goes in here -->
 
-  <!-- tag for comments html -->
-  <div>
-    <app-comment></app-comment>
-  </div>
-</div>
+
+      <div *ngIf="selected">
+        <button mat-button (click)="goBack()">Back</button>
+      </div>
+
+      <!-- display list of posts -->
+      <div *ngIf="!selected">
+        <div *ngFor="let post of posts | category: selectedCategory">
+          <mat-card class="postCard">
+            <mat-card-header>
+              <div mat-card-avatar class="headerImage"></div>
+              <mat-card-title>{{post.id}}</mat-card-title>
+              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+              <p>
+                {{post.content}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="displaySelected(post)">View More</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- display single post -->
+      <div *ngIf="selected">
+        <table>
+          <tr>
+            <th>{{selected.title}}</th>
+          </tr>
+          <tr>
+            <td>{{selected.content}}</td>
+          </tr>
+          <tr>
+            <td>{{selected.media}}</td>
+          </tr>
+          <tr>
+            <td>{{selected.createdDate}}</td>
+            <td>{{selected.updatedDate}}</td>
+          </tr>
+        </table>
+        <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
+        <!-- <button class="btn-outline-primary" (click)="addPost(selected)" >Make Your Own Post</button> -->
+
+        <!-- display comments for single post -->
+        <!--  not added yet -->
+
+        <!-- tag for comments html -->
+        <div>
+          <app-comment></app-comment>
+        </div>
+      </div>
+
+<!-- Sidebar content -->
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- Sidebar -->

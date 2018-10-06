@@ -11,7 +11,7 @@ export class CategoryPipe implements PipeTransform {
     console.log(value);
 
     const results = [];
-    if (category.name === 'all') {
+    if (category.name === 'All') {
       return value;
     }
     // go through value list, add pokemon to results if it has type

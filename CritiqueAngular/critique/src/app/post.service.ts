@@ -41,6 +41,14 @@ export class PostService {
       })
     );
   }
+  public indexCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.catUrl + '?sorted=true').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving categories: ' + 'Status: ' + err);
+      })
+    );
+  }
 
   public indexPostsByCategoryId(id: number): Observable<Category[]> {
     return this.http
