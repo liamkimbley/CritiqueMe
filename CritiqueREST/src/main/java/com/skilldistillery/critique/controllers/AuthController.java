@@ -11,26 +11,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.entities.User;
 import com.skilldistillery.critique.services.AuthService;
 
 @RestController
+//@RequestMapping("api")
 @CrossOrigin({"*", "http://localhost:4201"})
 public class AuthController {
-	
 	@Autowired
 	private AuthService authServ;
 	
+//	@RequestMapping(path="register/ping")
+//	public String ping() {
+//		return "pong";
+//	}
+	
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
-	public User register(@RequestBody String json, HttpServletResponse res) {
+	public Profile register(@RequestBody String json, HttpServletResponse res) {
+	  Profile p =  authServ.register(json);
 
-	  User u =  authServ.register(json);
-
-	  if (u == null) {
+	  if (p == null) {
 	    res.setStatus(400);
 	  }
 
-	  return u;
+	  return p;
 	}
 
 	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)

@@ -27,6 +27,10 @@ export class CategoryPipe implements PipeTransform {
         }
       }
     }
+
+    if (results.length === 0) {
+      return value;
+    }
     return results;
   }
 

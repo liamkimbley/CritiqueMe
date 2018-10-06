@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
       data => {
         console.log('data: ' + data);
         if (data) {
-          this.router.navigateByUrl('posts');
+          this.router.navigateByUrl('post');
         } else {
           this.router.navigateByUrl('register');
         }

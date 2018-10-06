@@ -4,7 +4,7 @@
 
 /* Sidebar */
 .left-container {
-  position: fixed;
+  background-color:lightgrey;
   display: flow-root;
   flex-direction: column;
   position: absolute;
@@ -17,7 +17,9 @@
   padding: 30px;
 }
 #sidebarListItems {
-  padding-top: 15px;
+  padding-top: 10px;
+  margin-right: 8px;
+  background-color: lightgray;
 }
 #sidebarListItem {
   padding: 1px;

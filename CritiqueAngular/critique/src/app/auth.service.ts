@@ -37,8 +37,14 @@ export class AuthService {
     }
 
     register(user) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      };
       // create request to register a new account
-      return this.http.post('http://localhost:8080/api/register', user)
+      console.log(user);
+      return this.http.post('http://localhost:8080/register', user, httpOptions)
       .pipe(
         tap((res) => { // create user and upon success, log them in
           this.login(user.username, user.password);
