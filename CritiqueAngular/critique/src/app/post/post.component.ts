@@ -1,3 +1,4 @@
+import { CategoryService } from './../category.service';
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { PostService } from '../post.service';
@@ -17,6 +18,7 @@ export class PostComponent implements OnInit {
   selected: Post = null;
   newPost: Post = new Post();
   editPost: Post = null;
+  selectedCategory = this.categoryService.getSelectedCategory();
 
   reload = function() {
     this.postService.index().subscribe(
@@ -24,8 +26,10 @@ export class PostComponent implements OnInit {
         console.log(data);
         this.posts = data;
       },
-      err => {console.error('Observer got an error: ' + err.status); }
-      );
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
+    );
   };
 
   displaySelected = function(post: Post) {
@@ -43,11 +47,15 @@ export class PostComponent implements OnInit {
 
   addPost = function() {
     this.postService.create(this.newPost).subscribe(
-      data => {this.reload(); },
-      err => {console.error('Observer got an error: ' + err.status); }
-      );
-      console.log(this.newPost);
-      this.newPost = new Post();
+      data => {
+        this.reload();
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
+    );
+    console.log(this.newPost);
+    this.newPost = new Post();
   };
 
   setEditPost = function() {
@@ -60,16 +68,22 @@ export class PostComponent implements OnInit {
       data => {
         this.selected = data;
         this.editPost = null;
-        this.reload(); },
-      err => {console.error('Observer got an error: ' + err.status); }
+        this.reload();
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
     );
   };
 
   deletePost = function(id: number) {
     this.postService.destroy(id).subscribe(
       data => {
-        this.reload(); },
-      err => {console.error('Observer got an error: ' + err.status); }
+        this.reload();
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
     );
   };
 
@@ -77,10 +91,11 @@ export class PostComponent implements OnInit {
     private postService: PostService,
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit() {
     this.reload();
   }
-
 }

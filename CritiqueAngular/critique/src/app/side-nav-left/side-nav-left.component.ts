@@ -38,12 +38,9 @@ export class SideNavLeftComponent implements OnInit, OnDestroy {
 
   reason = '';
 
-  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h =>
-    h.test(window.location.host)
-  );
-
   // Category Logic
   categories: Category[] = [];
+  selectedCategory = this.categoryService.getSelectedCategory();
 
   reload() {
     this.categoryService.index().subscribe(

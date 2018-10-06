@@ -11,6 +11,7 @@ import { catchError } from 'rxjs/operators';
 export class CategoryService {
   private uriPath = 'api/categories';
   private url = environment.baseUrl + this.uriPath;
+  selectedCategory: Category = new Category(0, 'all');
 
   public index(): Observable<Category[]> {
     return this.http.get<Category[]>(this.url + '?sorted=true').pipe(
@@ -20,7 +21,9 @@ export class CategoryService {
       })
     );
   }
-
+  getSelectedCategory() {
+    return this.selectedCategory;
+  }
   // public indexCategory(id: number): Observable<Category[]> {
   //   return this.http.get<Category[]>(this.url + '/' + id + '/posts' + '?sorted=true').pipe(
   //     catchError((err: any) => {
