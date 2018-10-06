@@ -31,7 +31,7 @@ export class AuthService {
       }),
       catchError((err: any) => {
         console.log(err);
-        return throwError('Error thrown. Error status: ' + err.status);
+        return throwError('Error in auth.service.login. Error status: ' + err.status);
       })
       );
     }
@@ -44,14 +44,14 @@ export class AuthService {
       };
       // create request to register a new account
       console.log(user);
-      return this.http.post('http://localhost:8080/register', user, httpOptions)
+      return this.http.post('http://localhost:8080/api/register', user, httpOptions)
       .pipe(
         tap((res) => { // create user and upon success, log them in
           this.login(user.username, user.password);
         }),
         catchError((err: any) => {
           console.log(err);
-          return throwError('Error thrown. Error status: ' + err.status);
+          return throwError('Error in auth.service.register. Error status: ' + err.status);
       })
     );
   }

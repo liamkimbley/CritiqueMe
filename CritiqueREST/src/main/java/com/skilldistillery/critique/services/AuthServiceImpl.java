@@ -5,6 +5,8 @@ import javax.persistence.PersistenceContext;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +15,8 @@ import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.entities.User;
 import com.skilldistillery.critique.repositories.ProfileRepository;
 
-@Transactional
+@Repository
+@Transactional //(noRollbackFor = Exception.class)
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -23,8 +26,8 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
 	private ProfileRepository profRepo;
 
-//	@Autowired
-//	private PasswordEncoder encoder;
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Override
 	public Profile register(String json) {
@@ -35,8 +38,8 @@ public class AuthServiceImpl implements AuthService {
 		try {
 			user = om.readValue(json, User.class);
 
-//			String encodedPW = encoder.encode(user.getPassword());
-//			user.setPassword(encodedPW); // only persist encoded password
+			String encodedPW = encoder.encode(user.getPassword());
+			user.setPassword(encodedPW); // only persist encoded password
 
 			// set other fields to default values
 			user.setActive(true);
