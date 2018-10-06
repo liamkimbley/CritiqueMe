@@ -12,9 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.entities.User;
-import com.skilldistillery.critique.repositories.UserRepository;
+import com.skilldistillery.critique.repositories.ProfileRepository;
 
-@Repository
 @Transactional
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -23,13 +22,13 @@ public class AuthServiceImpl implements AuthService {
 	private EntityManager em;
 	
 	@Autowired
-	private UserRepository userRepo;
+	private ProfileRepository profRepo;
 
 //	@Autowired
 //	private PasswordEncoder encoder;
 
 	@Override
-	public User register(String json) {
+	public Profile register(String json) {
 		ObjectMapper om = new ObjectMapper();
 		User user = null;
 		Profile defaultProfile = new Profile();
@@ -46,12 +45,11 @@ public class AuthServiceImpl implements AuthService {
 			defaultProfile.setFirstName("");
 			defaultProfile.setLastName("");
 			defaultProfile.setUser(user);
-
-			userRepo.saveAndFlush(user);
+			profRepo.saveAndFlush(defaultProfile);
 		} catch (Exception e) {
 			System.out.println(e);
 		}		
-		return user;
+		return defaultProfile;
 	}
 
 }

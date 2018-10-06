@@ -1,8 +1,19 @@
 <div>
     <form #addUser="ngForm">
-        <input type="text" name="email" placeholder="Email" ngModel/><br>
-        <input type="text" name="username" placeholder="Username" ngModel/><br>
-        <input type="text" name="password" placeholder="Password" ngModel/><br>
+      <table>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" name="email" ngModel/></td>
+        </tr>
+        <tr>
+          <td>Username</td>
+          <td><input type="text" name="username" ngModel/></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="text" name="password" ngModel/></td>
+        </tr>
+      </table>
         <button class="btn-outline-primary" (click)="register(addUser)" >Submit</button>
     </form>
   </div>
