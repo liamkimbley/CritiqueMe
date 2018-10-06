@@ -55,8 +55,7 @@
             <td>{{selected.media}}</td>
           </tr>
           <tr>
-            <td>{{selected.createdDate}}</td>
-            <td>{{selected.updatedDate}}</td>
+            <td>{{selected.createdDate | date: 'fullDate'}}</td>
           </tr>
         </table>
         <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
