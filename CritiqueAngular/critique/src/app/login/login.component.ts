@@ -1,3 +1,5 @@
+import { AuthService } from './../auth.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  login = function(userForm) {
+  login = function(userForm: NgForm) {
     console.log(userForm);
     this.auth
       .login(userForm.value.username, userForm.value.password)
@@ -16,14 +18,14 @@ export class LoginComponent implements OnInit {
         console.log('data: ' + data);
         if (data) {
           userForm.reset();
-          this.router.navigateByUrl('posts');
+          this.router.navigateByUrl('post');
         } else {
-          this.router.navigateByUrl('register');
+          this.router.navigateByUrl('login');
         }
       });
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
   }
