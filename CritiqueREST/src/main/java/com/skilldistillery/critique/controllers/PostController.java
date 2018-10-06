@@ -25,8 +25,15 @@ public class PostController {
 	private PostService postServ;
 
 	@RequestMapping(path = "posts", method = RequestMethod.GET)
-	public List<Post> index() {
-		return postServ.findAllPosts();
+	public List<Post> index(HttpServletRequest req, HttpServletResponse res) {
+		List<Post> posts = postServ.findAllPosts();
+		if (posts != null) {
+			res.setStatus(200);
+			return posts;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 
 	@RequestMapping(path = "categories/{id}/posts", method = RequestMethod.GET)

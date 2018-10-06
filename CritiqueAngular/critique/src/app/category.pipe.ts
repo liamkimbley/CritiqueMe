@@ -21,7 +21,7 @@ export class CategoryPipe implements PipeTransform {
 
       for (let j = 0; j < element.categories.length; j++) {
         const type = element.categories[j];
-        if (type === category) {
+        if (type.name === category.name) {
           results.push(element);
           break;
         }

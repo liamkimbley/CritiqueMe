@@ -45,7 +45,11 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<Post> findAllPosts() {
-		return postRepo.queryForPostsWithCategories();
+		List<Post> posts = postRepo.queryForPostsWithCategories();
+		if (posts.isEmpty()) {
+			return null;
+		}
+		return posts;
 
 	}
 	

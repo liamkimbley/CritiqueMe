@@ -5,7 +5,7 @@
     disableClose>
     <p><button mat-button (click)="close('toggle button')">Dismiss</button></p>
 
-    <div *ngFor="let item of categories | category: selectedCategory">
+    <div *ngFor="let item of categories">
       <button mat-button (click)="selectedCategory = item">{{item.name}}</button>
     </div>
 
