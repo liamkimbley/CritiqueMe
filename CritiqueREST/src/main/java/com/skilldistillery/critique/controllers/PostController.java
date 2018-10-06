@@ -49,18 +49,32 @@ public class PostController {
 	}
 
 	@RequestMapping(path = "posts/{pid}", method = RequestMethod.GET)
-	public Post getSinglePost(@PathVariable Integer pid) {
-		return postServ.findPostById(pid);
+	public Post getSinglePost(@PathVariable Integer pid, HttpServletRequest req, HttpServletResponse res) {
+		Post p = postServ.findPostById(pid);
+		if (p != null) {
+			res.setStatus(200);
+			return p;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "posts/title/{title}", method = RequestMethod.GET)
-	public List<Post> getPostByTitle(@PathVariable String title) {
-		return postServ.findByTitleContaining(title);
+	public List<Post> getPostByTitle(@PathVariable String title, HttpServletRequest req, HttpServletResponse res) {
+		List<Post> posts = postServ.findByTitleContaining(title);
+		if (posts != null) {
+			res.setStatus(200);
+			return posts;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 
 //	***************************************** hard coded profile id into post (same as comments)
 	@RequestMapping(path = "posts", method = RequestMethod.POST)
-	public Post create(@RequestBody Post post, HttpServletResponse res) {
+	public Post create(@RequestBody Post post, HttpServletRequest req, HttpServletResponse res) {
 		Post p = postServ.create(post, 1);
 		if (p != null) {
 			res.setStatus(201);
@@ -71,7 +85,7 @@ public class PostController {
 	}
 
 	@RequestMapping(path = "posts/{pid}", method = RequestMethod.PUT)
-	public Post replacePost(@PathVariable Integer pid, @RequestBody Post post, HttpServletResponse res) {
+	public Post replacePost(@PathVariable Integer pid, @RequestBody Post post, HttpServletRequest req, HttpServletResponse res) {
 		Post p = postServ.replace(pid, post);
 		if (p != null) {
 			res.setStatus(201);

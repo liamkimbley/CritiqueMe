@@ -39,7 +39,11 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<Post> findPostsByCreateDate(LocalDate date) {
-		return postRepo.findByCreatedDate(date);
+		List<Post> posts = postRepo.findByCreatedDate(date);
+		if (posts.isEmpty()) {
+			return null;
+		}
+		return posts;
 
 	}
 
@@ -56,7 +60,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<Post> findByTitleContaining(String title) {
 		String searchTitle = "%" + title + "%";
-		return postRepo.findByTitleContaining(searchTitle);
+		List<Post> posts = postRepo.findByTitleContaining(searchTitle);
+		if (posts.isEmpty()) {
+			return null;
+		}
+		return posts;
 	}
 
 	@Override
