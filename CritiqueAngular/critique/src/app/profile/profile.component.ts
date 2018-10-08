@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
       data => {
         this.profile = data;
         this.editProfile = null;
-        this.reload(); },
+        this.getOneProfile(); },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
   deleteProfile = function(id: number) {
     this.profService.destroy(id).subscribe(
       data => {
-        this.reload(); },
+        this.getOneProfile(); },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
@@ -119,7 +119,7 @@ export class ProfileComponent implements OnInit {
       data => {
         this.profile = data;
         this.editPost = null;
-        this.reload(); },
+        this.getOneProfile(); },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
@@ -127,7 +127,7 @@ export class ProfileComponent implements OnInit {
   deletePost = function(id: number) {
     this.postService.destroy(id).subscribe(
       data => {
-        this.reload(); },
+        this.getOneProfile(); },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };

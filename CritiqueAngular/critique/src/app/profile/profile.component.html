@@ -22,7 +22,7 @@
 
   <!-- profile pic -->
   <div>
-    <img width="200" src="{{profile.imageUrl}}" alt="{{profile.user.username}}">
+    <img width="200" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
   </div>
 
   <!-- user information -->
@@ -82,7 +82,7 @@
       </tr>
       <tr>
         <td>Content</td>
-        <td><input type="text" name="content" placeholder="{{selectedPost.content}}" /></td>
+        <td><input type="text" name="content" style="width: 300px; height: 100px;" placeholder="{{selectedPost.content}}" /></td>
       </tr>
       <tr>
         <td>Media</td>
@@ -90,7 +90,8 @@
       </tr>
       <tr>
         <td>Created</td>
-        <td><input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" /></td>
+        <td>{{selectedPost.createdDate}}</td>
+          <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
         <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
       </tr>
       <!-- comments -->
@@ -102,7 +103,7 @@
       </tr>
     </table>
     <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Cancel</button>
-    <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost()">Update Post</button>
+    <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(selectedPost)">Update Post</button>
     <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete Post</button>
   </div>
 

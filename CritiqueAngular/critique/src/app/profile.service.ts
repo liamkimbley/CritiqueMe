@@ -68,7 +68,7 @@ export class ProfileService {
       const headers = new HttpHeaders().set(
         'Authorization', `Basic ${this.auth.getToken()}`
       );
-      return this.http.put(this.url + prof.id, prof, {headers}).pipe(
+      return this.http.put(this.url + '/' + prof.id, prof, {headers}).pipe(
           catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);
@@ -84,7 +84,7 @@ export class ProfileService {
       const headers = new HttpHeaders().set(
         'Authorization', `Basic ${this.auth.getToken()}`
       );
-        return this.http.delete(this.url + id, {headers}).pipe(
+        return this.http.delete(this.url + '/' + id, {headers}).pipe(
           catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);

@@ -123,7 +123,7 @@ export class PostService {
     // } else {
     //   this.router.navigateByUrl('login');
     // }
-    return this.http.put(this.url + post.id, post).pipe(
+    return this.http.put(this.url + '/' + post.id, post).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error: ' + err.status);
