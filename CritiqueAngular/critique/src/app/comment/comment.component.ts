@@ -27,6 +27,7 @@ export class CommentComponent implements OnInit {
               private profileService: ProfileService) { }
 
   ngOnInit() {
+    this.reload();
   }
 
   reload = function() {
@@ -38,38 +39,6 @@ export class CommentComponent implements OnInit {
 
   displayTable = function() {
     this.selected = null;
-  };
-
-  addComment = function(id: number) {
-    this.commentService.create(this.newComment).subscribe(
-      data => {this.reload(); },
-      err => {console.error('Observer got an error: ' + err.status); }
-      );
-      console.log(this.newComment);
-      this.newComment = new Comment();
-  };
-
-  setEditComment = function() {
-    this.editComment = Object.assign({}, this.selected);
-  };
-
-  updateComment = function(comment: Comment) {
-    console.log(comment);
-    this.commentService.update(comment).subscribe(
-      data => {
-        this.selected = data;
-        this.editComment = null;
-        this.reload(); },
-      err => {console.error('Observer got an error: ' + err.status); }
-    );
-  };
-
-  deleteComment = function(id: number) {
-    this.commentService.destroy(id).subscribe(
-      data => {
-        this.reload(); },
-      err => {console.error('Observer got an error: ' + err.status); }
-    );
   };
 
 }

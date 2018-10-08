@@ -11,6 +11,7 @@ import { Comment } from './models/comment';
 })
 export class CommentService {
   private url = 'http://localhost:8080/api/posts/';
+  private commentUrl = 'http://localhost:8080/api/comments/';
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
@@ -31,7 +32,7 @@ export class CommentService {
     }
   }
 
-  public create(comment: Comment): Observable<Comment> {
+  public create(comment: Comment, id: number): Observable<Comment> {
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({
@@ -40,9 +41,55 @@ export class CommentService {
         })
       };
       console.log(comment);
-      return this.http.post<Comment>(this.url, comment, httpOptions);
+      return this.http.post<Comment>(this.url + id + '/comments', comment, httpOptions);
     } else {
       this.router.navigateByUrl('login');
     }
+  }
+
+  public update(comment: Comment) {
+    // if (this.auth.checkLogin()) {
+    //   const headers = new HttpHeaders().set(
+    //     'Authorization',
+    //     `Basic ${this.auth.getToken()}`
+    //   );
+    //   return this.http.put(this.url + post.id, post, { headers }).pipe(
+    //     catchError((err: any) => {
+    //       console.log(err);
+    //       return throwError('Error: ' + err.status);
+    //     })
+    //   );
+    // } else {
+    //   this.router.navigateByUrl('login');
+    // }
+    return this.http.put(this.commentUrl + comment.id, comment).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+      })
+    );
+  }
+
+  public destroy(id: number) {
+    // if (this.auth.checkLogin()) {
+    //   const headers = new HttpHeaders().set(
+    //     'Authorization',
+    //     `Basic ${this.auth.getToken()}`
+    //   );
+    //   return this.http.delete(this.url + id, { headers }).pipe(
+    //     catchError((err: any) => {
+    //       console.log(err);
+    //       return throwError('Error: ' + err.status);
+    //     })
+    //   );
+    // } else {
+    //   this.router.navigateByUrl('login');
+    // }
+    return this.http.delete(this.commentUrl + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+      })
+    );
   }
 }

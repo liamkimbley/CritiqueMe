@@ -13,6 +13,9 @@ import {
 import { MatSidenav } from '@angular/material/sidenav';
 import { Category } from '../models/category';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { NgForm } from '@angular/forms';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-post',
@@ -27,7 +30,8 @@ export class PostComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
-    private media: MediaMatcher
+    private media: MediaMatcher,
+    private commentService: CommentService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -43,6 +47,7 @@ export class PostComponent implements OnInit, OnDestroy {
   selectedCategory: Category = { id: 1, name: 'All' };
   categories: Category[] = [];
   comments: Comment[] = [];
+  mediaUrl: String = null;
 
   // Sidebar
   @ViewChild('sidenav')
@@ -120,6 +125,8 @@ export class PostComponent implements OnInit, OnDestroy {
     );
   };
 
+  // Category Logic
+
   reloadCategories() {
     this.postService.indexCategories().subscribe(
       data => {
@@ -143,11 +150,55 @@ export class PostComponent implements OnInit, OnDestroy {
       err => console.error('Observer recieved an error: ' + err)
     );
   }
-  // Category Logic
 
   close(reason: string) {
     this.reason = reason;
     this.sidenav.close();
+  }
+
+  // comments
+
+  addComment = function(form: NgForm, id: number) {
+    console.log(id);
+    this.commentService.create(form.value, id).subscribe(
+      data => {
+              this.reload();
+            },
+      err => {console.error('Observer got an error: ' + err.status); }
+      );
+  };
+
+  setEditComment = function() {
+    this.editComment = Object.assign({}, this.selected);
+  };
+
+  updateComment = function(comment: Comment) {
+    console.log(comment);
+    this.commentService.update(comment).subscribe(
+      data => {
+        this.selected = data;
+        this.editComment = null;
+        this.reload(); },
+      err => {console.error('Observer got an error: ' + err.status); }
+    );
+  };
+
+  deleteComment = function(id: number) {
+    this.commentService.destroy(id).subscribe(
+      data => {
+        this.reload(); },
+      err => {console.error('Observer got an error: ' + err.status); }
+    );
+  };
+
+  reloadComments() {
+    this.commentService.index().subscribe(
+      data => {
+        console.log(data);
+        this.comments = data;
+      },
+      err => console.error('Observer recieved an error: ' + err)
+    );
   }
 
   ngOnDestroy(): void {
@@ -158,4 +209,6 @@ export class PostComponent implements OnInit, OnDestroy {
     this.reload();
     this.reloadCategories();
   }
+
+
 }
