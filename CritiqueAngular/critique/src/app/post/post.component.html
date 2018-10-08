@@ -47,7 +47,7 @@
       </div>
 
       <!-- display single post -->
-      <div *ngIf="selected">
+      <div *ngIf="selected" class="postTable">
         <table>
           <tr>
             <th>{{selected.title}}</th>
@@ -60,6 +60,17 @@
           </tr>
           <tr>
             <td>{{selected.createdDate | date: 'fullDate'}}</td>
+          </tr>
+          <tr>
+            <td>Comments: </td>
+          </tr>
+        </table>
+        <table *ngFor="let c of selected.comments" class="commentTable">
+          <tr>
+            <td>{{c.content}}</td>
+          </tr>
+          <tr>
+            <td>{{c.createdAt | date: 'fullDate'}}</td>
           </tr>
         </table>
         <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
