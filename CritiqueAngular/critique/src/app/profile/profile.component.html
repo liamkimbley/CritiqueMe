@@ -3,83 +3,93 @@
   <button class="btn-outline-primary" (click)="editProfile = selected">Edit Profile</button>
 </div>
 
-<!-- profile pic -->
-<div>
-    <img src="{{selected.image}}" alt="{{selectedUser.username}}">
-</div>
+<div class="profileInfo">
 
-<!-- user information -->
-<table>
-  <tr>
-    <th>First Name</th>
-    <td>{{selected.firstName}}</td>
-  </tr>
-  <tr>
-    <th>Last Name</th>
-    <td>{{selected.lastName}}</td>
-  </tr>
-  <tr>
+  <!-- profile pic -->
+  <div>
+    <img src="{{selected.image}}" alt="{{selectedUser.username}}">
+  </div>
+
+  <!-- user information -->
+  <table>
+    <tr>
+      <th>First Name</th>
+      <td>{{selected.firstName}}</td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td>{{selected.lastName}}</td>
+    </tr>
+    <tr>
       <th>Location</th>
       <td>{{selected.loc.city}} {{selected.loc.state}}</td>
-  </tr>
-  <tr>
-    <th>Bio</th>
-    <td>{{selected.bio}}</td>
-  </tr>
-  <tr>
-    <th>Skills</th>
-    <td>{{selectedSkill.title}}</td>
-  </tr>
-</table>
+    </tr>
+    <tr>
+      <th>Bio</th>
+      <td>{{selected.bio}}</td>
+    </tr>
+    <tr>
+      <th>Skills</th>
+      <td>{{selectedSkill.title}}</td>
+    </tr>
+  </table>
 
-<!-- posts -->
-<h3>Your Posts</h3>
+</div>
 
-    <!-- display a list of user's posts -->
-    <div *ngIf="!selectedPost">
+<div class="profilePosts">
+
+  <!-- posts -->
+  <h3>Your Posts</h3>
+
+  <!-- display a list of user's posts -->
+  <div *ngIf="!selectedPost">
     <div *ngFor="let post of posts">
-    <table>
-      <tr>
-        <td>{{post.title}}</td>
-      </tr>
-      <tr>
-        <td>{{post.createdDate | date:'shortDate'}}</td>
-      </tr>
-    </table>
-    <button class="btn-outline-primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
-  </div>
+      <table>
+        <tr>
+          <td>{{post.title}}</td>
+        </tr>
+        <tr>
+          <td>{{post.createdDate | date:'shortDate'}}</td>
+        </tr>
+      </table>
+      <button class="btn-outline-primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
+    </div>
   </div>
 
   <!-- display a post's full details when selected -->
   <div *ngIf="selectedPost">
-      <table>
-          <tr>
-            <td>Title</td>
-            <td><input type="text" name="title" placeholder="{{selectedPost.title}}"/></td>
-          </tr>
-          <tr>
-            <td>Content</td>
-            <td><input type="text" name="content" placeholder="{{selectedPost.content}}"/></td>
-          </tr>
-          <tr>
-            <td>Media</td>
-            <td><input type="text" name="media" placeholder="{{selectedPost.media}}"/></td>
-          </tr>
-          <tr>
-            <td>Created/ Updated</td>
-            <td><input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}"/></td>
-            <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}"/></td>
-          </tr>
-        </table>
-        <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Cancel</button>
-        <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost()">Update</button>
-        <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selected.id)">Delete</button>
-
-        <!-- display comments for post -->
+    <table>
+      <tr>
+        <td>Title</td>
+        <td><input type="text" name="title" placeholder="{{selectedPost.title}}" /></td>
+      </tr>
+      <tr>
+        <td>Content</td>
+        <td><input type="text" name="content" placeholder="{{selectedPost.content}}" /></td>
+      </tr>
+      <tr>
+        <td>Media</td>
+        <td><input type="text" name="media" placeholder="{{selectedPost.media}}" /></td>
+      </tr>
+      <tr>
+        <td>Created/ Updated</td>
+        <td><input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" /></td>
+        <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td>
+      </tr>
+      <!-- comments -->
+      <tr>
+        <td>{{selectedPost.comments}}</td>
+      </tr>
+    </table>
+    <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Cancel</button>
+    <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost()">Update Post</button>
+    <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selected.id)">Delete Post</button>
   </div>
 
-  <!-- add post -->
-    <!-- <div>
+</div>
+
+<!-- add post -->
+<!-- <div>
       <h3>Add Post</h3>
       <form #addNewPost="ngForm">
         <input type="text" name="title" placeholder="Title" ngModel>
@@ -90,5 +100,5 @@
     </div> -->
 
 
-    <!-- user can update their profile -->
-    <!-- user can edit their comments -->
+<!-- user can update their profile -->
+<!-- user can add a post -->

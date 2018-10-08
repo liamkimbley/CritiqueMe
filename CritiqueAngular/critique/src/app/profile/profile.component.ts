@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   users: User[] = [];
   selectedLoc: Location = null;
   selectedSkill: Expertise = null;
+  comments: Comment[] = [];
 
   // posts
   posts: Post[] = [];
@@ -68,14 +69,6 @@ export class ProfileComponent implements OnInit {
     this.selected = null;
     this.selectedUser = null;
   };
-      // addUser = function() {
-  //   this.userService.create(this.newUser).subscribe(
-  //     data => {this.reload(); },
-  //     err => {console.error('Observer got an error: ' + err.status); }
-  //     );
-  //     console.log(this.newUser);
-  //     this.newUser = new Profile();
-  // };
 
   setEditProfile = function() {
     this.editProfile = Object.assign({}, this.selected);
@@ -144,5 +137,8 @@ export class ProfileComponent implements OnInit {
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
+
+  // get comments for a post
+
 
 }
