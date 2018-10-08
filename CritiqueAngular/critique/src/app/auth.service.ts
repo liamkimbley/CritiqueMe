@@ -26,6 +26,7 @@ export class AuthService {
     return this.http.get('http://localhost:8080/authenticate', {headers})
     .pipe(
       tap((res) => {
+        console.log(token);
         localStorage.setItem('token', token);
         return res;
       }),
