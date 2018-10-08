@@ -4,6 +4,8 @@ import { CommentService } from '../comment.service';
 import { Post } from '../models/post';
 import { Comment } from '../models/comment';
 import { NgForm } from '@angular/forms';
+import { Profile } from '../models/profile';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-comment',
@@ -18,8 +20,11 @@ export class CommentComponent implements OnInit {
   selectedComment: Comment = null;
   newComment: Comment = new Comment();
   editComment: Comment = null;
+  profile: Profile = null;
 
-  constructor(private commentService: CommentService, private postService: PostService) { }
+  constructor(private commentService: CommentService,
+              private postService: PostService,
+              private profileService: ProfileService) { }
 
   ngOnInit() {
   }

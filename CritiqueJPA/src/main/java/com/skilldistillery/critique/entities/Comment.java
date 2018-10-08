@@ -34,7 +34,6 @@ public class Comment {
 	@Column(name = "updated_at")
 	private LocalDate updatedAt;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "profile_id")
 	private Profile profile;

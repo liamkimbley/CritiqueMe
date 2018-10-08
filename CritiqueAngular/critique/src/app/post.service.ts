@@ -64,26 +64,26 @@ export class PostService {
   }
 
   public show(id): Observable<Post> {
-    // if (this.auth.checkLogin()) {
-    // const headers = new HttpHeaders().set(
-    // 'Authorization',
-    // `Basic ${this.auth.getToken()}`
-    // );
-    // return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
-    //   catchError((err: any) => {
-    //     console.log(err);
-    //     return throwError('Error: ' + err.status);
-    //   })
-    // );
-    // } else {
-    //   this.router.navigateByUrl('login');
-    // }
-    return this.http.get<Post>(this.url + '/' + id).pipe(
+    if (this.auth.checkLogin()) {
+    const headers = new HttpHeaders().set(
+    'Authorization',
+    `Basic ${this.auth.getToken()}`
+    );
+    return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error: ' + err.status);
       })
     );
+    } else {
+      this.router.navigateByUrl('login');
+    }
+    // return this.http.get<Post>(this.url + '/' + id).pipe(
+    //   catchError((err: any) => {
+    //     console.log(err);
+    //     return throwError('Error: ' + err.status);
+    //   })
+    // );
   }
 
   public create(post: Post): Observable<Post> {
