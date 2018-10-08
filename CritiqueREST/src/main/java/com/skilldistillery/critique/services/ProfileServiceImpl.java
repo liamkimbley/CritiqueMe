@@ -7,12 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.critique.entities.Profile;
+import com.skilldistillery.critique.entities.User;
 import com.skilldistillery.critique.repositories.ProfileRepository;
+import com.skilldistillery.critique.repositories.UserRepository;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileRepository profRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<Profile> findByFirstname(String firstName) {
@@ -107,6 +112,7 @@ public class ProfileServiceImpl implements ProfileService {
 		Optional<Profile> op = profRepo.findById(id);
 		
 		if (op.isPresent()) {
+			User u = userRepo.findById(updatedProfile.getUser().getId()).get();
 			Profile profile = op.get();
 			if (updatedProfile.getFirstName() != null) {
 				profile.setFirstName(updatedProfile.getFirstName());
@@ -128,6 +134,9 @@ public class ProfileServiceImpl implements ProfileService {
 			}
 			if (updatedProfile.getSkills() != null) {
 				profile.setSkills(updatedProfile.getSkills());
+			}
+			if (updatedProfile.getUser() != null) {
+				profile.setUser(u);
 			}
 			return profRepo.saveAndFlush(profile); 
 		}

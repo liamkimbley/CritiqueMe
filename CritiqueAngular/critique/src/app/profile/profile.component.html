@@ -74,38 +74,71 @@
   </div>
 
   <!-- display a post's full details when selected -->
-  <div *ngIf="selectedPost">
+
+  <div *ngIf="editPost">
     <table>
       <tr>
         <td>Title</td>
-        <td><input type="text" name="title" placeholder="{{selectedPost.title}}" /></td>
+        <td><input type="text" name="title" [(ngModel)]="editPost.title" /></td>
       </tr>
       <tr>
         <td>Content</td>
-        <td><input type="text" name="content" style="width: 300px; height: 100px;" placeholder="{{selectedPost.content}}" /></td>
+        <td><input type="text" name="content" style="width: 300px; height: 100px;" [(ngModel)]="editPost.content" /></td>
       </tr>
       <tr>
         <td>Media</td>
-        <td><input type="text" name="media" placeholder="{{selectedPost.media}}" /></td>
+        <td><input type="text" name="media" [(ngModel)]="editPost.media" /></td>
       </tr>
       <tr>
         <td>Created</td>
-        <td>{{selectedPost.createdDate}}</td>
+        <td>{{editPost.createdDate}}</td>
           <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
         <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
       </tr>
       <!-- comments -->
       <td>Comments:</td>
       <tr>
-        <div *ngFor="let c of selectedPost.comments">
+        <div *ngFor="let c of editPost.comments">
           <td>{{c.content}}</td>
         </div>
       </tr>
     </table>
-    <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Cancel</button>
-    <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(selectedPost)">Update Post</button>
-    <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete Post</button>
+    <button class="btn-outline-primary" name="cancel" type="submit" (click)="editPost = null">Cancel</button>
+    <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(editPost)">Update Post</button>
+    <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(editPost.id)">Delete Post</button>
   </div>
+
+  <div *ngIf="selectedPost">
+      <table>
+        <tr>
+          <td>Title</td>
+          <td>{{selectedPost.title}}</td>
+        </tr>
+        <tr>
+          <td>Content</td>
+          <td>{{selectedPost.content}}</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>{{selectedPost.media}}</td>
+        </tr>
+        <tr>
+          <td>Created</td>
+          <td>{{selectedPost.createdDate}}</td>
+            <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+          <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
+        </tr>
+        <!-- comments -->
+        <td>Comments:</td>
+        <tr>
+          <div *ngFor="let c of selectedPost.comments">
+            <td>{{c.content}}</td>
+          </div>
+        </tr>
+      </table>
+      <button class="btn-outline-primary" name="update" type="submit" (click)="editPost = selectedPost">Edit Post</button>
+      <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete Post</button>
+    </div>
 
 </div>
 

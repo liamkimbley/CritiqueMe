@@ -120,7 +120,7 @@ public class ProfileController {
 		}
 	}
 	
-	@RequestMapping(path = "profile/{id}", method = RequestMethod.PATCH)
+	@RequestMapping(path = "profile/{id}", method = RequestMethod.PUT)
 	public Profile updateProfile(@RequestBody Profile p, @PathVariable Integer id, HttpServletResponse res, HttpServletRequest req) {
 		Profile prof = ps.update(id, p);
 		if (prof != null) {

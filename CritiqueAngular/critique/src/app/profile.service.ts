@@ -6,13 +6,14 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { Profile } from './models/profile';
 import { UserService } from './user.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  private url = 'http://localhost:8080/api/profile';
+  private url = environment.baseUrl + 'api/profile';
 
   // public index(): Observable<Profile []> {
   //   if (this.auth.checkLogin()) {
