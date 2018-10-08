@@ -2,8 +2,6 @@ package com.skilldistillery.critique.services;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
 import com.skilldistillery.critique.entities.Profile;
 
 public interface ProfileService {
