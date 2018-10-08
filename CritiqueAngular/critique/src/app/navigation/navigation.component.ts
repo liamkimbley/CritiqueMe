@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,7 +11,7 @@ export class NavigationComponent implements OnInit {
   navBarCheckLogin() {
     return this.authService.checkLogin();
   }
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 }

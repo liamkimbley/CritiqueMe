@@ -6,3 +6,17 @@
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+
+.jumbotron {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.card {
+  padding: 15px;
+  margin-left: 75px;
+  margin-right: 75px;
+}

@@ -1,11 +1,24 @@
+<div class="container">
+  <h1>CritiqueMe</h1>
+  <div class="jumbotron jumbotron-fluid">
 
-<h1>CritiqueMe Home</h1>
-
-<div>
-    <a class="btn-outline-primary" [routerLink]="['/post']">Posts</a>
-</div>
-
-<div>
-  <h3>New to the site?</h3>
-  <button class="btn btn-dark btn-sm" [routerLink]="['/register']">Register</button>
+    <div *ngIf="!homeCheckLogin()">
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">New to the site?</h4>
+            <p class="card-text">Join us!</p>
+            <button mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Have an account?</h4>
+            <p class="card-text">Welcome back!</p>
+              <a mat-raised-button color="primary" [routerLink]="['/login']">Log In</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

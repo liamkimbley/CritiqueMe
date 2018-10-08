@@ -1,7 +1,44 @@
-<div>
-    <form #logUser="ngForm">
-        <input matInput type="username" name="username" placeholder="Username" ngModel/>
-        <input matInput type="password" name="password" placeholder="Password" ngModel/>
-        <button mat-raised-button color="accent" (click)="login(logUser)" >Login</button>
-    </form>
+<!-- Display this form in navbar if not on login page or logged in -->
+<!-- Navbar Form -->
+<div *ngIf="!router.url.includes('login')">
+  <form #logUser="ngForm" class="form-inline">
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <input class="form-control" type="username" name="username" placeholder="Username" ngModel required>
+      </div>
+      <div class="col-auto">
+        <input class="form-control" type="password" name="password" placeholder="Password" ngModel required>
+      </div>
+      <div class="col-auto">
+        <button mat-raised-button color="accent" (click)="login(logUser)">Log In</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Navbar Form -->
+
+<!-- Display this on login page only-->
+<!-- Page Form -->
+<div *ngIf="router.url.includes('login')">
+  <div class="jumbotron jumbotron-fluid">
+    <h3 class="display-6">Log In</h3>
+    <div class="container-fluid h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+          <form #logUser="ngForm">
+            <div class="form-group">
+              <input class="form-control" type="username" name="username" placeholder="Username" ngModel required>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="password" name="password" placeholder="Password" ngModel required>
+            </div>
+            <div class="form-group" id="submitLogin">
+              <button mat-raised-button color="accent" (click)="login(logUser)">Log In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+<!-- Page Form -->
