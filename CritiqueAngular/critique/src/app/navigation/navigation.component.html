@@ -22,7 +22,7 @@
   </div>
 
   <!-- *ngIf the user is not logged in, or is not a user, show this -->
-  <div *ngIf="!navBarCheckLogin()">
+  <div *ngIf="!navBarCheckLogin() && !router.url.includes('login')">
     <!-- <button mat-raised-button color="accent" [routerLink]="['/login']">Log In</button> -->
     <app-login></app-login>
     <!-- <a mat-raised-button color="accent" role="button">Log In</a> -->

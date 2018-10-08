@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { PostService } from './../post.service';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -23,13 +24,17 @@ export class HomeComponent implements OnInit {
     //   err => console.error('Observer recieved an error: ' + err)
     // );
   }
+  homeCheckLogin() {
+    return this.authService.checkLogin();
+  }
 
   constructor(
     private homeService: HomeService,
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private postService: PostService
+    private postService: PostService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
