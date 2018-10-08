@@ -39,7 +39,13 @@ public class AuthController {
 
 	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
 	public Principal authenticate(Principal principal) {
+		System.out.println("IN AUTHENTICATE");
 	  return principal;
+	}
+	
+	@RequestMapping(path = "/auth/test", method = RequestMethod.GET)
+	public void test() {
+		System.out.println("IN AUTHENTICATE");
 	}
 
 }

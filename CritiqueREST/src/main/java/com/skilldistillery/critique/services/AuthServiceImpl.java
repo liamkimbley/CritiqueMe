@@ -47,6 +47,7 @@ public class AuthServiceImpl implements AuthService {
 			defaultProfile.setFirstName("");
 			defaultProfile.setLastName("");
 			defaultProfile.setUser(user);
+			
 			profRepo.saveAndFlush(defaultProfile);
 		} catch (Exception e) {
 			System.out.println(e);

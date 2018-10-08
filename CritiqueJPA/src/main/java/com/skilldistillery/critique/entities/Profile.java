@@ -35,7 +35,7 @@ public class Profile {
 	@JoinColumn(name = "location_id")
 	private Location location;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_id")
 	private User user;
 	

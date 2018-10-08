@@ -23,7 +23,7 @@ export class AuthService {
     );
 
     // create request to autenticate creditials
-    return this.http.get('http://localhost:8080/api/authenticate', {headers})
+    return this.http.get('http://localhost:8080/authenticate', {headers})
     .pipe(
       tap((res) => {
         localStorage.setItem('token', token);
@@ -44,7 +44,7 @@ export class AuthService {
       };
       // create request to register a new account
       console.log(user);
-      return this.http.post('http://localhost:8080/api/register', user, httpOptions)
+      return this.http.post('http://localhost:8080/register', user, httpOptions)
       .pipe(
         tap((res) => { // create user and upon success, log them in
           this.login(user.username, user.password);
