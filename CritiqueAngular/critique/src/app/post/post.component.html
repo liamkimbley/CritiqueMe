@@ -30,14 +30,16 @@
           <mat-card class="postCard">
             <mat-card-header>
               <div mat-card-avatar class="headerImage"></div>
-              <mat-card-title>{{post.id}}</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+              <mat-card-title>{{post.title}}</mat-card-title>
             </mat-card-header>
             <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" id="postImg">
             <mat-card-content>
               <p>
                 {{post.content}}
               </p>
+              <!-- <p>
+                {{post.media}}
+              </p> -->
             </mat-card-content>
             <mat-card-actions>
               <button mat-raised-button color="primary" (click)="displaySelected(post)">View More</button>
@@ -55,9 +57,9 @@
           <tr>
             <td>{{selected.content}}</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>{{selected.media}}</td>
-          </tr>
+          </tr> -->
           <tr>
             <td>{{selected.createdDate | date: 'fullDate'}}</td>
           </tr>
