@@ -136,6 +136,7 @@
           </div>
         </tr>
       </table>
+      <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Back</button>
       <button class="btn-outline-primary" name="update" type="submit" (click)="editPost = selectedPost">Edit Post</button>
       <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete Post</button>
     </div>
