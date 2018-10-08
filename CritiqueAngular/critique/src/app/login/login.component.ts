@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
         console.log('data: ' + data);
         if (data) {
           userForm.reset();
-          this.router.navigateByUrl('post');
+          this.router.navigateByUrl('profile');
         } else {
           this.router.navigateByUrl('login');
         }
