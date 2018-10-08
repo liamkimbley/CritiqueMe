@@ -61,8 +61,8 @@ public class VoteServiceImpl implements VoteService {
 	}
 
 	@Override
-	public Boolean deleteAllVotesForComment(Integer cid) {
-		return voteRepo.deleteVotesForCommentsByPostId(cid);
+	public void deleteAllVotesForComment(Integer cid) {
+		voteRepo.deleteVotesForCommentsByCommentId(cid);
 		
 	}
 

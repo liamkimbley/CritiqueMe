@@ -6,14 +6,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.critique.entities.Category;
+import com.skilldistillery.critique.entities.Comment;
 import com.skilldistillery.critique.entities.Post;
 import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.repositories.CategoryRepository;
+import com.skilldistillery.critique.repositories.CommentRepository;
 import com.skilldistillery.critique.repositories.PostRepository;
 import com.skilldistillery.critique.repositories.ProfileRepository;
+import com.skilldistillery.critique.repositories.VoteRepository;
 
+@Transactional
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -25,6 +30,12 @@ public class PostServiceImpl implements PostService {
 	
 	@Autowired
 	private CategoryRepository catRepo;
+	
+	@Autowired
+	private CommentRepository comRepo;
+	
+	@Autowired
+	private VoteRepository voteRepo;
 
 	@Override
 	public List<Post> findPostsByCategoryId(Integer id) {
@@ -141,6 +152,10 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public boolean delete(Integer id) {
 		try {
+			List<Comment> coms = comRepo.findByPostId(id);
+			for (int i = 0; i < coms.size(); i++) {
+				voteRepo.deleteVotesForCommentsByCommentId(coms.get(i).getId());
+			}
 			postRepo.deleteById(id);
 			return true;
 		} catch (Exception e) {

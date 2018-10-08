@@ -26,7 +26,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> findCommentsByPost(Integer id) {
-		List<Comment> comments = comRepo.findByPost_Id(id);
+		List<Comment> comments = comRepo.findByPostId(id);
 		if (comments.isEmpty()) {
 			return null;
 		}

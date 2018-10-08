@@ -127,7 +127,8 @@ export class ProfileComponent implements OnInit {
   deletePost = function(id: number) {
     this.postService.destroy(id).subscribe(
       data => {
-        this.getOneProfile(); },
+        this.loadPosts();
+      this.selectedPost = null; },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };

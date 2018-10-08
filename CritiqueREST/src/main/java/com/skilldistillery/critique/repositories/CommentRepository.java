@@ -8,7 +8,7 @@ import com.skilldistillery.critique.entities.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 	
-	public List<Comment> findByPost_Id(Integer id);
-	public List<Comment> findByProfile_Id(Integer id);
+	public List<Comment> findByPostId(Integer id);
+	public List<Comment> findByProfileId(Integer id);
 
 }
