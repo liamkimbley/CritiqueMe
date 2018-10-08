@@ -16,37 +16,66 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public List<Profile> findByFirstname(String firstName) {
-		return profRepo.findByFirstName(firstName);
+		List<Profile> profiles = profRepo.findByFirstName(firstName);
+		if (profiles.isEmpty() ) {
+			return null;
+		}
+		return profiles;
 	}
 
 	@Override
 	public List<Profile> findByLastname(String lastName) {
-		return profRepo.findByLastName(lastName);
+		List<Profile> profiles = profRepo.findByLastName(lastName);
+		if (profiles.isEmpty() ) {
+			return null;
+		}
+		return profiles;
 	}
 
 	@Override
 	public List<Profile> findByFirstNameAndLastName(String fname, String lname) {
-		return profRepo.findByFirstNameAndLastName(fname, lname);
+		List<Profile> profiles = profRepo.findByFirstNameAndLastName(fname, lname);
+		if (profiles.isEmpty() ) {
+			return null;
+		}
+		return profiles;
+		
 	}
 
 	@Override
 	public List<Profile> queryByCityWithLocation(String city) {
-		return profRepo.queryByCityWithLocation(city);
+		List<Profile> profiles = profRepo.queryByCityWithLocation(city);
+		if (profiles.isEmpty() ) {
+			return null;
+		}
+		return profiles;
 	}
 
 	@Override
 	public List<Profile> queryByStateWithLocation(String state) {
-		return profRepo.queryByStateWithLocation(state);
+		List<Profile> profiles = profRepo.queryByStateWithLocation(state);
+		if (profiles.isEmpty() ) {
+			return null;
+		}
+		return profiles;
 	}
 
 	@Override
 	public List<Profile> queryByCountryWithLocation(String country) {
-		return profRepo.queryByCountryWithLocation(country);
+		List<Profile> profiles = profRepo.queryByCountryWithLocation(country);
+		if (profiles.isEmpty() ) {
+			return null;
+		}
+		return profiles;
 	}
 	
 	@Override
 	public Profile queryByUsernameWithUser(String username) {
-		return profRepo.queryByUsernameWithUser(username);
+		Profile profile = profRepo.queryByUsernameWithUser(username);
+		if(profile == null) {
+			return null;
+		}
+		return profile;
 	}
 	
 	@Override

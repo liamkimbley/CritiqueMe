@@ -3,6 +3,7 @@ package com.skilldistillery.critique.controllers;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,37 +25,79 @@ public class ProfileController {
 	private ProfileService ps;
 	
 	@RequestMapping(path = "profile/firstname/{firstName}", method = RequestMethod.GET)
-	public List<Profile> findByFirstname(@PathVariable String firstName) {
-		return ps.findByFirstname(firstName);
+	public List<Profile> findByFirstname(@PathVariable String firstName, HttpServletResponse res, HttpServletRequest req) {
+		List<Profile> profiles = ps.findByFirstname(firstName);
+		if (profiles != null) {
+			res.setStatus(200);
+			return profiles;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "profile/lastname/{lastName}", method = RequestMethod.GET)
-	public List<Profile> findByLastname(@PathVariable String lastName) {
-		return ps.findByLastname(lastName);
+	public List<Profile> findByLastname(@PathVariable String lastName, HttpServletResponse res, HttpServletRequest req) {
+		List<Profile> profiles = ps.findByLastname(lastName);
+		if (profiles != null) {
+			res.setStatus(200);
+			return profiles;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "profile/fullname/{firstName}/{lastName}", method = RequestMethod.GET)
-	public List<Profile> findByFirstNameAndLastName(@PathVariable String fname, @PathVariable String lname) {
-		return ps.findByFirstNameAndLastName(fname, lname);
+	public List<Profile> findByFirstNameAndLastName(@PathVariable String fname, @PathVariable String lname, HttpServletResponse res, HttpServletRequest req) {
+		List<Profile> profiles = ps.findByFirstNameAndLastName(fname, lname);
+		if (profiles != null) {
+			res.setStatus(200);
+			return profiles;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "profile/city/{city}", method = RequestMethod.GET)
-	public List<Profile> findByCityWithLocation(@PathVariable String city) {
-		return ps.queryByCityWithLocation(city);
+	public List<Profile> findByCityWithLocation(@PathVariable String city, HttpServletResponse res, HttpServletRequest req) {
+		List<Profile> profiles = ps.queryByCityWithLocation(city);
+		if (profiles != null) {
+			res.setStatus(200);
+			return profiles;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "profile/state/{state}", method = RequestMethod.GET)
-	public List<Profile> findByStateWithLocation(@PathVariable String state) {
-		return ps.queryByStateWithLocation(state);
+	public List<Profile> findByStateWithLocation(@PathVariable String state, HttpServletResponse res, HttpServletRequest req) {
+		List<Profile> profiles = ps.queryByStateWithLocation(state);
+		if (profiles != null) {
+			res.setStatus(200);
+			return profiles;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "profile/country/{country}", method = RequestMethod.GET)
-	public List<Profile> findByCountryWithLocation(@PathVariable String country) {
-		return ps.queryByCountryWithLocation(country);
+	public List<Profile> findByCountryWithLocation(@PathVariable String country, HttpServletResponse res, HttpServletRequest req) {
+		List<Profile> profiles = ps.queryByCountryWithLocation(country);
+		if (profiles != null) {
+			res.setStatus(200);
+			return profiles;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "profile/user/{username}", method = RequestMethod.GET)
-	public Profile findByUsernameWithUser(@PathVariable String username, HttpServletResponse res) {
+	public Profile findByUsernameWithUser(@PathVariable String username, HttpServletResponse res, HttpServletRequest req) {
 		Profile prof = ps.queryByUsernameWithUser(username);
 		if (prof != null) {
 			res.setStatus(200);
@@ -66,25 +109,19 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(path = "profile", method = RequestMethod.GET)
-	public Profile findProfile(Principal principal) {
-		return ps.queryByUsernameWithUser(principal.getName());
+	public Profile findProfile(Principal principal, HttpServletResponse res, HttpServletRequest req) {
+		Profile prof = ps.queryByUsernameWithUser(principal.getName());
+		if (prof != null) {
+			res.setStatus(200);
+			return prof;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 	
-	// create when user creates an account
-//	@RequestMapping(path = "profile", method = RequestMethod.POST)
-//	public Profile createProfile(@RequestBody Profile p, HttpServletResponse res) {
-//		Profile prof = ps.create(p);
-//		if (prof != null) {
-//			res.setStatus(200);
-//			return prof;
-//		} else {
-//			res.setStatus(500);
-//			return null;
-//		}
-//	}
-	
 	@RequestMapping(path = "profile/{id}", method = RequestMethod.PATCH)
-	public Profile updateProfile(@RequestBody Profile p, @PathVariable int id, HttpServletResponse res) {
+	public Profile updateProfile(@RequestBody Profile p, @PathVariable Integer id, HttpServletResponse res, HttpServletRequest req) {
 		Profile prof = ps.update(id, p);
 		if (prof != null) {
 			res.setStatus(200);
@@ -96,8 +133,15 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(path = "profile/{id}", method = RequestMethod.DELETE)
-	public boolean deleteProfile(@PathVariable int id) {
-		return ps.delete(id);
+	public Boolean deleteProfile(@PathVariable Integer id, HttpServletResponse res, HttpServletRequest req) {
+		Boolean deletedProfile = ps.delete(id);
+		if (deletedProfile == true) {
+			res.setStatus(204);
+			return true;
+		} else {
+			res.setStatus(500);
+			return false;
+		}
 	}
 
 	
