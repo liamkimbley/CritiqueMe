@@ -26,7 +26,11 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> findCommentsByPost(Integer id) {
-		return comRepo.findByPost_Id(id);
+		List<Comment> comments = comRepo.findByPost_Id(id);
+		if (comments.isEmpty()) {
+			return null;
+		}
+		return comments;
 
 	}
 
@@ -45,19 +49,22 @@ public class CommentServiceImpl implements CommentService {
 				}
 				com.setProfile(prof);
 				com.setContent(comment.getContent());
-			} 
+			}
 		}
 		return comRepo.saveAndFlush(com);
 
 	}
 
 	@Override
-	public boolean deleteCommentById(Integer cid) {
-		try {
-			comRepo.deleteById(cid);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
+	public Boolean deleteCommentById(Integer cid) {
+		Comment toDelete = comRepo.findById(cid).get();
+		if (toDelete != null) {
+			try {
+				comRepo.deleteById(cid);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}

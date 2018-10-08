@@ -23,15 +23,29 @@ public class CommentController {
 	private CommentService comServ;
 
 	@RequestMapping(path = "comments/{cid}", method = RequestMethod.GET)
-	public Comment getSingleComment(@PathVariable Integer cid) {
-		return comServ.findByCommentId(cid);
+	public Comment getSingleComment(@PathVariable Integer cid, HttpServletRequest req, HttpServletResponse res) {
+		Comment comment = comServ.findByCommentId(cid);
+		if (comment != null) {
+			res.setStatus(200);
+			return comment;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 
 //	************************************* hard coded profile id into comments (same as post)
 	@RequestMapping(path = "posts/{pid}/comments", method = RequestMethod.POST)
 	public Comment createComment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer pid,
 			@RequestBody Comment com) {
-		return comServ.createNewCommentOnPost(pid, com, 1);
+		Comment comment = comServ.createNewCommentOnPost(pid, com, 1);
+		if (comment != null) {
+			res.setStatus(201);
+			return comment;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
 	}
 
 	@RequestMapping(path="comments/{cid}", method=RequestMethod.PUT)
@@ -48,9 +62,9 @@ public class CommentController {
 
 	@RequestMapping(path="comments/{cid}", method=RequestMethod.DELETE)
 	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer cid) {
-		if (comServ.findByCommentId(cid) != null) {
-			comServ.deleteCommentById(cid);
-			res.setStatus(200);
+		Boolean deleted = comServ.deleteCommentById(cid);
+		if (deleted == true) {
+			res.setStatus(204);
 			return true;
 		}
 		else {

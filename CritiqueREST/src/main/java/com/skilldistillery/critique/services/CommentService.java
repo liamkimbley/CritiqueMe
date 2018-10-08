@@ -8,7 +8,7 @@ public interface CommentService {
 	
 	public List<Comment> findCommentsByPost(Integer id);
 	public Comment createNewCommentOnPost(Integer id, Comment comment, Integer profId);
-	public boolean deleteCommentById(Integer cid);
+	public Boolean deleteCommentById(Integer cid);
 	public Comment findByCommentId(Integer id);
 	public Comment update(Integer id, Comment com);
 	
