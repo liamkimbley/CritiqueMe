@@ -15,4 +15,7 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
 	@Query("SELECT v FROM Vote v WHERE v.id.comment.id = :cid")
 	public List<Vote> findByCommentId(@Param ("cid") Integer cid);
+	
+	@Query("DELETE FROM Vote v WHERE v.id.comment.id = :cid")
+	public Boolean deleteVotesForCommentsByPostId(@Param ("cid") Integer cid);
 }

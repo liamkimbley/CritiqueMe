@@ -60,4 +60,10 @@ public class VoteServiceImpl implements VoteService {
 		return voteRepo.saveAndFlush(nv);
 	}
 
+	@Override
+	public Boolean deleteAllVotesForComment(Integer cid) {
+		return voteRepo.deleteVotesForCommentByCommentId(cid);
+		
+	}
+
 }

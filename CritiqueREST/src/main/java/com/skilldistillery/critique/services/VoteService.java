@@ -10,4 +10,5 @@ public interface VoteService {
 	public Vote findOneVoteOnComment(Integer profId, Integer comId);
 	public Vote createVote(Vote vote, Integer cid, String username);
 	public Vote updateVote(Vote vote, Integer vid, Integer cid);
+	public Boolean deleteAllVotesForComment(Integer cid);
 }

@@ -146,7 +146,7 @@ export class PostService {
     // } else {
     //   this.router.navigateByUrl('login');
     // }
-    return this.http.delete(this.url + id).pipe(
+    return this.http.delete(this.url + '/' + id).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error: ' + err.status);
