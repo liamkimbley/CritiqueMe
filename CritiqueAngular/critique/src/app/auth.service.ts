@@ -28,6 +28,7 @@ export class AuthService {
       tap((res) => {
         console.log(token);
         localStorage.setItem('token', token);
+        console.log(res);
         return res;
       }),
       catchError((err: any) => {
@@ -49,6 +50,7 @@ export class AuthService {
       .pipe(
         tap((res) => { // create user and upon success, log them in
           this.login(user.username, user.password);
+
         }),
         catchError((err: any) => {
           console.log(err);

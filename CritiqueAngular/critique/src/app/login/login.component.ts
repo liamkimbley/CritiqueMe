@@ -13,8 +13,9 @@ export class LoginComponent implements OnInit {
     console.log(userForm);
     this.auth.login(userForm.value.username, userForm.value.password).subscribe(
       data => {
-        console.log('data: ' + data);
+        console.log('data: ' + data.value);
         userForm.reset();
+        console.log(this.auth.getToken());
         this.router.navigateByUrl('profile');
       },
       err => {
