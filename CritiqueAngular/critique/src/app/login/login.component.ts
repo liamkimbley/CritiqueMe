@@ -2,6 +2,7 @@ import { AuthService } from './../auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,6 @@ export class LoginComponent implements OnInit {
       data => {
         console.log('data: ' + data.value);
         userForm.reset();
-        console.log(this.auth.getToken());
         this.router.navigateByUrl('profile');
       },
       err => {
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     );
   };
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService, private profServ: ProfileService) {}
 
   ngOnInit() {}
 }

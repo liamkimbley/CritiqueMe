@@ -1,36 +1,36 @@
 <h1>Welcome to {{selectedUser.username}}'s profile</h1>
 <div>
-  <button class="btn-outline-primary" (click)="editProfile = selected">Edit Profile</button>
+  <button class="btn-outline-primary" (click)="editProfile = profile">Edit Profile</button>
 </div>
 
 <div class="profileInfo">
 
   <!-- profile pic -->
   <div>
-    <img src="{{selected.image}}" alt="{{selectedUser.username}}">
+    <img width="200" src="{{profile.imageUrl}}" alt="{{profile.user.username}}">
   </div>
 
   <!-- user information -->
   <table>
     <tr>
       <th>First Name</th>
-      <td>{{selected.firstName}}</td>
+      <td>{{profile.firstName}}</td>
     </tr>
     <tr>
       <th>Last Name</th>
-      <td>{{selected.lastName}}</td>
+      <td>{{profile.lastName}}</td>
     </tr>
     <tr>
       <th>Location</th>
-      <td>{{selected.loc.city}} {{selected.loc.state}}</td>
+      <td>{{profile.location.city}} {{profile.location.state}}</td>
     </tr>
     <tr>
       <th>Bio</th>
-      <td>{{selected.bio}}</td>
+      <td>{{profile.bio}}</td>
     </tr>
     <tr>
       <th>Skills</th>
-      <td>{{selectedSkill.title}}</td>
+      <td *ngFor="let s of profile.skills">{{s.title}}</td>
     </tr>
   </table>
 
@@ -83,7 +83,7 @@
     </table>
     <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Cancel</button>
     <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost()">Update Post</button>
-    <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selected.id)">Delete Post</button>
+    <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete Post</button>
   </div>
 
 </div>

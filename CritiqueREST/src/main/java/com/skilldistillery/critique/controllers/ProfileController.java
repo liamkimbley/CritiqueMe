@@ -1,5 +1,6 @@
 package com.skilldistillery.critique.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -64,9 +65,9 @@ public class ProfileController {
 		}
 	}
 	
-	@RequestMapping(path = "profile/{id}", method = RequestMethod.GET)
-	public Profile findProfileById(@PathVariable int id) {
-		return ps.findProfileById(id);
+	@RequestMapping(path = "profile", method = RequestMethod.GET)
+	public Profile findProfile(Principal principal) {
+		return ps.queryByUsernameWithUser(principal.getName());
 	}
 	
 	// create when user creates an account

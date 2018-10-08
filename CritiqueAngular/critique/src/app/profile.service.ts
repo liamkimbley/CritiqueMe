@@ -14,29 +14,29 @@ export class ProfileService {
 
   private url = 'http://localhost:8080/api/profile';
 
-  public index(): Observable<Profile []> {
-    if (this.auth.checkLogin()) {
-      const headers = new HttpHeaders().set(
-        'Authorization', `Basic ${this.auth.getToken()}`
-      );
-      return this.http.get<Profile[]>(this.url, {headers})
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error: ' + err.status);
-        })
-        );
-    } else {
-        this.router.navigateByUrl('login');
-    }
-  }
+  // public index(): Observable<Profile []> {
+  //   if (this.auth.checkLogin()) {
+  //     const headers = new HttpHeaders().set(
+  //       'Authorization', `Basic ${this.auth.getToken()}`
+  //     );
+  //     return this.http.get<Profile[]>(this.url, {headers})
+  //     .pipe(
+  //       catchError((err: any) => {
+  //         console.log(err);
+  //         return throwError('Error: ' + err.status);
+  //       })
+  //       );
+  //   } else {
+  //       this.router.navigateByUrl('login');
+  //   }
+  // }
 
-  public show(id): Observable<Profile> {
+  public show(): Observable<Profile> {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
         'Authorization', `Basic ${this.auth.getToken()}`
       );
-      return this.http.get<Profile>(this.url + '/' + id, {headers})
+      return this.http.get<Profile>(this.url, {headers})
            .pipe(
               catchError((err: any) => {
               console.log(err);
