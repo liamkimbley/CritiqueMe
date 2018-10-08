@@ -85,7 +85,7 @@ export class ProfileService {
       const headers = new HttpHeaders().set(
         'Authorization', `Basic ${this.auth.getToken()}`
       );
-        return this.http.delete(this.url + '/' + id, {headers}).pipe(
+        return this.http.patch(this.url + '/' + id, {headers}).pipe(
           catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);

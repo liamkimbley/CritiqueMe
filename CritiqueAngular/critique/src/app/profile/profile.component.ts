@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../auth.service';
 import { User } from './../models/user';
 import { Expertise } from './../models/expertise';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +32,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(private userServ: UserService,
               private profService: ProfileService,
-              private postService: PostService) { }
+              private postService: PostService,
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     // this.reload();
@@ -82,7 +86,8 @@ export class ProfileComponent implements OnInit {
   deleteProfile = function(id: number) {
     this.profService.destroy(id).subscribe(
       data => {
-        this.getOneProfile(); },
+        this.auth.logout();
+        this.router.navigateByUrl('login'); },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };

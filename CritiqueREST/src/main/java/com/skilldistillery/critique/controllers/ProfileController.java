@@ -132,7 +132,7 @@ public class ProfileController {
 		}
 	}
 	
-	@RequestMapping(path = "profile/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "profile/{id}", method = RequestMethod.PATCH)
 	public Boolean deleteProfile(@PathVariable Integer id, HttpServletResponse res, HttpServletRequest req) {
 		Boolean deletedProfile = ps.delete(id);
 		if (deletedProfile == true) {

@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.skilldistillery.critique.entities.Post;
 import com.skilldistillery.critique.entities.Profile;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer>{

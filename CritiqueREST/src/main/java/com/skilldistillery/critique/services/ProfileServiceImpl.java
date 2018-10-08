@@ -147,7 +147,9 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	public boolean delete(int id) {
 		try {
-			profRepo.deleteById(id);
+			User u = userRepo.findById(id).get();
+			u.setActive(false);
+			userRepo.saveAndFlush(u);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
