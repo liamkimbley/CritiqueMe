@@ -1,5 +1,6 @@
 import { Category } from './category';
 import { Comment } from './comment';
+import { Profile } from './profile';
 export class Post {
   id: number;
   content: string;
@@ -9,6 +10,7 @@ export class Post {
   media: string;
   categories: Category[];
   comments: Comment[];
+  profile: Profile;
 
   constructor(
     id?: number,
@@ -18,7 +20,8 @@ export class Post {
     createdDate?: string,
     updatedDate?: string,
     categories?: Category[],
-    comments?: Comment[]
+    comments?: Comment[],
+    profile?: Profile
   ) {
     this.id = id;
     this.content = content;
@@ -28,5 +31,6 @@ export class Post {
     this.media = media;
     this.categories = categories;
     this.comments = comments;
+    this.profile = profile;
   }
 }

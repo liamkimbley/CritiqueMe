@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Profile {
 
@@ -42,9 +44,11 @@ public class Profile {
 	@Column(name = "image")
 	private String imageUrl;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "profile")
 	private List<Comment> comments;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST)
 	private List<Post> posts;
 

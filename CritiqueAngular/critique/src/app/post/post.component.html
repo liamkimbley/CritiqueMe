@@ -32,15 +32,15 @@
               <div mat-card-avatar class="headerImage"></div>
               <mat-card-title>{{post.title}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"
-              id="postImg">
+            <!-- <img mat-card-image class="postImage" src="{{post.media}}" alt="post media"
+              id="postImg"> -->
             <mat-card-content>
               <p>
                 {{post.content}}
               </p>
-              <!-- <p>
-                {{post.media}}
-              </p> -->
+              <p>
+                <img class="postImage" src="{{post.media}}">
+              </p>
             </mat-card-content>
             <mat-card-actions>
               <button mat-raised-button color="primary" (click)="displaySelected(post)">View More</button>
@@ -58,23 +58,21 @@
           <tr>
             <td>{{selected.content}}</td>
           </tr>
-          <!-- <tr>
-            <td>{{selected.media}}</td>
-          </tr> -->
+          <tr>
+            <td><img width="300" height="300" src="{{selected.media}}"></td>
+          </tr>
           <tr>
             <td>{{selected.createdDate | date: 'fullDate'}}</td>
           </tr>
-          <tr>
-            <td>Comments: </td>
-          </tr>
         </table>
+        <h3>Comments: </h3>
         <table *ngFor="let c of selected.comments" class="commentTable">
           <!-- <tr>
             <td>{{c.profile.image}}</td>
-          </tr>
-          <tr>
-            <td>{{c.profile.username}}</td>
           </tr> -->
+          <tr>
+            <td>{{c.profile.user.username}}</td>
+          </tr>
           <tr>
             <td>{{c.content}}</td>
           </tr>
@@ -82,10 +80,10 @@
             <td>{{c.createdAt | date: 'fullDate'}}</td>
           </tr>
           <p>Upvote Downvote</p>
-            <p><input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
+          <input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
                 alt="upvote" />
             <input class="upvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
-                alt="downvote" /></p>
+                alt="downvote" />
         </table>
         <button mat-raised-button color="primary">Comment</button>
         <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
