@@ -1,6 +1,7 @@
 import { Post } from '../models/post';
 import { DatePipe } from '@angular/common';
 import { PostService } from './../post.service';
+import { Comment } from '../models/comment';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   Component,
@@ -41,6 +42,7 @@ export class PostComponent implements OnInit, OnDestroy {
   editPost: Post = null;
   selectedCategory: Category = { id: 1, name: 'All' };
   categories: Category[] = [];
+  comments: Comment[] = [];
 
   // Sidebar
   @ViewChild('sidenav')

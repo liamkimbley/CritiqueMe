@@ -7,6 +7,7 @@ import { User } from '../models/user';
 import { Location } from '../models/location';
 import { PostService } from '../post.service';
 import { Post } from '../models/post';
+import { Comment } from '../models/comment';
 import { NgModel } from '@angular/forms';
 
 @Component({
