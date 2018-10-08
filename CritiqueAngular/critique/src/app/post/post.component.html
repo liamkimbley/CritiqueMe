@@ -16,8 +16,8 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="container" id="postsContainer">
-        <p><button mat-raised-button color="accent" (click)="sidenav.open()"> Search Categories</button></p>
-<!-- Sidebar page content: everything wanted on the page goes in here -->
+      <p><button mat-raised-button color="accent" (click)="sidenav.open()"> Search Categories</button></p>
+      <!-- Sidebar page content: everything wanted on the page goes in here -->
 
 
       <div *ngIf="selected">
@@ -32,7 +32,8 @@
               <div mat-card-avatar class="headerImage"></div>
               <mat-card-title>{{post.title}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" id="postImg">
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"
+              id="postImg">
             <mat-card-content>
               <p>
                 {{post.content}}
@@ -68,13 +69,25 @@
           </tr>
         </table>
         <table *ngFor="let c of selected.comments" class="commentTable">
+          <!-- <tr>
+            <td>{{c.profile.image}}</td>
+          </tr>
+          <tr>
+            <td>{{c.profile.username}}</td>
+          </tr> -->
           <tr>
             <td>{{c.content}}</td>
           </tr>
           <tr>
             <td>{{c.createdAt | date: 'fullDate'}}</td>
           </tr>
+          <p>Upvote Downvote</p>
+            <p><input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
+                alt="upvote" />
+            <input class="upvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
+                alt="downvote" /></p>
         </table>
+        <button mat-raised-button color="primary">Comment</button>
         <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
         <!-- <button class="btn-outline-primary" (click)="addPost(selected)" >Make Your Own Post</button> -->
 
@@ -87,7 +100,7 @@
         </div>
       </div>
 
-<!-- Sidebar content -->
+      <!-- Sidebar content -->
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

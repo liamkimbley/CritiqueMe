@@ -1,11 +1,12 @@
 .postTable {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .commentTable, th, td {
   margin-top: 1em;
   border: 1px solid black;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.upvoteImg {
+  height: 30px;
+  width: 30px;
 }
