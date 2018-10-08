@@ -259,7 +259,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test@sd.com', 'test', 'test', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test@sd.com', 'test', '$2a$10$4WvWHVwZ6Vuhq9/zY85ZbOs/OYHY07ZC5df7/t2GzgFv//HRvnV6G', 1, DEFAULT);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mjones@gmail.com', 'mjones', 'who', 1, DEFAULT);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'jeffy@yahoo.com', 'myusernameisjeff', 'mynameisjeff', 1, DEFAULT);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mbyrde@aol.com', 'martybyrde', 'moneylaundering', 1, DEFAULT);
