@@ -13,16 +13,16 @@
     <!-- *ngIf no user is not logged in -->
     <li><a class="nav-item nav-link text-light" [routerLink]="['/profile']">Profile</a></li>
     <li><a class="nav-item nav-link text-light" [routerLink]="['/post']">Posts</a></li>
-    <li><a class="nav-item nav-link text-light" [routerLink]="['/register']">Sign Up</a></li>
+    <li *ngIf="!navBarCheckLogin()"><a class="nav-item nav-link text-light" [routerLink]="['/register']">Sign Up</a></li>
   </ul>
   </div>
   <!-- *ngIf the user is logged in, show this -->
-  <div>
+  <div *ngIf="navBarCheckLogin()">
     <app-logout></app-logout>
   </div>
 
   <!-- *ngIf the user is not logged in, or is not a user, show this -->
-  <div>
+  <div *ngIf="!navBarCheckLogin()">
     <!-- <button mat-raised-button color="accent" [routerLink]="['/login']">Log In</button> -->
     <app-login></app-login>
     <!-- <a mat-raised-button color="accent" role="button">Log In</a> -->
