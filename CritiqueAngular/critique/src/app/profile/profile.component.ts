@@ -55,9 +55,9 @@ export class ProfileComponent implements OnInit {
   getOneProfile = function() {
     this.profService.show().subscribe(
       data => { this.profile = data;
-        this.selectedUser = data.user;
-        console.log(data);
-        this.loadPosts();
+                this.selectedUser = data.user;
+                console.log(data);
+                this.loadPosts();
       },
       err => {console.error('Observer got an error: ' + err.status); }
       );
