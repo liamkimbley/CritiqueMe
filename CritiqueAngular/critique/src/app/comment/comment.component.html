@@ -1,7 +1,7 @@
 
 <!-- list of comments -->
-<div *ngIf="selectedPost">
-  <div *ngFor="let comment of comments">
+<!-- <div *ngIf="selectedPost"> -->
+  <!-- <div *ngFor="let comment of comments">
   <table>
     <tr>
       <td>{{comment.content}}</td>
@@ -10,19 +10,12 @@
     </tr>
   </table>
   </div>
-</div>
+</div> -->
 
-<!-- add a comment -->
-<div *ngIf="selectedPost">
-    <form #comment="ngForm">
-      <input type="text" name="content" placeholder="write your comment here" [(ngModel)]="newComment.content">
-      <button class="btn-outline-primary" type="submit" name="comment" (click)="addComment(selectedPost.id)">Comment</button>
-      <button class="btn-outline-primary" type="submit" name="cancel" selectedPost = null>Cancel</button>
-    </form>
-</div>
+
 
 <!-- update a comment -->
-<div *ngIf="selectedComment">
+<!-- <div *ngIf="selectedComment">
 <div *ngFor="let comment of comments">
     <input type="text" value="{{comment.content}}">
     <button class="btn-outline-primary" type="submit" name="update" (click)="updateComment(selectedPost.id)">Update</button>
@@ -30,11 +23,11 @@
 </div>
 </div>
 
-<!-- delete a comment -->
-<div *ngIf="selectedComment">
+delete a comment -->
+<!-- <div *ngIf="selectedComment">
 <div *ngFor="let comment of comments">
     <p>{{comment.content}}"</p>
     <button class="btn-outline-primary" type="submit" name="update" (click)="deleteComment(selectedPost.id)">Delete</button>
     <button class="btn-outline-primary" type="submit" name="cancel" selectedPost = null>Cancel</button>
 </div>
-</div>
+</div> -->

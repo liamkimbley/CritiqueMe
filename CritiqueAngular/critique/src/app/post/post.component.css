@@ -1,17 +1,53 @@
 .postTable {
+  border: 1px solid black;
 }
 
-.commentTable, th, td {
+.commentTable {
   margin-top: 1em;
+  margin-bottom: 1em;
   border: 1px solid black;
 }
 
 .upvoteImg {
   height: 30px;
   width: 30px;
+  margin-right: 10px;
+}
+
+.downvoteImg {
+  height: 30px;
+  width: 30px;
+}
+
+.updateImg {
+  height: 40px;
+  width: 40px;
+}
+
+.deleteImg {
+  height: 30px;
+  width: 30px;
+  margin-bottom: 5px;
 }
 
 .postImage {
   width: 400px;
   height: 300px;
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.profilePic {
+  float: left;
+}
+
+.postTitle {
+  float: right;
+}
+
+.commentTextBox {
+  height: 150px;
+  width: 400px;
 }

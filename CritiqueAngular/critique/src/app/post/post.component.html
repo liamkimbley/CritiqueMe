@@ -29,11 +29,11 @@
         <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
           <mat-card class="postCard">
             <mat-card-header>
-              <div mat-card-avatar class="headerImage"></div>
-              <mat-card-title>{{post.title}}</mat-card-title>
+              <mat-card-title>
+                <!-- <img class="profilePic" width="80" height="80" src=selected.> -->
+                <h2>{{post.title}}</h2>
+              </mat-card-title>
             </mat-card-header>
-            <!-- <img mat-card-image class="postImage" src="{{post.media}}" alt="post media"
-              id="postImg"> -->
             <mat-card-content>
               <p>
                 {{post.content}}
@@ -50,8 +50,8 @@
       </div>
 
       <!-- display single post -->
-      <div *ngIf="selected" class="postTable">
-        <table>
+      <div *ngIf="selected">
+        <table class="postTable">
           <tr>
             <th>{{selected.title}}</th>
           </tr>
@@ -61,16 +61,19 @@
           <tr>
             <td><img width="300" height="300" src="{{selected.media}}"></td>
           </tr>
+          <!-- <tr>
+            <td><iframe width="560" height="315" [src]='mediaUrl' frameborder="0"
+                allowfullscreen></iframe></td>
+          </tr> -->
           <tr>
             <td>{{selected.createdDate | date: 'fullDate'}}</td>
           </tr>
         </table>
+
         <h3>Comments: </h3>
         <table *ngFor="let c of selected.comments" class="commentTable">
-          <!-- <tr>
-            <td>{{c.profile.image}}</td>
-          </tr> -->
           <tr>
+            <td><img width="80" height="80" src="{{c.profile.imageUrl}}"></td>
             <td>{{c.profile.user.username}}</td>
           </tr>
           <tr>
@@ -79,25 +82,26 @@
           <tr>
             <td>{{c.createdAt | date: 'fullDate'}}</td>
           </tr>
-          <p>Upvote Downvote</p>
-          <input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
-                alt="upvote" />
-            <input class="upvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
-                alt="downvote" />
+          <td><input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
+              alt="upvote" />
+            <input class="downvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
+              alt="downvote" /></td>
+          <td><input class="updateImg" type="image" src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/button_blue_repeat.png"
+              alt="update" (click)="updateComment(c.id)"/>
+            <input class="deleteImg" type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/120px-Crystal_button_cancel.svg.png"
+              alt="delete" (click)="deleteComment(c.id)"/></td>
         </table>
-        <button mat-raised-button color="primary">Comment</button>
-        <!-- <button class="btn-outline-primary" (click)="" >Comment</button> -->
-        <!-- <button class="btn-outline-primary" (click)="addPost(selected)" >Make Your Own Post</button> -->
 
-        <!-- display comments for single post -->
-        <!--  not added yet -->
-
-        <!-- tag for comments html -->
+        <!-- add a comment -->
         <div>
-          <app-comment></app-comment>
+          <form #comment="ngForm">
+            <input class="commentTextBox" type="text" name="content" placeholder="write your comment here" ngModel><br>
+            <button class="btn-outline-primary" type="submit" name="comment" (click)="addComment(comment, selected.id)">Comment</button>
+            <button class="btn-outline-primary" type="submit" name="cancel">Cancel</button>
+          </form>
         </div>
-      </div>
 
+      </div>
       <!-- Sidebar content -->
     </div>
   </mat-sidenav-content>
