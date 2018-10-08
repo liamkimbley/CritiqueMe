@@ -36,19 +36,31 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findOneUserByUsername(String name) {
-		return userRepo.findOneUserByUsername(name);
+		User u = userRepo.findOneUserByUsername(name);
+		if (u != null) {
+			return u;
+		}
+		return null;
 	}
 
 	@Override
 	public User findByEmail(String email) {
-		return userRepo.findByEmail(email);
+		User u = userRepo.findByEmail(email);
+		if (u != null) {
+			return u;
+		}
+		return null;
 	}
 
 	@Override
 	public List<User> findByActive(Boolean active) {
 		// revisit later
 		active = true;
-		return userRepo.findByActive(active);
+		List<User> activeUsers = userRepo.findByActive(active);
+		if (activeUsers.isEmpty()) {
+			return null;
+		}
+		return activeUsers;
 	}
 
 }
