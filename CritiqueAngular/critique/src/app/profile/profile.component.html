@@ -45,7 +45,9 @@
     </tr>
     <tr>
       <th>Skills</th>
-      <td *ngFor="let s of profile.skills">{{s.title}}</td>
+      <div *ngFor="let s of profile.skills">
+       <td>{{s.title}}</td>
+      </div>
     </tr>
   </table>
 
@@ -87,13 +89,16 @@
         <td><input type="text" name="media" placeholder="{{selectedPost.media}}" /></td>
       </tr>
       <tr>
-        <td>Created/ Updated</td>
+        <td>Created</td>
         <td><input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" /></td>
-        <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td>
+        <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
       </tr>
       <!-- comments -->
+      <td>Comments:</td>
       <tr>
-        <td>{{selectedPost.comments}}</td>
+        <div *ngFor="let c of selectedPost.comments">
+          <td>{{c.content}}</td>
+        </div>
       </tr>
     </table>
     <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Cancel</button>
