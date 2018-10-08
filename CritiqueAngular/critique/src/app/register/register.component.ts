@@ -8,24 +8,21 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
   register = function(form) {
     console.log(form.value);
     this.auth.register(form.value).subscribe(
       data => {
         console.log('data: ' + data);
-        if (data) {
-          this.router.navigateByUrl('profile');
-        } else {
-          this.router.navigateByUrl('register');
-        }
-       }
+        form.reset();
+        this.router.navigateByUrl('profile');
+      },
+      err => {
+        this.router.navigateByUrl('register');
+      }
     );
   };
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
