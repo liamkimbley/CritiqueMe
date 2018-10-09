@@ -98,6 +98,8 @@ export class ProfileComponent implements OnInit {
   // user's posts
 
   loadPosts = function() {
+    console.log(this.profile.id);
+
     this.postService.indexByProfileId(this.profile.id).subscribe(
       data => {
         console.log(data);
@@ -119,7 +121,7 @@ export class ProfileComponent implements OnInit {
 
   addNewPost = function() {
     this.postService.create(this.newPost).subscribe(
-      data => {this.reload(); },
+      data => {this.getOneProfile(); },
       err => {console.error('Observer got an error: ' + err.status); }
       );
       console.log(this.newPost);

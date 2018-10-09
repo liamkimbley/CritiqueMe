@@ -100,6 +100,12 @@ public class PostServiceImpl implements PostService {
 				if (post.getContent() != null && !post.getContent().equals("")) {
 					p.setContent(post.getContent());
 				}
+				if (post.getTitle() != null && !post.getTitle().equals("")) {
+					p.setTitle(post.getTitle());
+				}
+				if (post.getMedia() != null && !post.getMedia().equals("")) {
+					p.setMedia(post.getMedia());
+				}
 				p.setProfile(prof);
 			}
 		}
