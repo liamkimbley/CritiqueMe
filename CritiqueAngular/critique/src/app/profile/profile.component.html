@@ -1,6 +1,7 @@
 <h1>Welcome to {{selectedUser.username}}'s profile</h1>
 <div>
   <button class="btn-outline-primary" (click)="setEditProfile()">Edit Profile</button>
+  <button class="btn-outline-primary" (click)="addPost()">New Post</button>
 </div>
 
 <div *ngIf="editProfile">
@@ -52,6 +53,17 @@
     </tr>
   </table>
 
+</div>
+
+<div *ngIf="newPost">
+    <form>
+      <input type="hidden" title="profileId" value="{{profile.id}}" [(ngModel)]="newPost.profile.id">
+      <input type="text" title="title" placeholder="Post Title" [(ngModel)]="newPost.title">
+      <input type="text" title="content" placeholder="Post Content" [(ngModel)]="newPost.content">
+      <input type="text" title="media" placeholder="Media" [(ngModel)]="newPost.media">
+      <button class="btn-outline-primary" (click)="newPost = null">Cancel</button>
+    <button class="btn-outline-primary" (click)="addNewPost()">Add Post</button>
+    </form>
 </div>
 
 <div class="profilePosts">

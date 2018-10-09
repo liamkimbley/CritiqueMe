@@ -10,7 +10,7 @@ import { Location } from '../models/location';
 import { PostService } from '../post.service';
 import { Post } from '../models/post';
 import { Comment } from '../models/comment';
-import { NgModel } from '@angular/forms';
+import { NgModel, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   selectedPost: Post = null;
   post: Post = new Post();
   editPost: Post = null;
+  newPost: Post = null;
 
   constructor(private userServ: UserService,
               private profService: ProfileService,
@@ -109,14 +110,19 @@ export class ProfileComponent implements OnInit {
     console.log(post);
   };
 
-  // addPost = function() {
-  //   this.postService.create(this.newPost).subscribe(
-  //     data => {this.reload(); },
-  //     err => {console.error('Observer got an error: ' + err.status); }
-  //     );
-  //     console.log(this.newPost);
-  //     this.newPost = new Post();
-  // };
+  addPost = function() {
+    this.newPost = new Post();
+    this.newPost.profile = this.profile;
+  };
+
+  addNewPost = function() {
+    this.postService.create(this.newPost).subscribe(
+      data => {this.reload(); },
+      err => {console.error('Observer got an error: ' + err.status); }
+      );
+      console.log(this.newPost);
+      this.newPost = new Post();
+  };
 
   updatePost = function(post: NgModel) {
     console.log(post);
