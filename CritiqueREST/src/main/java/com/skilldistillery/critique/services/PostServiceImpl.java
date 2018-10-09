@@ -142,6 +142,9 @@ public class PostServiceImpl implements PostService {
 			if (post.getMedia() != null && !post.getMedia().equals("")) {
 				p.setMedia(post.getMedia());
 			}
+			if (post.getTitle() != null && !post.getTitle().equals("")) {
+				p.setTitle(post.getTitle());
+			}
 			return postRepo.saveAndFlush(p);
 		}
 		return null;
@@ -162,6 +165,9 @@ public class PostServiceImpl implements PostService {
 			}
 			if (post.getMedia() != null && !post.getMedia().equals("")) {
 				p.setMedia(post.getMedia());
+			}
+			if (post.getTitle() != null && !post.getTitle().equals("")) {
+				p.setTitle(post.getTitle());
 			}
 			return postRepo.saveAndFlush(p);
 		}
