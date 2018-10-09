@@ -396,7 +396,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `expertise` (`id`, `title`) VALUES (1, 'Education');
+INSERT INTO `expertise` (`id`, `title`) VALUES (1, 'None');
 INSERT INTO `expertise` (`id`, `title`) VALUES (2, 'Software Developer');
 INSERT INTO `expertise` (`id`, `title`) VALUES (3, 'Medicine');
 INSERT INTO `expertise` (`id`, `title`) VALUES (4, 'Athletics');
@@ -415,6 +415,7 @@ INSERT INTO `expertise` (`id`, `title`) VALUES (16, 'Automobiles');
 INSERT INTO `expertise` (`id`, `title`) VALUES (17, 'Design');
 INSERT INTO `expertise` (`id`, `title`) VALUES (18, 'Mechanical');
 INSERT INTO `expertise` (`id`, `title`) VALUES (19, 'Pop Culture');
+INSERT INTO `expertise` (`id`, `title`) VALUES (20, 'Education');
 
 COMMIT;
 

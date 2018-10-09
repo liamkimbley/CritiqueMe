@@ -211,7 +211,7 @@ export class PostComponent implements OnInit, OnDestroy {
             this.selected = data2;
           }
         );
-        },
+      },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };

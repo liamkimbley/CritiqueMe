@@ -43,12 +43,22 @@ export class PostService {
   }
 
   public indexByProfileId(id: number): Observable<Post[]> {
-    return this.http.get<Post[]>(environment.baseUrl + 'api/profile/' + id + '/posts?sorted=true').pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error retrieving posts for profile: ' + err);
-      })
-    );
+    if (this.auth.checkLogin()) {
+      const headers = new HttpHeaders().set(
+        'Authorization', `Basic ${this.auth.getToken()}`
+      );
+      return this.http
+        .get<Post[]>(
+          environment.baseUrl + 'api/profile/' + id + '/posts?sorted=true', { headers })
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('Error retrieving posts for profile: ' + err);
+          })
+        );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   public indexCategories(): Observable<Category[]> {
@@ -75,16 +85,16 @@ export class PostService {
 
   public show(id): Observable<Post> {
     if (this.auth.checkLogin()) {
-    const headers = new HttpHeaders().set(
-    'Authorization',
-    `Basic ${this.auth.getToken()}`
-    );
-    return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error: ' + err.status);
-      })
-    );
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Basic ${this.auth.getToken()}`
+      );
+      return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error: ' + err.status);
+        })
+      );
     } else {
       this.router.navigateByUrl('login');
     }

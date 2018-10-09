@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.critique.entities.Comment;
 import com.skilldistillery.critique.entities.Post;
@@ -12,7 +13,9 @@ import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.repositories.CommentRepository;
 import com.skilldistillery.critique.repositories.PostRepository;
 import com.skilldistillery.critique.repositories.ProfileRepository;
+import com.skilldistillery.critique.repositories.VoteRepository;
 
+@Transactional
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -23,6 +26,9 @@ public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	private ProfileRepository profRepo;
+	
+	@Autowired
+	private VoteRepository voteRepo;
 
 	@Override
 	public List<Comment> findCommentsByPost(Integer id) {
@@ -66,6 +72,7 @@ public class CommentServiceImpl implements CommentService {
 		Comment toDelete = comRepo.findById(cid).get();
 		if (toDelete != null) {
 			try {
+				voteRepo.deleteVotesForCommentsByCommentId(cid);
 				comRepo.deleteById(cid);
 				return true;
 			} catch (Exception e) {
