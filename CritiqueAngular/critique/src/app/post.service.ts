@@ -41,6 +41,16 @@ export class PostService {
       })
     );
   }
+
+  public indexByProfileId(id: number): Observable<Post[]> {
+    return this.http.get<Post[]>(environment.baseUrl + 'api/profile/' + id + '/posts?sorted=true').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error retrieving posts for profile: ' + err);
+      })
+    );
+  }
+
   public indexCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.catUrl + '?sorted=true').pipe(
       catchError((err: any) => {
