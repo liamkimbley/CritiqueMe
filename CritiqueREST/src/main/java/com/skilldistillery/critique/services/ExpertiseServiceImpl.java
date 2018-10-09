@@ -40,4 +40,23 @@ public class ExpertiseServiceImpl implements ExpertiseService {
 		return null;
 	}
 
+	@Override
+	public Expertise findOneById(Integer id) {
+		Optional<Expertise> op = expRepo.findById(id);
+		if (op.isPresent()) {
+			Expertise skill = op.get();
+			return skill;
+		}
+		return null;
+	}
+
+	@Override
+	public Expertise findOneByTitle(String title) {
+		Expertise skill = expRepo.findByTitle(title);
+		if (skill != null) {
+			return skill;
+		}
+		return null;
+	}
+
 }

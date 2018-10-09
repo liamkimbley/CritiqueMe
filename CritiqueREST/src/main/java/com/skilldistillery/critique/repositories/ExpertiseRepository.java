@@ -6,5 +6,5 @@ import com.skilldistillery.critique.entities.Expertise;
 
 public interface ExpertiseRepository extends JpaRepository<Expertise, Integer> {
 	
-	public Expertise findByTitle(String name);
+	public Expertise findByTitle(String title);
 }

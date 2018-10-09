@@ -25,5 +25,12 @@ public class ExpertiseServiceTests {
 		assertNotNull(skills);
 		assertNotEquals(0, skills.size());
 	}
-	
+	@Test
+	public void test_findById() {
+		assertEquals("Education", skillService.findOneById(1).getTitle());
+	}
+	@Test
+	public void test_findByTitle() {
+		assertEquals(1, skillService.findOneByTitle("Education").getId());
+	}
 }
