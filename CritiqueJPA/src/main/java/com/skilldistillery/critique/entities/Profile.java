@@ -33,7 +33,7 @@ public class Profile {
 
 	private String bio;
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH})
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "location_id")
 	private Location location;
 

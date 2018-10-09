@@ -78,8 +78,10 @@ export class ProfileComponent implements OnInit {
     this.profService.update(prof).subscribe(
       data => {
         this.profile = data;
-        this.editProfile = null;
-        this.getOneProfile(); },
+        console.log(data);
+
+        this.getOneProfile();
+        this.editProfile = null; },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
