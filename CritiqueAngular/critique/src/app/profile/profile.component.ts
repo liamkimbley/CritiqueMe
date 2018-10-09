@@ -1,3 +1,4 @@
+import { LoginComponent } from './../login/login.component';
 import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { User } from './../models/user';
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   editProfile: Profile = null;
   selectedUser: User = null;
   comments: Comment[] = [];
+  skills: Expertise[] = [];
 
   // posts
   posts: Post[] = [];
@@ -40,6 +42,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     // this.reload();
    this.getOneProfile();
+   this.getSkills();
   }
 
   // reload = function() {
@@ -146,6 +149,16 @@ export class ProfileComponent implements OnInit {
       this.selectedPost = null; },
       err => {console.error('Observer got an error: ' + err.status); }
     );
+  };
+
+  getSkills = function() {
+    this.profService.getAllSkills().subscribe(
+      data => {
+        this.skills.push(...data);
+        console.log(data);
+      },
+        err => {console.error('Observer got an error: ' + err.status); }
+      );
   };
 
   // get comments for a post
