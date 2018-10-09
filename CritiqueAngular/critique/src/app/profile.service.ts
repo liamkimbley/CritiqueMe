@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Profile } from './models/profile';
 import { UserService } from './user.service';
 import { environment } from '../environments/environment';
+import { Expertise } from './models/expertise';
 
 @Injectable({
   providedIn: 'root'
@@ -98,6 +99,15 @@ export class ProfileService {
 
   public getProfilePic(id: number) {
     return this.http.get(this.url + '/posts/' + id).pipe(
+      catchError((err: any) => {
+      console.log(err);
+      return throwError('Error: ' + err.status);
+    })
+  );
+  }
+
+  public getAllSkills(): Observable<Expertise> {
+    return this.http.get<Expertise>(environment.baseUrl + 'api/skills').pipe(
       catchError((err: any) => {
       console.log(err);
       return throwError('Error: ' + err.status);

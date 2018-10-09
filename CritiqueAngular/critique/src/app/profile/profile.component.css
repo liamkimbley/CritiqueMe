@@ -3,7 +3,51 @@
   margin-left: 3em;
 }
 
+.profileTable {
+  float: left;
+  margin-left: 3em;
+  border-collapse: collapse;
+}
+
+.profileTable td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.profileTable tr:nth-child(even){background-color: #f2f2f2;}
+
+.profileTable tr:hover {background-color: #ddd;}
+
 .profilePosts {
   float: right;
   margin-right: 3em;
 }
+
+.profilePic {
+  float: left;
+  margin-left: 3em;
+  width: 200px;
+  height: 200px;
+}
+
+.editProfileButton {
+  margin-left: 3em;
+}
+
+.editProfileTable {
+  margin-left: 3em;
+}
+
+.addPostButton {
+  position: absolute;
+  margin-left: 50%;
+  margin-right: 50%;
+  width: 300px;
+  height: 75px;
+}
+
+.newpost {
+
+}
+
+
