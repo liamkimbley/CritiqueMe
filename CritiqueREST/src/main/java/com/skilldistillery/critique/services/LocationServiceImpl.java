@@ -41,4 +41,14 @@ public class LocationServiceImpl implements LocationService {
 
 	}
 
+	@Override
+	public Location create(Location location) {
+		Location newLoc = new Location();
+		newLoc.setCity(location.getCity());
+		newLoc.setCountry(location.getCountry());
+		newLoc.setState(location.getState());
+		locRepo.saveAndFlush(newLoc);
+		return newLoc;
+	}
+
 }

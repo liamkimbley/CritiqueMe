@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.critique.entities.Location;
 import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.entities.User;
 import com.skilldistillery.critique.repositories.ProfileRepository;
@@ -18,6 +19,10 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private LocationService locServ;
+	
 
 	@Override
 	public List<Profile> findByFirstname(String firstName) {
@@ -125,6 +130,13 @@ public class ProfileServiceImpl implements ProfileService {
 			}
 			if (updatedProfile.getLocation() != null) {
 				profile.setLocation(updatedProfile.getLocation());
+			}
+			if (updatedProfile.getLocation() == null) {
+				Location newLocation = new Location();
+				newLocation.setCity("Somewhere");
+				newLocation.setState("Overtherainbow");
+				newLocation.setCountry("Oz");
+				profile.setLocation(locServ.create(newLocation));
 			}
 			if (updatedProfile.getUser() != null) {
 				profile.setUser(updatedProfile.getUser());
