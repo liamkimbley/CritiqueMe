@@ -162,7 +162,8 @@ export class PostComponent implements OnInit, OnDestroy {
     console.log(id);
     this.commentService.create(form.value, id).subscribe(
       data => {
-              this.reload();
+        this.selected.comments.push(data);
+              // this.reload();
             },
       err => {console.error('Observer got an error: ' + err.status); }
       );
@@ -186,7 +187,15 @@ export class PostComponent implements OnInit, OnDestroy {
   deleteComment = function(id: number) {
     this.commentService.destroy(id).subscribe(
       data => {
-        this.reload(); },
+        // this.reload();
+        for (let i = 0; i < this.selected.comments.length; i++) {
+          if (this.selectd.comments[i].id === id) {
+            // this.selected.comments.splice(i, 1);
+            this.selected.comments[i] = null;
+            break;
+          }
+        }
+      },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
