@@ -25,6 +25,7 @@
       </div>
 
       <!-- display list of posts -->
+      <h1 class="postHeader">{{selectedCategory.name}} Posts</h1>
       <div *ngIf="!selected">
         <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
           <mat-card class="postCard">

@@ -86,6 +86,7 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Profile queryByUsernameWithUser(String username) {
+		System.out.println("******************* " + username);
 		Profile profile = profRepo.queryByUsernameWithUser(username);
 		if(profile == null) {
 			return null;
