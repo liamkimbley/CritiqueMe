@@ -1,7 +1,7 @@
 package com.skilldistillery.critique.services;
 
-import com.skilldistillery.critique.entities.Profile;
+import com.skilldistillery.critique.entities.User;
 
 public interface AuthService {
-	public Profile register(String json);
+	public User register(String json);
 }

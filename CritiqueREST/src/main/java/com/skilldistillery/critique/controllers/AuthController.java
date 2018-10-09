@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.critique.entities.Profile;
+import com.skilldistillery.critique.entities.User;
 import com.skilldistillery.critique.services.AuthService;
 
 @RestController
@@ -27,8 +27,8 @@ public class AuthController {
 //	}
 	
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
-	public Profile register(@RequestBody String json, HttpServletResponse res) {
-	  Profile p =  authServ.register(json);
+	public User register(@RequestBody String json, HttpServletResponse res) {
+	  User p =  authServ.register(json);
 
 	  if (p == null) {
 	    res.setStatus(400);

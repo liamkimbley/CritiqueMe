@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
     console.log(form.value);
     this.auth.register(form.value).subscribe(
       data => {
-        console.log('data: ' + data);
+        console.log('data: ' + data.value);
         form.reset();
         this.router.navigateByUrl('profile');
       },

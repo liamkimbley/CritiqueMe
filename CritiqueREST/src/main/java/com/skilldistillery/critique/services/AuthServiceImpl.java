@@ -30,7 +30,7 @@ public class AuthServiceImpl implements AuthService {
 	private PasswordEncoder encoder;
 
 	@Override
-	public Profile register(String json) {
+	public User register(String json) {
 		ObjectMapper om = new ObjectMapper();
 		User user = null;
 		Profile defaultProfile = new Profile();
@@ -52,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
 		} catch (Exception e) {
 			System.out.println(e);
 		}		
-		return defaultProfile;
+		return user;
 	}
 
 }
