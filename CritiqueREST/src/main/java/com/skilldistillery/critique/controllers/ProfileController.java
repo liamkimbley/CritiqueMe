@@ -128,7 +128,7 @@ public class ProfileController {
 	@RequestMapping(path = "profile/{pid}/posts", method = RequestMethod.GET)
 	public List<Post> findPostsByProfile(@PathVariable Integer pid, Principal principal, HttpServletResponse res, HttpServletRequest req) {
 		List<Post> posts = postServ.findPostsByProfileId(pid);
-		if (posts != null) {
+		if (!posts.isEmpty()) {
 			res.setStatus(200);
 			return posts;
 		} else {

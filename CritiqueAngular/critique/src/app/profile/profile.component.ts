@@ -121,11 +121,11 @@ export class ProfileComponent implements OnInit {
 
   addNewPost = function() {
     this.postService.create(this.newPost).subscribe(
-      data => {this.getOneProfile(); },
+      data => {this.getOneProfile();
+               this.newPost = null; },
       err => {console.error('Observer got an error: ' + err.status); }
       );
       console.log(this.newPost);
-      this.newPost = new Post();
   };
 
   updatePost = function(post: NgModel) {
