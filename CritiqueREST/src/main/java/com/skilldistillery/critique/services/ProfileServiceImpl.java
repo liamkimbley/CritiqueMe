@@ -85,16 +85,10 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public Profile queryByUsernameWithUser(String username) {
-<<<<<<< HEAD
 		Profile prof = null;
 		if (profRepo.queryByUsernameWithUserWithSkills(username).getSkills().isEmpty()) {
 			prof = profRepo.queryByUsernameWithUser(username);
-=======
-		System.out.println("******************* " + username);
-		Profile profile = profRepo.queryByUsernameWithUser(username);
-		if(profile == null) {
-			return null;
->>>>>>> 7e8faab44d879667b555df675b11c90040066ef2
+
 		}
 		if (!profRepo.queryByUsernameWithUserWithSkills(username).getSkills().isEmpty()) {
 			prof = profRepo.queryByUsernameWithUserWithSkills(username);
