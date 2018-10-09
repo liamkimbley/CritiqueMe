@@ -16,4 +16,5 @@ public interface PostService {
 	public Post update(Integer id, Post post);
 	public Post replace(Integer id, Post post);
 	public boolean delete(Integer id);
+	public List<Post> findPostsByProfileId(Integer pid);
 }

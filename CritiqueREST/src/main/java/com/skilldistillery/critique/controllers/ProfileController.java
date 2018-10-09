@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.critique.entities.Post;
 import com.skilldistillery.critique.entities.Profile;
+import com.skilldistillery.critique.services.PostService;
 import com.skilldistillery.critique.services.ProfileService;
 
 @RestController
@@ -23,6 +25,9 @@ import com.skilldistillery.critique.services.ProfileService;
 public class ProfileController {
 	@Autowired
 	private ProfileService ps;
+	
+	@Autowired
+	private PostService postServ;
 	
 	@RequestMapping(path = "profile/firstname/{firstName}", method = RequestMethod.GET)
 	public List<Profile> findByFirstname(@PathVariable String firstName, HttpServletResponse res, HttpServletRequest req) {
@@ -114,6 +119,18 @@ public class ProfileController {
 		if (prof != null) {
 			res.setStatus(200);
 			return prof;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
+	}
+	
+	@RequestMapping(path = "profile/{pid}/posts", method = RequestMethod.GET)
+	public List<Post> findPostsByProfile(@PathVariable Integer pid, Principal principal, HttpServletResponse res, HttpServletRequest req) {
+		List<Post> posts = postServ.findPostsByProfileId(pid);
+		if (posts != null) {
+			res.setStatus(200);
+			return posts;
 		} else {
 			res.setStatus(500);
 			return null;

@@ -165,4 +165,10 @@ public class PostServiceImpl implements PostService {
 		return false;
 	}
 
+	@Override
+	public List<Post> findPostsByProfileId(Integer pid) {
+		return postRepo.queryForPostWithCommentsByProfileId(pid);
+		
+	}
+
 }
