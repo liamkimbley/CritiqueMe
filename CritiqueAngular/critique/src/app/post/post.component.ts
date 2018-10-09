@@ -172,6 +172,7 @@ export class PostComponent implements OnInit, OnDestroy {
         this.postService.show(this.selected.id).subscribe(
           data2 => {
             this.selected = data2;
+            form.reset();
           }
         );
         },
