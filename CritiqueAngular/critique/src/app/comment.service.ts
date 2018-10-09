@@ -47,7 +47,7 @@ export class CommentService {
     }
   }
 
-  public update(comment: Comment) {
+  public update(comment: Comment, id: number): Observable<Comment> {
     // if (this.auth.checkLogin()) {
     //   const headers = new HttpHeaders().set(
     //     'Authorization',
@@ -62,7 +62,9 @@ export class CommentService {
     // } else {
     //   this.router.navigateByUrl('login');
     // }
-    return this.http.put(this.commentUrl + comment.id, comment).pipe(
+    console.log(id);
+    console.log(comment);
+    return this.http.put<Comment>(this.commentUrl + id, comment).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error: ' + err.status);

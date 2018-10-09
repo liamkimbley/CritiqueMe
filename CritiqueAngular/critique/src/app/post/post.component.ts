@@ -48,6 +48,8 @@ export class PostComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   comments: Comment[] = [];
   mediaUrl: String = null;
+  editComment: Comment = null;
+  selectedComment: Comment = null;
 
   // Sidebar
   @ViewChild('sidenav')
@@ -159,27 +161,37 @@ export class PostComponent implements OnInit, OnDestroy {
   // comments
 
   addComment = function(form: NgForm, id: number) {
-    console.log(id);
     this.commentService.create(form.value, id).subscribe(
       data => {
-        this.selected.comments.push(data);
-              // this.reload();
-            },
+        this.postService.show(this.selected.id).subscribe(
+          data2 => {
+            this.selected = data2;
+          }
+        );
+        },
       err => {console.error('Observer got an error: ' + err.status); }
       );
   };
 
-  setEditComment = function() {
-    this.editComment = Object.assign({}, this.selected);
+  displayComment = function(comment: Comment) {
+    console.log(comment);
+    this.selectedComment = comment;
   };
 
-  updateComment = function(comment: Comment) {
-    console.log(comment);
-    this.commentService.update(comment).subscribe(
+  setEditComment = function() {
+    this.editComment = Object.assign({}, this.selectedComment);
+  };
+
+  updateComment = function(form: NgForm, id: number) {
+    this.commentService.update(form.value, id).subscribe(
       data => {
-        this.selected = data;
-        this.editComment = null;
-        this.reload(); },
+        this.postService.show(this.selected.id).subscribe(
+          data2 => {
+            this.selected = data2;
+          }
+        );
+        this.selectedComment = null;
+        },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
@@ -187,15 +199,12 @@ export class PostComponent implements OnInit, OnDestroy {
   deleteComment = function(id: number) {
     this.commentService.destroy(id).subscribe(
       data => {
-        // this.reload();
-        for (let i = 0; i < this.selected.comments.length; i++) {
-          if (this.selectd.comments[i].id === id) {
-            // this.selected.comments.splice(i, 1);
-            this.selected.comments[i] = null;
-            break;
+        this.postService.show(this.selected.id).subscribe(
+          data2 => {
+            this.selected = data2;
           }
-        }
-      },
+        );
+        },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };
