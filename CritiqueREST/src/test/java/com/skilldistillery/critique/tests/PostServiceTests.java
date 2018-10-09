@@ -3,7 +3,6 @@ package com.skilldistillery.critique.tests;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -76,25 +75,32 @@ public class PostServiceTests {
 	@Test
 	public void test_replace() {
 		Post toUpdate = postService.findPostById(1);
-		toUpdate.setTitle("yo");
+		toUpdate.setTitle("yooooo");
 		toUpdate.setProfile(profService.findProfileById(2));
 		Post updatedPost = postService.replace(1, toUpdate);
-		assertEquals("yo", updatedPost.getTitle());
+		assertEquals("yooooo", updatedPost.getTitle());
 	}
-	
-	// Failing tests
 	
 	@Test
 	public void test_update() {
-		
+		Post toUpdate = postService.findPostById(1);
+		toUpdate.setTitle("yo");
+		toUpdate.setProfile(profService.findProfileById(2));
+		Post updatedPost = postService.update(1, toUpdate);
+		assertEquals("yo", updatedPost.getTitle());
 	}
+	
+	@Test
+	public void test_delete() {
+//		assertTrue(postService.delete(5));
+	}
+	
 	@Test
 	public void test_findPostsByCreateDate() {
 		Post post = postService.findPostById(1);
 		LocalDate date = post.getCreatedDate();
 		List<Post> posts = postService.findPostsByCreateDate(date);
-		// TODO: Test fix for findByCreatedDate
-//		assertNotNull(posts);
-//		assertNotEquals(0, posts.size());
+		assertNotNull(posts);
+		assertNotEquals(0, posts.size());
 	}
 }

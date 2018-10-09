@@ -76,7 +76,6 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public List<Post> findByTitle(String title) {
-//		String searchTitle = "%" + title + "%";
 		List<Post> posts = postRepo.findByTitleContaining(title);
 		if (posts.isEmpty()) {
 			return null;
