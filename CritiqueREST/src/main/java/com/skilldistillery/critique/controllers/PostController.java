@@ -62,7 +62,7 @@ public class PostController {
 	
 	@RequestMapping(path = "posts/title/{title}", method = RequestMethod.GET)
 	public List<Post> getPostByTitle(@PathVariable String title, HttpServletRequest req, HttpServletResponse res) {
-		List<Post> posts = postServ.findByTitleContaining(title);
+		List<Post> posts = postServ.findByTitle(title);
 		if (posts != null) {
 			res.setStatus(200);
 			return posts;

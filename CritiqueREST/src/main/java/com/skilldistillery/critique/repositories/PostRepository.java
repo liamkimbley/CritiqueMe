@@ -13,17 +13,21 @@ import com.skilldistillery.critique.entities.Post;
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
 	public List<Post> findByProfileId(Integer id);
+
+	// TODO: fix findByCreatedDate
 	public List<Post> findByCreatedDate(LocalDate date);
+
 	public List<Post> findByTitleContaining(String title);
+
 	@Query("SELECT p FROM Post p JOIN FETCH p.comments WHERE p.id = :id")
-	public Post queryForPostWithCommentsByPostId(@Param ("id") Integer id);
-	
+	public Post queryForPostWithCommentsByPostId(@Param("id") Integer id);
+
 	@Query("SELECT p FROM Post p WHERE :cat MEMBER OF p.categories")
-	public List<Post> queryForPostsByCategory(@Param ("cat") Category cat);
-	
+	public List<Post> queryForPostsByCategory(@Param("cat") Category cat);
+
 	@Query("SELECT p FROM Post p JOIN FETCH p.categories")
 	public List<Post> queryForPostsWithCategories();
-	
+
 	@Query("SELECT p FROM Post p JOIN FETCH p.comments WHERE p.profile.id = :pid")
-	public List<Post> queryForPostWithCommentsByProfileId(@Param ("pid") Integer pid);
+	public List<Post> queryForPostWithCommentsByProfileId(@Param("pid") Integer pid);
 }
