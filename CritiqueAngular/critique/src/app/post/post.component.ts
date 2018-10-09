@@ -133,7 +133,7 @@ export class PostComponent implements OnInit, OnDestroy {
         console.log(data);
         this.categories = data;
       },
-      err => console.error('Observer recieved an error: ' + err)
+      err => console.error('Observer recieved an error: ' + err.status)
     );
   }
 
