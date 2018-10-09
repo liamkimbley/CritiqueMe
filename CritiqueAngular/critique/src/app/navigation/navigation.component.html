@@ -12,7 +12,7 @@
       <li class="nav-item"><a class="nav-link text-light" [routerLink]="['/home']" *ngIf="!navBarCheckLogin()">Home </a></li>
       <!-- *ngIf no user is not logged in -->
       <!-- *ngIf no user is not logged in -->
-      <li class="nav-item"><a class="nav-link text-light" [routerLink]="['/profile']">Profile</a></li>
+      <li class="nav-item"><a class="nav-link text-light" [routerLink]="['/profile']" *ngIf="navBarCheckLogin()">Profile</a></li>
       <li class="nav-item"><a class="nav-link text-light" [routerLink]="['/post']" *ngIf="navBarCheckLogin()">Posts</a></li>
       <li *ngIf="!navBarCheckLogin()" class="nav-item"><a class="nav-link text-light" [routerLink]="['/register']">Sign
           Up</a></li>

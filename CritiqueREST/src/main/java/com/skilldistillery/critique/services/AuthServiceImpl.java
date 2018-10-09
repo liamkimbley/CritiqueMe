@@ -47,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
 			defaultProfile.setFirstName("");
 			defaultProfile.setLastName("");
 			defaultProfile.setUser(user);
-			
+			defaultProfile.setImageUrl("https://cdn2.vectorstock.com/i/1000x1000/20/76/question-mark-vector-972076.jpg");
 			profRepo.saveAndFlush(defaultProfile);
 		} catch (Exception e) {
 			System.out.println(e);

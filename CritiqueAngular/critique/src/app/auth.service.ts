@@ -48,10 +48,10 @@ export class AuthService {
       console.log(user);
       return this.http.post('http://localhost:8080/register', user, httpOptions)
       .pipe(
-        tap((res) => { // create user and upon success, log them in
-          this.login(user.username, user.password);
+        // tap((res) => { // create user and upon success, log them in
+        //   this.login(user.username, user.password);
 
-        }),
+        // }),
         catchError((err: any) => {
           console.log(err);
           return throwError('Error in auth.service.register. Error status: ' + err.status);
