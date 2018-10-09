@@ -74,11 +74,10 @@
         <tr>
           <td>Skills</td>
         </tr>
-      </table>
-
-      <table *ngFor="let s of skills">
         <tr>
-          <td><input type="checkbox" name="skills" value="{{s.id}}" [(ngModel)]="editProfile.skills.title"> {{s.title}}</td>
+          <div *ngFor="let s of skills">
+            <span><input type="radio" name="skills" value="{{s.id}}" [(ngModel)]="editProfile.skills.title"> {{s.title}}</span>
+          </div>
         </tr>
       </table>
 
