@@ -99,7 +99,7 @@
                     <input class="downvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
                       alt="downvote" />
                     <input class="updateImg" type="image" src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/button_blue_repeat.png"
-                      alt="update" (click)="updateComment(c.id)"/>
+                      alt="update" (click)="displayComment(c)"/>
                     <input class="deleteImg" type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/120px-Crystal_button_cancel.svg.png"
                       alt="delete" (click)="deleteComment(c.id)"/>
                 </mat-card-content>
@@ -107,11 +107,24 @@
           </div>
 
         <!-- add a comment -->
-        <div>
+        <div *ngIf="!selectedComment">
           <form #comment="ngForm">
             <input class="commentTextBox" type="text" name="content" placeholder="write your comment here" ngModel><br>
             <button class="buttons" mat-raised-button color="primary" type="submit" name="comment" (click)="addComment(comment, selected.id)">Comment</button>
             <button class="buttons" mat-raised-button color="primary" type="submit" name="cancel">Cancel</button>
+          </form>
+        </div>
+
+        <!-- update a comment -->
+        <div *ngIf="selectedComment">
+          <form #comment="ngForm">
+            <table>
+              <tr>
+                <td><input class="commentTextBox" type="text" name="content" placeholder="{{selectedComment.content}}" ngModel/></td>
+              </tr>
+            </table>
+            <button class="buttons" mat-raised-button color="primary" type="submit" name="comment" (click)="updateComment(comment, selectedComment.id)">Update</button>
+            <button class="buttons" mat-raised-button color="primary" type="submit" name="cancel" (click)="selectedComment = null">Cancel</button>
           </form>
         </div>
 

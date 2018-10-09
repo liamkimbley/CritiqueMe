@@ -88,12 +88,15 @@ export class PostService {
     } else {
       this.router.navigateByUrl('login');
     }
-    // return this.http.get<Post>(this.url + '/' + id).pipe(
-    //   catchError((err: any) => {
-    //     console.log(err);
-    //     return throwError('Error: ' + err.status);
-    //   })
-    // );
+  }
+
+  public refreshPost(id): Observable<Post> {
+    return this.http.get<Post>(this.url + '/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+      })
+    );
   }
 
   public create(post: Post): Observable<Post> {
