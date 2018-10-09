@@ -18,21 +18,20 @@ import com.skilldistillery.critique.repositories.UserRepository;
 public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileRepository profRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private LocationService locServ;
-	
+
 	@Autowired
 	private ExpertiseService expServ;
-	
 
 	@Override
 	public List<Profile> findByFirstname(String firstName) {
 		List<Profile> profiles = profRepo.findByFirstName(firstName);
-		if (profiles.isEmpty() ) {
+		if (profiles.isEmpty()) {
 			return null;
 		}
 		return profiles;
@@ -41,7 +40,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public List<Profile> findByLastname(String lastName) {
 		List<Profile> profiles = profRepo.findByLastName(lastName);
-		if (profiles.isEmpty() ) {
+		if (profiles.isEmpty()) {
 			return null;
 		}
 		return profiles;
@@ -50,17 +49,17 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public List<Profile> findByFirstNameAndLastName(String fname, String lname) {
 		List<Profile> profiles = profRepo.findByFirstNameAndLastName(fname, lname);
-		if (profiles.isEmpty() ) {
+		if (profiles.isEmpty()) {
 			return null;
 		}
 		return profiles;
-		
+
 	}
 
 	@Override
 	public List<Profile> queryByCityWithLocation(String city) {
 		List<Profile> profiles = profRepo.queryByCityWithLocation(city);
-		if (profiles.isEmpty() ) {
+		if (profiles.isEmpty()) {
 			return null;
 		}
 		return profiles;
@@ -69,7 +68,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public List<Profile> queryByStateWithLocation(String state) {
 		List<Profile> profiles = profRepo.queryByStateWithLocation(state);
-		if (profiles.isEmpty() ) {
+		if (profiles.isEmpty()) {
 			return null;
 		}
 		return profiles;
@@ -78,21 +77,25 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public List<Profile> queryByCountryWithLocation(String country) {
 		List<Profile> profiles = profRepo.queryByCountryWithLocation(country);
-		if (profiles.isEmpty() ) {
+		if (profiles.isEmpty()) {
 			return null;
 		}
 		return profiles;
 	}
-	
+
 	@Override
 	public Profile queryByUsernameWithUser(String username) {
-		Profile profile = profRepo.queryByUsernameWithUser(username);
-		if(profile == null) {
-			return null;
+		Profile prof = null;
+		if (profRepo.queryByUsernameWithUserWithSkills(username).getSkills().isEmpty()) {
+			prof = profRepo.queryByUsernameWithUser(username);
 		}
-		return profile;
+		if (!profRepo.queryByUsernameWithUserWithSkills(username).getSkills().isEmpty()) {
+			prof = profRepo.queryByUsernameWithUserWithSkills(username);
+			
+		}
+		return prof;
 	}
-	
+
 	@Override
 	public Profile findProfileById(int id) {
 		Profile profile = null;
@@ -102,7 +105,7 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		return profile;
 	}
-	
+
 	//
 	public Profile create(Profile createdProfile) {
 		Profile newProfile = new Profile();
@@ -117,10 +120,10 @@ public class ProfileServiceImpl implements ProfileService {
 		newProfile.setUser((createdProfile.getUser()));
 		return profRepo.saveAndFlush(newProfile);
 	}
-	
+
 	public Profile update(int id, Profile updatedProfile) {
 		Optional<Profile> op = profRepo.findById(id);
-		
+
 		if (op.isPresent()) {
 			User u = userRepo.findById(updatedProfile.getUser().getId()).get();
 			Profile profile = op.get();
@@ -158,13 +161,12 @@ public class ProfileServiceImpl implements ProfileService {
 			if (updatedProfile.getUser() != null) {
 				profile.setUser(u);
 			}
-			return profRepo.saveAndFlush(profile); 
-		}
-		else {
+			return profRepo.saveAndFlush(profile);
+		} else {
 			return null;
 		}
 	}
-	
+
 	public boolean delete(int id) {
 		try {
 			User u = userRepo.findById(id).get();
@@ -176,5 +178,5 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		return false;
 	}
-	
+
 }

@@ -32,7 +32,11 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer>{
 	@Query("SELECT p from Profile p WHERE p.location.country = :country")
 	public List<Profile> queryByCountryWithLocation(@Param("country") String country);
 	
-	// find profile by username
+	// find profile by username with skills
 	@Query("SELECT p from Profile p JOIN FETCH p.skills WHERE p.user.username = :username")
+	public Profile queryByUsernameWithUserWithSkills(@Param("username") String username);
+	
+	// find profile by username 
+	@Query("SELECT p from Profile p WHERE p.user.username = :username")
 	public Profile queryByUsernameWithUser(@Param("username") String username);
 }
