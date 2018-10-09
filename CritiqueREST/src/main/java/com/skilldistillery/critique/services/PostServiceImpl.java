@@ -75,9 +75,9 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public List<Post> findByTitleContaining(String title) {
-		String searchTitle = "%" + title + "%";
-		List<Post> posts = postRepo.findByTitleContaining(searchTitle);
+	public List<Post> findByTitle(String title) {
+//		String searchTitle = "%" + title + "%";
+		List<Post> posts = postRepo.findByTitleContaining(title);
 		if (posts.isEmpty()) {
 			return null;
 		}
@@ -119,6 +119,7 @@ public class PostServiceImpl implements PostService {
 					Category cat = em.find(Category.class, 1);
 					p.addCategory(cat);
 				}
+				
 				
 				p.setProfile(prof);
 			}
