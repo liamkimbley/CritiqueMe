@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { AuthService } from "./auth.service";
-import { Post } from "./models/post";
-import { Category } from "./models/category";
-import { environment } from "../environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { Post } from './models/post';
+import { Category } from './models/category';
+import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class PostService {
-  private uriPath = "api/posts";
+  private uriPath = 'api/posts';
   private url = environment.baseUrl + this.uriPath;
   private catUrl = environment.baseUrl + 'api/categories';
 

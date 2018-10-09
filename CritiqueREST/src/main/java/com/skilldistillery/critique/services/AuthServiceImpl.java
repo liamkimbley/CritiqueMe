@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skilldistillery.critique.entities.Expertise;
 import com.skilldistillery.critique.entities.Location;
 import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.entities.User;
@@ -59,6 +60,7 @@ public class AuthServiceImpl implements AuthService {
 			defaultLocation.setState("Overtherainbow");
 			defaultLocation.setCountry("Oz");
 			defaultProfile.setLocation(locServ.create(defaultLocation));
+			defaultProfile.addExpertise(em.find(Expertise.class, 1));
 			profRepo.saveAndFlush(defaultProfile);
 		} catch (Exception e) {
 			System.out.println(e);
