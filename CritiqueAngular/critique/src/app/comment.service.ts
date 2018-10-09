@@ -41,6 +41,8 @@ export class CommentService {
         })
       };
       console.log(comment);
+      console.log(id);
+
       return this.http.post<Comment>(this.url + id + '/comments', comment, httpOptions);
     } else {
       this.router.navigateByUrl('login');

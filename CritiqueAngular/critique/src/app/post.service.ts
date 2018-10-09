@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
-import { Post } from './models/post';
-import { Category } from './models/category';
-import { environment } from '../environments/environment';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { AuthService } from "./auth.service";
+import { Post } from "./models/post";
+import { Category } from "./models/category";
+import { environment } from "../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class PostService {
-  private uriPath = 'api/posts';
+  private uriPath = "api/posts";
   private url = environment.baseUrl + this.uriPath;
   private catUrl = environment.baseUrl + 'api/categories';
 
@@ -43,12 +43,22 @@ export class PostService {
   }
 
   public indexByProfileId(id: number): Observable<Post[]> {
-    return this.http.get<Post[]>(environment.baseUrl + 'api/profile/' + id + '/posts?sorted=true').pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error retrieving posts for profile: ' + err);
-      })
-    );
+    if (this.auth.checkLogin()) {
+      const headers = new HttpHeaders().set(
+        'Authorization', `Basic ${this.auth.getToken()}`
+      );
+      return this.http
+        .get<Post[]>(
+          environment.baseUrl + 'api/profile/' + id + '/posts?sorted=true', { headers })
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('Error retrieving posts for profile: ' + err);
+          })
+        );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   public indexCategories(): Observable<Category[]> {
@@ -75,16 +85,16 @@ export class PostService {
 
   public show(id): Observable<Post> {
     if (this.auth.checkLogin()) {
-    const headers = new HttpHeaders().set(
-    'Authorization',
-    `Basic ${this.auth.getToken()}`
-    );
-    return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error: ' + err.status);
-      })
-    );
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Basic ${this.auth.getToken()}`
+      );
+      return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error: ' + err.status);
+        })
+      );
     } else {
       this.router.navigateByUrl('login');
     }

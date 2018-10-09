@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.critique.entities.Comment;
 import com.skilldistillery.critique.entities.Post;
@@ -12,7 +13,9 @@ import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.repositories.CommentRepository;
 import com.skilldistillery.critique.repositories.PostRepository;
 import com.skilldistillery.critique.repositories.ProfileRepository;
+import com.skilldistillery.critique.repositories.VoteRepository;
 
+@Transactional
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -23,6 +26,9 @@ public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	private ProfileRepository profRepo;
+	
+	@Autowired
+	private VoteRepository voteRepo;
 
 	@Override
 	public List<Comment> findCommentsByPost(Integer id) {
@@ -37,22 +43,28 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Comment createNewCommentOnPost(Integer id, Comment comment, Integer profId) {
 		Comment com = new Comment();
-		Optional<Post> op = postRepo.findById(id);
-		if (op.isPresent()) {
-			Post p = op.get();
-			Optional<Profile> pr = profRepo.findById(id);
-			if (pr.isPresent()) {
-				Profile prof = pr.get();
-
-				if (p != null) {
-					com.setPost(p);
-				}
-				com.setProfile(prof);
-				com.setContent(comment.getContent());
+		if (comment.getContent() != null && !comment.getContent().equals("")) {
+			com.setContent(comment.getContent());
+		}
+		if (comment.getPost() != null) {
+			com.setPost(comment.getPost());
+		}
+		if (comment.getPost() == null) {
+			Optional<Post> op = postRepo.findById(id);
+			if (op.isPresent()) {
+				com.setPost(op.get());
 			}
 		}
+		if (comment.getProfile() == null) {
+			Optional<Profile> pr = profRepo.findById(profId);
+			if (pr.isPresent()) {
+				com.setProfile(pr.get());
+			}
+		}
+		if (comment.getProfile() != null) {
+			com.setProfile(comment.getProfile());
+		}
 		return comRepo.saveAndFlush(com);
-
 	}
 
 	@Override
@@ -60,6 +72,7 @@ public class CommentServiceImpl implements CommentService {
 		Comment toDelete = comRepo.findById(cid).get();
 		if (toDelete != null) {
 			try {
+				voteRepo.deleteVotesForCommentsByCommentId(cid);
 				comRepo.deleteById(cid);
 				return true;
 			} catch (Exception e) {

@@ -172,6 +172,7 @@ export class PostComponent implements OnInit, OnDestroy {
         this.postService.show(this.selected.id).subscribe(
           data2 => {
             this.selected = data2;
+            form.reset();
           }
         );
         },
@@ -210,7 +211,7 @@ export class PostComponent implements OnInit, OnDestroy {
             this.selected = data2;
           }
         );
-        },
+      },
       err => {console.error('Observer got an error: ' + err.status); }
     );
   };

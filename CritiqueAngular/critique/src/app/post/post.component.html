@@ -44,10 +44,10 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <h6>
+              <h6  *ngIf="post.content">
                 {{post.content}}
               </h6>
-              <p>
+              <p *ngIf="post.media">
                 <img class="postImage" src="{{post.media}}">
               </p>
             </mat-card-content>
@@ -74,10 +74,10 @@
                     <h1>{{selected.title}}</h1>
                   </mat-card-title>
               </mat-card-header>
-              <mat-card-content class="commentText">
+              <mat-card-content class="commentText"  *ngIf="selected.content">
                 <h6>{{selected.content}}</h6>
               </mat-card-content>
-              <mat-card-content>
+              <mat-card-content  *ngIf="selected.media">
                 <img class="postImage" width="300" height="300" src="{{selected.media}}">
               </mat-card-content>
               <mat-card-content>

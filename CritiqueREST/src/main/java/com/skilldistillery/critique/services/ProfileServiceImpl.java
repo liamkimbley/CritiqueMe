@@ -1,11 +1,13 @@
 package com.skilldistillery.critique.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.critique.entities.Expertise;
 import com.skilldistillery.critique.entities.Location;
 import com.skilldistillery.critique.entities.Profile;
 import com.skilldistillery.critique.entities.User;
@@ -22,6 +24,9 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Autowired
 	private LocationService locServ;
+	
+	@Autowired
+	private ExpertiseService expServ;
 	
 
 	@Override
@@ -144,8 +149,12 @@ public class ProfileServiceImpl implements ProfileService {
 			if (updatedProfile.getImageUrl() != null) {
 				profile.setImageUrl(updatedProfile.getImageUrl());
 			}
-			if (updatedProfile.getSkills() != null) {
+			// Not sure this will work
+			if (updatedProfile.getSkills() != null && !updatedProfile.getSkills().isEmpty()) {
 				profile.setSkills(updatedProfile.getSkills());
+			}
+			if (updatedProfile.getSkills() == null || updatedProfile.getSkills().isEmpty()) {
+				profile.setSkills(new ArrayList<Expertise>());
 			}
 			if (updatedProfile.getUser() != null) {
 				profile.setUser(u);
