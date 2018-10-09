@@ -33,7 +33,7 @@
                     <img class="commentPic" src="{{post.profile.imageUrl}}">
                   </mat-card-content>
                   <mat-card-content>
-                    <a [routerLink]="['/profile/']">
+                    <a [routerLink]="['/profile/'+post.profile.id]">
                     <h4 class="commentUsername">{{post.profile.user.username}}</h4>
                     </a>
                   </mat-card-content>
