@@ -25,7 +25,5 @@ public interface PostService {
 
 	public boolean delete(Integer id);
 
-	
-	// Queries not passing tests
 	public List<Post> findPostsByCreateDate(LocalDate date);
 }
