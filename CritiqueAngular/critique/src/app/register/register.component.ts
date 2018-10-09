@@ -12,9 +12,12 @@ export class RegisterComponent implements OnInit {
     console.log(form.value);
     this.auth.register(form.value).subscribe(
       data => {
-        console.log('data: ' + data.value);
-        form.reset();
-        this.router.navigateByUrl('profile');
+        this.auth.login(form.value.username, form.value.password).subscribe(
+          data2 => {this.router.navigateByUrl('profile');
+                    form.reset(); },
+          err2 => {console.log(err2); }
+
+        );
       },
       err => {
         this.router.navigateByUrl('register');
