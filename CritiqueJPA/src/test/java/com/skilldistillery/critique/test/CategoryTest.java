@@ -42,7 +42,7 @@ class CategoryTest {
 	
 	@Test
 	void test_category_has_name() {
-		assertEquals("Music", cat.getName());
+		assertEquals("All", cat.getName());
 	}
 
 }

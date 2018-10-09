@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +24,9 @@ import com.skilldistillery.critique.repositories.VoteRepository;
 @Transactional
 @Service
 public class PostServiceImpl implements PostService {
+	
+	@PersistenceContext
+	private EntityManager em;
 
 	@Autowired
 	private PostRepository postRepo;
@@ -106,6 +112,14 @@ public class PostServiceImpl implements PostService {
 				if (post.getMedia() != null && !post.getMedia().equals("")) {
 					p.setMedia(post.getMedia());
 				}
+				if (post.getCategories() != null) {
+					p.setCategories(post.getCategories());
+				}
+				if (post.getCategories() == null) {
+					Category cat = em.find(Category.class, 1);
+					p.addCategory(cat);
+				}
+				
 				p.setProfile(prof);
 			}
 		}
