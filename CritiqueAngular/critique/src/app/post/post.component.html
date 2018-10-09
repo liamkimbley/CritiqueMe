@@ -52,13 +52,14 @@
       <!-- display single post -->
       <div *ngIf="selected">
           <mat-card class="postCard">
-            <!-- need query for profile pic and userame for a post -->
-              <!-- <mat-card-content>
-                  <img src="selected.profile.imageUrl">
-              </mat-card-content>
-              <mat-card-content>
-                  <h2>{{selected.profile.user.username}}</h2>
-                </mat-card-content> -->
+              <mat-card-header>
+                <mat-card-content>
+                  <img class="commentPic" src="{{selected.profile.imageUrl}}">
+                </mat-card-content>
+                <mat-card-content>
+                  <h2 class="commentUsername">{{selected.profile.user.username}}</h2>
+                </mat-card-content>
+              </mat-card-header>
               <mat-card-header>
                   <mat-card-title>
                     <h2>{{selected.title}}</h2>

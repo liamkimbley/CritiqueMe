@@ -36,4 +36,7 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer>{
 	@Query("SELECT p from Profile p WHERE p.user.username = :username")
 	public Profile queryByUsernameWithUser(@Param("username") String username);
 	
+	// find profile by post
+	@Query("SELECT prof from Profile prof JOIN Post post ON prof.id = post.profile.id")
+	public Profile queryByProfileWithPost(int id);
 }

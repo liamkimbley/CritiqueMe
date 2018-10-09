@@ -96,5 +96,14 @@ export class ProfileService {
     }
   }
 
+  public getProfilePic(id: number) {
+    return this.http.get(this.url + '/posts/' + id).pipe(
+      catchError((err: any) => {
+      console.log(err);
+      return throwError('Error: ' + err.status);
+    })
+  );
+  }
+
   constructor(private userServ: UserService, private http: HttpClient, private auth: AuthService, private router: Router) { }
 }

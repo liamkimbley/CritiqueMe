@@ -157,4 +157,8 @@ public class ProfileServiceImpl implements ProfileService {
 		return false;
 	}
 	
+	public Profile queryByProfileWithPost(int id) {
+		return profRepo.queryByProfileWithPost(id);
+	}
+	
 }

@@ -16,6 +16,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { NgForm } from '@angular/forms';
 import { CommentService } from '../comment.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-post',
@@ -31,7 +32,8 @@ export class PostComponent implements OnInit, OnDestroy {
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private profileService: ProfileService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -83,6 +85,10 @@ export class PostComponent implements OnInit, OnDestroy {
 
   goBack = function() {
     this.selected = null;
+  };
+
+  displayProfilePic = function(id: number) {
+    this.profileService.getProfilePic(id);
   };
 
   addPost = function() {

@@ -16,4 +16,5 @@ public interface ProfileService {
 	public Profile create(Profile createdProfile);
 	public Profile update(int id, Profile updatedProfile);
 	public boolean delete(int id);
+	public Profile queryByProfileWithPost(int id);
 }
