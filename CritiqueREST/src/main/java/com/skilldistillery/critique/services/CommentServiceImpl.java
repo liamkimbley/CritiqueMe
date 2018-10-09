@@ -37,22 +37,28 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Comment createNewCommentOnPost(Integer id, Comment comment, Integer profId) {
 		Comment com = new Comment();
-		Optional<Post> op = postRepo.findById(id);
-		if (op.isPresent()) {
-			Post p = op.get();
-			Optional<Profile> pr = profRepo.findById(id);
-			if (pr.isPresent()) {
-				Profile prof = pr.get();
-
-				if (p != null) {
-					com.setPost(p);
-				}
-				com.setProfile(prof);
-				com.setContent(comment.getContent());
+		if (comment.getContent() != null && !comment.getContent().equals("")) {
+			com.setContent(comment.getContent());
+		}
+		if (comment.getPost() != null) {
+			com.setPost(comment.getPost());
+		}
+		if (comment.getPost() == null) {
+			Optional<Post> op = postRepo.findById(id);
+			if (op.isPresent()) {
+				com.setPost(op.get());
 			}
 		}
+		if (comment.getProfile() == null) {
+			Optional<Profile> pr = profRepo.findById(profId);
+			if (pr.isPresent()) {
+				com.setProfile(pr.get());
+			}
+		}
+		if (comment.getProfile() != null) {
+			com.setProfile(comment.getProfile());
+		}
 		return comRepo.saveAndFlush(com);
-
 	}
 
 	@Override
