@@ -137,18 +137,6 @@ public class ProfileController {
 		}
 	}
 	
-	@RequestMapping(path = "profile/posts/{pid}", method = RequestMethod.GET)
-	public Profile findProfileByPost(@PathVariable Integer pid, Principal principal, HttpServletResponse res, HttpServletRequest req) {
-		Profile p = ps.queryByProfileWithPost(pid);
-		if (p != null) {
-			res.setStatus(200);
-			return p;
-		} else {
-			res.setStatus(500);
-			return null;
-		}
-	}
-	
 	@RequestMapping(path = "profile/{id}", method = RequestMethod.PUT)
 	public Profile updateProfile(@RequestBody Profile p, @PathVariable Integer id, HttpServletResponse res, HttpServletRequest req) {
 		Profile prof = ps.update(id, p);

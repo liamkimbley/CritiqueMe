@@ -30,7 +30,6 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
