@@ -98,6 +98,8 @@ export class ProfileComponent implements OnInit {
   // user's posts
 
   loadPosts = function() {
+    console.log(this.profile.id);
+
     this.postService.indexByProfileId(this.profile.id).subscribe(
       data => {
         console.log(data);
