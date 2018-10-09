@@ -28,16 +28,25 @@
       <div *ngIf="!selected">
         <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
           <mat-card class="postCard">
+              <mat-card-header>
+                  <mat-card-content>
+                    <img class="commentPic" src="{{post.profile.imageUrl}}">
+                  </mat-card-content>
+                  <mat-card-content>
+                    <a [routerLink]="['/profile/']">
+                    <h4 class="commentUsername">{{post.profile.user.username}}</h4>
+                    </a>
+                  </mat-card-content>
+              </mat-card-header>
             <mat-card-header>
               <mat-card-title>
-                <!-- <img class="profilePic" width="80" height="80" src=selected.> -->
                 <h2>{{post.title}}</h2>
               </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <p>
+              <h6>
                 {{post.content}}
-              </p>
+              </h6>
               <p>
                 <img class="postImage" src="{{post.media}}">
               </p>
@@ -62,7 +71,7 @@
               </mat-card-header>
               <mat-card-header>
                   <mat-card-title>
-                    <h2>{{selected.title}}</h2>
+                    <h1>{{selected.title}}</h1>
                   </mat-card-title>
               </mat-card-header>
               <mat-card-content class="commentText">
