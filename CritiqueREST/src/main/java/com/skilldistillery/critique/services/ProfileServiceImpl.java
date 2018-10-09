@@ -149,7 +149,6 @@ public class ProfileServiceImpl implements ProfileService {
 			if (updatedProfile.getImageUrl() != null) {
 				profile.setImageUrl(updatedProfile.getImageUrl());
 			}
-			// Not sure this will work
 			if (updatedProfile.getSkills() != null && !updatedProfile.getSkills().isEmpty()) {
 				profile.setSkills(updatedProfile.getSkills());
 			}
