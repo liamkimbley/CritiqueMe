@@ -119,7 +119,7 @@ export class ProfileComponent implements OnInit {
 
   addNewPost = function() {
     this.postService.create(this.newPost).subscribe(
-      data => {this.reload(); },
+      data => {this.getOneProfile(); },
       err => {console.error('Observer got an error: ' + err.status); }
       );
       console.log(this.newPost);
