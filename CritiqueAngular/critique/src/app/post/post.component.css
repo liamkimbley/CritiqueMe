@@ -1,42 +1,10 @@
-.postTable {
-  border: 1px solid black;
-}
-
-.commentTable {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  border: 1px solid black;
-}
-
-.upvoteImg {
-  height: 30px;
-  width: 30px;
-  margin-right: 10px;
-}
-
-.downvoteImg {
-  height: 30px;
-  width: 30px;
-}
-
-.updateImg {
-  height: 40px;
-  width: 40px;
-}
-
-.deleteImg {
-  height: 30px;
-  width: 30px;
-  margin-bottom: 5px;
-}
-
 .postImage {
   width: 400px;
   height: 300px;
   display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .profilePic {
@@ -50,4 +18,82 @@
 .commentTextBox {
   height: 150px;
   width: 400px;
+}
+
+.commentsHeader {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.commentPic {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.commentUsername {
+  margin-left: 20px;
+}
+
+.postCardBox {
+  margin-bottom: 10px;
+}
+
+.buttons {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.upvoteImg {
+  height: 30px;
+  width: 30px;
+  transition: transform .2s;
+  margin-right: 10px;
+}
+
+.upvoteImg:hover {
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(2);
+}
+
+.downvoteImg {
+  height: 30px;
+  width: 30px;
+  transition: transform .2s;
+  margin-right: 10px;
+}
+
+.downvoteImg:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(2);
+}
+
+.updateImg {
+  height: 40px;
+  width: 40px;
+  transition: transform .2s;
+  margin-bottom: -5px;
+  margin-right: 10px;
+}
+
+.updateImg:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(2);
+}
+
+.deleteImg {
+  height: 30px;
+  width: 30px;
+  transition: transform .2s;
+  margin-right: 10px;
+}
+
+.deleteImg:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(2);
 }
