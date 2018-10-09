@@ -1,8 +1,8 @@
 <h1>Welcome to {{selectedUser.username}}'s profile</h1>
 
-<!-- <div *ngIf="!newPost">
+<div *ngIf="!newPost">
   <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()">New Post</button>
-</div> -->
+</div>
 
 <div class="profileInfo">
   <!-- profile pic -->
@@ -78,13 +78,13 @@
 
       <table *ngFor="let s of skills">
         <tr>
-          <td><input type="checkbox" name="skills" value="{{s}}" [(ngModel)]="editProfile.skills.title">{{s}}</td>
+          <td><input type="checkbox" name="skills" value="{{s.id}}" [(ngModel)]="editProfile.skills.title"> {{s.title}}</td>
         </tr>
       </table>
 
-      <button class="btn-outline-primary" (click)="editProfile = null">Cancel</button>
-      <button class="btn-outline-primary" (click)="updateProfile(editProfile)">Update Profile</button>
-      <button class="btn-outline-primary" (click)="deleteProfile(editProfile.id)">Deactivate Profile</button>
+      <button mat-raised-button color="primary" (click)="editProfile = null">Cancel</button>
+      <button mat-raised-button color="primary" (click)="updateProfile(editProfile)">Update Profile</button>
+      <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)">Deactivate Profile</button>
     </form>
   </div>
 </div>
