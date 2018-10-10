@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PostComponent } from './post/post.component';
 import { SearchComponent } from './search/search.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'comments/:cid/votes', component: PostComponent },
   { path: 'comments/:cid/vote/:vid', component: PostComponent },
   { path: 'comments/:cid/vote', component: PostComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'search', component: SearchComponent },
+  { path: 'search-results', component: SearchResultsComponent }
   // { path: '**', component: NotFoundComponent }
   // make a not found component later
 ];

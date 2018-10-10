@@ -15,7 +15,7 @@ import { Profile } from './models/profile';
 export class SearchService {
   private uriPathProfile = 'api/profile';
   private urlProfile = environment.baseUrl + this.uriPathProfile;
-  private uriPathPost = 'api/post';
+  private uriPathPost = 'api/posts';
   private urlPost = environment.baseUrl + this.uriPathPost;
 
   constructor(
@@ -25,7 +25,7 @@ export class SearchService {
   ) { }
 
   public getProfilesByFirstName(firstName: String): Observable<Profile[]> {
-    return this.http.get<Profile[]>(this.urlProfile + '/firstName/' + firstName).pipe(
+    return this.http.get<Profile[]>(this.urlProfile + '/firstname/' + firstName).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving PROFILES: ' + 'Status: ' + err);
@@ -34,7 +34,7 @@ export class SearchService {
   }
 
   public getProfilesByLastName(lastName: String): Observable<Profile[]> {
-    return this.http.get<Profile[]>(this.urlProfile + '/lastName/' + lastName).pipe(
+    return this.http.get<Profile[]>(this.urlProfile + '/lastname/' + lastName).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving PROFILES: ' + 'Status: ' + err);

@@ -6,6 +6,7 @@ import { Profile } from 'selenium-webdriver/firefox';
 import { PostService } from '../post.service';
 import { ProfileService } from '../profile.service';
 import { CommentService } from '../comment.service';
+import { SearchResultsService } from '../search-results.service';
 
 @Component({
   selector: 'app-search',
@@ -18,19 +19,18 @@ export class SearchComponent implements OnInit {
     private searchService: SearchService,
     private postService: PostService,
     private profileService: ProfileService,
-    private commentService: CommentService) { }
+    private commentService: CommentService,
+    public router: Router,
+    private searchResultsService: SearchResultsService) { }
 
-  // posts
   posts: Post[] = [];
   selectedPost: Post = null;
-
-  // profiles
   profiles: Profile[] = [];
   selectedProfile: Profile = null;
-
-  // comments
   comments: Comment[] = [];
   selectedComment: Comment = null;
+  searchType: String = null;
+  searchString: String = null;
 
   ngOnInit() {
     this.reloadPosts();
@@ -51,7 +51,7 @@ export class SearchComponent implements OnInit {
   };
 
   reloadProfiles = function() {
-    this.profileService.index().subscribe(
+    this.profileService.show().subscribe(
       data => {
         console.log(data);
         this.profiles = data;
@@ -72,14 +72,25 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  public profileOrPost(userSelection: String) {
-    //   if (userSelection) === 'profile' {
-    //      call all get profile methods
-    //   }
-    //   if (userSelection) === 'post' {
-    //      call all get post methods
-    //   }
-
+  public profileOrPost() {
+    console.log(this.searchType);
+    console.log(this.searchString);
+    // this.searchType = searchType;
+    // this.searchString = searchString;
+      switch (this.searchType) {
+        case 'firstName':
+              this.displayProfilesByFirstName(this.searchString);
+              break;
+        case 'lastName':
+              this.displayProfilesByLastName(this.searchString);
+              break;
+        case 'username':
+              this.displayProfilesByUsername(this.searchString);
+              break;
+        case 'title':
+              this.displayPostsByTitle(this.searchString);
+              break;
+      }
   }
 
   // posts
@@ -90,7 +101,44 @@ export class SearchComponent implements OnInit {
   displayProfilesByFirstName = function(firstName: String) {
     this.searchService.getProfilesByFirstName(firstName).subscribe(
       data => {
-        this.reloadPosts();
+        this.searchResultsService.populateProfileArray(data);
+        this.router.navigateByUrl('/search-results');
+      },
+      err => {
+        console.error('Observer got an error with POSTS: ' + err.status);
+      }
+    );
+  };
+
+  displayProfilesByLastName = function(lastName: String) {
+    this.searchService.getProfilesByLastName(lastName).subscribe(
+      data => {
+        this.searchResultsService.populateProfileArray(data);
+        this.router.navigateByUrl('/search-results');
+      },
+      err => {
+        console.error('Observer got an error with POSTS: ' + err.status);
+      }
+    );
+  };
+
+  displayProfilesByUsername = function(username: String) {
+    this.searchService.getProfilesByUsername(username).subscribe(
+      data => {
+        this.searchResultsService.populateProfileArray(data);
+        this.router.navigateByUrl('/search-results');
+      },
+      err => {
+        console.error('Observer got an error with POSTS: ' + err.status);
+      }
+    );
+  };
+
+  displayPostsByTitle = function(title: String) {
+    this.searchService.getPostsByTitle(title).subscribe(
+      data => {
+        this.searchResultsService.populatePostArray(data);
+        this.router.navigateByUrl('/search-results');
       },
       err => {
         console.error('Observer got an error with POSTS: ' + err.status);

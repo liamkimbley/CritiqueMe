@@ -1,0 +1,67 @@
+
+
+<!-- display list of posts -->
+<h1>Posts</h1>
+  <div id="postCards" *ngFor="let post of posts">
+    <mat-card class="postCard">
+        <mat-card-header>
+            <mat-card-content>
+              <img class="commentPic" src="{{post.profile.imageUrl}}">
+            </mat-card-content>
+            <mat-card-content>
+              <a [routerLink]="['/profile/'+post.profile.id]">
+              <h4 class="commentUsername">{{post.profile.user.username}}</h4>
+              </a>
+            </mat-card-content>
+        </mat-card-header>
+      <mat-card-header>
+        <mat-card-title>
+          <h2>{{post.title}}</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h6  *ngIf="post.content">
+          {{post.content}}
+        </h6>
+        <p *ngIf="post.media">
+          <img class="postImage" src="{{post.media}}">
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- <button mat-raised-button color="primary" (click)="displaySelectedPost(post)">View More</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+<!-- display list of profiles -->
+<!-- <h1>Profiles</h1>
+  <div id="postCards" *ngFor="let prof of profiles">
+    <mat-card class="postCard">
+        <mat-card-header>
+            <mat-card-content>
+              <img class="commentPic" src="{{prof.imageUrl}}">
+            </mat-card-content>
+            <mat-card-content>
+               <a [routerLink]="['/profile/'+post.profile.id]"> -->
+              <!-- <h4 class="commentUsername">{{prof.user.username}}</h4> -->
+              <!-- </a> -->
+            <!-- </mat-card-content>
+        </mat-card-header>
+      <mat-card-header>
+        <mat-card-title>
+          <h2>{{prof.bio}}</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h6  *ngIf="post.content">
+          {{post.content}}
+        </h6>
+        <p *ngIf="post.media">
+          <img class="postImage" src="{{post.media}}">
+        </p>
+      </mat-card-content>
+      <mat-card-actions> -->
+        <!-- <button mat-raised-button color="primary" (click)="displaySelectedPost(post)">View More</button> -->
+      <!-- </mat-card-actions>
+    </mat-card>
+  </div> -->

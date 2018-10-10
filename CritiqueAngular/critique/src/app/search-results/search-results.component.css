@@ -1,0 +1,10 @@
+.commentPic {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.commentUsername {
+  margin-left: 20px;
+  color: black;
+}

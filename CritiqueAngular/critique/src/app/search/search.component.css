@@ -1,0 +1,15 @@
+#searchBox {
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+  color: white;
+}
+
+#searchDropdown {
+  margin-top: 15px;
+  margin-left: 12px;
+}
+
+.searchText {
+  color: white;
+}

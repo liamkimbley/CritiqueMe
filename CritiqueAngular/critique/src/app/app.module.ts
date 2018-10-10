@@ -1,3 +1,4 @@
+import { SearchResultsService } from './search-results.service';
 import { AuthService } from './auth.service';
 import { ProfileService } from './profile.service';
 import { CommentService } from './comment.service';
@@ -59,6 +60,7 @@ import {
 } from '@angular/material';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search.service';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { SearchService } from './search.service';
     ProfileComponent,
     PostComponent,
     CategoryPipe,
-    SearchComponent
+    SearchComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +126,8 @@ import { SearchService } from './search.service';
     ProfileService,
     AuthService,
     DatePipe,
-    SearchService
+    SearchService,
+    SearchResultsService
   ],
   bootstrap: [AppComponent, NavigationComponent]
 })
