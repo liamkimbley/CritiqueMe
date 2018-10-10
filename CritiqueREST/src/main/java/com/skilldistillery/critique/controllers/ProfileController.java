@@ -133,13 +133,13 @@ public class ProfileController {
 		}
 	}
 
-	@RequestMapping(path = "profile/{pid}/posts", method = RequestMethod.GET)
-	public List<Post> findPostsByProfile(@PathVariable Integer pid, Principal principal, HttpServletResponse res,
+	@RequestMapping(path = "profile/{profid}/posts", method = RequestMethod.GET)
+	public List<Post> findPostsByProfile(@PathVariable Integer profid, Principal principal, HttpServletResponse res,
 			HttpServletRequest req) {
 		List<Post> posts = new ArrayList<>();
 		Profile prof = ps.queryByUsernameWithUser(principal.getName());
-		if (prof.getId() == pid) {
-			posts = postServ.findPostsByProfileId(pid);
+		if (prof.getId() == profid) {
+			posts = postServ.findPostsByProfileId(profid);
 
 			if (!posts.isEmpty()) {
 				res.setStatus(200);
