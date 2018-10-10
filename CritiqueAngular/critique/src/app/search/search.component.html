@@ -1,35 +1,19 @@
-
-<!-- display list of posts -->
-<h1>Posts</h1>
-<div *ngIf="!selected">
-  <div id="postCards" *ngFor="let post of posts">
-    <mat-card class="postCard">
-        <mat-card-header>
-            <mat-card-content>
-              <img class="commentPic" src="{{post.profile.imageUrl}}">
-            </mat-card-content>
-            <mat-card-content>
-              <a [routerLink]="['/profile/'+post.profile.id]">
-              <h4 class="commentUsername">{{post.profile.user.username}}</h4>
-              </a>
-            </mat-card-content>
-        </mat-card-header>
-      <mat-card-header>
-        <mat-card-title>
-          <h2>{{post.title}}</h2>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <h6  *ngIf="post.content">
-          {{post.content}}
-        </h6>
-        <p *ngIf="post.media">
-          <img class="postImage" src="{{post.media}}">
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="displaySelectedPost(post)">View More</button>
-      </mat-card-actions>
-    </mat-card>
+<!-- search link in top navbar -->
+<!-- <form> -->
+<button (click)="profileOrPost()">Search</button>
+<input type="text" [(ngModel)]="searchString">
+<div>
+  <div class="searchText">
+      What would you like to search?
   </div>
-</div>
+      <select [(ngModel)]="searchType" name="searchType">
+        <option disabled>Profiles</option>
+        <option value="firstName">First Name</option>
+        <option value="lastName">Last Name</option>
+        <option value="username">Username</option>
+        <option disabled>Posts</option>
+        <option value="title">Title</option>
+      </select>
+  </div>
+  <!-- </form> -->
+<!-- end search link in top navbar -->
