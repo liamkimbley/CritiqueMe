@@ -1,4 +1,3 @@
-import { CommentComponent } from './comment/comment.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -28,11 +27,11 @@ const routes: Routes = [
   { path: 'categories/:id/posts', component: PostComponent },
   { path: 'posts/:id', component: PostComponent },
   { path: 'posts/title/:title', component: PostComponent },
-  { path: 'posts/:id/comments', component: CommentComponent },
-  { path: 'comments/:id', component: CommentComponent },
-  { path: 'comments/:cid/votes', component: CommentComponent },
-  { path: 'comments/:cid/vote/:vid', component: CommentComponent },
-  { path: 'comments/:cid/vote', component: CommentComponent },
+  // { path: 'posts/:id/comments', component: CommentComponent },
+  // { path: 'comments/:id', component: CommentComponent },
+  // { path: 'comments/:cid/votes', component: CommentComponent },
+  // { path: 'comments/:cid/vote/:vid', component: CommentComponent },
+  // { path: 'comments/:cid/vote', component: CommentComponent },
   { path: 'search', component: SearchComponent }
   // { path: '**', component: NotFoundComponent }
   // make a not found component later
