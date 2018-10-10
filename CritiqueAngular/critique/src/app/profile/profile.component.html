@@ -1,14 +1,10 @@
 <div *ngIf="profile">
-  <mat-toolbar>
-      <h1>Welcome, {{profile.user.username}}</h1>
-      <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
-        (click)="open(content)">Edit Profile</button>
-      <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
-        Post</button>
-  <!-- <div *ngIf="!newPost">
-      <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
-        Post</button>
-      </div> -->
+  <h1>Welcome, {{profile.user.username}}</h1>
+
+  <div *ngIf="!newPost">
+    <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
+      Post</button>
+  </div>
 
   <div class="profileInfo">
     <!-- profile pic -->
@@ -42,6 +38,9 @@
     </table>
     <!-- **************** User information **************** -->
     <!-- **************** Edit profile Modal **************** -->
+    <div *ngIf="!editProfile" class="editProfileButton">
+      <button mat-raised-button color="primary" (click)="setEditProfile()" (click)="open(content)">Edit Profile</button>
+    </div>
     <ng-template #content let-modal>
       <div *ngIf="editProfile" class="editProfileTable">
         <div class="modal-header">
