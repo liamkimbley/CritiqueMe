@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.skilldistillery.critique.entities.Comment;
 import com.skilldistillery.critique.entities.Post;
 import com.skilldistillery.critique.entities.Profile;
+import com.skilldistillery.critique.entities.Vote;
 import com.skilldistillery.critique.repositories.CommentRepository;
 import com.skilldistillery.critique.repositories.PostRepository;
 import com.skilldistillery.critique.repositories.ProfileRepository;
@@ -33,10 +34,23 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public List<Comment> findCommentsByPost(Integer id) {
 		List<Comment> comments = comRepo.findByPostId(id);
-		if (comments.isEmpty()) {
-			return null;
+		if (!comments.isEmpty()) {
+			for (int i = 0; i < comments.size(); i++) {
+				int totalPoints = 0;
+				List<Vote> votes = voteRepo.findByCommentId(comments.get(i).getId());
+				for (int j = 0; j < votes.size(); j++) {
+					if (votes.get(j).getVote() == true) {
+						totalPoints += 1;
+					}
+					if (votes.get(j).getVote() == false) {
+						totalPoints -= 1;
+					}
+				}
+				comments.get(i).setTotalPoints(totalPoints);
+			}
+			return comments;
 		}
-		return comments;
+		return null;
 
 	}
 

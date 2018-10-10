@@ -15,6 +15,7 @@ import com.skilldistillery.critique.entities.Category;
 import com.skilldistillery.critique.entities.Comment;
 import com.skilldistillery.critique.entities.Post;
 import com.skilldistillery.critique.entities.Profile;
+import com.skilldistillery.critique.entities.Vote;
 import com.skilldistillery.critique.repositories.CategoryRepository;
 import com.skilldistillery.critique.repositories.CommentRepository;
 import com.skilldistillery.critique.repositories.PostRepository;
@@ -24,7 +25,7 @@ import com.skilldistillery.critique.repositories.VoteRepository;
 @Transactional
 @Service
 public class PostServiceImpl implements PostService {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -33,13 +34,13 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private ProfileRepository profRepo;
-	
+
 	@Autowired
 	private CategoryRepository catRepo;
-	
+
 	@Autowired
 	private CommentRepository comRepo;
-	
+
 	@Autowired
 	private VoteRepository voteRepo;
 
@@ -70,10 +71,29 @@ public class PostServiceImpl implements PostService {
 		if (posts.isEmpty()) {
 			return null;
 		}
+
+		for (int k = 0; k < posts.size(); k++) {
+			List<Comment> comments = comRepo.findByPostId(posts.get(k).getId());
+			if (!comments.isEmpty()) {
+				for (int i = 0; i < comments.size(); i++) {
+					int totalPoints = 0;
+					List<Vote> votes = voteRepo.findByCommentId(comments.get(i).getId());
+					for (int j = 0; j < votes.size(); j++) {
+						if (votes.get(j).getVote() == true) {
+							totalPoints += 1;
+						}
+						if (votes.get(j).getVote() == false) {
+							totalPoints -= 1;
+						}
+					}
+					comments.get(i).setTotalPoints(totalPoints);
+				}
+			} 
+		}
 		return posts;
 
 	}
-	
+
 	@Override
 	public List<Post> findByTitle(String title) {
 		List<Post> posts = postRepo.findByTitleContaining(title);
@@ -118,8 +138,7 @@ public class PostServiceImpl implements PostService {
 					Category cat = em.find(Category.class, 1);
 					p.addCategory(cat);
 				}
-				
-				
+
 				p.setProfile(prof);
 			}
 		}
@@ -194,7 +213,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<Post> findPostsByProfileId(Integer pid) {
 		return postRepo.findByProfileId(pid);
-		
+
 	}
 
 }
