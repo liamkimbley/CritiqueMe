@@ -10,7 +10,7 @@ export class Profile {
   imageUrl: string;
   location: Location;
   user: User;
-  skills: Expertise;
+  skills: Expertise[];
 
   constructor(
     id?: number,
