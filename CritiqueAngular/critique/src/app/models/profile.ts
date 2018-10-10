@@ -10,7 +10,7 @@ export class Profile {
   imageUrl: string;
   location: Location;
   user: User;
-  skills: Expertise;
+  skills: Expertise[];
 
   constructor(
     id?: number,
@@ -20,7 +20,7 @@ export class Profile {
     image?: string,
     loc?: Location,
     user?: User,
-    skills?: Expertise
+    skills?: Expertise[]
   ) {
     this.id = id;
     this.firstName = firstName;
