@@ -1,6 +1,7 @@
 package com.skilldistillery.critique.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,8 +26,8 @@ public class PostController {
 	private PostService postServ;
 
 	@RequestMapping(path = "posts", method = RequestMethod.GET)
-	public List<Post> index(HttpServletRequest req, HttpServletResponse res) {
-		List<Post> posts = postServ.findAllPosts();
+	public Set<Post> index(HttpServletRequest req, HttpServletResponse res) {
+		Set<Post> posts = postServ.findAllPosts();
 		if (posts != null) {
 			res.setStatus(200);
 			return posts;
