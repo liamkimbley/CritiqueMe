@@ -128,13 +128,13 @@
 
         <!-- update a comment -->
         <div *ngIf="selectedComment">
-          <form #comment="ngForm">
+          <form >
             <table>
               <tr>
-                <td><input class="commentTextBox" type="text" name="content" placeholder="{{selectedComment.content}}" ngModel/></td>
+                <td><input class="commentTextBox" type="text" name="content" [(ngModel)]="selectedComment.content"/></td>
               </tr>
             </table>
-            <button class="buttons" mat-raised-button color="primary" type="submit" name="comment" (click)="updateComment(comment, selectedComment.id)">Update</button>
+            <button class="buttons" mat-raised-button color="primary" type="submit" name="comment" (click)="updateComment()">Update</button>
             <button class="buttons" mat-raised-button color="primary" type="submit" name="cancel" (click)="selectedComment = null">Cancel</button>
           </form>
         </div>
