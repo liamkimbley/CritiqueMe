@@ -9,14 +9,19 @@
   border-collapse: collapse;
 }
 
-.profileTable td, th {
+.profileTable td,
+th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.profileTable tr:nth-child(even){background-color: #f2f2f2;}
+.profileTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-.profileTable tr:hover {background-color: #ddd;}
+.profileTable tr:hover {
+  background-color: #ddd;
+}
 
 .profilePosts {
   float: right;
@@ -33,16 +38,18 @@
   margin-left: 3em;
 }
 
-.addPostButton {
+/* .addPostButton {
   position: absolute;
   margin-left: 50%;
   margin-right: 50%;
   width: 300px;
   height: 75px;
+} */
+.rightToolbar {
+  flex: auto 1 1;
 }
-
+.middleToolbar {
+  flex: 1 1 auto;
+}
 .newpost {
-
 }
-
-
