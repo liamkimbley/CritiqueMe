@@ -107,7 +107,7 @@ public class ProfileServiceImpl implements ProfileService {
 	//
 	public Profile create(Profile createdProfile) {
 		Profile newProfile = new Profile();
-		Expertise defaultSkill = expServ.findOneById(19);
+		Expertise defaultSkill = expServ.findOneById(1);
 		List<Expertise> defaultSkills = new ArrayList<>();
 		newProfile.setFirstName(createdProfile.getFirstName());
 		newProfile.setLastName(createdProfile.getLastName());
