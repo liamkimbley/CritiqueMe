@@ -1,4 +1,4 @@
-<h1>Welcome to {{selectedUser.username}}'s profile</h1>
+<h1>Welcome to {{profile.user.username}}'s profile</h1>
 
 <div *ngIf="!newPost">
   <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()">New Post</button>
@@ -28,9 +28,9 @@
       <th>Bio</th>
       <td>{{profile.bio}}</td>
     </tr>
-    <tr *ngIf="skills">
+    <tr *ngIf="profSkills">
       <th>Skills</th>
-      <div *ngFor="let s of skills">
+      <div *ngFor="let s of profSkills">
        <td>{{s.title}}</td>
       </div>
     </tr>
