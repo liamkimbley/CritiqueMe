@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -42,6 +43,9 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private Post post;
+	
+	@Transient
+	private int totalPoints;
 
 	/* Fields */
 
@@ -112,6 +116,14 @@ public class Comment {
 		this.post = post;
 	}
 
+	public int getTotalPoints() {
+		return totalPoints;
+	}
+
+	public void setTotalPoints(int totalPoints) {
+		this.totalPoints = totalPoints;
+	}
+	
 	/* Getters and Setters */
 
 	@Override
@@ -165,8 +177,6 @@ public class Comment {
 			return false;
 		return true;
 	}
-
-	/* Getters and Setters */
 
 	@Override
 	public String toString() {
