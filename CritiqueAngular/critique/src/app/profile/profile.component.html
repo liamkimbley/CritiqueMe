@@ -76,7 +76,7 @@
         </tr>
         <tr>
           <div *ngFor="let s of skills">
-            <span><input type="radio" name="skills" value="{{s.id}}" [(ngModel)]="editProfile.skills.title"> {{s.title}}</span>
+            <span><input type="checkbox" name="skills" value="{{s}}" [(ngModel)]="editProfile.skills"> {{s.title}}</span>
           </div>
         </tr>
       </table>
@@ -109,7 +109,7 @@
     </form>
 </div>
 
-<div class="profilePosts">
+<div *ngIf="!editProfile" class="profilePosts">
   <!-- posts -->
   <h3>Your Posts</h3>
   <!-- display a list of user's posts -->
