@@ -1,77 +1,78 @@
-<h1>Welcome to {{profile.user.username}}'s profile</h1>
+<div *ngIf="profile">
+  <h1>Welcome to {{profile.user.username}}'s profile</h1>
 
-<div *ngIf="!newPost">
-  <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()">New Post</button>
-</div>
-
-<div class="profileInfo">
-  <!-- profile pic -->
-  <div>
-    <img class="profilePic" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
+  <div *ngIf="!newPost">
+    <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()">New Post</button>
   </div>
 
-  <!-- user information -->
-  <table class="profileTable">
-    <tr>
-      <th>First Name</th>
-      <td>{{profile.firstName}}</td>
-    </tr>
-    <tr>
-      <th>Last Name</th>
-      <td>{{profile.lastName}}</td>
-    </tr>
-    <tr>
-      <th>Location</th>
-      <td>{{profile.location.city}} {{profile.location.state}}</td>
-    </tr>
-    <tr>
-      <th>Bio</th>
-      <td>{{profile.bio}}</td>
-    </tr>
-    <tr *ngIf="profSkills">
-      <th>Skills</th>
-      <div *ngFor="let s of profSkills">
-       <td>{{s.title}}</td>
-      </div>
-    </tr>
-  </table>
+  <div class="profileInfo">
+    <!-- profile pic -->
+    <div>
+      <img class="profilePic" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
+    </div>
 
-  <div *ngIf="!editProfile" class="editProfileButton">
-    <button mat-raised-button color="primary" (click)="setEditProfile()">Edit Profile</button>
-  </div>
+    <!-- user information -->
+    <table class="profileTable">
+      <tr>
+        <th>First Name</th>
+        <td>{{profile.firstName}}</td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td>{{profile.lastName}}</td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td>{{profile.location.city}} {{profile.location.state}}</td>
+      </tr>
+      <tr>
+        <th>Bio</th>
+        <td>{{profile.bio}}</td>
+      </tr>
+      <tr *ngIf="profSkills">
+        <th>Skills</th>
+        <div *ngFor="let s of profSkills">
+          <td>{{s.title}}</td>
+        </div>
+      </tr>
+    </table>
 
-  <div *ngIf="editProfile" class="editProfileTable">
-    <form>
-      <table>
-        <tr>
-          <td>First Name</td>
-          <td><input type="text" name="firstName" [(ngModel)]="editProfile.firstName"></td>
-        </tr>
-        <tr>
-          <td>Last Name</td>
-          <td><input type="text" name="lastName" [(ngModel)]="editProfile.lastName"></td>
-        </tr>
-        <tr>
-          <td>Profile Picture</td>
-          <td><input type="text" name="image" style="width: 300px;" [(ngModel)]="editProfile.imageUrl"></td>
-        </tr>
-        <tr>
-          <td>Bio</td>
-          <td><input type="text" name="bio" style="width: 300px; height: 100px;" [(ngModel)]="editProfile.bio"></td>
-        </tr>
-        <tr>
-          <td>City</td>
-          <td><input type="text" name="city" [(ngModel)]="editProfile.location.city"></td>
-        </tr>
-        <tr>
-          <td>State</td>
-          <td><input type="text" name="state" [(ngModel)]="editProfile.location.state"></td>
-        </tr>
-        <tr>
-          <td>Country</td>
-          <td><input type="text" name="country" [(ngModel)]="editProfile.location.country"></td>
-        </tr>
-        <!-- <tr>
+    <div *ngIf="!editProfile" class="editProfileButton">
+      <button mat-raised-button color="primary" (click)="setEditProfile()">Edit Profile</button>
+    </div>
+
+    <div *ngIf="editProfile" class="editProfileTable">
+      <form>
+        <table>
+          <tr>
+            <td>First Name</td>
+            <td><input type="text" name="firstName" [(ngModel)]="editProfile.firstName"></td>
+          </tr>
+          <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="lastName" [(ngModel)]="editProfile.lastName"></td>
+          </tr>
+          <tr>
+            <td>Profile Picture</td>
+            <td><input type="text" name="image" style="width: 300px;" [(ngModel)]="editProfile.imageUrl"></td>
+          </tr>
+          <tr>
+            <td>Bio</td>
+            <td><input type="text" name="bio" style="width: 300px; height: 100px;" [(ngModel)]="editProfile.bio"></td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td><input type="text" name="city" [(ngModel)]="editProfile.location.city"></td>
+          </tr>
+          <tr>
+            <td>State</td>
+            <td><input type="text" name="state" [(ngModel)]="editProfile.location.state"></td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td><input type="text" name="country" [(ngModel)]="editProfile.location.country"></td>
+          </tr>
+          <!-- <tr>
           <td>Skills</td>
         </tr>
         <tr>
@@ -79,16 +80,16 @@
             <span><input type="checkbox" name="skill{{i}}" value="{{s}}" [(ngModel)]="editProfile.skills"> {{s.title}}</span>
           </div>
         </tr> -->
-      </table>
+        </table>
 
-      <button mat-raised-button color="primary" (click)="editProfile = null">Cancel</button>
-      <button mat-raised-button color="primary" (click)="updateProfile(editProfile)">Update Profile</button>
-      <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)">Deactivate Profile</button>
-    </form>
+        <button mat-raised-button color="primary" (click)="editProfile = null">Cancel</button>
+        <button mat-raised-button color="primary" (click)="updateProfile(editProfile)">Update Profile</button>
+        <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)">Deactivate Profile</button>
+      </form>
+    </div>
   </div>
-</div>
 
-<div *ngIf="newPost" class="newpost">
+  <div *ngIf="newPost" class="newpost">
     <form>
       <!-- <input type="hidden" name="profileId" value="{{profile.id}}" [(ngModel)]="newPost.profile.id"> -->
       <table>
@@ -103,65 +104,65 @@
         </tr>
         <tr>
           <td><button class="btn-outline-primary" (click)="newPost = null">Cancel</button>
-          <button class="btn-outline-primary" (click)="addNewPost()">Add Post</button></td>
+            <button class="btn-outline-primary" (click)="addNewPost()">Add Post</button></td>
         </tr>
       </table>
     </form>
-</div>
+  </div>
 
-<div *ngIf="!editProfile" class="profilePosts">
-  <!-- posts -->
-  <h3>Your Posts</h3>
-  <!-- display a list of user's posts -->
-  <div *ngIf="!selectedPost">
-    <div *ngFor="let post of posts">
+  <div *ngIf="!editProfile" class="profilePosts">
+    <!-- posts -->
+    <h3>Your Posts</h3>
+    <!-- display a list of user's posts -->
+    <div *ngIf="!selectedPost">
+      <div *ngFor="let post of posts">
+        <table>
+          <tr>
+            <td>{{post.title}}</td>
+          </tr>
+          <tr>
+            <td>{{post.createdDate | date:'shortDate'}}</td>
+          </tr>
+        </table>
+        <button class="btn-outline-primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
+      </div>
+    </div>
+
+    <!-- display a post's full details when selected -->
+    <div *ngIf="editPost">
       <table>
         <tr>
-          <td>{{post.title}}</td>
+          <td>Title</td>
+          <td><input type="text" name="title" [(ngModel)]="editPost.title" /></td>
         </tr>
         <tr>
-          <td>{{post.createdDate | date:'shortDate'}}</td>
+          <td>Content</td>
+          <td><input type="text" name="content" style="width: 300px; height: 100px;" [(ngModel)]="editPost.content" /></td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td><input type="text" name="media" [(ngModel)]="editPost.media" /></td>
+        </tr>
+        <tr>
+          <td>Created</td>
+          <td>{{editPost.createdDate}}</td>
+          <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+          <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
+        </tr>
+        <!-- comments -->
+        <td>Comments:</td>
+        <tr>
+          <div *ngFor="let c of editPost.comments">
+            <td>{{c.content}}</td>
+          </div>
         </tr>
       </table>
-      <button class="btn-outline-primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
+      <button class="btn-outline-primary" name="cancel" type="submit" (click)="editPost = null">Cancel</button>
+      <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(editPost)">Update Post</button>
+      <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(editPost.id)">Delete Post</button>
     </div>
-  </div>
 
-  <!-- display a post's full details when selected -->
-  <div *ngIf="editPost">
-    <table>
-      <tr>
-        <td>Title</td>
-        <td><input type="text" name="title" [(ngModel)]="editPost.title" /></td>
-      </tr>
-      <tr>
-        <td>Content</td>
-        <td><input type="text" name="content" style="width: 300px; height: 100px;" [(ngModel)]="editPost.content" /></td>
-      </tr>
-      <tr>
-        <td>Media</td>
-        <td><input type="text" name="media" [(ngModel)]="editPost.media" /></td>
-      </tr>
-      <tr>
-        <td>Created</td>
-        <td>{{editPost.createdDate}}</td>
-          <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
-        <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
-      </tr>
-      <!-- comments -->
-      <td>Comments:</td>
-      <tr>
-        <div *ngFor="let c of editPost.comments">
-          <td>{{c.content}}</td>
-        </div>
-      </tr>
-    </table>
-    <button class="btn-outline-primary" name="cancel" type="submit" (click)="editPost = null">Cancel</button>
-    <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(editPost)">Update Post</button>
-    <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(editPost.id)">Delete Post</button>
-  </div>
-
-  <div *ngIf="selectedPost">
+    <div *ngIf="selectedPost">
       <table>
         <tr>
           <td>Title</td>
@@ -178,7 +179,7 @@
         <tr>
           <td>Created</td>
           <td>{{selectedPost.createdDate}}</td>
-            <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+          <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
           <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
         </tr>
         <!-- comments -->
@@ -194,4 +195,5 @@
       <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete Post</button>
     </div>
 
+  </div>
 </div>
