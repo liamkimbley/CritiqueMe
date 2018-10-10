@@ -54,8 +54,6 @@ export class PostComponent implements OnInit, OnDestroy {
   mediaUrl: String = null;
   editComment: Comment = null;
   selectedComment: Comment = null;
-  selCom: Comment = null;
-  vote: Vote = new Vote();
 
   // Sidebar
   @ViewChild('sidenav')
@@ -230,22 +228,10 @@ export class PostComponent implements OnInit, OnDestroy {
       );
     }
 
-    setVote = function(input: boolean, id: number) {
-      this.vote.vote = input;
-      this.commentService.show(id).subscribe(
+    addVote(vote: boolean, id: number) {
+      const newVote = new Vote(vote);
+      this.commentService.createVote(newVote, id).subscribe(
         data => {
-          this.selCom = data;
-        },
-        err => console.error('Observer recieved an error: ' + err)
-      );
-      this.addVote();
-    };
-
-    addVote() {
-      this.commentService.createVote(this.vote, this.selCom).subscribe(
-        data => {
-          this.vote = new Vote();
-          this.selCom = null;
           this.reloadComments();
         },
         err => console.error('Observer recieved an error: ' + err)

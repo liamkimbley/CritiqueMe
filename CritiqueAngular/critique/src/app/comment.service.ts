@@ -117,7 +117,7 @@ export class CommentService {
     );
   }
 
-  public createVote(vote: Vote, com: Comment) {
+  public createVote(vote: Vote, id: number) {
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({
@@ -125,9 +125,8 @@ export class CommentService {
           'Authorization': `Basic ${this.auth.getToken()}`
         })
       };
-      console.log(com);
       console.log(vote);
-      return this.http.post<Vote>(this.commentUrl + com.id + '/votes', vote, httpOptions).pipe(
+      return this.http.post<Vote>(this.commentUrl + id + '/votes', vote, httpOptions).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);
