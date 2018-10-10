@@ -27,16 +27,15 @@
   float: left;
   margin-left: 3em;
   width: 200px;
-  height: 200px;
 }
 
 .editProfileButton {
   margin-left: 3em;
 }
 
-.editProfileTable {
+/* .editProfileTable {
   margin-left: 3em;
-}
+} */
 
 .addPostButton {
   position: absolute;

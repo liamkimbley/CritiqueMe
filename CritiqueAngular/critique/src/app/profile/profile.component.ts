@@ -12,6 +12,7 @@ import { PostService } from '../post.service';
 import { Post } from '../models/post';
 import { Comment } from '../models/comment';
 import { NgModel, NgForm } from '@angular/forms';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,6 @@ import { NgModel, NgForm } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   profile: Profile = null;
   editProfile: Profile = null;
   selectedUser: User = null;
@@ -33,18 +33,50 @@ export class ProfileComponent implements OnInit {
   post: Post = new Post();
   editPost: Post = null;
   newPost: Post = null;
+  // Modal
+  closeResult: string;
+  // Modal
 
-  constructor(private userServ: UserService,
-              private profService: ProfileService,
-              private postService: PostService,
-              private auth: AuthService,
-              private router: Router) { }
+  constructor(
+    private userServ: UserService,
+    private profService: ProfileService,
+    private postService: PostService,
+    private auth: AuthService,
+    private router: Router,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit() {
     // this.reload();
-   this.getOneProfile();
-   this.getSkills();
+    this.getOneProfile();
+    this.getSkills();
   }
+
+  // Modal
+
+  open(content) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .result.then(
+        result => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        reason => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  // Modal
 
   // reload = function() {
   //   this.profService.index().subscribe(
@@ -59,14 +91,17 @@ export class ProfileComponent implements OnInit {
 
   getOneProfile = function() {
     this.profService.show().subscribe(
-      data => { this.profile = data;
-                this.selectedUser = data.user;
-                this.profSkills = data.skills;
-                console.log(data);
-                this.loadPosts();
+      data => {
+        this.profile = data;
+        this.selectedUser = data.user;
+        this.profSkills = data.skills;
+        console.log(data);
+        this.loadPosts();
       },
-      err => {console.error('Observer got an error: ' + err.status); }
-      );
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
+    );
   };
 
   displayTable = function() {
@@ -86,8 +121,11 @@ export class ProfileComponent implements OnInit {
         console.log(data);
 
         this.getOneProfile();
-        this.editProfile = null; },
-      err => {console.error('Observer got an error: ' + err.status); }
+        this.editProfile = null;
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
     );
   };
 
@@ -95,8 +133,11 @@ export class ProfileComponent implements OnInit {
     this.profService.destroy(id).subscribe(
       data => {
         this.auth.logout();
-        this.router.navigateByUrl('login'); },
-      err => {console.error('Observer got an error: ' + err.status); }
+        this.router.navigateByUrl('login');
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
     );
   };
 
@@ -110,8 +151,10 @@ export class ProfileComponent implements OnInit {
         console.log(data);
         this.posts = data;
       },
-      err => {console.error('Observer got an error: ' + err.status); }
-      );
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
+    );
   };
 
   displayPost = function(post: Post) {
@@ -126,11 +169,15 @@ export class ProfileComponent implements OnInit {
 
   addNewPost = function() {
     this.postService.create(this.newPost).subscribe(
-      data => {this.getOneProfile();
-               this.newPost = null; },
-      err => {console.error('Observer got an error: ' + err.status); }
-      );
-      console.log(this.newPost);
+      data => {
+        this.getOneProfile();
+        this.newPost = null;
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
+    );
+    console.log(this.newPost);
   };
 
   updatePost = function(post: NgModel) {
@@ -139,8 +186,11 @@ export class ProfileComponent implements OnInit {
       data => {
         this.profile = data;
         this.editPost = null;
-        this.getOneProfile(); },
-      err => {console.error('Observer got an error: ' + err.status); }
+        this.getOneProfile();
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
     );
   };
 
@@ -148,8 +198,11 @@ export class ProfileComponent implements OnInit {
     this.postService.destroy(id).subscribe(
       data => {
         this.loadPosts();
-      this.selectedPost = null; },
-      err => {console.error('Observer got an error: ' + err.status); }
+        this.selectedPost = null;
+      },
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
     );
   };
 
@@ -159,11 +212,9 @@ export class ProfileComponent implements OnInit {
         this.skills.push(...data);
         console.log(data);
       },
-        err => {console.error('Observer got an error: ' + err.status); }
-      );
+      err => {
+        console.error('Observer got an error: ' + err.status);
+      }
+    );
   };
-
-  // get comments for a post
-
-
 }

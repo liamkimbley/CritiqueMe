@@ -36,43 +36,39 @@
         </div>
       </tr>
     </table>
-
+    <!-- user information -->
+    <!-- Edit profile -->
     <div *ngIf="!editProfile" class="editProfileButton">
-      <button mat-raised-button color="primary" (click)="setEditProfile()">Edit Profile</button>
+      <button mat-raised-button color="primary" (click)="setEditProfile()" (click)="open(content)">Edit Profile</button>
     </div>
-
-    <div *ngIf="editProfile" class="editProfileTable">
-      <form>
-        <table>
-          <tr>
-            <td>First Name</td>
-            <td><input type="text" name="firstName" [(ngModel)]="editProfile.firstName"></td>
-          </tr>
-          <tr>
-            <td>Last Name</td>
-            <td><input type="text" name="lastName" [(ngModel)]="editProfile.lastName"></td>
-          </tr>
-          <tr>
-            <td>Profile Picture</td>
-            <td><input type="text" name="image" style="width: 300px;" [(ngModel)]="editProfile.imageUrl"></td>
-          </tr>
-          <tr>
-            <td>Bio</td>
-            <td><input type="text" name="bio" style="width: 300px; height: 100px;" [(ngModel)]="editProfile.bio"></td>
-          </tr>
-          <tr>
-            <td>City</td>
-            <td><input type="text" name="city" [(ngModel)]="editProfile.location.city"></td>
-          </tr>
-          <tr>
-            <td>State</td>
-            <td><input type="text" name="state" [(ngModel)]="editProfile.location.state"></td>
-          </tr>
-          <tr>
-            <td>Country</td>
-            <td><input type="text" name="country" [(ngModel)]="editProfile.location.country"></td>
-          </tr>
-          <!-- <tr>
+    <ng-template #content let-modal>
+      <div *ngIf="editProfile" class="editProfileTable">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="editProfile = null">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="firstName">First Name:</label>
+              <input id="firstName" class="form-control" name="firstName" type="text" [(ngModel)]="editProfile.firstName">
+              <label for="lastName">Last Name:</label>
+              <input id="lastName" class="form-control" name="lastName" type="text" [(ngModel)]="editProfile.lastName">
+              <label for="image">Profile Picture:</label>
+              <input id="image" class="form-control" name="image" type="text" [(ngModel)]="editProfile.imageUrl">
+              <label for="bio">Bio:</label>
+              <textarea id="bio" class="form-control" name="bio" [(ngModel)]="editProfile.bio"></textarea>
+              <label for="city">City:</label>
+              <input id="city" class="form-control" name="city" type="text" [(ngModel)]="editProfile.location.city">
+              <label for="state">State:</label>
+              <input id="state" class="form-control" name="state" type="text" [(ngModel)]="editProfile.location.state">
+              <label for="country">Country:</label>
+              <input id="country" class="form-control" name="country" type="text" [(ngModel)]="editProfile.location.country">
+            </div>
+            <!--
+        <tr>
           <td>Skills</td>
         </tr>
         <tr>
@@ -80,15 +76,17 @@
             <span><input type="checkbox" name="skill{{i}}" value="{{s}}" [(ngModel)]="editProfile.skills"> {{s.title}}</span>
           </div>
         </tr> -->
-        </table>
-
-        <button mat-raised-button color="primary" (click)="editProfile = null">Cancel</button>
-        <button mat-raised-button color="primary" (click)="updateProfile(editProfile)">Update Profile</button>
-        <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)">Deactivate Profile</button>
-      </form>
-    </div>
+            <div class="modal-footer">
+              <button mat-raised-button color="primary" (click)="editProfile = null" (click)="modal.dismiss('Cross click')">Cancel</button>
+              <button mat-raised-button color="primary" (click)="updateProfile(editProfile)" (click)="modal.close('Save click')">Save</button>
+              <!-- <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)" >Deactivate Profile</button> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-template>
   </div>
-
+  <!-- Edit profile -->
   <div *ngIf="newPost" class="newpost">
     <form>
       <!-- <input type="hidden" name="profileId" value="{{profile.id}}" [(ngModel)]="newPost.profile.id"> -->
