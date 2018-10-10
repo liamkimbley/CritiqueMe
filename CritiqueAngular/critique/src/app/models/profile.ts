@@ -20,7 +20,7 @@ export class Profile {
     image?: string,
     loc?: Location,
     user?: User,
-    skills?: Expertise
+    skills?: Expertise[]
   ) {
     this.id = id;
     this.firstName = firstName;
