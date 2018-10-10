@@ -19,7 +19,6 @@ import { HomeService } from './home.service';
 import { PostService } from './post.service';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommentComponent } from './comment/comment.component';
 import { CategoryPipe } from './category.pipe';
 import {
   MatAutocompleteModule,
@@ -58,6 +57,8 @@ import {
   MatTooltipModule,
   MatTreeModule
 } from '@angular/material';
+import { SearchComponent } from './search/search.component';
+import { SearchService } from './search.service';
 
 @NgModule({
   declarations: [
@@ -69,8 +70,8 @@ import {
     RegisterComponent,
     ProfileComponent,
     PostComponent,
-    CommentComponent,
-    CategoryPipe
+    CategoryPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +122,8 @@ import {
     PostService,
     ProfileService,
     AuthService,
-    DatePipe
+    DatePipe,
+    SearchService
   ],
   bootstrap: [AppComponent, NavigationComponent]
 })

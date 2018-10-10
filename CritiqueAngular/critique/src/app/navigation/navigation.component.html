@@ -14,6 +14,15 @@
       <!-- *ngIf no user is not logged in -->
       <li class="nav-item"><a class="nav-link text-light" [routerLink]="['/profile']" *ngIf="navBarCheckLogin()">Profile</a></li>
       <li class="nav-item"><a class="nav-link text-light" [routerLink]="['/post']" *ngIf="navBarCheckLogin()">Posts</a></li>
+      <li class="nav-item"><a class="nav-link text-light" [routerLink]="['/search']" *ngIf="navBarCheckLogin()">Search</a></li>
+      <li class="searchBox"><input type="text" name="profileSearch"></li>
+      <li class="searchBox">
+          <select>
+              <option>What would you like to search?</option>
+              <option value="profiles">Profiles</option>
+              <option value="posts">Posts</option>
+            </select>
+      </li>
       <li *ngIf="!navBarCheckLogin()" class="nav-item"><a class="nav-link text-light" [routerLink]="['/register']">Sign
           Up</a></li>
     </ul>
