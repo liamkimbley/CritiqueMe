@@ -1,8 +1,6 @@
 package com.skilldistillery.critique.tests;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -33,17 +31,17 @@ public class ProfileServiceTests {
 		assertEquals("test", prof.getFirstName());
 	}
 	
-//	@Test // This will fail until we fix the null skills issue and can use the join fetch query
+	@Test // This will fail until we fix the null skills issue and can use the join fetch query
 	public void test_get_expertise_list_for_profile() {
-		Profile prof = profService.queryByUsernameWithUser("mjones");
+		Profile prof = profService.queryByUsernameWithUser("test");
 		assertNotNull(prof.getSkills());
 		assertNotEquals(0, prof.getSkills().size());
-		assertEquals(5, prof.getSkills().get(0).getId());
-		assertEquals("Music", prof.getSkills().get(0).getTitle());
+		assertEquals(1, prof.getSkills().get(0).getId());
+		assertEquals("None", prof.getSkills().get(0).getTitle());
 	}
 	
 	
-//	@Test
+	@Test
 	public void test_update_updates_location_and_skills() {
 		Profile prof = profService.queryByUsernameWithUser("test");
 		List<Expertise> skills = prof.getSkills();
@@ -56,10 +54,12 @@ public class ProfileServiceTests {
 		l.setCountry("Morrowind");
 		prof.setLocation(l);
 		prof.setBio("I was an adventurer once... Then I took an arrow to the knee.");
+		prof.setFirstName("test");
 		Profile updatedProf = profService.update(1, prof);
 		assertEquals("I was an adventurer once... Then I took an arrow to the knee.", updatedProf.getBio());
 		assertNotEquals(0, updatedProf.getSkills().size());
 		assertEquals("Windhelm", updatedProf.getLocation().getCity());
+		assertTrue(prof.getSkills().contains(e));
 	}
 
 }

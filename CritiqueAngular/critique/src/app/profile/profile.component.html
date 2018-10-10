@@ -71,14 +71,14 @@
           <td>Country</td>
           <td><input type="text" name="country" [(ngModel)]="editProfile.location.country"></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>Skills</td>
         </tr>
         <tr>
-          <div *ngFor="let s of skills">
-            <span><input type="checkbox" name="skills" value="{{s}}" [(ngModel)]="editProfile.skills"> {{s.title}}</span>
+          <div *ngFor="let s of skills; let i = index">
+            <span><input type="checkbox" name="skill{{i}}" value="{{s}}" [(ngModel)]="editProfile.skills"> {{s.title}}</span>
           </div>
-        </tr>
+        </tr> -->
       </table>
 
       <button mat-raised-button color="primary" (click)="editProfile = null">Cancel</button>

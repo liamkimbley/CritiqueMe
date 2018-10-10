@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,7 +53,7 @@ public class Profile {
 	@OneToMany(mappedBy = "profile", cascade = CascadeType.PERSIST)
 	private List<Post> posts;
 
-	@ManyToMany(mappedBy = "profiles")
+	@ManyToMany(mappedBy = "profiles", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private List<Expertise> skills;
 
 	/* Fields */
