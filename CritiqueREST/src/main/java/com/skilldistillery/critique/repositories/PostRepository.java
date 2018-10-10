@@ -2,6 +2,7 @@ package com.skilldistillery.critique.repositories;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,8 +27,8 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	public List<Post> queryForPostsByCategory(@Param("cat") Category cat);
 
 	@Query("SELECT p FROM Post p JOIN FETCH p.categories")
-	public List<Post> queryForPostsWithCategories();
+	public Set<Post> queryForPostsWithCategories();
 
 	@Query("SELECT p FROM Post p JOIN FETCH p.comments WHERE p.profile.id = :pid")
-	public List<Post> queryForPostWithCommentsByProfileId(@Param("pid") Integer pid);
+	public Set<Post> queryForPostWithCommentsByProfileId(@Param("pid") Integer pid);
 }

@@ -1,8 +1,10 @@
 package com.skilldistillery.critique.services;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -66,14 +68,14 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> findAllPosts() {
-		List<Post> posts = postRepo.queryForPostsWithCategories();
+	public Set<Post> findAllPosts() {
+		Set<Post> posts = postRepo.queryForPostsWithCategories();
 		if (posts.isEmpty()) {
 			return null;
 		}
-
-		for (int k = 0; k < posts.size(); k++) {
-			List<Comment> comments = comRepo.findByPostId(posts.get(k).getId());
+		Iterator<Post> it = posts.iterator();
+		while (it.hasNext()) {
+			List<Comment> comments = comRepo.findByPostId(it.next().getId());
 			if (!comments.isEmpty()) {
 				for (int i = 0; i < comments.size(); i++) {
 					int totalPoints = 0;

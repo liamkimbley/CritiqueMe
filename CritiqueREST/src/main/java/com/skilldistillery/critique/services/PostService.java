@@ -2,12 +2,13 @@ package com.skilldistillery.critique.services;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import com.skilldistillery.critique.entities.Post;
 
 public interface PostService {
 
-	public List<Post> findAllPosts();
+	public Set<Post> findAllPosts();
 
 	public List<Post> findPostsByCategoryId(Integer id);
 
