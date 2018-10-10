@@ -106,9 +106,9 @@
                 </mat-card-content>
                 <mat-card-content>
                     <input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
-                     alt="upvote"/>
+                     alt="upvote" (click)="setVote(true, c.id)"/>
                     <input class="downvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
-                      alt="downvote" />
+                      alt="downvote" (click)="setVote(false, c.id)"/>
                     <input class="updateImg" type="image" src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/button_blue_repeat.png"
                       alt="update" (click)="displayComment(c)"/>
                     <input class="deleteImg" type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/120px-Crystal_button_cancel.svg.png"

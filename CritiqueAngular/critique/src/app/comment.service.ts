@@ -1,3 +1,4 @@
+import { Vote } from './models/vote';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -26,9 +27,28 @@ export class CommentService {
           console.log(err);
           return throwError('Error: ' + err.status);
         })
-        );
+      );
     } else {
         this.router.navigateByUrl('login');
+    }
+  }
+
+  public show(id: number): Observable<Comment> {
+    if (this.auth.checkLogin()) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': `Basic ${this.auth.getToken()}`
+        })
+      };
+      return this.http.get<Comment>(this.commentUrl + id, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error: ' + err.status);
+        })
+      );
+    } else {
+      this.router.navigateByUrl('login');
     }
   }
 
@@ -97,7 +117,24 @@ export class CommentService {
     );
   }
 
-  public upvote() {
-
+  public createVote(vote: Vote, com: Comment) {
+    if (this.auth.checkLogin()) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': `Basic ${this.auth.getToken()}`
+        })
+      };
+      console.log(com);
+      console.log(vote);
+      return this.http.post<Vote>(this.commentUrl + com.id + '/votes', vote, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error: ' + err.status);
+        })
+      );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 }

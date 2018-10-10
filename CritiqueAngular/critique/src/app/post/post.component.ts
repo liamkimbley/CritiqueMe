@@ -1,3 +1,5 @@
+import { VoteKey } from './../models/vote-key';
+import { Vote } from './../models/vote';
 import { Post } from '../models/post';
 import { DatePipe } from '@angular/common';
 import { PostService } from './../post.service';
@@ -52,6 +54,8 @@ export class PostComponent implements OnInit, OnDestroy {
   mediaUrl: String = null;
   editComment: Comment = null;
   selectedComment: Comment = null;
+  selCom: Comment = null;
+  vote: Vote = new Vote();
 
   // Sidebar
   @ViewChild('sidenav')
@@ -223,6 +227,28 @@ export class PostComponent implements OnInit, OnDestroy {
         this.comments = data;
       },
       err => console.error('Observer recieved an error: ' + err)
+      );
+    }
+
+    setVote = function(input: boolean, id: number) {
+      this.vote.vote = input;
+      this.commentService.show(id).subscribe(
+        data => {
+          this.selCom = data;
+        },
+        err => console.error('Observer recieved an error: ' + err)
+      );
+      this.addVote();
+    };
+
+    addVote() {
+      this.commentService.createVote(this.vote, this.selCom).subscribe(
+        data => {
+          this.vote = new Vote();
+          this.selCom = null;
+          this.reloadComments();
+        },
+        err => console.error('Observer recieved an error: ' + err)
     );
   }
 

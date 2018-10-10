@@ -22,7 +22,7 @@ public class VoteController {
 	@Autowired
 	private VoteService vs;
 	
-	@RequestMapping(path="comment/{cid}/votes", method=RequestMethod.GET)
+	@RequestMapping(path="comments/{cid}/votes", method=RequestMethod.GET)
 	public List<Vote> findAllVotesForComment(@PathVariable Integer cid) {
 		return vs.findAllVotesByCommentId(cid);
 	}
@@ -32,12 +32,12 @@ public class VoteController {
 //		
 //	}
 	
-	@RequestMapping(path="comment/{cid}/vote", method=RequestMethod.POST)
+	@RequestMapping(path="comments/{cid}/votes", method=RequestMethod.POST)
 	public Vote createVote(@PathVariable Integer cid, @RequestBody Vote vote) {
 		return vs.createVote(vote, cid, username);
 	}
 
-	@RequestMapping(path="comment/{cid}/vote/{vid}", method=RequestMethod.PUT)
+	@RequestMapping(path="comments/{cid}/votes/{vid}", method=RequestMethod.PUT)
 	public Vote updateVote(@PathVariable Integer cid, @PathVariable Integer vid, @RequestBody Vote vote) {
 		return vs.updateVote(vote, vid, cid);
 	}
