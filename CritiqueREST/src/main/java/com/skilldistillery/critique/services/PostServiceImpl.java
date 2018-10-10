@@ -95,7 +95,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post create(Post post, Integer id) {
+	public Post create(String username, Post post, Integer id) {
 		Post p = new Post();
 		Optional<Profile> pr = profRepo.findById(id);
 		if (pr.isPresent()) {
@@ -128,7 +128,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post update(Integer id, Post post) {
+	public Post update(String username, Integer id, Post post) {
 		Optional<Post> op = postRepo.findById(id);
 
 		if (op.isPresent()) {
@@ -152,7 +152,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post replace(Integer id, Post post) {
+	public Post replace(String username, Integer id, Post post) {
 		Optional<Post> op = postRepo.findById(id);
 
 		if (op.isPresent()) {
@@ -176,7 +176,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean delete(String username, Integer id) {
 		try {
 			List<Comment> coms = comRepo.findByPostId(id);
 			for (int i = 0; i < coms.size(); i++) {
@@ -192,7 +192,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> findPostsByProfileId(Integer pid) {
+	public List<Post> findPostsByProfileId(String username, Integer pid) {
 		return postRepo.findByProfileId(pid);
 		
 	}

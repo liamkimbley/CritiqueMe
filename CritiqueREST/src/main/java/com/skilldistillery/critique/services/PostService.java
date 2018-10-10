@@ -15,15 +15,15 @@ public interface PostService {
 
 	public Post findPostById(Integer id);
 
-	public List<Post> findPostsByProfileId(Integer pid);
+	public List<Post> findPostsByProfileId(String username, Integer pid);
 
-	public Post create(Post post, Integer id);
+	public Post create(String username, Post post, Integer id);
 
-	public Post update(Integer id, Post post);
+	public Post update(String username, Integer id, Post post);
 
-	public Post replace(Integer id, Post post);
+	public Post replace(String username, Integer id, Post post);
 
-	public boolean delete(Integer id);
+	public boolean delete(String username, Integer id);
 
 	public List<Post> findPostsByCreateDate(LocalDate date);
 }

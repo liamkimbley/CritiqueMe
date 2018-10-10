@@ -127,7 +127,7 @@ public class ProfileController {
 	
 	@RequestMapping(path = "profile/{pid}/posts", method = RequestMethod.GET)
 	public List<Post> findPostsByProfile(@PathVariable Integer pid, Principal principal, HttpServletResponse res, HttpServletRequest req) {
-		List<Post> posts = postServ.findPostsByProfileId(pid);
+		List<Post> posts = postServ.findPostsByProfileId(principal.getName(), pid);
 		if (!posts.isEmpty()) {
 			res.setStatus(200);
 			return posts;
@@ -138,7 +138,7 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(path = "profile/{id}", method = RequestMethod.PUT)
-	public Profile updateProfile(@RequestBody Profile p, @PathVariable Integer id, HttpServletResponse res, HttpServletRequest req) {
+	public Profile updateProfile(@RequestBody Profile p, @PathVariable Integer id, HttpServletResponse res, HttpServletRequest req, Principal principal) {
 		Profile prof = ps.update(id, p);
 		if (prof != null) {
 			res.setStatus(200);
