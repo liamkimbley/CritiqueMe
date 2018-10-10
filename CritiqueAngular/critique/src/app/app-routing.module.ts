@@ -27,11 +27,11 @@ const routes: Routes = [
   { path: 'categories/:id/posts', component: PostComponent },
   { path: 'posts/:id', component: PostComponent },
   { path: 'posts/title/:title', component: PostComponent },
-  // { path: 'posts/:id/comments', component: CommentComponent },
-  // { path: 'comments/:id', component: CommentComponent },
-  // { path: 'comments/:cid/votes', component: CommentComponent },
-  // { path: 'comments/:cid/vote/:vid', component: CommentComponent },
-  // { path: 'comments/:cid/vote', component: CommentComponent },
+  { path: 'posts/:id/comments', component: PostComponent },
+  { path: 'comments/:id', component: PostComponent },
+  { path: 'comments/:cid/votes', component: PostComponent },
+  { path: 'comments/:cid/vote/:vid', component: PostComponent },
+  { path: 'comments/:cid/vote', component: PostComponent },
   { path: 'search', component: SearchComponent }
   // { path: '**', component: NotFoundComponent }
   // make a not found component later
