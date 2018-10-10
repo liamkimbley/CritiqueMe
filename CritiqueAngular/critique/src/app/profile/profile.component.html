@@ -28,9 +28,9 @@
       <th>Bio</th>
       <td>{{profile.bio}}</td>
     </tr>
-    <tr *ngIf="profile.skills">
+    <tr *ngIf="skills">
       <th>Skills</th>
-      <div *ngFor="let s of profile.skills">
+      <div *ngFor="let s of skills">
        <td>{{s.title}}</td>
       </div>
     </tr>

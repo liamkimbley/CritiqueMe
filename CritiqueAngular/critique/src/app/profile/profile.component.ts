@@ -60,6 +60,7 @@ export class ProfileComponent implements OnInit {
     this.profService.show().subscribe(
       data => { this.profile = data;
                 this.selectedUser = data.user;
+                this.skills = data.skills;
                 console.log(data);
                 this.loadPosts();
       },
