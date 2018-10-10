@@ -191,9 +191,10 @@ export class PostComponent implements OnInit, OnDestroy {
     this.editComment = Object.assign({}, this.selectedComment);
   };
 
-  updateComment = function(form: NgForm, id: number) {
-    this.commentService.update(form.value, id).subscribe(
+  updateComment = function() {
+    this.commentService.update(this.selectedComment, this.selectedComment.id).subscribe(
       data => {
+        this.selectedComment = data;
         this.postService.show(this.selected.id).subscribe(
           data2 => {
             this.selected = data2;
