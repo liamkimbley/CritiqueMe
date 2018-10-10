@@ -5,8 +5,9 @@
 
 .profileTable {
   float: left;
-  margin-left: 3em;
+  /* margin-left: 3em; */
   border-collapse: collapse;
+  border-style: ridge;
 }
 
 .profileTable td,
@@ -27,11 +28,21 @@ th {
   float: right;
   margin-right: 3em;
 }
-
-.profilePic {
+.profileInfo {
   float: left;
-  margin-left: 3em;
+}
+.profilePic {
+  /* float: left; */
+  margin-left: 30px;
+  padding-top: 25px;
   width: 200px;
+}
+.profileContent {
+  position: absolute;
+}
+.buttons {
+  padding: 10px;
+  text-align: center;
 }
 
 .editProfileButton {

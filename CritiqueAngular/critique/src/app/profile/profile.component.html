@@ -1,46 +1,51 @@
 <div *ngIf="profile">
   <h1>Welcome, {{profile.user.username}}</h1>
 
-  <div *ngIf="!newPost">
-    <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
+  <div class="buttons">
+    <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
       Post</button>
+    <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
+      (click)="open(content)">Edit Profile</button>
   </div>
 
   <div class="profileInfo">
-    <!-- profile pic -->
-    <div>
-      <img class="profilePic" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
-    </div>
-    <!-- **************** User information **************** -->
-    <table class="profileTable">
-      <tr>
-        <th>First Name</th>
-        <td>{{profile.firstName}}</td>
-      </tr>
-      <tr>
-        <th>Last Name</th>
-        <td>{{profile.lastName}}</td>
-      </tr>
-      <tr>
-        <th>Location</th>
-        <td>{{profile.location.city}} {{profile.location.state}}</td>
-      </tr>
-      <tr>
-        <th>Bio</th>
-        <td>{{profile.bio}}</td>
-      </tr>
-      <tr *ngIf="profSkills">
-        <th>Skills</th>
-        <div *ngFor="let s of profSkills">
-          <td>{{s.title}}</td>
+    <div class="profileHeader">
+      <!-- profile pic -->
+      <div>
+        <img class="profilePic" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
+      </div>
+      <!-- **************** User information **************** -->
+      <div class="profileContent">
+        <div class="container">
+          <table class="profileTable">
+            <tr>
+              <th>First Name</th>
+              <td>{{profile.firstName}}</td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td>{{profile.lastName}}</td>
+            </tr>
+            <tr>
+              <th>Location</th>
+              <td>{{profile.location.city}} {{profile.location.state}}</td>
+            </tr>
+            <tr>
+              <th>Bio</th>
+              <td>{{profile.bio}}</td>
+            </tr>
+            <tr *ngIf="profSkills">
+              <th>Skills</th>
+              <div *ngFor="let s of profSkills">
+                <td>{{s.title}}</td>
+              </div>
+            </tr>
+          </table>
         </div>
-      </tr>
-    </table>
-    <!-- **************** User information **************** -->
-    <!-- **************** Edit profile Modal **************** -->
-    <div *ngIf="!editProfile" class="editProfileButton">
-      <button mat-raised-button color="primary" (click)="setEditProfile()" (click)="open(content)">Edit Profile</button>
+      </div>
+      <!-- **************** User information **************** -->
     </div>
+    <!-- **************** Edit profile Modal **************** -->
     <ng-template #content let-modal>
       <div *ngIf="editProfile" class="editProfileTable">
         <div class="modal-header">
