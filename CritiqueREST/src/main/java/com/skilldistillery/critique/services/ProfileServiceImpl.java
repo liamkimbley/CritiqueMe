@@ -85,12 +85,11 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public Profile queryByUsernameWithUser(String username) {
-		Profile prof = profRepo.queryByUsernameWithUser(username);
-//		Profile prof = profRepo.queryByUsernameWithUserWithSkills(username);
+//		Profile prof = profRepo.queryByUsernameWithUser(username);
+		Profile prof = profRepo.queryByUsernameWithUserWithSkills(username);
 //		if(prof.getSkills() == null || prof.getSkills().isEmpty()) {
 //			prof = profRepo.queryByUsernameWithUser(username);
 //		}
-
 		return prof;
 	}
 

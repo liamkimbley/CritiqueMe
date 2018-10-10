@@ -19,7 +19,7 @@ public interface ProfileService {
 
 	public List<Profile> queryByCountryWithLocation(String country);
 
-	public Profile queryByUsernameWithUser(String username);
+	public Profile queryByUsernameWithUser	(String username);
 	
 	public Profile findProfileById(int id);
 
