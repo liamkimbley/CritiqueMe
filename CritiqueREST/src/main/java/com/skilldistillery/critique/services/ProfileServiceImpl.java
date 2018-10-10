@@ -85,15 +85,12 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public Profile queryByUsernameWithUser(String username) {
-		Profile prof = null;
-		if (profRepo.queryByUsernameWithUserWithSkills(username).getSkills().isEmpty()) {
-			prof = profRepo.queryByUsernameWithUser(username);
+		Profile prof = profRepo.queryByUsernameWithUser(username);
+//		Profile prof = profRepo.queryByUsernameWithUserWithSkills(username);
+//		if(prof.getSkills() == null || prof.getSkills().isEmpty()) {
+//			prof = profRepo.queryByUsernameWithUser(username);
+//		}
 
-		}
-		if (!profRepo.queryByUsernameWithUserWithSkills(username).getSkills().isEmpty()) {
-			prof = profRepo.queryByUsernameWithUserWithSkills(username);
-			
-		}
 		return prof;
 	}
 
@@ -110,6 +107,8 @@ public class ProfileServiceImpl implements ProfileService {
 	//
 	public Profile create(Profile createdProfile) {
 		Profile newProfile = new Profile();
+		Expertise defaultSkill = expServ.findOneById(1);
+		List<Expertise> defaultSkills = new ArrayList<>();
 		newProfile.setFirstName(createdProfile.getFirstName());
 		newProfile.setLastName(createdProfile.getLastName());
 		if (createdProfile.getBio() != null) {
@@ -117,6 +116,10 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		if (createdProfile.getLocation() != null) {
 			newProfile.setLocation(createdProfile.getLocation());
+		}
+		if (createdProfile.getSkills() == null) {
+			defaultSkills.add(defaultSkill);
+			newProfile.setSkills(defaultSkills);
 		}
 		newProfile.setUser((createdProfile.getUser()));
 		return profRepo.saveAndFlush(newProfile);
