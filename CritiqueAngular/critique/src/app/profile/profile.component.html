@@ -1,16 +1,10 @@
 <div *ngIf="profile">
   <mat-toolbar>
-    <span>
       <h1>Welcome, {{profile.user.username}}</h1>
-    </span>
-    <span class="middleToolbar"></span>
-    <span class="rightToolbar">
       <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
         (click)="open(content)">Edit Profile</button>
       <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
         Post</button>
-    </span>
-  </mat-toolbar>
   <!-- <div *ngIf="!newPost">
       <button class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
         Post</button>

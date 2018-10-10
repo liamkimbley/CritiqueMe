@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +31,7 @@ public class PostServiceTests {
 	
 	@Test
 	public void test_findAllPosts() {
-		List<Post> posts = postService.findAllPosts();
+		Set<Post> posts = postService.findAllPosts();
 		assertNotNull(posts);
 		assertNotEquals(0, posts.size());
 	}
