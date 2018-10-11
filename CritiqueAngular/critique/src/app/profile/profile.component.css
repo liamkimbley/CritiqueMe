@@ -1,3 +1,10 @@
+.buttons {
+  padding: 10px;
+  text-align: center;
+}
+
+/* *********** Profile Info *********** */
+
 .profileInfo {
   /* float: left; */
   /* margin-left: 3em; */
@@ -27,57 +34,75 @@ th {
   /* float: right; */
   /* margin-right: 3em; */
 }
+
 .profileInfo {
   float: left;
 }
+
 .profilePic {
   width: 200px;
 }
+
 .profileContent {
   padding-top: 50px;
   padding-right: 15px;
   position: absolute;
 }
-.buttons {
-  padding: 10px;
-  text-align: center;
-}
+
 
 .editProfileButton {
   margin-top: 7em;
   margin-left: 3em;
 }
 
+/* *********** Profile Info *********** */
+
+/* *********** Profile Posts *********** */
+
 .profilePostCards {
   padding: 3px;
 }
+
 mat-card {
   padding: 20px;
 }
 
 mat-card-title {
   font-size: medium;
-  margin-bottom: 0px;
+  margin-bottom: 1px;
 }
+
 mat-card-subtitle {
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: x-small;
+  font-style: italic;
 }
+
 mat-card-content {
-  font-size: smaller;
+  font-size: small;
+  margin-top: 5px;
+  float: left;
 }
-/* .addPostButton {
-  position: absolute;
-  margin-left: 50%;
-  margin-right: 50%;
-  width: 300px;
-  height: 75px;
-} */
-.rightToolbar {
-  flex: auto 1 1;
+
+p {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-left: 25px;
 }
-.middleToolbar {
-  flex: 1 1 auto;
+
+mat-card-actions {
+  text-align: right;
+  margin-top: 5px;
 }
-/* .newpost {
-} */
+
+.addPostButton {
+  margin-left: 3px;
+  margin-bottom: 5px;
+  text-align: right;
+}
+
+h3 {
+  text-align: center;
+}
+/* *********** Profile Posts *********** */
