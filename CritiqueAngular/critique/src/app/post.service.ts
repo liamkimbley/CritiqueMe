@@ -49,7 +49,7 @@ export class PostService {
       );
       return this.http
         .get<Post[]>(
-          environment.baseUrl + 'api/profile/' + id + '/posts?sorted=true', { headers })
+          environment.baseUrl + 'api/profile/' + id, { headers })
         .pipe(
           catchError((err: any) => {
             console.log(err);
@@ -62,7 +62,7 @@ export class PostService {
   }
 
   public indexCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.catUrl + '?sorted=true').pipe(
+    return this.http.get<Category[]>(this.catUrl).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving categories: ' + 'Status: ' + err);
@@ -72,7 +72,7 @@ export class PostService {
 
   public indexPostsByCategoryId(id: number): Observable<Category[]> {
     return this.http
-      .get<Category[]>(this.catUrl + '/' + id + '/posts' + '?sorted=true')
+      .get<Category[]>(this.catUrl + '/' + id + '/posts')
       .pipe(
         catchError((err: any) => {
           console.log(err);
