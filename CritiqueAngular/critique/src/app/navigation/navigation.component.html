@@ -18,7 +18,9 @@
         Up</a></li>
       </ul>
     </div>
-    <app-search></app-search>
+    <div *ngIf="navBarCheckLogin()">
+      <app-search></app-search>
+    </div>
   <!-- *ngIf the user is logged in, show this -->
   <div *ngIf="navBarCheckLogin()">
     <app-logout></app-logout>

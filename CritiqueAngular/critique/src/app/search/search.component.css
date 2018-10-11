@@ -32,12 +32,8 @@
 .search2 {
   float: right;
   margin-left: -150px;
-  /* margin-right: 250px; */
-}
-
-.dropdown {
-  float: left;
   margin-right: 10px;
+  /* margin-right: 250px; */
 }
 
 /* end right search */
