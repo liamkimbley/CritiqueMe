@@ -1,5 +1,5 @@
 <!-- search link in top navbar -->
-<form>
+<!-- <form>
   <div class="search1">
     <input class="searchTextBox" type="text" [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}">
   </div>
@@ -16,6 +16,26 @@
   </div>
   <div class="searchBy">
     <button class="astext" (click)="profileOrPost()">Search</button>
+  </div>
+</form> -->
+
+<form class="form-inline">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="searchType">Select a search type:</label>
+    </div>
+    <select class="custom-select" required [(ngModel)]="searchType" name="searchType" id="searchType">
+      <option disabled>Profiles</option>
+      <option value="firstName">First Name</option>
+      <option value="lastName">Last Name</option>
+      <option value="username">Username</option>
+      <option disabled>Posts</option>
+      <option value="title">Title</option>
+    </select>
+  </div>
+  <input class="form-control" type="text" [(ngModel)]="searchString" [ngModelOptions]="{standalone: true}">
+  <div class="input-group-append">
+    <button mat-raised-button color="accent" (click)="profileOrPost()">Search</button>
   </div>
 </form>
 <!-- end search link in top navbar -->

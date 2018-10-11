@@ -17,14 +17,14 @@
       <li *ngIf="!navBarCheckLogin()" class="nav-item"><a class="nav-link text-light" [routerLink]="['/register']">Sign
         Up</a></li>
       </ul>
+      <div *ngIf="navBarCheckLogin()">
+        <app-logout></app-logout>
+      </div>
     </div>
     <div *ngIf="navBarCheckLogin()">
       <app-search></app-search>
     </div>
   <!-- *ngIf the user is logged in, show this -->
-  <div *ngIf="navBarCheckLogin()">
-    <app-logout></app-logout>
-  </div>
 
   <!-- *ngIf the user is not logged in, or is not a user, show this -->
   <div *ngIf="!navBarCheckLogin() && !router.url.includes('login')">
