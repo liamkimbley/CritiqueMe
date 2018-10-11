@@ -1,78 +1,84 @@
 <div *ngIf="profile">
-  <h1>Welcome, {{profile.user.username}}</h1>
-
   <div class="buttons">
-    <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New
-      Post</button>
-    <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
-      (click)="open(content)">Edit Profile</button>
-  </div>
+    <h1>Welcome, {{profile.user.username}}</h1>
 
-  <div class="profileInfo">
-    <div class="profileHeader">
-      <!-- profile pic -->
-      <div>
-        <img class="profilePic" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
-      </div>
-      <!-- **************** User information **************** -->
-      <div class="profileContent">
-        <div class="container">
-          <table class="profileTable">
-            <tr>
-              <th>First Name</th>
-              <td>{{profile.firstName}}</td>
-            </tr>
-            <tr>
-              <th>Last Name</th>
-              <td>{{profile.lastName}}</td>
-            </tr>
-            <tr>
-              <th>Location</th>
-              <td>{{profile.location.city}} {{profile.location.state}}</td>
-            </tr>
-            <tr>
-              <th>Bio</th>
-              <td>{{profile.bio}}</td>
-            </tr>
-            <tr *ngIf="profSkills">
+
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col" id="profileColumn">
+        <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
+          (click)="open(content)">Edit Your Profile</button>
+        <div class="profileInfo">
+          <div class="profileHeader">
+            <!-- profile pic -->
+            <div>
+              <img class="profilePic" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
+            </div>
+            <!-- **************** User information **************** -->
+            <div class="profileContent">
+              <div class="container">
+                <table class="profileTable">
+                  <tr>
+                    <th>First Name</th>
+                    <td>{{profile.firstName}}</td>
+                  </tr>
+                  <tr>
+                    <th>Last Name</th>
+                    <td>{{profile.lastName}}</td>
+                  </tr>
+                  <tr>
+                    <th>Location</th>
+                    <td><em>{{profile.location.city}}, {{profile.location.state}}</em></td>
+                  </tr>
+                  <tr *ngIf="profile.location.country">
+                    <th>Country</th>
+                    <td><strong>{{profile.location.country}}</strong></td>
+                  </tr>
+                  <!-- <tr *ngIf="profSkills">
               <th>Skills</th>
               <div *ngFor="let s of profSkills">
                 <td>{{s.title}}</td>
               </div>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <!-- **************** User information **************** -->
-    </div>
-    <!-- **************** Edit profile Modal **************** -->
-    <ng-template #content let-modal>
-      <div *ngIf="editProfile" class="editProfileTable">
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="editProfile = null">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="firstName">First Name:</label>
-              <input id="firstName" class="form-control" name="firstName" type="text" [(ngModel)]="editProfile.firstName">
-              <label for="lastName">Last Name:</label>
-              <input id="lastName" class="form-control" name="lastName" type="text" [(ngModel)]="editProfile.lastName">
-              <label for="image">Profile Picture:</label>
-              <input id="image" class="form-control" name="image" type="text" [(ngModel)]="editProfile.imageUrl">
-              <label for="bio">Bio:</label>
-              <textarea id="bio" class="form-control" name="bio" [(ngModel)]="editProfile.bio"></textarea>
-              <label for="city">City:</label>
-              <input id="city" class="form-control" name="city" type="text" [(ngModel)]="editProfile.location.city">
-              <label for="state">State:</label>
-              <input id="state" class="form-control" name="state" type="text" [(ngModel)]="editProfile.location.state">
-              <label for="country">Country:</label>
-              <input id="country" class="form-control" name="country" type="text" [(ngModel)]="editProfile.location.country">
+            </tr> -->
+                  <tr>
+                    <th>Bio</th>
+                    <td>{{profile.bio}}</td>
+                  </tr>
+                </table>
+              </div>
             </div>
-            <!--
+            <!-- **************** User information **************** -->
+          </div>
+        </div>
+        <!-- **************** Edit profile Modal **************** -->
+        <ng-template #content let-modal>
+          <div *ngIf="editProfile" class="editProfileTable">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Edit Profile</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="editProfile = null">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="firstName">First Name:</label>
+                  <input id="firstName" class="form-control" name="firstName" type="text" [(ngModel)]="editProfile.firstName">
+                  <label for="lastName">Last Name:</label>
+                  <input id="lastName" class="form-control" name="lastName" type="text" [(ngModel)]="editProfile.lastName">
+                  <label for="image">Profile Picture:</label>
+                  <input id="image" class="form-control" name="image" type="text" [(ngModel)]="editProfile.imageUrl">
+                  <label for="bio">Bio:</label>
+                  <textarea id="bio" class="form-control" name="bio" [(ngModel)]="editProfile.bio"></textarea>
+                  <label for="city">City:</label>
+                  <input id="city" class="form-control" name="city" type="text" [(ngModel)]="editProfile.location.city">
+                  <label for="state">State:</label>
+                  <input id="state" class="form-control" name="state" type="text" [(ngModel)]="editProfile.location.state">
+                  <label for="country">Country:</label>
+                  <input id="country" class="form-control" name="country" type="text" [(ngModel)]="editProfile.location.country">
+                </div>
+                <!--
         <tr>
           <td>Skills</td>
         </tr>
@@ -81,132 +87,140 @@
             <span><input type="checkbox" name="skill{{i}}" value="{{s}}" [(ngModel)]="editProfile.skills"> {{s.title}}</span>
           </div>
         </tr> -->
-            <div class="modal-footer">
-              <button mat-raised-button color="primary" (click)="updateProfile(editProfile)" (click)="modal.close('Save click')">Save</button>
-              <button mat-raised-button color="accent" (click)="editProfile = null" (click)="modal.dismiss('Cross click')">Cancel</button>
-              <!-- <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)" >Deactivate Profile</button> -->
+                <div class="modal-footer">
+                  <button mat-raised-button color="primary" (click)="updateProfile(editProfile)" (click)="modal.close('Save click')">Save</button>
+                  <button mat-raised-button color="accent" (click)="editProfile = null" (click)="modal.dismiss('Cross click')">Cancel</button>
+                  <!-- <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)" >Deactivate Profile</button> -->
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
+        </ng-template>
+      </div>
+      <!-- **************** End edit profile modal **************** -->
+
+      <!-- ******************** User Post ******************** -->
+      <!-- **************** Create new post **************** -->
+      <ng-template #newPostContent let-modal>
+        <div *ngIf="newPost" class="newpost">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Share a Post</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="newPost = null">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="title">Title:</label>
+                <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" [(ngModel)]="newPost.title">
+                <label for="content">Text:</label>
+                <textarea id="title" class="form-control" name="content" placeholder="Post Content" [(ngModel)]="newPost.content"></textarea>
+                <label for="media">Link:</label>
+                <input id="media" class="form-control" type="text" name="media" placeholder="Media" [(ngModel)]="newPost.media">
+              </div>
+              <div class="modal-footer">
+                <button mat-raised-button color="primary" (click)="addNewPost()" (click)="modal.close('Save click')">Share</button>
+                <button mat-raised-button color="accent" (click)="modal.dismiss('Cross click')" (click)="newPost = null">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ng-template>
+      <!-- **************** End create new post **************** -->
+
+      <div class="col" id="userPostsColumn">
+        <div *ngIf="!editProfile" class="profilePosts">
+          <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
+            a New
+            Post</button>
+          <!-- **************** Display a list of user's posts **************** -->
+          <h3>Your Posts</h3>
+          <div *ngIf="!selectedPost && !editPost">
+            <div *ngFor="let post of posts">
+              <table>
+                <tr>
+                  <td>{{post.title}}</td>
+                </tr>
+                <tr>
+                  <td>{{post.createdDate | date:'shortDate'}}</td>
+                </tr>
+              </table>
+              <button class="btn-outline-primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
+            </div>
+          </div>
+          <!-- **************** End Display a list of user's posts **************** -->
+
+          <!-- **************** Display a post's full details when selected **************** -->
+          <div *ngIf="editPost">
+            <table>
+              <tr>
+                <td>Title</td>
+                <td><input type="text" name="title" [(ngModel)]="editPost.title" /></td>
+              </tr>
+              <tr>
+                <td>Content</td>
+                <td><input type="text" name="content" style="width: 300px; height: 100px;" [(ngModel)]="editPost.content" /></td>
+              </tr>
+              <tr>
+                <td>Media</td>
+                <td><input type="text" name="media" [(ngModel)]="editPost.media" /></td>
+              </tr>
+              <tr>
+                <td>Created</td>
+                <td>{{editPost.createdDate}}</td>
+                <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+                <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
+              </tr>
+              <!-- comments -->
+              <td>Comments:</td>
+              <tr>
+                <div *ngFor="let c of editPost.comments">
+                  <td>{{c.content}}</td>
+                </div>
+              </tr>
+            </table>
+            <button class="btn-outline-primary" name="cancel" type="submit" (click)="editPost = null">Cancel</button>
+            <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(editPost)">Update Post</button>
+            <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(editPost.id)">Delete
+              Post</button>
+          </div>
+
+          <div *ngIf="selectedPost && !editPost">
+            <table>
+              <tr>
+                <td>Title</td>
+                <td>{{selectedPost.title}}</td>
+              </tr>
+              <tr>
+                <td>Content</td>
+                <td>{{selectedPost.content}}</td>
+              </tr>
+              <tr>
+                <td>Media</td>
+                <td>{{selectedPost.media}}</td>
+              </tr>
+              <tr>
+                <td>Created</td>
+                <td>{{selectedPost.createdDate}}</td>
+                <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+                <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
+              </tr>
+              <!-- comments -->
+              <td>Comments:</td>
+              <tr>
+                <div *ngFor="let c of selectedPost.comments">
+                  <td>{{c.content}}</td>
+                </div>
+              </tr>
+            </table>
+            <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Back</button>
+            <button class="btn-outline-primary" name="update" type="submit" (click)="editPost = selectedPost">Edit Post</button>
+            <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete
+              Post</button>
+          </div>
         </div>
       </div>
-    </ng-template>
-  </div>
-  <!-- **************** End edit profile modal **************** -->
-
-  <!-- **************** Create new post **************** -->
-  <ng-template #newPostContent let-modal>
-    <div *ngIf="newPost" class="newpost">
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Share a Post</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="newPost = null">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="title">Title:</label>
-            <input id="title" class="form-control" type="text" name="title" placeholder="Post Title" [(ngModel)]="newPost.title">
-            <label for="content">Text:</label>
-            <textarea id="title" class="form-control" name="content" placeholder="Post Content" [(ngModel)]="newPost.content"></textarea>
-            <label for="media">Link:</label>
-            <input id="media" class="form-control" type="text" name="media" placeholder="Media" [(ngModel)]="newPost.media">
-          </div>
-          <div class="modal-footer">
-            <button mat-raised-button color="primary" (click)="addNewPost()" (click)="modal.close('Save click')">Share</button>
-            <button mat-raised-button color="accent" (click)="modal.dismiss('Cross click')" (click)="newPost = null">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </ng-template>
-  <!-- **************** End create new post **************** -->
-
-  <div *ngIf="!editProfile" class="profilePosts">
-    <!-- posts -->
-    <h3>Your Posts</h3>
-    <!-- **************** Display a list of user's posts **************** -->
-    <div *ngIf="!selectedPost && !editPost">
-      <div *ngFor="let post of posts">
-        <table>
-          <tr>
-            <td>{{post.title}}</td>
-          </tr>
-          <tr>
-            <td>{{post.createdDate | date:'shortDate'}}</td>
-          </tr>
-        </table>
-        <button class="btn-outline-primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
-      </div>
-    </div>
-    <!-- **************** End Display a list of user's posts **************** -->
-
-    <!-- **************** Display a post's full details when selected **************** -->
-    <div *ngIf="editPost">
-      <table>
-        <tr>
-          <td>Title</td>
-          <td><input type="text" name="title" [(ngModel)]="editPost.title" /></td>
-        </tr>
-        <tr>
-          <td>Content</td>
-          <td><input type="text" name="content" style="width: 300px; height: 100px;" [(ngModel)]="editPost.content" /></td>
-        </tr>
-        <tr>
-          <td>Media</td>
-          <td><input type="text" name="media" [(ngModel)]="editPost.media" /></td>
-        </tr>
-        <tr>
-          <td>Created</td>
-          <td>{{editPost.createdDate}}</td>
-          <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
-          <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
-        </tr>
-        <!-- comments -->
-        <td>Comments:</td>
-        <tr>
-          <div *ngFor="let c of editPost.comments">
-            <td>{{c.content}}</td>
-          </div>
-        </tr>
-      </table>
-      <button class="btn-outline-primary" name="cancel" type="submit" (click)="editPost = null">Cancel</button>
-      <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(editPost)">Update Post</button>
-      <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(editPost.id)">Delete Post</button>
-    </div>
-
-    <div *ngIf="selectedPost && !editPost">
-      <table>
-        <tr>
-          <td>Title</td>
-          <td>{{selectedPost.title}}</td>
-        </tr>
-        <tr>
-          <td>Content</td>
-          <td>{{selectedPost.content}}</td>
-        </tr>
-        <tr>
-          <td>Media</td>
-          <td>{{selectedPost.media}}</td>
-        </tr>
-        <tr>
-          <td>Created</td>
-          <td>{{selectedPost.createdDate}}</td>
-          <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
-          <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
-        </tr>
-        <!-- comments -->
-        <td>Comments:</td>
-        <tr>
-          <div *ngFor="let c of selectedPost.comments">
-            <td>{{c.content}}</td>
-          </div>
-        </tr>
-      </table>
-      <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Back</button>
-      <button class="btn-outline-primary" name="update" type="submit" (click)="editPost = selectedPost">Edit Post</button>
-      <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete
-        Post</button>
     </div>
   </div>
 </div>

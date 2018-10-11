@@ -9,7 +9,7 @@ body {
 
 /* Sidebar */
 .left-container {
-  /* Edit this container in post.html to fix whitespace issue. Try is as non-container? */
+  /* Edit this container in post.html to fix whitespace issue. Try it as non-container? */
   background-color:lightgrey;
   /* display: flex; */
   flex-direction: column;

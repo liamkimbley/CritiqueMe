@@ -53,7 +53,6 @@ export class ProfileComponent implements OnInit {
   }
 
   // Modal
-
   open(content) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
