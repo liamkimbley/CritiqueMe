@@ -34,7 +34,7 @@ export class PostService {
   // }
 
   public index(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.url + '?sorted=true').pipe(
+    return this.http.get<Post[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error retrieving posts: ' + 'Status: ' + err);
