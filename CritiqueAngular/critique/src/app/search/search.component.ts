@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
   reloadPosts = function() {
     this.postService.index().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.posts = data;
       },
       err => {
@@ -53,7 +53,7 @@ export class SearchComponent implements OnInit {
   reloadProfiles = function() {
     this.profileService.show().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.profiles = data;
       },
       err => {
@@ -65,7 +65,7 @@ export class SearchComponent implements OnInit {
   reloadComments() {
     this.commentService.index().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         // this.comments = data;
       },
       err => console.error('Observer recieved an error with COMMENTS: ' + err)
@@ -73,8 +73,8 @@ export class SearchComponent implements OnInit {
   }
 
   public profileOrPost() {
-    console.log(this.searchType);
-    console.log(this.searchString);
+    // console.log(this.searchType);
+    // console.log(this.searchString);
     // this.searchType = searchType;
     // this.searchString = searchString;
       switch (this.searchType) {

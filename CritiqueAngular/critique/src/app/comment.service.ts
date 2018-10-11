@@ -60,8 +60,8 @@ export class CommentService {
           'Authorization': `Basic ${this.auth.getToken()}`
         })
       };
-      console.log(comment);
-      console.log(id);
+      // console.log(comment);
+      // console.log(id);
 
       return this.http.post<Comment>(this.url + id + '/comments', comment, httpOptions);
     } else {
@@ -70,51 +70,39 @@ export class CommentService {
   }
 
   public update(comment: Comment, id: number): Observable<Comment> {
-    // if (this.auth.checkLogin()) {
-    //   const headers = new HttpHeaders().set(
-    //     'Authorization',
-    //     `Basic ${this.auth.getToken()}`
-    //   );
-    //   return this.http.put(this.url + post.id, post, { headers }).pipe(
-    //     catchError((err: any) => {
-    //       console.log(err);
-    //       return throwError('Error: ' + err.status);
-    //     })
-    //   );
-    // } else {
-    //   this.router.navigateByUrl('login');
-    // }
-    // console.log(id);
-    // console.log(comment);
-    return this.http.put<Comment>(this.commentUrl + id, comment).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error: ' + err.status);
-      })
-    );
+    if (this.auth.checkLogin()) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Basic ${this.auth.getToken()}`
+      );
+      return this.http.put<Comment>(this.commentUrl + id, comment, {headers}).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error: ' + err.status);
+        })
+        );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   public destroy(id: number) {
-    // if (this.auth.checkLogin()) {
-    //   const headers = new HttpHeaders().set(
-    //     'Authorization',
-    //     `Basic ${this.auth.getToken()}`
-    //   );
-    //   return this.http.delete(this.url + id, { headers }).pipe(
-    //     catchError((err: any) => {
-    //       console.log(err);
-    //       return throwError('Error: ' + err.status);
-    //     })
-    //   );
-    // } else {
-    //   this.router.navigateByUrl('login');
-    // }
-    return this.http.delete(this.commentUrl + id).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error: ' + err.status);
-      })
-    );
+    if (this.auth.checkLogin()) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': `Basic ${this.auth.getToken()}`
+        })
+      };
+      return this.http.delete(this.commentUrl + id, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error: ' + err.status);
+        })
+      );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   public createVote(vote: Vote, id: number) {

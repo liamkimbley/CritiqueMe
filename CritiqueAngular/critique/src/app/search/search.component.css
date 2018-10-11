@@ -1,20 +1,18 @@
-#searchBox {
-  margin-left: 5px;
-  margin-top: 5px;
-  margin-right: 5px;
+.astext {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
   color: white;
-}
-
-#searchDropdown {
-  margin-top: 15px;
-  margin-left: 12px;
 }
 
 /* left search */
 
 .search1 {
   float: left;
-  margin-left: 1px;
+  margin-left: -80%;
+  margin-right: 0;
 }
 
 .searchTextBox {
@@ -25,6 +23,7 @@
   color: white;
   float: left;
   margin-right: 10px;
+  margin-top: 3px;
 }
 
 /* end left search */
@@ -32,16 +31,13 @@
 
 .search2 {
   float: right;
-  margin-right: 200px;
+  margin-left: -150px;
+  /* margin-right: 250px; */
 }
 
 .dropdown {
   float: left;
   margin-right: 10px;
-}
-
-.searchBtn {
-  float: right;
 }
 
 /* end right search */

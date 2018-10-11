@@ -31,13 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .authorizeRequests()
 	        .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()  // For CORS, the preflight request will hit the OPTIONS on the route
 	        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-	        .antMatchers("/**").permitAll() 
+//	        .antMatchers("/**").permitAll() 
 	        .antMatchers("/authenticate").permitAll()
 	        .antMatchers("/register").permitAll()
-	        .antMatchers(HttpMethod.GET, "/profile/**/posts").permitAll()
-	        .antMatchers(HttpMethod.GET, "/posts").permitAll()
-	        .antMatchers(HttpMethod.GET, "/categories").permitAll()
-	        .antMatchers(HttpMethod.GET, "/categories/**").permitAll()
+	        .antMatchers(HttpMethod.GET, "/api/posts").permitAll()
+	        .antMatchers(HttpMethod.GET, "/api/categories").permitAll()
+	        .antMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
 	        .anyRequest().authenticated()
 	        .and()
 	        .httpBasic();
