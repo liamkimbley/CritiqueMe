@@ -151,8 +151,8 @@
           </div>
           <!-- **************** End Display a list of user's posts **************** -->
 
-          <!-- **************** Display a post's full details when selected **************** -->
           <ng-template #viewPostContent let-modal>
+            <!-- **************** Display a post's full details when selected **************** -->
             <div *ngIf="selectedPost && !editPost">
               <div class="modal-header">
                 <h4 class="modal-title" id="modal-viewPost-title">
@@ -166,7 +166,7 @@
                 <mat-card>
                   <table>
                     <tr>
-                      <td>Title</td>
+                      <td>Post Title</td>
                       <td>{{selectedPost.title}}</td>
                     </tr>
                     <tr>
@@ -195,49 +195,54 @@
                   </table>
                 </mat-card>
               </div>
-              <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Back</button>
-              <button class="btn-outline-primary" name="update" type="submit" (click)="editPost = selectedPost">Edit
-                Post</button>
-              <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete
-                Post</button>
+              <div class="modal-footer">
+                <button mat-raised-button color="accent" name="cancel" type="submit" (click)="selectedPost = null"
+                  (click)="modal.dismiss('Cross click')">Back</button>
+                <button mat-raised-button color="primary" name="update" type="submit" (click)="editPost = selectedPost">Edit
+                  Post</button>
+                <button mat-raised-button color="warn" name="delete" type="submit" (click)="deletePost(selectedPost.id)"
+                  (click)="modal.dismiss('Cross click')">Delete
+                  Post</button>
+              </div>
             </div>
-          </ng-template>
-          <!-- **************** Display a post's full details when selected **************** -->
-          <!-- **************** Edit Post **************** -->
-          <div *ngIf="editPost">
-            <table>
-              <tr>
-                <td>Title</td>
-                <td><input type="text" name="title" [(ngModel)]="editPost.title" /></td>
-              </tr>
-              <tr>
-                <td>Content</td>
-                <td><input type="text" name="content" style="width: 300px; height: 100px;" [(ngModel)]="editPost.content" /></td>
-              </tr>
-              <tr>
-                <td>Media</td>
-                <td><input type="text" name="media" [(ngModel)]="editPost.media" /></td>
-              </tr>
-              <tr>
-                <td>Created</td>
-                <td>{{editPost.createdDate}}</td>
-                <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
-                <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
-              </tr>
-              <!-- comments -->
-              <td>Comments:</td>
-              <tr>
-                <div *ngFor="let c of editPost.comments">
-                  <td>{{c.content}}</td>
+
+            <!-- **************** Display a post's full details when selected **************** -->
+            <!-- **************** Edit Post **************** -->
+            <div *ngIf="editPost">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-viewPost-title">
+                  Editing {{selectedPost.title}}
+                </h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="editPost = null"
+                  (click)="selectedPost = null">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input id="title" class="form-control" type="text" name="title" [(ngModel)]="editPost.title">
+                  <label for="content">Content</label>
+                  <textarea id="content" class="form-control" name="content" [(ngModel)]="editPost.content"></textarea>
+                  <label for="media">Media</label>
+                  <textarea id="media" class="form-control" name="media" [(ngModel)]="editPost.media"></textarea>
+                  <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+                  <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
+                  <!-- comments -->
                 </div>
-              </tr>
-            </table>
-            <button class="btn-outline-primary" name="cancel" type="submit" (click)="editPost = null">Cancel</button>
-            <button class="btn-outline-primary" name="update" type="submit" (click)="updatePost(editPost)">Update Post</button>
-            <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(editPost.id)">Delete
-              Post</button>
-          </div>
-          <!-- **************** Edit Post **************** -->
+              </div>
+              <div class="modal-footer">
+                <button mat-raised-button color="primary" name="update" type="submit" (click)="updatePost(editPost)"
+                  (click)="modal.close('Save click')" (click)="editPost = null" (click)="selectedPost = null">Save</button>
+                <button mat-raised-button color="accent" name="cancel" type="submit" (click)="editPost = null" (click)="selectedPost = null"
+                  (click)="modal.dismiss('Cross click')">Cancel</button>
+                <button mat-raised-button color="warn" name="delete" type="submit" (click)="modal.dismiss('Cross click')"
+                  (click)="deletePost(editPost.id)" (click)="editPost = null">Delete
+                  Post</button>
+              </div>
+            </div>
+            <!-- **************** Edit Post **************** -->
+          </ng-template>
         </div>
       </div>
     </div>
