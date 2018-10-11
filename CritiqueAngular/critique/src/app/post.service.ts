@@ -134,8 +134,7 @@ export class PostService {
   public update(post: Post) {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
-        'Authorization',
-        `Basic ${this.auth.getToken()}`
+        'Authorization', `Basic ${this.auth.getToken()}`
       );
       return this.http.put(this.url + '/' + post.id, post, { headers }).pipe(
         catchError((err: any) => {
@@ -157,8 +156,7 @@ export class PostService {
   public destroy(id: number) {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
-        'Authorization',
-        `Basic ${this.auth.getToken()}`
+        'Authorization', `Basic ${this.auth.getToken()}`
       );
       return this.http.delete(this.url + '/' + id, { headers }).pipe(
         catchError((err: any) => {

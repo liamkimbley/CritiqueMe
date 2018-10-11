@@ -102,7 +102,7 @@ export class ProfileService {
       const headers = new HttpHeaders().set(
         'Authorization', `Basic ${this.auth.getToken()}`
       );
-      return this.http.get(this.url + '/posts/' + id).pipe(
+      return this.http.get(this.url + '/posts/' + id, {headers}).pipe(
         catchError((err: any) => {
         console.log(err);
         return throwError('Error: ' + err.status);
@@ -118,7 +118,7 @@ export class ProfileService {
       const headers = new HttpHeaders().set(
         'Authorization', `Basic ${this.auth.getToken()}`
       );
-      return this.http.get<Expertise>(environment.baseUrl + 'api/skills').pipe(
+      return this.http.get<Expertise>(environment.baseUrl + 'api/skills', {headers}).pipe(
         catchError((err: any) => {
         console.log(err);
         return throwError('Error: ' + err.status);
