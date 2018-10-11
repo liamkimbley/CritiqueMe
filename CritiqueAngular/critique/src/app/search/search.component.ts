@@ -81,69 +81,73 @@ export class SearchComponent implements OnInit {
         case 'firstName':
               this.displayProfilesByFirstName(this.searchString);
               break;
-        case 'lastName':
+              case 'lastName':
               this.displayProfilesByLastName(this.searchString);
               break;
-        case 'username':
+              case 'username':
               this.displayProfilesByUsername(this.searchString);
               break;
-        case 'title':
+              case 'title':
               this.displayPostsByTitle(this.searchString);
               break;
-      }
-  }
+            }
+          }
 
-  // posts
-  displaySelectedPost = function(post: Post) {
-    this.selectedPost = post;
-  };
+          // posts
+          displaySelectedPost = function(post: Post) {
+            this.selectedPost = post;
+          };
 
-  displayProfilesByFirstName = function(firstName: String) {
-    this.searchService.getProfilesByFirstName(firstName).subscribe(
-      data => {
-        this.searchResultsService.populateProfileArray(data);
-        this.router.navigateByUrl('/search-results');
-      },
-      err => {
-        console.error('Observer got an error with POSTS: ' + err.status);
-      }
-    );
-  };
+          displayProfilesByFirstName = function(firstName: String) {
+            this.searchService.getProfilesByFirstName(firstName).subscribe(
+              data => {
+                this.searchResultsService.populateProfileArray(data);
+                this.router.navigateByUrl('/search-results');
+                this.searchString = null;
+              },
+              err => {
+                console.error('Observer got an error with POSTS: ' + err.status);
+              }
+              );
+            };
 
-  displayProfilesByLastName = function(lastName: String) {
-    this.searchService.getProfilesByLastName(lastName).subscribe(
-      data => {
-        this.searchResultsService.populateProfileArray(data);
-        this.router.navigateByUrl('/search-results');
-      },
-      err => {
-        console.error('Observer got an error with POSTS: ' + err.status);
-      }
-    );
-  };
+            displayProfilesByLastName = function(lastName: String) {
+              this.searchService.getProfilesByLastName(lastName).subscribe(
+                data => {
+                  this.searchResultsService.populateProfileArray(data);
+                  this.router.navigateByUrl('/search-results');
+                  this.searchString = null;
+                },
+                err => {
+                  console.error('Observer got an error with POSTS: ' + err.status);
+                }
+                );
+              };
 
-  displayProfilesByUsername = function(username: String) {
-    this.searchService.getProfilesByUsername(username).subscribe(
-      data => {
-        this.searchResultsService.populateProfileArray(data);
-        this.router.navigateByUrl('/search-results');
-      },
-      err => {
-        console.error('Observer got an error with POSTS: ' + err.status);
-      }
-    );
-  };
+              displayProfilesByUsername = function(username: String) {
+                this.searchService.getProfilesByUsername(username).subscribe(
+                  data => {
+                    this.searchResultsService.populateProfileArray(data);
+                    this.router.navigateByUrl('/search-results');
+                    this.searchString = null;
+                  },
+                  err => {
+                    console.error('Observer got an error with POSTS: ' + err.status);
+                  }
+                  );
+                };
 
-  displayPostsByTitle = function(title: String) {
-    this.searchService.getPostsByTitle(title).subscribe(
-      data => {
-        this.searchResultsService.populatePostArray(data);
-        this.router.navigateByUrl('/search-results');
-      },
-      err => {
-        console.error('Observer got an error with POSTS: ' + err.status);
-      }
-    );
-  };
+                displayPostsByTitle = function(title: String) {
+                  this.searchService.getPostsByTitle(title).subscribe(
+                    data => {
+                      this.searchResultsService.populatePostArray(data);
+                      this.router.navigateByUrl('/search-results');
+                      this.searchString = null;
+                    },
+                    err => {
+                      console.error('Observer got an error with POSTS: ' + err.status);
+                    }
+                    );
+                  };
 
-}
+                }
