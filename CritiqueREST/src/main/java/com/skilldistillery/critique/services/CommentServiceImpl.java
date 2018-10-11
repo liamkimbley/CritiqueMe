@@ -55,7 +55,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment createNewCommentOnPost(Integer id, Comment comment, Integer profId) {
+	public Comment createNewCommentOnPost(Integer id, Comment comment, String username) {
 		Comment com = new Comment();
 		if (comment.getContent() != null && !comment.getContent().equals("")) {
 			com.setContent(comment.getContent());
@@ -70,9 +70,9 @@ public class CommentServiceImpl implements CommentService {
 			}
 		}
 		if (comment.getProfile() == null) {
-			Optional<Profile> pr = profRepo.findById(profId);
-			if (pr.isPresent()) {
-				com.setProfile(pr.get());
+			Profile pr = profRepo.queryByUsernameWithUser(username);
+			if (pr != null) {
+				com.setProfile(pr);
 			}
 		}
 		if (comment.getProfile() != null) {

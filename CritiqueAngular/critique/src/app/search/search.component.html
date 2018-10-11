@@ -1,10 +1,17 @@
 <!-- search link in top navbar -->
-<!-- <form> -->
-  <input type="text" [(ngModel)]="searchString">
-  <div>
-    <div class="searchText">
+
+<div class="search1">
+
+  <input class="searchTextBox"type="text" [(ngModel)]="searchString">
+    <div class="searchBy">
       Search By...
     </div>
+
+</div>
+
+<div class="search2">
+
+    <div class="dropdown">
     <select [(ngModel)]="searchType" name="searchType">
       <option disabled>Profiles</option>
       <option value="firstName">First Name</option>
@@ -13,7 +20,10 @@
       <option disabled>Posts</option>
       <option value="title">Title</option>
     </select>
-    <button (click)="profileOrPost()">Search</button>
+    </div>
+    <button class="searchBtn" (click)="profileOrPost()">Search</button>
+
   </div>
-  <!-- </form> -->
+
+
 <!-- end search link in top navbar -->

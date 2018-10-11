@@ -69,7 +69,7 @@ public class PostServiceTests {
 		post.setContent("test content");
 		post.setProfile(prof);
 		post.setTitle("Test Title");
-		Post createdPost = postService.create(post, 1);
+		Post createdPost = postService.create(post, prof.getUser().getUsername());
 		assertNotNull(createdPost);
 	}
 	

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
-import { Profile } from 'selenium-webdriver/firefox';
+import { Profile } from '../models/profile';
 import { SearchResultsService } from '../search-results.service';
 
 @Component({

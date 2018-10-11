@@ -18,7 +18,7 @@ public interface PostService {
 
 	public List<Post> findPostsByProfileId(Integer pid);
 
-	public Post create(Post post, Integer id);
+	public Post create(Post post, String username);
 
 	public Post update(Integer id, Post post);
 
