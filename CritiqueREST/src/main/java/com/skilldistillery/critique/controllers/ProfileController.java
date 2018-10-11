@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -124,6 +125,18 @@ public class ProfileController {
 	@RequestMapping(path = "profile", method = RequestMethod.GET)
 	public Profile findProfile(Principal principal, HttpServletResponse res, HttpServletRequest req) {
 		Profile prof = ps.queryByUsernameWithUser(principal.getName());
+		if (prof != null) {
+			res.setStatus(200);
+			return prof;
+		} else {
+			res.setStatus(500);
+			return null;
+		}
+	}
+	
+	@RequestMapping(path = "profile/{pid}", method = RequestMethod.GET)
+	public Profile findOneProfile(@PathVariable ("pid") Integer pid, HttpServletResponse res, HttpServletRequest req) {
+		Profile prof = ps.findProfileById(pid);
 		if (prof != null) {
 			res.setStatus(200);
 			return prof;

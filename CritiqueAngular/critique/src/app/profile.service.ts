@@ -50,6 +50,23 @@ export class ProfileService {
     }
   }
 
+  public getProfile(id): Observable<Profile> {
+    if (this.auth.checkLogin()) {
+      const headers = new HttpHeaders().set(
+        'Authorization', `Basic ${this.auth.getToken()}`
+      );
+      return this.http.get<Profile>(this.url + '/' + id, {headers})
+      .pipe(
+         catchError((err: any) => {
+         console.log(err);
+         return throwError('Error: ' + err.status);
+       })
+   );
+    } else {
+        this.router.navigateByUrl('login');
+    }
+  }
+
   public create(prof: Profile): Observable<Profile> {
     if (this.auth.checkLogin()) {
       const httpOptions = {

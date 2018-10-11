@@ -1,5 +1,5 @@
 import { LoginComponent } from './../login/login.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { User } from './../models/user';
 import { Expertise } from './../models/expertise';
@@ -43,13 +43,31 @@ export class ProfileComponent implements OnInit {
     private postService: PostService,
     private auth: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private modalService: NgbModal
   ) {}
 
   ngOnInit() {
     // this.reload();
-    this.getOneProfile();
-    this.getSkills();
+    const profId = this.route.snapshot.paramMap.get('id');
+    if (profId) {
+      // additional logic
+      this.profService.getProfile(profId).subscribe(
+        data => {
+          if (data) {
+            console.log(data);
+            this.profile = data;
+            this.selectedUser = data.user;
+            this.profSkills = data.skills;
+          } else {
+            this.router.navigateByUrl('posts');
+          }
+        }
+      );
+    } else {
+      this.getOneProfile();
+      this.getSkills();
+    }
   }
 
   // Modal
