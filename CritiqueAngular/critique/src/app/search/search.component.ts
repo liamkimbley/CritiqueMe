@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
     private profileService: ProfileService,
     private commentService: CommentService,
     public router: Router,
-    private searchResultsService: SearchResultsService) { }
+    private searchResultsService: SearchResultsService) {}
 
   posts: Post[] = [];
   selectedPost: Post = null;
@@ -102,7 +102,9 @@ export class SearchComponent implements OnInit {
             this.searchService.getProfilesByFirstName(firstName).subscribe(
               data => {
                 this.searchResultsService.populateProfileArray(data);
-                this.router.navigateByUrl('/search-results');
+                // this.router.navigateByUrl('/search-results');
+                // tslint:disable-next-line:max-line-length
+                this.router.navigateByUrl('/post', {skipLocationChange: true}).then(() => this.router.navigate(['/search-results']));
                 this.searchString = null;
               },
               err => {
@@ -115,7 +117,9 @@ export class SearchComponent implements OnInit {
               this.searchService.getProfilesByLastName(lastName).subscribe(
                 data => {
                   this.searchResultsService.populateProfileArray(data);
-                  this.router.navigateByUrl('/search-results');
+                  // this.router.navigateByUrl('/search-results');
+                  // tslint:disable-next-line:max-line-length
+                  this.router.navigateByUrl('/post', {skipLocationChange: true}).then(() => this.router.navigate(['/search-results']));
                   this.searchString = null;
                 },
                 err => {
@@ -128,7 +132,9 @@ export class SearchComponent implements OnInit {
                 this.searchService.getProfilesByUsername(username).subscribe(
                   data => {
                     this.searchResultsService.populateProfileArray(data);
-                    this.router.navigateByUrl('/search-results');
+                    // this.router.navigateByUrl('/search-results');
+                    // tslint:disable-next-line:max-line-length
+                    this.router.navigateByUrl('/post', {skipLocationChange: true}).then(() => this.router.navigate(['/search-results']));
                     this.searchString = null;
                   },
                   err => {
@@ -141,7 +147,9 @@ export class SearchComponent implements OnInit {
                   this.searchService.getPostsByTitle(title).subscribe(
                     data => {
                       this.searchResultsService.populatePostArray(data);
-                      this.router.navigateByUrl('/search-results');
+                      // this.router.navigateByUrl('/search-results');
+                      // tslint:disable-next-line:max-line-length
+                      this.router.navigateByUrl('/post', {skipLocationChange: true}).then(() => this.router.navigate(['/search-results']));
                       this.searchString = null;
                     },
                     err => {

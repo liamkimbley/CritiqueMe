@@ -16,6 +16,10 @@ export class SearchResultsComponent implements OnInit {
   profiles: Profile[] = [];
 
   ngOnInit() {
+    this.reload();
+  }
+
+  reload() {
     this.populateProfiles();
     this.populatePosts();
   }
