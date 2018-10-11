@@ -1,29 +1,31 @@
-.buttons {
+.profileBanner {
   padding: 10px;
   text-align: center;
+  background-color: #f2f2f2;
 }
-
+h1 {
+  font-weight: 500;
+}
+.col {
+  margin-left: 40px;
+  margin-right: 40px;
+}
 /* *********** Profile Info *********** */
-
-.profileInfo {
-  /* float: left; */
-  /* margin-left: 3em; */
-}
-
-.profileTable {
-  border-collapse: collapse;
-  border-style: ridge;
+.profileHeader {
+  padding: 5px;
 }
 
 .profileTable td,
 th {
   border: 1px solid #ddd;
   padding: 6px;
-  /* width: 300px; */
 }
 
 .profileTable tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+.profileTable tr:nth-child(odd) {
+  background-color: rgba(245, 245, 245, 0.568);
 }
 
 .profileTable tr:hover {
@@ -31,8 +33,7 @@ th {
 }
 
 .profilePosts {
-  /* float: right; */
-  /* margin-right: 3em; */
+  float: right;
 }
 
 .profileInfo {
@@ -43,16 +44,22 @@ th {
   width: 200px;
 }
 
+.profilePicDiv {
+  text-align: center;
+  padding: 5px;
+  background-color: #f2f2f2;
+}
+
 .profileContent {
-  padding-top: 50px;
+  padding-top: 40px;
   padding-right: 15px;
   position: absolute;
 }
 
-
-.editProfileButton {
-  margin-top: 7em;
-  margin-left: 3em;
+.editProfileButtonDiv {
+  text-align: left;
+  margin-bottom: 15px;
+  margin-left: 5px;
 }
 
 /* *********** Profile Info *********** */
@@ -97,12 +104,22 @@ mat-card-actions {
 }
 
 .addPostButton {
-  margin-left: 3px;
+  margin-right: 3px;
   margin-bottom: 5px;
-  text-align: right;
 }
 
 h3 {
   text-align: center;
+  padding: 25px;
+}
+
+.newPostButtonDiv {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.postsBanner {
+  background-color: #f2f2f2;
+  padding: 0px;
 }
 /* *********** Profile Posts *********** */

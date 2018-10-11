@@ -1,18 +1,18 @@
 <div *ngIf="profile">
-  <div class="buttons">
-    <h1>Welcome, {{profile.user.username}}</h1>
-
-
+  <div class="profileBanner">
+    <h1 class="display-4">Welcome, {{profile.user.username}}</h1>
   </div>
   <div class="container">
     <div class="row">
       <div class="col" id="profileColumn">
-        <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
-          (click)="open(content)">Edit Your Profile</button>
+        <div class="editProfileButtonDiv">
+          <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
+            (click)="open(content)">Edit Your Profile</button>
+        </div>
         <div class="profileInfo">
           <div class="profileHeader">
             <!-- profile pic -->
-            <div>
+            <div class="profilePicDiv">
               <img class="profilePic" src="{{profile.imageUrl}}" alt="{{selectedUser.username}}">
             </div>
             <!-- **************** User information **************** -->
@@ -125,9 +125,13 @@
 
       <div class="col" id="userPostsColumn">
         <div *ngIf="!editProfile" class="profilePosts">
-          <h3>Your Posts</h3>
-          <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
-            a New Post</button>
+          <div class="newPostButtonDiv">
+            <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
+              a New Post</button>
+          </div>
+          <div class="postsBanner">
+            <h3>Your Posts</h3>
+          </div>
 
           <!-- **************** Display a list of user's posts **************** -->
           <div *ngIf="!selectedPost && !editPost">
@@ -139,7 +143,8 @@
                   <p>{{post.content}}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                  <button mat-button color="primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
+                  <button mat-button color="primary" name="show" type="submit" (click)="displayPost(post)" (click)="open(viewPostContent)">View
+                    Post</button>
                 </mat-card-actions>
               </mat-card>
             </div>
@@ -147,6 +152,58 @@
           <!-- **************** End Display a list of user's posts **************** -->
 
           <!-- **************** Display a post's full details when selected **************** -->
+          <ng-template #viewPostContent let-modal>
+            <div *ngIf="selectedPost && !editPost">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-viewPost-title">
+                  {{selectedPost.title}}
+                </h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')" (click)="selectedPost = null">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <mat-card>
+                  <table>
+                    <tr>
+                      <td>Title</td>
+                      <td>{{selectedPost.title}}</td>
+                    </tr>
+                    <tr>
+                      <td>Content</td>
+                      <td>{{selectedPost.content}}</td>
+                    </tr>
+                    <tr>
+                      <td>Media</td>
+                      <td>{{selectedPost.media}}</td>
+                    </tr>
+                    <tr>
+                      <td>Created</td>
+                      <td>{{selectedPost.createdDate}}</td>
+                      <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+                      <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
+                    </tr>
+                    <!-- comments -->
+                    <mat-card>
+                      <td>Comments:</td>
+                      <tr>
+                        <div *ngFor="let c of selectedPost.comments">
+                          <td>{{c.content}}</td>
+                        </div>
+                      </tr>
+                    </mat-card>
+                  </table>
+                </mat-card>
+              </div>
+              <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Back</button>
+              <button class="btn-outline-primary" name="update" type="submit" (click)="editPost = selectedPost">Edit
+                Post</button>
+              <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete
+                Post</button>
+            </div>
+          </ng-template>
+          <!-- **************** Display a post's full details when selected **************** -->
+          <!-- **************** Edit Post **************** -->
           <div *ngIf="editPost">
             <table>
               <tr>
@@ -180,40 +237,7 @@
             <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(editPost.id)">Delete
               Post</button>
           </div>
-
-          <div *ngIf="selectedPost && !editPost">
-            <table>
-              <tr>
-                <td>Title</td>
-                <td>{{selectedPost.title}}</td>
-              </tr>
-              <tr>
-                <td>Content</td>
-                <td>{{selectedPost.content}}</td>
-              </tr>
-              <tr>
-                <td>Media</td>
-                <td>{{selectedPost.media}}</td>
-              </tr>
-              <tr>
-                <td>Created</td>
-                <td>{{selectedPost.createdDate}}</td>
-                <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
-                <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
-              </tr>
-              <!-- comments -->
-              <td>Comments:</td>
-              <tr>
-                <div *ngFor="let c of selectedPost.comments">
-                  <td>{{c.content}}</td>
-                </div>
-              </tr>
-            </table>
-            <button class="btn-outline-primary" name="cancel" type="submit" (click)="selectedPost = null">Back</button>
-            <button class="btn-outline-primary" name="update" type="submit" (click)="editPost = selectedPost">Edit Post</button>
-            <button class="btn-outline-primary" name="delete" type="submit" (click)="deletePost(selectedPost.id)">Delete
-              Post</button>
-          </div>
+          <!-- **************** Edit Post **************** -->
         </div>
       </div>
     </div>
