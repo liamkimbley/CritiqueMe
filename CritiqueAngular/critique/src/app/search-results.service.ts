@@ -12,10 +12,14 @@ export class SearchResultsService {
   constructor() { }
 
 public populateProfileArray(profiles: Profile[]) {
+  this.profiles = [];
   this.profiles = profiles;
+  this.posts = [];
 }
 
 public populatePostArray(posts: Post[]) {
+  this.posts = [];
   this.posts = posts;
+  this.profiles = [];
 }
 }
