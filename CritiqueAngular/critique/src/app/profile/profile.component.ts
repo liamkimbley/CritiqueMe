@@ -163,7 +163,7 @@ export class ProfileComponent implements OnInit {
     // console.log(this.profile.id);
     this.postService.indexByProfileId(this.profile.id).subscribe(
       data => {
-        // console.log(data);
+        console.log(data);
         this.posts = data;
       },
       err => {

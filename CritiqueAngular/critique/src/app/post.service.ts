@@ -49,7 +49,7 @@ export class PostService {
       );
       return this.http
         .get<Post[]>(
-          environment.baseUrl + 'api/profile/' + id, { headers })
+          environment.baseUrl + 'api/profile/' + id + '/posts', { headers })
         .pipe(
           catchError((err: any) => {
             console.log(err);

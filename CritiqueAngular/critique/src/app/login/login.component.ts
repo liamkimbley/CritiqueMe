@@ -11,7 +11,7 @@ import { ProfileService } from '../profile.service';
 })
 export class LoginComponent implements OnInit {
   login = function(userForm: NgForm) {
-    // console.log(userForm);
+    console.log(userForm);
     this.auth.login(userForm.value.username, userForm.value.password).subscribe(
       data => {
         console.log('data: ' + data.value);
