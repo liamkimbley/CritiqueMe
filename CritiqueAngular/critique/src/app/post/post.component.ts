@@ -235,8 +235,8 @@ export class PostComponent implements OnInit, OnDestroy {
         data => {
           this.postService.show(this.selected.id).subscribe(
             data2 => {
-              console.log('***********');
-              console.log(data2);
+              // console.log('***********');
+              // console.log(data2);
               this.selected = data2;
             }
           );
