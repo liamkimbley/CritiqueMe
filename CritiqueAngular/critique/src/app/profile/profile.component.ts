@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
       this.profService.getProfile(profId).subscribe(
         data => {
           if (data) {
-            console.log(data);
+            // console.log(data);
             this.profile = data;
             this.selectedUser = data.user;
             this.profSkills = data.skills;
@@ -112,7 +112,7 @@ export class ProfileComponent implements OnInit {
         this.profile = data;
         this.selectedUser = data.user;
         this.profSkills = data.skills;
-        console.log(data);
+        // console.log(data);
         this.loadPosts();
       },
       err => {
@@ -135,8 +135,7 @@ export class ProfileComponent implements OnInit {
     this.profService.update(prof).subscribe(
       data => {
         this.profile = data;
-        console.log(data);
-
+        // console.log(data);
         this.getOneProfile();
         this.editProfile = null;
       },
@@ -161,11 +160,10 @@ export class ProfileComponent implements OnInit {
   // user's posts
 
   loadPosts = function() {
-    console.log(this.profile.id);
-
+    // console.log(this.profile.id);
     this.postService.indexByProfileId(this.profile.id).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.posts = data;
       },
       err => {
@@ -176,7 +174,7 @@ export class ProfileComponent implements OnInit {
 
   displayPost = function(post: Post) {
     this.selectedPost = post;
-    console.log(post);
+    // console.log(post);
   };
 
   addPost = function() {
@@ -198,7 +196,7 @@ export class ProfileComponent implements OnInit {
   };
 
   updatePost = function(post: NgModel) {
-    console.log(post);
+    // console.log(post);
     this.postService.update(post).subscribe(
       data => {
         this.profile = data;
@@ -227,7 +225,7 @@ export class ProfileComponent implements OnInit {
     this.profService.getAllSkills().subscribe(
       data => {
         this.skills.push(...data);
-        console.log(data);
+        // console.log(data);
       },
       err => {
         console.error('Observer got an error: ' + err.status);

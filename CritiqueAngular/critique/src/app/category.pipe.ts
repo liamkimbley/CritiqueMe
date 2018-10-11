@@ -8,8 +8,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CategoryPipe implements PipeTransform {
 
   transform(value: Post[], category: Category): any {
-    console.log(value);
-
+    // console.log(value);
     const results = [];
     if (category.name === 'All') {
       return value;
@@ -17,8 +16,7 @@ export class CategoryPipe implements PipeTransform {
     // go through value list, add pokemon to results if it has type
     for (let i = 0; i < value.length; i++) {
       const element = value[i];
-      console.log(element);
-
+      // console.log(element);
       for (let j = 0; j < element.categories.length; j++) {
         const type = element.categories[j];
         if (type.name === category.name) {
@@ -27,7 +25,6 @@ export class CategoryPipe implements PipeTransform {
         }
       }
     }
-
     if (results.length === 0) {
       return value;
     }

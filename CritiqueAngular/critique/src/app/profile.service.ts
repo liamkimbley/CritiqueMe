@@ -75,7 +75,7 @@ export class ProfileService {
           'Authorization': `Basic ${this.auth.getToken()}`
         })
       };
-      console.log(prof);
+      // console.log(prof);
       return this.http.post<Profile>(this.url, prof, httpOptions);
     } else {
       this.router.navigateByUrl('login');
