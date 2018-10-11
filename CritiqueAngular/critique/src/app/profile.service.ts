@@ -16,23 +16,6 @@ export class ProfileService {
 
   private url = environment.baseUrl + 'api/profile';
 
-  // public index(): Observable<Profile []> {
-  //   if (this.auth.checkLogin()) {
-  //     const headers = new HttpHeaders().set(
-  //       'Authorization', `Basic ${this.auth.getToken()}`
-  //     );
-  //     return this.http.get<Profile[]>(this.url, {headers})
-  //     .pipe(
-  //       catchError((err: any) => {
-  //         console.log(err);
-  //         return throwError('Error: ' + err.status);
-  //       })
-  //       );
-  //   } else {
-  //       this.router.navigateByUrl('login');
-  //   }
-  // }
-
   public show(): Observable<Profile> {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
@@ -60,8 +43,8 @@ export class ProfileService {
          catchError((err: any) => {
          console.log(err);
          return throwError('Error: ' + err.status);
-       })
-   );
+         })
+     );
     } else {
         this.router.navigateByUrl('login');
     }
@@ -115,21 +98,35 @@ export class ProfileService {
   }
 
   public getProfilePic(id: number) {
-    return this.http.get(this.url + '/posts/' + id).pipe(
-      catchError((err: any) => {
-      console.log(err);
-      return throwError('Error: ' + err.status);
-    })
-  );
+    if (this.auth.checkLogin()) {
+      const headers = new HttpHeaders().set(
+        'Authorization', `Basic ${this.auth.getToken()}`
+      );
+      return this.http.get(this.url + '/posts/' + id).pipe(
+        catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+        })
+      );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   public getAllSkills(): Observable<Expertise> {
-    return this.http.get<Expertise>(environment.baseUrl + 'api/skills').pipe(
-      catchError((err: any) => {
-      console.log(err);
-      return throwError('Error: ' + err.status);
-    })
-  );
+    if (this.auth.checkLogin()) {
+      const headers = new HttpHeaders().set(
+        'Authorization', `Basic ${this.auth.getToken()}`
+      );
+      return this.http.get<Expertise>(environment.baseUrl + 'api/skills').pipe(
+        catchError((err: any) => {
+        console.log(err);
+        return throwError('Error: ' + err.status);
+        })
+      );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   constructor(private userServ: UserService, private http: HttpClient, private auth: AuthService, private router: Router) { }

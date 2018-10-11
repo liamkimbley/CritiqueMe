@@ -87,20 +87,6 @@ export class CommentService {
   }
 
   public destroy(id: number) {
-    // if (this.auth.checkLogin()) {
-    //   const headers = new HttpHeaders().set(
-    //     'Authorization',
-    //     `Basic ${this.auth.getToken()}`
-    //   );
-    //   return this.http.delete(this.url + id, { headers }).pipe(
-    //     catchError((err: any) => {
-    //       console.log(err);
-    //       return throwError('Error: ' + err.status);
-    //     })
-    //   );
-    // } else {
-    //   this.router.navigateByUrl('login');
-    // }
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({

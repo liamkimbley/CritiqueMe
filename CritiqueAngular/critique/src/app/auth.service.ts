@@ -12,11 +12,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(username, password) {
-    console.log(username);
-    console.log(password);
+    // console.log(username);
+    // console.log(password);
     // Make Token
     const token = this.generateBasicAuthToken(username, password);
-    console.log(token);
+    // console.log(token);
     // send token as Authorization header
     const headers = new HttpHeaders().set(
       'Authorization', `Basic ${token}`
@@ -26,9 +26,9 @@ export class AuthService {
     return this.http.get('http://localhost:8080/authenticate', {headers})
     .pipe(
       tap((res) => {
-        console.log(token);
+        // console.log(token);
         localStorage.setItem('token', token);
-        console.log(res);
+        // console.log(res);
         return res;
       }),
       catchError((err: any) => {
