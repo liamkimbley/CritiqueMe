@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Profile } from 'selenium-webdriver/firefox';
+import { Profile } from './models/profile';
 import { Post } from './models/post';
 
 @Injectable({

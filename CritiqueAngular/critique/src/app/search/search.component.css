@@ -10,6 +10,38 @@
   margin-left: 12px;
 }
 
-.searchText {
-  color: white;
+/* left search */
+
+.search1 {
+  float: left;
+  margin-left: 1px;
 }
+
+.searchTextBox {
+  margin-right: 20px;
+}
+
+.searchBy {
+  color: white;
+  float: left;
+  margin-right: 10px;
+}
+
+/* end left search */
+/* right search */
+
+.search2 {
+  float: right;
+  margin-right: 200px;
+}
+
+.dropdown {
+  float: left;
+  margin-right: 10px;
+}
+
+.searchBtn {
+  float: right;
+}
+
+/* end right search */
