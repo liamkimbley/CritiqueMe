@@ -101,12 +101,20 @@ export class PostService {
   }
 
   public refreshPost(id): Observable<Post> {
-    return this.http.get<Post>(this.url + '/' + id).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Error: ' + err.status);
-      })
-    );
+    if (this.auth.checkLogin()) {
+      const headers = new HttpHeaders().set(
+        'Authorization',
+        `Basic ${this.auth.getToken()}`
+      );
+      return this.http.get<Post>(this.url + '/' + id, { headers }).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error: ' + err.status);
+        })
+      );
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   public create(post: Post): Observable<Post> {
