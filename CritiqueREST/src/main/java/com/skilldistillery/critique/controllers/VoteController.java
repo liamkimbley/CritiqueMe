@@ -1,5 +1,6 @@
 package com.skilldistillery.critique.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import com.skilldistillery.critique.services.VoteService;
 @RequestMapping("api")
 @CrossOrigin({"*", "http://localhost:4201"})
 public class VoteController {
-	private String username = "test"; // change to principal
+//	private String username = "test"; // change to principal
 	
 	@Autowired
 	private VoteService vs;
@@ -33,8 +34,8 @@ public class VoteController {
 //	}
 	
 	@RequestMapping(path="comments/{cid}/votes", method=RequestMethod.POST)
-	public Vote createVote(@PathVariable Integer cid, @RequestBody Vote vote) {
-		return vs.createVote(vote, cid, username);
+	public Vote createVote(@PathVariable Integer cid, @RequestBody Vote vote, Principal principal) {
+		return vs.createVote(vote, cid, principal.getName());
 	}
 
 	@RequestMapping(path="comments/{cid}/votes/{vid}", method=RequestMethod.PUT)

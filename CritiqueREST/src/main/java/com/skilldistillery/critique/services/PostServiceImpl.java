@@ -117,11 +117,10 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post create(Post post, Integer id) {
+	public Post create(Post post, String username) {
 		Post p = new Post();
-		Optional<Profile> pr = profRepo.findById(id);
-		if (pr.isPresent()) {
-			Profile prof = pr.get();
+		Profile prof = profRepo.queryByUsernameWithUser(username);
+		if (prof != null) {
 
 			if (post != null) {
 				if (post.getContent() != null && !post.getContent().equals("")) {

@@ -1,5 +1,7 @@
 package com.skilldistillery.critique.controllers;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,8 +39,8 @@ public class CommentController {
 //	************************************* hard coded profile id into comments (same as post)
 	@RequestMapping(path = "posts/{pid}/comments", method = RequestMethod.POST)
 	public Comment createComment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer pid,
-			@RequestBody Comment com) {
-		Comment comment = comServ.createNewCommentOnPost(pid, com, 1);
+			@RequestBody Comment com, Principal principal) {
+		Comment comment = comServ.createNewCommentOnPost(pid, com, principal.getName());
 		if (comment != null) {
 			res.setStatus(201);
 			return comment;
