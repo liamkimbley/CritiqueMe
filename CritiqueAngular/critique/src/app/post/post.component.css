@@ -1,18 +1,5 @@
-.postImage {
-  width: 400px;
-  height: 300px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
 .profilePic {
   float: left;
-}
-
-.postTitle {
-  float: right;
 }
 
 .commentTextBox {
@@ -99,6 +86,51 @@
   transform: scale(2);
 }
 
+.headerDiv {
+  /* margin-bottom: 20px; */
+}
+
 .postHeader {
   text-align: center;
+}
+
+.postTitle {
+  color: black;
+  text-align: center;
+  float: right;
+  position: relative;
+}
+
+.postProfilePic {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.postUsername {
+  color: black;
+  float: left;
+  margin-left: 20px;
+}
+
+.postDiv {
+  margin-top: 130px;
+}
+
+.postContent {
+  font-size: 20px;
+}
+
+.postImage {
+  height: 300px;
+  width: 400px;
+}
+
+.viewMore {
+  float: left;
+}
+
+.date {
+  float: right;
 }

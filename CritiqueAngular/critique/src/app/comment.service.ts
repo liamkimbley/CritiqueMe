@@ -84,8 +84,8 @@ export class CommentService {
     // } else {
     //   this.router.navigateByUrl('login');
     // }
-    console.log(id);
-    console.log(comment);
+    // console.log(id);
+    // console.log(comment);
     return this.http.put<Comment>(this.commentUrl + id, comment).pipe(
       catchError((err: any) => {
         console.log(err);

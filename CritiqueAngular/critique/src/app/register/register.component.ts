@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
   register = function(form) {
-    console.log(form.value);
+    // console.log(form.value);
     this.auth.register(form.value).subscribe(
       data => {
         this.auth.login(form.value.username, form.value.password).subscribe(

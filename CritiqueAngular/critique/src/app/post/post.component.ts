@@ -67,7 +67,7 @@ export class PostComponent implements OnInit, OnDestroy {
   reload = function() {
     this.postService.index().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.posts = data;
       },
       err => {
@@ -82,7 +82,7 @@ export class PostComponent implements OnInit, OnDestroy {
 
   displayPost = function(post: Post) {
     this.selected = post;
-    console.log(post);
+    // console.log(post);
   };
 
   goBack = function() {
@@ -102,7 +102,7 @@ export class PostComponent implements OnInit, OnDestroy {
         console.error('Observer got an error: ' + err.status);
       }
     );
-    console.log(this.newPost);
+    // console.log(this.newPost);
     this.newPost = new Post();
   };
 
@@ -140,7 +140,7 @@ export class PostComponent implements OnInit, OnDestroy {
   reloadCategories() {
     this.postService.indexCategories().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.categories = data;
       },
       err => console.error('Observer recieved an error: ' + err.status)
@@ -152,7 +152,7 @@ export class PostComponent implements OnInit, OnDestroy {
       data => {
         if (data) {
           this.categories = data;
-          console.log('Data: ' + data.values);
+          // console.log('Data: ' + data.values);
         } else {
           this.router.navigateByUrl('/notFound');
         }
@@ -183,7 +183,7 @@ export class PostComponent implements OnInit, OnDestroy {
   };
 
   displayComment = function(comment: Comment) {
-    console.log(comment);
+    // console.log(comment);
     this.selectedComment = comment;
   };
 
@@ -222,7 +222,7 @@ export class PostComponent implements OnInit, OnDestroy {
   reloadComments() {
     this.commentService.index().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.comments = data;
       },
       err => console.error('Observer recieved an error: ' + err)
@@ -233,7 +233,13 @@ export class PostComponent implements OnInit, OnDestroy {
       const newVote = new Vote(vote);
       this.commentService.createVote(newVote, id).subscribe(
         data => {
-          this.reloadComments();
+          this.postService.show(this.selected.id).subscribe(
+            data2 => {
+              // console.log('***********');
+              // console.log(data2);
+              this.selected = data2;
+            }
+          );
         },
         err => console.error('Observer recieved an error: ' + err)
     );
