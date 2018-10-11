@@ -28,94 +28,123 @@
       <div *ngIf="!selected">
         <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
           <mat-card class="postCard">
-              <mat-card-header>
-                  <mat-card-content>
-                    <img class="commentPic" src="{{post.profile.imageUrl}}">
+
+            <!-- <mat-card-header> -->
+            <div class="headerDiv">
+              <mat-card-content>
+                <img class="postProfilePic" src="{{post.profile.imageUrl}}">
+              </mat-card-content>
+              <mat-card-content>
+                <a [routerLink]="['/profile/'+post.profile.id]">
+                  <h5 class="postUsername">{{post.profile.user.username}}</h5>
+                </a>
+              </mat-card-content>
+              <mat-card-content>
+                <h2 class="postTitle">{{post.title}}</h2>
+              </mat-card-content>
+            </div>
+            <div class="postDiv">
+              <div class="row">
+                <div class="col">
+                  <mat-card-content class="postContent" *ngIf="post.content">
+                    {{post.content}}
                   </mat-card-content>
-                  <mat-card-content>
-                    <a [routerLink]="['/profile/'+post.profile.id]">
-                    <h4 class="commentUsername">{{post.profile.user.username}}</h4>
-                    </a>
+                </div>
+                <div class="col">
+                  <mat-card-content *ngIf="post.media">
+                    <img class="postImage" src="{{post.media}}">
                   </mat-card-content>
-              </mat-card-header>
-            <mat-card-header>
-              <mat-card-title>
-                <h2>{{post.title}}</h2>
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <h6  *ngIf="post.content">
-                {{post.content}}
-              </h6>
-              <p *ngIf="post.media">
-                <img class="postImage" src="{{post.media}}">
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-raised-button color="primary" (click)="displaySelected(post)">View More</button>
-            </mat-card-actions>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button class="viewMore" mat-raised-button color="primary" (click)="displaySelected(post)">View More</button>
+                </mat-card-actions>
+              </div>
+              <div class="col">
+                <mat-card-content class="date">
+                  {{post.createdDate | date: 'fullDate'}}
+                </mat-card-content>
+              </div>
+            </div>
           </mat-card>
         </div>
       </div>
 
       <!-- display single post -->
       <div *ngIf="selected">
-          <mat-card class="postCard">
-              <mat-card-header>
-                <mat-card-content>
-                  <img class="commentPic" src="{{selected.profile.imageUrl}}">
-                </mat-card-content>
-                <mat-card-content>
-                  <h2 class="commentUsername">{{selected.profile.user.username}}</h2>
-                </mat-card-content>
-              </mat-card-header>
-              <mat-card-header>
-                  <mat-card-title>
-                    <h1>{{selected.title}}</h1>
-                  </mat-card-title>
-              </mat-card-header>
-              <mat-card-content class="commentText"  *ngIf="selected.content">
-                <h6>{{selected.content}}</h6>
-              </mat-card-content>
-              <mat-card-content  *ngIf="selected.media">
-                <img class="postImage" width="300" height="300" src="{{selected.media}}">
-              </mat-card-content>
-              <mat-card-content>
-                {{selected.createdDate | date: 'fullDate'}}
-              </mat-card-content>
-          </mat-card>
+        <mat-card class="postCard">
+
+
+          <mat-card-header>
+
+            <mat-card-content>
+              <img class="commentPic" src="{{selected.profile.imageUrl}}">
+            </mat-card-content>
+
+            <mat-card-content>
+              <h2 class="commentUsername">{{selected.profile.user.username}}</h2>
+            </mat-card-content>
+
+          </mat-card-header>
+
+
+          <mat-card-header>
+
+            <mat-card-title>
+              <h1>{{selected.title}}</h1>
+            </mat-card-title>
+
+          </mat-card-header>
+
+
+          <mat-card-content class="commentText" *ngIf="selected.content">
+            <h6>{{selected.content}}</h6>
+          </mat-card-content>
+
+          <mat-card-content *ngIf="selected.media">
+            <img class="postImage" width="300" height="300" src="{{selected.media}}">
+          </mat-card-content>
+
+          <mat-card-content>
+            {{selected.createdDate | date: 'fullDate'}}
+          </mat-card-content>
+
+        </mat-card>
 
         <h2 class="commentsHeader">Comments:</h2>
 
-          <div class="postCardBox">
-            <mat-card *ngFor="let c of selected.comments" class="postCard">
-                <mat-card-header>
-                    <mat-card-content>
-                        <img class="commentPic" src="{{c.profile.imageUrl}}">
-                    </mat-card-content>
-                    <mat-card-content>
-                      <h4 class="commentUsername">{{c.profile.user.username}}</h4>
-                    </mat-card-content>
-                </mat-card-header>
-                <mat-card-content>
-                  <h6>{{c.content}}</h6>
-                </mat-card-content>
-                <mat-card-content>
-                    <p>{{c.createdAt | date: 'fullDate'}}</p>
-                    <p>Total Points: {{c.totalPoints}}</p>
-                </mat-card-content>
-                <mat-card-content>
-                    <input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
-                     alt="upvote" (click)="addVote(true, c.id)"/>
-                    <input class="downvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
-                      alt="downvote" (click)="addVote(false, c.id)"/>
-                    <input class="updateImg" type="image" src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/button_blue_repeat.png"
-                      alt="update" (click)="displayComment(c)"/>
-                    <input class="deleteImg" type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/120px-Crystal_button_cancel.svg.png"
-                      alt="delete" (click)="deleteComment(c.id)"/>
-                </mat-card-content>
-            </mat-card>
-          </div>
+        <div class="postCardBox">
+          <mat-card *ngFor="let c of selected.comments" class="postCard">
+            <mat-card-header>
+              <mat-card-content>
+                <img class="commentPic" src="{{c.profile.imageUrl}}">
+              </mat-card-content>
+              <mat-card-content>
+                <h4 class="commentUsername">{{c.profile.user.username}}</h4>
+              </mat-card-content>
+            </mat-card-header>
+            <mat-card-content>
+              <h6>{{c.content}}</h6>
+            </mat-card-content>
+            <mat-card-content>
+              <p>{{c.createdAt | date: 'fullDate'}}</p>
+              <p>Total Points: {{c.totalPoints}}</p>
+            </mat-card-content>
+            <mat-card-content>
+              <input class="upvoteImg" type="image" src="https://cdn.pixabay.com/photo/2013/07/13/10/27/hand-157251__340.png"
+                alt="upvote" (click)="addVote(true, c.id)" />
+              <input class="downvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
+                alt="downvote" (click)="addVote(false, c.id)" />
+              <input class="updateImg" type="image" src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/button_blue_repeat.png"
+                alt="update" (click)="displayComment(c)" />
+              <input class="deleteImg" type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/120px-Crystal_button_cancel.svg.png"
+                alt="delete" (click)="deleteComment(c.id)" />
+            </mat-card-content>
+          </mat-card>
+        </div>
 
         <!-- add a comment -->
         <div *ngIf="!selectedComment">
@@ -128,10 +157,10 @@
 
         <!-- update a comment -->
         <div *ngIf="selectedComment">
-          <form >
+          <form>
             <table>
               <tr>
-                <td><input class="commentTextBox" type="text" name="content" [(ngModel)]="selectedComment.content"/></td>
+                <td><input class="commentTextBox" type="text" name="content" [(ngModel)]="selectedComment.content" /></td>
               </tr>
             </table>
             <button class="buttons" mat-raised-button color="primary" type="submit" name="comment" (click)="updateComment()">Update</button>
