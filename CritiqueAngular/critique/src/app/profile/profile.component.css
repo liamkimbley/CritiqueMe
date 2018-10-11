@@ -4,8 +4,6 @@
 }
 
 .profileTable {
-  /* float: left; */
-  /* margin-left: 3em; */
   border-collapse: collapse;
   border-style: ridge;
 }
@@ -13,8 +11,8 @@
 .profileTable td,
 th {
   border: 1px solid #ddd;
-  padding: 8px;
-  width: 300px;
+  padding: 6px;
+  /* width: 300px; */
 }
 
 .profileTable tr:nth-child(even) {
@@ -33,12 +31,11 @@ th {
   float: left;
 }
 .profilePic {
-  /* float: left; */
-  /* margin-left: 30px;
-  padding-top: 25px; */
   width: 200px;
 }
 .profileContent {
+  padding-top: 50px;
+  padding-right: 15px;
   position: absolute;
 }
 .buttons {
@@ -47,9 +44,28 @@ th {
 }
 
 .editProfileButton {
+  margin-top: 7em;
   margin-left: 3em;
 }
 
+.profilePostCards {
+  padding: 3px;
+}
+mat-card {
+  padding: 20px;
+}
+
+mat-card-title {
+  font-size: medium;
+  margin-bottom: 0px;
+}
+mat-card-subtitle {
+  margin-top: 5px;
+  font-size: x-small;
+}
+mat-card-content {
+  font-size: smaller;
+}
 /* .addPostButton {
   position: absolute;
   margin-left: 50%;

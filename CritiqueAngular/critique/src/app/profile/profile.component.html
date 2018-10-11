@@ -17,36 +17,30 @@
             </div>
             <!-- **************** User information **************** -->
             <div class="profileContent">
-              <div class="container">
-                <table class="profileTable">
-                  <tr>
-                    <th>First Name</th>
-                    <td>{{profile.firstName}}</td>
-                  </tr>
-                  <tr>
-                    <th>Last Name</th>
-                    <td>{{profile.lastName}}</td>
-                  </tr>
-                  <tr>
-                    <th>Location</th>
-                    <td><em>{{profile.location.city}}, {{profile.location.state}}</em></td>
-                  </tr>
-                  <tr *ngIf="profile.location.country">
-                    <th>Country</th>
-                    <td><strong>{{profile.location.country}}</strong></td>
-                  </tr>
-                  <!-- <tr *ngIf="profSkills">
+              <table class="profileTable">
+                <tr>
+                  <th>Name</th>
+                  <td>{{profile.firstName}} {{profile.lastName}}</td>
+                </tr>
+                <tr>
+                  <th>Location</th>
+                  <td><em>{{profile.location.city}}, {{profile.location.state}}</em></td>
+                </tr>
+                <tr *ngIf="profile.location.country">
+                  <th>Country</th>
+                  <td><strong>{{profile.location.country}}</strong></td>
+                </tr>
+                <!-- <tr *ngIf="profSkills">
               <th>Skills</th>
               <div *ngFor="let s of profSkills">
                 <td>{{s.title}}</td>
               </div>
             </tr> -->
-                  <tr>
-                    <th>Bio</th>
-                    <td>{{profile.bio}}</td>
-                  </tr>
-                </table>
-              </div>
+                <tr>
+                  <th>Bio</th>
+                  <td>{{profile.bio}}</td>
+                </tr>
+              </table>
             </div>
             <!-- **************** User information **************** -->
           </div>
@@ -131,22 +125,21 @@
 
       <div class="col" id="userPostsColumn">
         <div *ngIf="!editProfile" class="profilePosts">
-          <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
-            a New
-            Post</button>
-          <!-- **************** Display a list of user's posts **************** -->
           <h3>Your Posts</h3>
+          <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
+            a New Post</button>
+
+          <!-- **************** Display a list of user's posts **************** -->
           <div *ngIf="!selectedPost && !editPost">
-            <div *ngFor="let post of posts">
-              <table>
-                <tr>
-                  <td>{{post.title}}</td>
-                </tr>
-                <tr>
-                  <td>{{post.createdDate | date:'shortDate'}}</td>
-                </tr>
-              </table>
-              <button class="btn-outline-primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
+            <div *ngFor="let post of posts" class="profilePostCards">
+              <mat-card>
+                <mat-card-title>{{post.title}}</mat-card-title>
+                <mat-card-subtitle>Shared on {{post.createdDate | date:'shortDate'}}</mat-card-subtitle>
+                <mat-card-content>{{post.content}}</mat-card-content>
+                <mat-card-actions>
+                  <button mat-button color="primary" name="show" type="submit" (click)="displayPost(post)">Details</button>
+                </mat-card-actions>
+              </mat-card>
             </div>
           </div>
           <!-- **************** End Display a list of user's posts **************** -->
