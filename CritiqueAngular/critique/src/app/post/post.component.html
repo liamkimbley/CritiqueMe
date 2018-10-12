@@ -138,10 +138,12 @@
                 alt="upvote" (click)="addVote(true, c.id)" />
               <input class="downvoteImg" type="image" src="http://www.clker.com/cliparts/7/h/y/H/m/Y/red-thumbs-down-hi.png"
                 alt="downvote" (click)="addVote(false, c.id)" />
+              <div *ngIf="c.profile.id == loggedInUser.id">
               <input class="updateImg" type="image" src="https://cdn4.iconfinder.com/data/icons/Primo_Icons/PNG/128x128/button_blue_repeat.png"
                 alt="update" (click)="displayComment(c)" />
               <input class="deleteImg" type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Crystal_button_cancel.svg/120px-Crystal_button_cancel.svg.png"
                 alt="delete" (click)="deleteComment(c.id)" />
+              </div>
             </mat-card-content>
           </mat-card>
         </div>

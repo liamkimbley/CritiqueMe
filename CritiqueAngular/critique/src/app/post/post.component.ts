@@ -19,6 +19,8 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { NgForm } from '@angular/forms';
 import { CommentService } from '../comment.service';
 import { ProfileService } from '../profile.service';
+import { User } from '../models/user';
+import { Profile } from '../models/profile';
 
 @Component({
   selector: 'app-post',
@@ -54,6 +56,7 @@ export class PostComponent implements OnInit, OnDestroy {
   mediaUrl: String = null;
   editComment: Comment = null;
   selectedComment: Comment = null;
+  loggedInUser: Profile = null;
 
   // Sidebar
   @ViewChild('sidenav')
@@ -69,6 +72,7 @@ export class PostComponent implements OnInit, OnDestroy {
       data => {
         // console.log(data);
         this.posts = data;
+        this.getUser();
       },
       err => {
         console.error('Observer got an error: ' + err.status);
@@ -242,6 +246,16 @@ export class PostComponent implements OnInit, OnDestroy {
           );
         },
         err => console.error('Observer recieved an error: ' + err)
+    );
+  }
+
+  getUser() {
+    this.profileService.show().subscribe(
+      data => {
+        console.log(data);
+        const pr = data;
+        this.loggedInUser = data;
+      }
     );
   }
 
