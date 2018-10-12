@@ -1,3 +1,4 @@
+import { PostComponent } from './../post/post.component';
 import { LoginComponent } from './../login/login.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../auth.service';
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
   comments: Comment[] = [];
   skills: Expertise[] = [];
   profSkills: Expertise[] = [];
+  loggedInUser: User = null;
 
   // posts
   posts: Post[] = [];
@@ -59,6 +61,7 @@ export class ProfileComponent implements OnInit {
             this.profile = data;
             this.selectedUser = data.user;
             this.profSkills = data.skills;
+            this.loadPosts();
           } else {
             this.router.navigateByUrl('posts');
           }
@@ -112,6 +115,7 @@ export class ProfileComponent implements OnInit {
         this.profile = data;
         this.selectedUser = data.user;
         this.profSkills = data.skills;
+        this.loggedInUser = data.user;
         // console.log(data);
         this.loadPosts();
       },
@@ -131,7 +135,7 @@ export class ProfileComponent implements OnInit {
   };
 
   updateProfile = function(prof: Profile) {
-    console.log(prof);
+    // console.log(prof);
     this.profService.update(prof).subscribe(
       data => {
         this.profile = data;
@@ -163,7 +167,7 @@ export class ProfileComponent implements OnInit {
     // console.log(this.profile.id);
     this.postService.indexByProfileId(this.profile.id).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.posts = data;
       },
       err => {

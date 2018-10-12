@@ -1,12 +1,12 @@
 <div *ngIf="profile">
   <div class="profileBanner">
-    <h1 class="display-4">Welcome, {{profile.user.username}}</h1>
+    <h1 class="display-4">{{profile.user.username}}</h1>
   </div>
   <div class="container">
     <div class="row">
       <div class="col" id="profileColumn">
         <div class="editProfileButtonDiv">
-          <button *ngIf="!editProfile" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
+          <button *ngIf="!editProfile && profile.user === loggedInUser" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
             (click)="open(content)">Edit Your Profile</button>
         </div>
         <div class="profileInfo">
@@ -126,11 +126,11 @@
       <div class="col" id="userPostsColumn">
         <div *ngIf="!editProfile" class="profilePosts">
           <div class="newPostButtonDiv">
-            <button *ngIf="!newPost" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
+            <button *ngIf="!newPost && profile.user === loggedInUser" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
               a New Post</button>
           </div>
           <div class="postsBanner">
-            <h3>Your Posts</h3>
+            <h3>{{profile.firstName}}'s Posts</h3>
           </div>
 
           <!-- **************** Display a list of user's posts **************** -->
@@ -195,7 +195,7 @@
                   </table>
                 </mat-card>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer" *ngIf="profile.user === loggedInUser">
                 <button mat-raised-button color="accent" name="cancel" type="submit" (click)="selectedPost = null"
                   (click)="modal.dismiss('Cross click')">Back</button>
                 <button mat-raised-button color="primary" name="update" type="submit" (click)="editPost = selectedPost">Edit

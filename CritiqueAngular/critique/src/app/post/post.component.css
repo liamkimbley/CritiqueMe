@@ -1,5 +1,15 @@
-.profilePic {
-  float: left;
+#categoryBtn {
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.left-container {
+  flex: 1;
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .commentTextBox {
@@ -31,6 +41,10 @@
   margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+}
+
+.profilePic {
+  float: left;
 }
 
 .upvoteImg {
@@ -86,9 +100,9 @@
   transform: scale(2);
 }
 
-.headerDiv {
-  /* margin-bottom: 20px; */
-}
+/* .headerDiv {
+  margin-bottom: 20px;
+} */
 
 .postHeader {
   text-align: center;

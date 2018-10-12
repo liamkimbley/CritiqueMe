@@ -20,6 +20,8 @@ import { NgForm } from '@angular/forms';
 import { CommentService } from '../comment.service';
 import { ProfileService } from '../profile.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { User } from '../models/user';
+import { Profile } from '../models/profile';
 
 @Component({
   selector: 'app-post',
@@ -56,6 +58,7 @@ export class PostComponent implements OnInit, OnDestroy {
   mediaUrl: String = null;
   editComment: Comment = null;
   selectedComment: Comment = null;
+  loggedInUser: Profile = null;
 
   // Sidebar
   @ViewChild('sidenav')
@@ -71,7 +74,11 @@ export class PostComponent implements OnInit, OnDestroy {
       data => {
         // console.log(data);
         this.posts = data;
+<<<<<<< HEAD
         this.changeToYoutubeEmbed(this.posts);
+=======
+        this.getUser();
+>>>>>>> 67d38dcaba371df4c2f67f0542f7aa1131b0ab37
       },
       err => {
         console.error('Observer got an error: ' + err.status);
@@ -251,6 +258,15 @@ export class PostComponent implements OnInit, OnDestroy {
           );
         },
         err => console.error('Observer recieved an error: ' + err)
+    );
+  }
+
+  getUser() {
+    this.profileService.show().subscribe(
+      data => {
+        // console.log(data);
+        this.loggedInUser = data;
+      }
     );
   }
 
