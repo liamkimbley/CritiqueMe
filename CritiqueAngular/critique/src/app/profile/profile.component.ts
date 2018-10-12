@@ -1,3 +1,4 @@
+import { PostComponent } from './../post/post.component';
 import { LoginComponent } from './../login/login.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../auth.service';
