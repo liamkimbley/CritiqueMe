@@ -4,10 +4,14 @@
   <form #logUser="ngForm" class="form-inline">
     <div class="form-row align-items-center">
       <div class="col-auto">
-        <input class="form-control" type="username" name="username" placeholder="Username" ngModel required>
+        <input class="form-control" type="username" name="username" id="username" placeholder="Username" ngModel required
+        [(ngModel)]="logUser.value.username" #username="ngModel">
+        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+          Username is required
+        </div>
       </div>
       <div class="col-auto">
-        <input class="form-control" type="password" name="password" placeholder="Password" ngModel required>
+        <input class="form-control" type="password" name="password" id="password" placeholder="Password" ngModel required>
       </div>
       <div class="col-auto">
         <button mat-raised-button color="accent" (click)="login(logUser)">Log In</button>
@@ -33,7 +37,7 @@
               <input class="form-control" type="password" name="password" placeholder="Password" ngModel required>
             </div>
             <div class="form-group" id="submitLogin">
-              <button mat-raised-button color="accent" (click)="login(logUser)">Log In</button>
+              <button mat-raised-button color="accent" (click)="login(logUser)" type="submit">Log In</button>
             </div>
           </form>
         </div>

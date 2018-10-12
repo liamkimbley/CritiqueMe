@@ -35,5 +35,7 @@
   margin-right: 10px;
   /* margin-right: 250px; */
 }
-
+.input-group {
+  padding: 5px;
+}
 /* end right search */
