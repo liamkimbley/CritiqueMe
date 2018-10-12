@@ -35,6 +35,7 @@ export class SearchResultsComponent implements OnInit {
 
   populateProfiles() {
     this.profiles = this.searchResultsService.profiles;
+    console.log(this.profiles);
   }
 
   populatePosts() {

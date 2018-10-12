@@ -259,15 +259,18 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test@sd.com', 'test', '$2a$10$4WvWHVwZ6Vuhq9/zY85ZbOs/OYHY07ZC5df7/t2GzgFv//HRvnV6G', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mjones@gmail.com', 'mikejones', 'who', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'jeffy@yahoo.com', 'myusernameisjeff', 'mynameisjeff', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mbyrde@aol.com', 'martybyrde', 'moneylaundering', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'wwchemist@hotmail.com', 'waltw', 'skylar', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'test', 'test12', 'test', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'mrfring@sbcbusiness.com', 'managergus', 'lightblue', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'saullaw@gmail.com', 'bettercallsaul', 'laundering', 1, DEFAULT);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (DEFAULT, 'sdssthompson@sd.com', 'sdthompson', 'codingrules', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (4, 'test@sd.com', 'test', '$2a$10$4WvWHVwZ6Vuhq9/zY85ZbOs/OYHY07ZC5df7/t2GzgFv//HRvnV6G', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (5, 'mjones@gmail.com', 'mikejones', 'who', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (6, 'jeffy@yahoo.com', 'myusernameisjeff', 'mynameisjeff', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (7, 'mbyrde@aol.com', 'martybyrde', 'moneylaundering', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (8, 'wwchemist@hotmail.com', 'waltw', 'skylar', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (9, 'mrfring@sbcbusiness.com', 'managergus', 'lightblue', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (10, 'saullaw@gmail.com', 'bettercallsaul', 'laundering', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (11, 'sdssthompson@sd.com', 'sdthompson', 'codingrules', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (1, 'gregG@gmail.com', 'gregory12', '$2a$10$yWhbTjZHBJMPVykwxPL9Oe0GfmCms7EdkCKWWVz9qP28ZACW03esS', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (2, 'eddie@yahoo.com', 'guitarEddie', '$2a$10$4S/Y7sYb6o80r7Op5pmR.OvgH1zYnHcmFHonB3Mgl7EtNCI2SkJrC', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (3, 'ellieBear@msn.com', 'decoratorEllie', '$2a$10$D9z0N7jMNk9a/LbL/HD09ucRGHhNEZ8RD6Pgl6jee.R.1HqTncFGu', 1, DEFAULT);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `active`, `role`) VALUES (12, 'johnWick@gmail.com', 'johnWick', '$2a$10$CL7/.hewzPp1eKICegGBc.nKp0UNuorZcxZk7qvYOMCXvk.4Y5PXm', 1, DEFAULT);
 
 COMMIT;
 
@@ -291,15 +294,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 1, 'https://cdn2.vectorstock.com/i/1000x1000/20/76/question-mark-vector-972076.jpg');
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Mike', 'Jones', 'who is mike jones?', 2, 2, 'https://marriedwiki.com/uploads/bio/mike-jones.jpg');
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Jeff', 'Jefferson', 'my name is jeff', 3, 3, 'https://i.kym-cdn.com/entries/icons/original/000/016/894/mynameehhjeff.jpg');
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Marty', 'Byrde', 'come check out my lakehouse', 4, 4, 'https://static.wikia.nocookie.net/2a6c845c-c6e9-472e-abed-24863817b795/scale-to-width/300');
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Walter', 'White', 'chemisty teacher', 5, 5, 'https://www.indiewire.com/wp-content/uploads/2018/07/breakingbadformon_wide-22d0f0aa716956d518b391936d3bc323dd7a3848-s900-c85.jpg?w=780');
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'test', 'test', 'test', 1, 6, NULL);
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Gustavo', 'Fring', 'Small business owner here to serve you.', 5, 7, 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Gustavo_fring_breaking_bad.jpg/220px-Gustavo_fring_breaking_bad.jpg');
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Saul', 'Goodman', 'Attorney at law. Having any legal trouble? Better call Saul. 505-503-4455', 5, 8, 'http://images.amcnetworks.com/blogs.amctv.com/wp-content/uploads/2010/04/BB-S3-Bob-Odenkirk-325.jpg');
-INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (DEFAULT, 'Steve', 'Thompson', 'Java developer and teacher', 1, 9, 'https://naqyr37xcg93tizq734pqsx1-wpengine.netdna-ssl.com/wp-content/uploads/2017/11/10-Things-We-Can-Learn-From-the-Incredible-Steve-Jobs.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (4, 'test', 'test', 'test', 1, 4, 'https://cdn2.vectorstock.com/i/1000x1000/20/76/question-mark-vector-972076.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (5, 'Mike', 'Jones', 'who is mike jones?', 2, 5, 'https://marriedwiki.com/uploads/bio/mike-jones.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (6, 'Jeff', 'Jefferson', 'my name is jeff', 3, 6, 'https://i.kym-cdn.com/entries/icons/original/000/016/894/mynameehhjeff.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (7, 'Marty', 'Byrde', 'come check out my lakehouse', 4, 7, 'https://static.wikia.nocookie.net/2a6c845c-c6e9-472e-abed-24863817b795/scale-to-width/300');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (8, 'Walter', 'White', 'chemisty teacher', 5, 8, 'https://www.indiewire.com/wp-content/uploads/2018/07/breakingbadformon_wide-22d0f0aa716956d518b391936d3bc323dd7a3848-s900-c85.jpg?w=780');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (9, 'Gustavo', 'Fring', 'Small business owner here to serve you.', 5, 9, 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Gustavo_fring_breaking_bad.jpg/220px-Gustavo_fring_breaking_bad.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (10, 'Saul', 'Goodman', 'Attorney at law. Having any legal trouble? Better call Saul. 505-503-4455', 5, 10, 'http://images.amcnetworks.com/blogs.amctv.com/wp-content/uploads/2010/04/BB-S3-Bob-Odenkirk-325.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (11, 'Steve', 'Thompson', 'Java developer and teacher', 1, 11, 'https://naqyr37xcg93tizq734pqsx1-wpengine.netdna-ssl.com/wp-content/uploads/2017/11/10-Things-We-Can-Learn-From-the-Incredible-Steve-Jobs.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (1, 'Greg', 'Lewis', 'I love piano, goats, and hockey', 4, 1, 'https://pbs.twimg.com/profile_images/513750073881018370/dllbq93-_400x400.jpeg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (2, 'Eddie', 'Bauer', 'Guitar and cinnamon and MIXED MARTIAL ARTS', 1, 2, 'https://yt3.ggpht.com/a-/AN66SAx3d93XAtECHGSN1bANIyE1GexLwt-HgLDu=s288-mo-c-c0xffffffff-rj-k-no');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (3, 'Ellie', 'Reynolds', 'Hi there! I love interior design, cooking, and my dog Mickey', 2, 3, 'https://rachelbthriftstudio.files.wordpress.com/2013/08/ellie-visconti-e1485279915522.jpg');
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `bio`, `location_id`, `user_id`, `image`) VALUES (12, 'John', 'Wick', 'I enjoy spending time with my dog', 1, 12, 'https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fblogs-images.forbes.com%2Ferikkain%2Ffiles%2F2017%2F05%2Fjohn-wick-2.jpg');
 
 COMMIT;
 
@@ -309,12 +315,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 2, DEFAULT, DEFAULT, 'I really enjoy classical music so I made this compilation of my favorite works from Beethoven. My favorite track is Symphony No. 3 \"Eroica\" because of the robust woodwind solo. Please listen to it and share what you all think.', 'My New Album', 'https://images-na.ssl-images-amazon.com/images/I/51aPPEV-AjL.jpg');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 3, DEFAULT, DEFAULT, 'my name is jeff', 'hello', 'https://www.youtube.com/watch?v=AfIOBLr1NDU');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 4, DEFAULT, DEFAULT, 'Anyone want to invest with me?', 'investing', 'none');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 5, DEFAULT, DEFAULT, 'How does my carwash look?', 'A1 Car Wash', 'https://vignette.wikia.nocookie.net/breakingbad/images/6/67/5x09_WalterAndLydia.jpg/revision/latest?cb=20130814205346');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 7, DEFAULT, DEFAULT, 'Hello everyone, here at Los Pollos Hermanos we are looking for your feedback. Our customers are everything to us and we would like to know how we can better serve you. Please leave your comments below. Thank you!', 'Improving Los Pollos Hermanos', 'https://images.amcnetworks.com/amc.com/wp-content/uploads/2017/01/25926-BCS-S3-Los-Pollos-Hermanos-wLOGO_01.jpg');
-INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (DEFAULT, 8, DEFAULT, DEFAULT, 'How would you all rate the service you have gotten with me and my law firm? Please share your experience in the comments below.', 'How would you rate our service?', 'https://news.newonnetflix.info/wp-content/uploads/2018/06/better-call-saul.jpg');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (5, 5, DEFAULT, DEFAULT, 'I really enjoy classical music so I made this compilation of my favorite works from Beethoven. My favorite track is Symphony No. 3 \"Eroica\" because of the robust woodwind solo. Please listen to it and share what you all think.', 'My New Album', 'https://images-na.ssl-images-amazon.com/images/I/51aPPEV-AjL.jpg');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (6, 6, DEFAULT, DEFAULT, 'my name is jeff', 'hello', 'https://www.youtube.com/watch?v=AfIOBLr1NDU');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (7, 7, DEFAULT, DEFAULT, 'Anyone want to invest with me?', 'investing', 'none');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (8, 8, DEFAULT, DEFAULT, 'How does my carwash look?', 'A1 Car Wash', 'https://www.breakingbad-locations.com/wp-content/uploads/2014/09/E07-Problem-Dog.mkv_000823371.jpg');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (9, 9, DEFAULT, DEFAULT, 'Hello everyone, here at Los Pollos Hermanos we are looking for your feedback. Our customers are everything to us and we would like to know how we can better serve you. Please leave your comments below. Thank you!', 'Improving Los Pollos Hermanos', 'https://images.amcnetworks.com/amc.com/wp-content/uploads/2017/01/25926-BCS-S3-Los-Pollos-Hermanos-wLOGO_01.jpg');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (10, 10, DEFAULT, DEFAULT, 'How would you all rate the service you have gotten with me and my law firm? Please share your experience in the comments below.', 'How would you rate our service?', 'https://news.newonnetflix.info/wp-content/uploads/2018/06/better-call-saul.jpg');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (1, 1, DEFAULT, DEFAULT, 'Hey everyone, any thoughts on my performance?', 'Schubert - Impromptu No. 3, Op. 90', 'https://www.youtube.com/watch?v=Ybq6Ea79nZ4');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (2, 2, DEFAULT, DEFAULT, 'What\'s up guys. Check out my new cover. Thx', 'Believer Guitar Cover', 'https://www.youtube.com/watch?v=hXQxSi34GWY');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (3, 3, DEFAULT, DEFAULT, 'How cool does this interior design look??', 'New Style Design!!', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ed-best-decor-santa-monica3-1520362749.jpg?crop=1xw:1xh;center,top&resize=480:*');
+INSERT INTO `post` (`id`, `profile_id`, `create_date`, `update_date`, `content`, `title`, `media`) VALUES (4, 12, DEFAULT, DEFAULT, 'These guys did an awesome job on this site. Thoughts?', 'Trail Mixer', 'http://18.216.51.206:8080/MVCTrailMixer/');
 
 COMMIT;
 
@@ -353,14 +363,20 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `critiquemedb`;
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (1, 1);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (2, 19);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (3, 8);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (4, 7);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (5, 5);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (5, 7);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (6, 6);
-INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (6, 7);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (1, 20);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (2, 20);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (3, 3);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (3, 12);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (4, 10);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (4, 4);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (5, 20);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (6, 19);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (7, 7);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (7, 8);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (8, 7);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (9, 7);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (10, 7);
+INSERT INTO `post_category` (`post_id`, `category_id`) VALUES (10, 17);
 
 COMMIT;
 
@@ -371,9 +387,14 @@ COMMIT;
 START TRANSACTION;
 USE `critiquemedb`;
 INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (1, 'no', DEFAULT, DEFAULT, 3, 1);
-INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (2, 'Hello, mike. I find the the woodwind solo to be exuberant and very stimulating. A nicely put together album indeed.', DEFAULT, DEFAULT, 4, 1);
-INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (3, 'I might be interested', DEFAULT, DEFAULT, 5, 3);
-INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (4, 'Looks good, I might stop by ;)', DEFAULT, DEFAULT, 4, 4);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (2, 'Hello, mike. I find the the woodwind solo to be exuberant and very stimulating. A nicely put together album indeed.', DEFAULT, DEFAULT, 7, 5);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (3, 'I might be interested', DEFAULT, DEFAULT, 8, 7);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (4, 'Looks good, I might stop by ;)', DEFAULT, DEFAULT, 7, 8);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (5, 'I really enjoyed the performance.', DEFAULT, DEFAULT, 8, 1);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (6, 'I found it very relaxing', DEFAULT, DEFAULT, 12, 1);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (7, 'I found myself singing along! Lol', DEFAULT, DEFAULT, 3, 2);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (8, 'jeff', DEFAULT, DEFAULT, 6, 3);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `profile_id`, `post_id`) VALUES (9, 'jeff', DEFAULT, DEFAULT, 6, 4);
 
 COMMIT;
 

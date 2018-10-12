@@ -16,14 +16,14 @@
           <mat-card-content>
             <img class="postProfilePic" src="{{post.profile.imageUrl}}">
           </mat-card-content>
-          </div>
+          <!-- </div> -->
           <!-- <div class="col"> -->
           <mat-card-content>
             <a [routerLink]="['/profile/'+post.profile.id]">
               <h5 class="postUsername">{{post.profile.user.username}}</h5>
             </a>
           </mat-card-content>
-          <!-- </div> -->
+          </div>
           <div class="col">
           <mat-card-content>
             <h2 class="postTitle">{{post.title}}</h2>
