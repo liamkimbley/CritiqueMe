@@ -125,9 +125,9 @@ public class ProfileController {
 	@RequestMapping(path = "profile", method = RequestMethod.GET)
 	public Profile findProfile(Principal principal, HttpServletResponse res, HttpServletRequest req) {
 		Profile prof = ps.queryByUsernameWithUser(principal.getName());
-		System.out.println("===================================================");
-		System.out.println(prof);
-		System.out.println(principal);
+//		System.out.println("===================================================");
+//		System.out.println(prof);
+//		System.out.println(principal);
 		if (prof != null) {
 			res.setStatus(200);
 			return prof;
