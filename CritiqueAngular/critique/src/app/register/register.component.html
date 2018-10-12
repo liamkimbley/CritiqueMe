@@ -4,15 +4,35 @@
     <div class="container-fluid h-100">
       <div class="row justify-content-center align-items-center h-100">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-          <form #addUser="ngForm">
+          <form #addUser="ngForm" (ngSubmit)="addUser.form.valid && register(addUser)">
             <div class="form-group">
-              <input class="form-control" type="email" name="email" placeholder="Email" ngModel aria-required="true">
+              <input class="form-control" type="email" name="email" id="email" placeholder="Email" ngModel required
+                #email="ngModel">
+              <div *ngIf="addUser.submitted && email.invalid && (email.dirty || email.touched) || (addUser.submitted && email.pristine)"
+                class="alert alert-danger">
+                <div *ngIf="email.errors['required']">
+                  Please enter a valid email
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="username" name="username" ngModel placeholder="Username" aria-required="true">
+              <input class="form-control" type="username" name="username" id="username" placeholder="Username" ngModel
+                required #username="ngModel">
+              <div *ngIf="addUser.submitted && username.invalid && (username.dirty || username.touched) || (addUser.submitted && username.pristine)"
+                class="alert alert-danger">
+                <div *ngIf="username.errors['required']">
+                  Please enter a username
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="password" name="password" ngModel placeholder="Password" aria-required="true">
+              <input class="form-control" type="password" name="password" id ="password" placeholder="Password" ngModel required #password="ngModel">
+              <div *ngIf="addUser.submitted && password.invalid && (password.dirty || password.touched) || (addUser.submitted && password.pristine)"
+                class="alert alert-danger">
+                <div *ngIf="password.errors['required']">
+                  Please enter your password
+                </div>
+              </div>
             </div>
             <div class="form-group" id="submitRegister">
               <button mat-raised-button color="primary" (click)="register(addUser)">Submit</button>
