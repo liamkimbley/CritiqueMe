@@ -11,6 +11,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'navigation', component: NavigationComponent },
   { path: 'register', component: RegisterComponent },
