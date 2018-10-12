@@ -53,7 +53,7 @@ export class SearchComponent implements OnInit {
   reloadProfiles = function() {
     this.profileService.show().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.profiles = data;
       },
       err => {
