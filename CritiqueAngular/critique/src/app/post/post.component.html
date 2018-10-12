@@ -29,8 +29,6 @@
         <div *ngIf="!selected">
           <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
             <mat-card class="postCard">
-
-              <!-- <mat-card-header> -->
               <div class="headerDiv">
                 <mat-card-content>
                   <img class="postProfilePic" src="{{post.profile.imageUrl}}">
@@ -53,8 +51,8 @@
                   </div>
                   <div class="col">
                     <mat-card-content *ngIf="post.media">
-                        <img class="postImage" src="{{post.media}}" *ngIf="mediaIsImage(post.media)">
-                        <iframe *ngIf="!mediaIsImage(post.media)" class="postImage" [src]="cleanUrl(post.media)" allow='autoplay; encrypted-media'></iframe>
+                      <img class="postImage" src="{{post.media}}" *ngIf="mediaIsImage(post.media)">
+                      <iframe *ngIf="!mediaIsImage(post.media)" class="postImage" [src]="cleanUrl(post.media)" allow='autoplay; encrypted-media'></iframe>
                     </mat-card-content>
                   </div>
                 </div>
