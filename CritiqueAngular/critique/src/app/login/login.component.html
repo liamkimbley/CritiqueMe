@@ -35,13 +35,13 @@
     <div class="container-fluid h-100">
       <div class="row justify-content-center align-items-center h-100">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-          <form #logUser2="ngForm" (ngSubmit)="logUser2.form.valid && login(logUser2)" class="needs-validation" novalidate>
+          <form #logUser2="ngForm" (ngSubmit)="logUser2.form.valid && login(logUser2)">
             <div class="form-group">
               <!-- <input class="form-control" type="username" name="username" placeholder="Username" ngModel required> -->
               <input class="form-control" type="username" name="username2" id="username2" placeholder="Username"
                 required ngModel #username2="ngModel">
               <div *ngIf="logUser2.submitted && username2.invalid && (username2.dirty || username2.touched) || (logUser2. submitted && username2.pristine)" class="alert alert-danger">
-                <div *ngIf="username2.errors['required']" class="invalid-tooltip">
+                <div *ngIf="username2.errors['required']">
                   Username is required
                 </div>
               </div>
@@ -50,7 +50,7 @@
               <input class="form-control" type="password" name="password2" placeholder="Password" ngModel required
                 #password2="ngModel">
               <div *ngIf="logUser2.submitted && password2.invalid && (password2.dirty || password2.touched) || (logUser2.submitted && password2.pristine)" class="alert alert-danger">
-              <div *ngIf="password2.errors['required']" class="invalid-tooltip">
+              <div *ngIf="password2.errors['required']">
                 Please enter your password
               </div>
               </div>
