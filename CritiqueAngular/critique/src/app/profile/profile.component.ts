@@ -61,6 +61,7 @@ export class ProfileComponent implements OnInit {
             this.profile = data;
             this.selectedUser = data.user;
             this.profSkills = data.skills;
+            console.log(this.loggedInUser);
             this.loadPosts();
           } else {
             this.router.navigateByUrl('posts');
@@ -116,7 +117,7 @@ export class ProfileComponent implements OnInit {
         this.selectedUser = data.user;
         this.profSkills = data.skills;
         this.loggedInUser = data.user;
-        // console.log(data);
+        console.log(this.loggedInUser);
         this.loadPosts();
       },
       err => {
@@ -167,7 +168,8 @@ export class ProfileComponent implements OnInit {
     // console.log(this.profile.id);
     this.postService.indexByProfileId(this.profile.id).subscribe(
       data => {
-        // console.log(data);
+        console.log(data);
+        // console.log(this.loggedInUser);
         this.posts = data;
       },
       err => {
