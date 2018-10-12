@@ -38,19 +38,19 @@
           <form #logUser2="ngForm" (ngSubmit)="logUser2.form.valid && login(logUser2)">
             <div class="form-group">
               <!-- <input class="form-control" type="username" name="username" placeholder="Username" ngModel required> -->
-              <input class="form-control" type="username" name="username2" id="username2" placeholder="Username"
-                required ngModel #username2="ngModel">
-              <div *ngIf="logUser2.submitted && username2.invalid && (username2.dirty || username2.touched) || (logUser2. submitted && username2.pristine)" class="alert alert-danger">
-                <div *ngIf="username2.errors['required']">
+              <input class="form-control" type="username" name="username" id="username" placeholder="Username"
+                required ngModel #username="ngModel">
+              <div *ngIf="logUser2.submitted && username.invalid && (username.dirty || username.touched) || (logUser2. submitted && username.pristine)" class="alert alert-danger">
+                <div *ngIf="username.errors['required']">
                   Username is required
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="password" name="password2" placeholder="Password" ngModel required
-                #password2="ngModel">
-              <div *ngIf="logUser2.submitted && password2.invalid && (password2.dirty || password2.touched) || (logUser2.submitted && password2.pristine)" class="alert alert-danger">
-              <div *ngIf="password2.errors['required']">
+              <input class="form-control" type="password" name="password" placeholder="Password" ngModel required
+                #password="ngModel">
+              <div *ngIf="logUser2.submitted && password.invalid && (password.dirty || password.touched) || (logUser2.submitted && password.pristine)" class="alert alert-danger">
+              <div *ngIf="password.errors['required']">
                 Please enter your password
               </div>
               </div>

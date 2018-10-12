@@ -245,7 +245,7 @@ export class PostComponent implements OnInit, OnDestroy {
     }
 
     addVote(vote: boolean, id: number) {
-      const newVote = new Vote(vote);
+      const newVote: Vote = new Vote(vote);
       this.commentService.createVote(newVote, id).subscribe(
         data => {
           this.postService.show(this.selected.id).subscribe(

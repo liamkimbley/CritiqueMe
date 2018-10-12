@@ -154,8 +154,8 @@ public class ProfileController {
 		posts = postServ.findPostsByProfileId(profid);
 
 		if (posts.isEmpty()) {
-			res.setStatus(500);
-			return posts;
+			res.setStatus(204);
+			return null;
 		}
 		res.setStatus(200);
 		return posts;

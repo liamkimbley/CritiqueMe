@@ -61,6 +61,7 @@ import {
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search.service';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     PostComponent,
     CategoryPipe,
     SearchComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
