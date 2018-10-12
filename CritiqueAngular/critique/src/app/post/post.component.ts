@@ -74,11 +74,8 @@ export class PostComponent implements OnInit, OnDestroy {
       data => {
         // console.log(data);
         this.posts = data;
-<<<<<<< HEAD
         this.changeToYoutubeEmbed(this.posts);
-=======
         this.getUser();
->>>>>>> 67d38dcaba371df4c2f67f0542f7aa1131b0ab37
       },
       err => {
         console.error('Observer got an error: ' + err.status);

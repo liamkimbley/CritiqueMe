@@ -51,11 +51,11 @@
                       {{post.content}}
                     </mat-card-content>
                   </div>
-                  <div class="col">
-                    <mat-card-content *ngIf="post.media">
+                  <!-- <div class="col"> -->
+                    <!-- <mat-card-content *ngIf="post.media">
                       <img class="postImage" src="{{post.media}}">
-                    </mat-card-content>
-                  </div>
+                    </mat-card-content> -->
+                  <!-- </div> -->
                 </div>
               </div>
               <div class="row">
@@ -66,14 +66,12 @@
                   </mat-card-actions>
                 </div>
                 <div class="col">
-<<<<<<< HEAD
                   <mat-card-content *ngIf="post.media">
                     <!-- <img class="postImage" src="{{post.media}}"> -->
                     <iframe class="postImage" [src]="cleanUrl(post.media)" allow='autoplay; encrypted-media'></iframe>
-=======
+                  </mat-card-content>
                   <mat-card-content class="date">
                     {{post.createdDate | date: 'fullDate'}}
->>>>>>> 67d38dcaba371df4c2f67f0542f7aa1131b0ab37
                   </mat-card-content>
                 </div>
               </div>
@@ -112,16 +110,10 @@
               <h6>{{selected.content}}</h6>
             </mat-card-content>
 
-<<<<<<< HEAD
           <mat-card-content *ngIf="selected.media">
             <!-- <img class="postImage" width="300" height="300" src="{{selected.media}}"> -->
             <iframe width="560" height="315" [src]="cleanUrl(selected.media)" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </mat-card-content>
-=======
-            <mat-card-content *ngIf="selected.media">
-              <img class="postImage" width="300" height="300" src="{{selected.media}}">
-            </mat-card-content>
->>>>>>> 67d38dcaba371df4c2f67f0542f7aa1131b0ab37
 
             <mat-card-content>
               {{selected.createdDate | date: 'fullDate'}}
