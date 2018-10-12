@@ -11,7 +11,7 @@ export class NavigationComponent implements OnInit {
   navBarCheckLogin() {
     return this.authService.checkLogin();
   }
-  constructor(private authService: AuthService, router: Router) {}
+  constructor(private authService: AuthService, public router: Router) {}
 
   ngOnInit() {}
 }
