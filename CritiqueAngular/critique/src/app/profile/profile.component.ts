@@ -135,7 +135,7 @@ export class ProfileComponent implements OnInit {
   };
 
   updateProfile = function(prof: Profile) {
-    console.log(prof);
+    // console.log(prof);
     this.profService.update(prof).subscribe(
       data => {
         this.profile = data;
@@ -167,7 +167,7 @@ export class ProfileComponent implements OnInit {
     // console.log(this.profile.id);
     this.postService.indexByProfileId(this.profile.id).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.posts = data;
       },
       err => {
