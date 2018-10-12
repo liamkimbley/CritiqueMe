@@ -13,10 +13,8 @@ import { Profile } from './models/profile';
   providedIn: 'root'
 })
 export class SearchService {
-  private uriPathProfile = 'api/profile';
-  private urlProfile = environment.baseUrl + this.uriPathProfile;
-  private uriPathPost = 'api/posts';
-  private urlPost = environment.baseUrl + this.uriPathPost;
+  private urlProfile = environment.baseUrl + 'api/profile';
+  private urlPost = environment.baseUrl + 'api/posts';
 
   constructor(
     private http: HttpClient,

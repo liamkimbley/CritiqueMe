@@ -11,9 +11,8 @@ import { environment } from '../environments/environment';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  private url = environment.baseUrl;
-  private loginUrl = this.url + 'authenticate';
-  private regUrl = this.url + 'register';
+  private loginUrl = environment.baseUrl + 'authenticate';
+  private regUrl = environment.baseUrl + 'register';
 
   login(username, password) {
     console.log(username);

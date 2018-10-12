@@ -12,26 +12,8 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class PostService {
-  private uriPath = 'api/posts';
-  private url = environment.baseUrl + this.uriPath;
+  private url = environment.baseUrl + 'api/posts';
   private catUrl = environment.baseUrl + 'api/categories';
-
-  // public index(): Observable<Post []> {
-  //   if (this.auth.checkLogin()) {
-  //     const headers = new HttpHeaders().set(
-  //       'Authorization', `Basic ${this.auth.getToken()}`
-  //     );
-  //     return this.http.get<Post[]>(this.url, {headers})
-  //     .pipe(
-  //       catchError((err: any) => {
-  //         console.log(err);
-  //         return throwError('Error: ' + err.status);
-  //       })
-  //       );
-  //   } else {
-  //       this.router.navigateByUrl('login');
-  //   }
-  // }
 
   public index(): Observable<Post[]> {
     return this.http.get<Post[]>(this.url).pipe(
@@ -130,13 +112,6 @@ export class PostService {
     } else {
       this.router.navigateByUrl('login');
     }
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json'
-    //   })
-    // };
-    // console.log(post);
-    // return this.http.post<Post>(this.url, post, httpOptions);
   }
 
   public update(post: Post) {
@@ -153,12 +128,6 @@ export class PostService {
     } else {
       this.router.navigateByUrl('login');
     }
-    // return this.http.put(this.url + '/' + post.id, post).pipe(
-    //   catchError((err: any) => {
-    //     console.log(err);
-    //     return throwError('Error: ' + err.status);
-    //   })
-    // );
   }
 
   public destroy(id: number) {
@@ -175,12 +144,6 @@ export class PostService {
     } else {
       this.router.navigateByUrl('login');
     }
-    // return this.http.delete(this.url + '/' + id).pipe(
-    //   catchError((err: any) => {
-    //     console.log(err);
-    //     return throwError('Error: ' + err.status);
-    //   })
-    // );
   }
 
   constructor(

@@ -14,9 +14,8 @@ import { environment } from '../environments/environment';
 export class CommentService {
   // private url = 'http://localhost:8080/api/posts/';
   // private commentUrl = 'http://localhost:8080/api/comments/';
-  private url = environment.baseUrl;
-  private postUrl = this.url + 'api/posts/';
-  private commentUrl = this.url + 'comments/';
+  private postUrl = environment.baseUrl + 'api/posts/';
+  private commentUrl = environment.baseUrl + 'api/comments/';
 
   constructor(
     private http: HttpClient,

@@ -11,8 +11,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class HomeService {
-  private uriPath = 'api/posts';
-  private url = environment.baseUrl + this.uriPath;
+  private url = environment.baseUrl + 'api/posts';
 
   constructor(
     private http: HttpClient,
