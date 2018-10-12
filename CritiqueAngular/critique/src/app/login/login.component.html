@@ -1,17 +1,23 @@
 <!-- Display this form in navbar if not on login page or logged in -->
 <!-- Navbar Form -->
-<div *ngIf="!router.url.includes('login')">
-  <form #logUser="ngForm" class="form-inline">
+<div *ngIf="!router.url.includes('login')" id="userFormNav">
+  <form #logUser="ngForm" class="form-inline" (ngSubmit)="logUser.form.valid && login(logUser)">
     <div class="form-row align-items-center">
       <div class="col-auto">
-        <input class="form-control" type="username" name="username" id="username" placeholder="Username" ngModel required
-        [(ngModel)]="logUser.value.username" #username="ngModel">
-        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-          Username is required
+        <input class="form-control" type="username" name="username" id="username" placeholder="Username" required
+          [(ngModel)]="logUser.value.username" #username="ngModel">
+        <div *ngIf="logUser.submitted && username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+          <!-- <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+            Username is required
+          </div> -->
+          <div *ngIf="logUser.value.username.errors.required">
+            Username is required.
+          </div>
         </div>
       </div>
       <div class="col-auto">
-        <input class="form-control" type="password" name="password" id="password" placeholder="Password" ngModel required>
+        <input class="form-control" type="password" name="password" id="password" placeholder="Password" ngModel
+          required>
       </div>
       <div class="col-auto">
         <button mat-raised-button color="accent" (click)="login(logUser)">Log In</button>
@@ -29,15 +35,29 @@
     <div class="container-fluid h-100">
       <div class="row justify-content-center align-items-center h-100">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-          <form #logUser="ngForm">
+          <form #logUser2="ngForm" (ngSubmit)="logUser2.form.valid && login(logUser2)" class="needs-validation" novalidate>
             <div class="form-group">
-              <input class="form-control" type="username" name="username" placeholder="Username" ngModel required>
+              <!-- <input class="form-control" type="username" name="username" placeholder="Username" ngModel required> -->
+              <input class="form-control" type="username" name="username2" id="username2" placeholder="Username"
+                required ngModel #username2="ngModel">
+              <div *ngIf="logUser2.submitted && username2.invalid && (username2.dirty || username2.touched) || (logUser2. submitted && username2.pristine)" class="alert alert-danger">
+                <div *ngIf="username2.errors['required']" class="invalid-tooltip">
+                  Username is required
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <input class="form-control" type="password" name="password" placeholder="Password" ngModel required>
+              <input class="form-control" type="password" name="password2" placeholder="Password" ngModel required
+                #password2="ngModel">
+              <div *ngIf="logUser2.submitted && password2.invalid && (password2.dirty || password2.touched) || (logUser2.submitted && password2.pristine)" class="alert alert-danger">
+              <div *ngIf="password2.errors['required']" class="invalid-tooltip">
+                Please enter your password
+              </div>
+              </div>
             </div>
             <div class="form-group" id="submitLogin">
-              <button mat-raised-button color="accent" (click)="login(logUser)" type="submit">Log In</button>
+              <button mat-raised-button color="accent" (click)="login(logUser2)" type="submit">Log In</button>
+              <!-- <button mat-raised-button color="accent" (click)="login(logUser)" type="submit">Log In</button> -->
             </div>
           </form>
         </div>
