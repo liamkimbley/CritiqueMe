@@ -10,8 +10,11 @@ import { ProfileService } from '../profile.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  username = '';
+
   login = function(userForm: NgForm) {
-    console.log(userForm);
+    this.username = userForm.value.username;
+    // console.log(this.username);
     this.auth.login(userForm.value.username, userForm.value.password).subscribe(
       data => {
         console.log('data: ' + data.value);
@@ -22,6 +25,10 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('login');
       }
     );
+  };
+
+  returnUsername = function() {
+    return this.username;
   };
 
   constructor(public router: Router, private auth: AuthService, private profServ: ProfileService) {
