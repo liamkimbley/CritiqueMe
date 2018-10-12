@@ -19,6 +19,7 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 import { NgForm } from '@angular/forms';
 import { CommentService } from '../comment.service';
 import { ProfileService } from '../profile.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
@@ -35,7 +36,8 @@ export class PostComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
     private commentService: CommentService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private santitizer: DomSanitizer
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -69,6 +71,7 @@ export class PostComponent implements OnInit, OnDestroy {
       data => {
         // console.log(data);
         this.posts = data;
+        this.changeToYoutubeEmbed(this.posts);
       },
       err => {
         console.error('Observer got an error: ' + err.status);
@@ -91,6 +94,12 @@ export class PostComponent implements OnInit, OnDestroy {
 
   displayProfilePic = function(id: number) {
     this.profileService.getProfilePic(id);
+  };
+
+  // posts
+
+  cleanUrl = function(url: String) {
+    return this.santitizer.bypassSecurityTrustResourceUrl(url);
   };
 
   addPost = function() {
@@ -254,5 +263,52 @@ export class PostComponent implements OnInit, OnDestroy {
     this.reloadCategories();
   }
 
+  changeToYoutubeEmbed(posts: Post[]) {
+    let element = null;
+
+    for (let i = 0; i < posts.length; i++) {
+      // console.log(posts[i]);
+      element = posts[i].media;
+      const a: String[] = element.split('');
+      // if (a.includes('youtu.be') || a.includes('youtube')) {
+
+        // https://youtu.be/AfIOBLr1NDU copied from share link
+        if (element.indexOf('youtu.be') > -1 && a[13].includes('.')) {
+          console.log('********');
+          a.splice(13, 1);
+          a.splice(15, 0, '.');
+          a.splice(16, 0, 'c');
+          a.splice(17, 0, 'o');
+          a.splice(18, 0, 'm');
+          a.splice(19, 0, '/');
+          a.splice(20, 0, 'e');
+          a.splice(21, 0, 'm');
+          a.splice(22, 0, 'b');
+          a.splice(23, 0, 'e');
+          a.splice(24, 0, 'd');
+          const b: string = a.toString();
+          const c: string = b.replace(/,/g, '');
+          console.log('*** youtu.be ***');
+          console.log(c);
+          this.posts[i].media = c;
+        }
+
+        // https://www.youtube.com/watch?v=AfIOBLr1NDU copied from browser
+        if (element.indexOf('www.youtube.com') > -1 && a[19].includes('.')) {
+          a.splice(24, 0, 'e');
+          a.splice(25, 0, 'm');
+          a.splice(26, 0, 'b');
+          a.splice(27, 0, 'e');
+          a.splice(28, 0, 'd');
+          a.splice(29, 0, '/');
+          a.splice(30, 8);
+          const link: string = a.toString();
+          const browserLink: string = link.replace(/,/g, '');
+          console.log('*** youtube.com/watch ***');
+          console.log(browserLink);
+          this.posts[i].media = browserLink;
+        }
+      }
+  }
 
 }

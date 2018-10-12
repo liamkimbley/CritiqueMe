@@ -52,7 +52,8 @@
                 </div>
                 <div class="col">
                   <mat-card-content *ngIf="post.media">
-                    <img class="postImage" src="{{post.media}}">
+                    <!-- <img class="postImage" src="{{post.media}}"> -->
+                    <iframe class="postImage" [src]="cleanUrl(post.media)" allow='autoplay; encrypted-media'></iframe>
                   </mat-card-content>
                 </div>
               </div>
@@ -105,7 +106,8 @@
           </mat-card-content>
 
           <mat-card-content *ngIf="selected.media">
-            <img class="postImage" width="300" height="300" src="{{selected.media}}">
+            <!-- <img class="postImage" width="300" height="300" src="{{selected.media}}"> -->
+            <iframe width="560" height="315" [src]="cleanUrl(selected.media)" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </mat-card-content>
 
           <mat-card-content>
