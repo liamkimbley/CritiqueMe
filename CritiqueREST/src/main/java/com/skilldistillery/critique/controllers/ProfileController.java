@@ -133,9 +133,9 @@ public class ProfileController {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(path = "profile/{pid}", method = RequestMethod.GET)
-	public Profile findOneProfile(@PathVariable ("pid") Integer pid, HttpServletResponse res, HttpServletRequest req) {
+	public Profile findOneProfile(@PathVariable("pid") Integer pid, HttpServletResponse res, HttpServletRequest req) {
 		Profile prof = ps.findProfileById(pid);
 		if (prof != null) {
 			res.setStatus(200);
@@ -150,16 +150,14 @@ public class ProfileController {
 	public List<Post> findPostsByProfile(@PathVariable Integer profid, Principal principal, HttpServletResponse res,
 			HttpServletRequest req) {
 		List<Post> posts = new ArrayList<>();
-		Profile prof = ps.queryByUsernameWithUser(principal.getName());
-		if (prof.getId() == profid) {
-			posts = postServ.findPostsByProfileId(profid);
+		Profile prof = ps.findProfileById(profid);
+		posts = postServ.findPostsByProfileId(profid);
 
-			if (!posts.isEmpty()) {
-				res.setStatus(200);
-				return posts;
-			}
+		if (posts.isEmpty()) {
+			res.setStatus(500);
+			return posts;
 		}
-		res.setStatus(500);
+		res.setStatus(200);
 		return posts;
 	}
 

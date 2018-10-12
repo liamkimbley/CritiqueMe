@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   comments: Comment[] = [];
   skills: Expertise[] = [];
   profSkills: Expertise[] = [];
+  loggedInUser: User = null;
 
   // posts
   posts: Post[] = [];
@@ -59,6 +60,7 @@ export class ProfileComponent implements OnInit {
             this.profile = data;
             this.selectedUser = data.user;
             this.profSkills = data.skills;
+            this.loadPosts();
           } else {
             this.router.navigateByUrl('posts');
           }
@@ -112,6 +114,7 @@ export class ProfileComponent implements OnInit {
         this.profile = data;
         this.selectedUser = data.user;
         this.profSkills = data.skills;
+        this.loggedInUser = data.user;
         // console.log(data);
         this.loadPosts();
       },
