@@ -469,6 +469,10 @@ INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (8, 15);
 INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (9, 2);
 INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (9, 20);
 INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (1, 1);
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (6, 1);
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (10, 1);
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (11, 1);
+INSERT INTO `profile_expertise` (`profile_id`, `expertise_id`) VALUES (12, 1);
 
 COMMIT;
 
