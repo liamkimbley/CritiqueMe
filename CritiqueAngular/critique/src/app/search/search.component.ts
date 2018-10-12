@@ -131,7 +131,9 @@ export class SearchComponent implements OnInit {
               displayProfilesByUsername = function(username: String) {
                 this.searchService.getProfilesByUsername(username).subscribe(
                   data => {
-                    this.searchResultsService.populateProfileArray(data);
+                    const prof: Profile[] = [];
+                    prof.push(data);
+                    this.searchResultsService.populateProfileArray(prof);
                     // this.router.navigateByUrl('/search-results');
                     // tslint:disable-next-line:max-line-length
                     this.router.navigateByUrl('/post', {skipLocationChange: true}).then(() => this.router.navigate(['/search-results']));

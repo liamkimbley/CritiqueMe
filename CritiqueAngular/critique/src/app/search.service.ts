@@ -62,14 +62,14 @@ export class SearchService {
     }
   }
 
-  public getProfilesByUsername(username: String): Observable<Profile[]> {
+  public getProfilesByUsername(username: String): Observable<Profile> {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
         'Authorization',
         `Basic ${this.auth.getToken()}`
       );
       return this.http
-        .get<Profile[]>(this.urlProfile + '/user/' + username, { headers })
+        .get<Profile>(this.urlProfile + '/user/' + username, { headers })
         .pipe(
           catchError((err: any) => {
             console.log(err);

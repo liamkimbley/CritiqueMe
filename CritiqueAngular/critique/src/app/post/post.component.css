@@ -1,4 +1,3 @@
-
 #categoryBtn {
   margin-left: 15px;
   margin-top: 15px;
@@ -11,11 +10,15 @@
 .sidebar-container {
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 #sidebarListItems {
-background-color: lightgrey;
-
+  background-color: lightgrey;
 }
 
 .commentTextBox {
@@ -56,7 +59,7 @@ background-color: lightgrey;
 .upvoteImg {
   height: 30px;
   width: 30px;
-  transition: transform .2s;
+  transition: transform 0.2s;
   margin-right: 10px;
 }
 
@@ -69,7 +72,7 @@ background-color: lightgrey;
 .downvoteImg {
   height: 30px;
   width: 30px;
-  transition: transform .2s;
+  transition: transform 0.2s;
   margin-right: 10px;
 }
 
@@ -82,7 +85,7 @@ background-color: lightgrey;
 .updateImg {
   height: 40px;
   width: 40px;
-  transition: transform .2s;
+  transition: transform 0.2s;
   margin-bottom: -5px;
   margin-right: 10px;
 }
@@ -96,7 +99,7 @@ background-color: lightgrey;
 .deleteImg {
   height: 30px;
   width: 30px;
-  transition: transform .2s;
+  transition: transform 0.2s;
   margin-right: 10px;
 }
 
