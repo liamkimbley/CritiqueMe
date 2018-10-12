@@ -284,44 +284,46 @@ export class PostComponent implements OnInit, OnDestroy {
     for (let i = 0; i < posts.length; i++) {
       // console.log(posts[i]);
       element = posts[i].media;
-      const a: String[] = element.split('');
-      // if (a.includes('youtu.be') || a.includes('youtube')) {
+      if (element) {
+        const a: String[] = element.split('');
+        // if (a.includes('youtu.be') || a.includes('youtube')) {
 
-        // https://youtu.be/AfIOBLr1NDU copied from share link
-        if (element.indexOf('youtu.be') > -1 && a[13].includes('.')) {
-          console.log('********');
-          a.splice(13, 1);
-          a.splice(15, 0, '.');
-          a.splice(16, 0, 'c');
-          a.splice(17, 0, 'o');
-          a.splice(18, 0, 'm');
-          a.splice(19, 0, '/');
-          a.splice(20, 0, 'e');
-          a.splice(21, 0, 'm');
-          a.splice(22, 0, 'b');
-          a.splice(23, 0, 'e');
-          a.splice(24, 0, 'd');
-          const b: string = a.toString();
-          const c: string = b.replace(/,/g, '');
-          console.log('*** youtu.be ***');
-          console.log(c);
-          this.posts[i].media = c;
-        }
+          // https://youtu.be/AfIOBLr1NDU copied from share link
+          if (element.indexOf('youtu.be') > -1 && a[13].includes('.')) {
+            console.log('********');
+            a.splice(13, 1);
+            a.splice(15, 0, '.');
+            a.splice(16, 0, 'c');
+            a.splice(17, 0, 'o');
+            a.splice(18, 0, 'm');
+            a.splice(19, 0, '/');
+            a.splice(20, 0, 'e');
+            a.splice(21, 0, 'm');
+            a.splice(22, 0, 'b');
+            a.splice(23, 0, 'e');
+            a.splice(24, 0, 'd');
+            const b: string = a.toString();
+            const c: string = b.replace(/,/g, '');
+            // console.log('*** youtu.be ***');
+            // console.log(c);
+            this.posts[i].media = c;
+          }
 
-        // https://www.youtube.com/watch?v=AfIOBLr1NDU copied from browser
-        if (element.indexOf('www.youtube.com') > -1 && a[19].includes('.')) {
-          a.splice(24, 0, 'e');
-          a.splice(25, 0, 'm');
-          a.splice(26, 0, 'b');
-          a.splice(27, 0, 'e');
-          a.splice(28, 0, 'd');
-          a.splice(29, 0, '/');
-          a.splice(30, 8);
-          const link: string = a.toString();
-          const browserLink: string = link.replace(/,/g, '');
-          console.log('*** youtube.com/watch ***');
-          console.log(browserLink);
-          this.posts[i].media = browserLink;
+          // https://www.youtube.com/watch?v=AfIOBLr1NDU copied from browser
+          if (element.indexOf('www.youtube.com') > -1 && a[19].includes('.')) {
+            a.splice(24, 0, 'e');
+            a.splice(25, 0, 'm');
+            a.splice(26, 0, 'b');
+            a.splice(27, 0, 'e');
+            a.splice(28, 0, 'd');
+            a.splice(29, 0, '/');
+            a.splice(30, 8);
+            const link: string = a.toString();
+            const browserLink: string = link.replace(/,/g, '');
+            // console.log('*** youtube.com/watch ***');
+            // console.log(browserLink);
+            this.posts[i].media = browserLink;
+          }
         }
       }
   }
