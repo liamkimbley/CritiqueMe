@@ -2,29 +2,26 @@
 <!-- Link to Sidebar function information: https://material.angular.io/components/sidenav/api-->
 <div class="sidebar-container">
   <mat-sidenav-container class="left-container" (backdropClick)="close('backdrop')">
-    <mat-sidenav #sidenav fixedTopGap="56" (keydown.escape)="close('escape')"
-      disableClose>
+    <mat-sidenav #sidenav fixedTopGap="56" (keydown.escape)="close('escape')" disableClose>
       <div class="container-fluid" id="sidebarListItems">
         <p><button mat-raised-button color="accent" (click)="close('toggle button')">Dismiss</button></p>
-
         <div *ngFor="let item of categories">
           <div id="sidebarListItem">
             <button mat-raised-button color="primary" (click)="selectedCategory = item" (click)="close('toggle button')">{{item.name}}</button>
           </div>
         </div>
       </div>
-
     </mat-sidenav>
     <mat-sidenav-content>
       <p><button id="categoryBtn" mat-raised-button color="accent" (click)="sidenav.open()"> Search Categories</button></p>
       <div class="container" id="postsContainer">
         <!--  Sidebar page content: everything wanted on the page goes in here -->
-
+        <!-- Go back to posts list from single post view -->
         <div *ngIf="selected">
           <button class="buttons" mat-raised-button color="primary" (click)="goBack()">Back</button>
         </div>
-
-        <!-- display list of posts -->
+        <!-- Go back to posts list from single post view -->
+        <!-- Display list of posts -->
         <h1 class="postHeader">{{selectedCategory.name}} Posts</h1>
         <div *ngIf="!selected">
           <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
@@ -73,8 +70,9 @@
             </mat-card>
           </div>
         </div>
+        <!-- Display list of posts -->
 
-        <!-- display single post -->
+        <!-- Display single post -->
         <div *ngIf="selected">
           <mat-card class="postCard">
             <mat-card-header>
@@ -93,10 +91,11 @@
             <mat-card-content class="commentText" *ngIf="selected.content">
               <h6>{{selected.content}}</h6>
             </mat-card-content>
-          <mat-card-content *ngIf="selected.media">
+            <mat-card-content *ngIf="selected.media">
               <img class="postImage" src="{{selected.media}}" *ngIf="mediaIsImage(selected.media)">
-              <iframe *ngIf="!mediaIsImage(selected.media)" class="postImage" [src]="cleanUrl(selected.media)" frameborder="0" allow='autoplay; encrypted-media'></iframe>
-          </mat-card-content>
+              <iframe *ngIf="!mediaIsImage(selected.media)" class="postImage" [src]="cleanUrl(selected.media)"
+                frameborder="0" allow='autoplay; encrypted-media'></iframe>
+            </mat-card-content>
             <mat-card-content>
               {{selected.createdDate | date: 'fullDate'}}
             </mat-card-content>
@@ -104,6 +103,7 @@
 
           <h2 class="commentsHeader">Comments:</h2>
 
+          <!-- Comments -->
           <div class="postCardBox">
             <mat-card *ngFor="let c of selected.comments" class="postCard">
               <mat-card-header>
@@ -135,30 +135,31 @@
               </mat-card-content>
             </mat-card>
           </div>
-
-          <!-- add a comment -->
+          <!-- Comments -->
+          <!-- Add a comment -->
           <div *ngIf="!selectedComment">
             <form #comment="ngForm">
-              <input class="commentTextBox" type="text" name="content" placeholder="write your comment here" ngModel><br>
+              <textarea class="commentTextBox" type="text" name="content" placeholder="Write your comment here" ngModel></textarea><br>
               <button class="buttons" mat-raised-button color="primary" type="submit" name="comment" (click)="addComment(comment, selected.id)">Comment</button>
               <!-- <button class="buttons" mat-raised-button color="primary" type="submit" name="cancel">Cancel</button> -->
             </form>
           </div>
-
-          <!-- update a comment -->
+          <!-- Add a comment -->
+          <!-- Update a comment -->
           <div *ngIf="selectedComment">
             <form>
               <table>
                 <tr>
-                  <td><input class="commentTextBox" type="text" name="content" [(ngModel)]="selectedComment.content" /></td>
+                  <td><textarea class="commentTextBox" type="text" name="content" [(ngModel)]="selectedComment.content"></textarea></td>
                 </tr>
               </table>
               <button class="buttons" mat-raised-button color="primary" type="submit" name="comment" (click)="updateComment()">Update</button>
               <button class="buttons" mat-raised-button color="primary" type="submit" name="cancel" (click)="selectedComment = null">Cancel</button>
             </form>
           </div>
-
+          <!-- Update a comment -->
         </div>
+        <!-- Display single post -->
         <!-- Sidebar content -->
       </div>
     </mat-sidenav-content>
