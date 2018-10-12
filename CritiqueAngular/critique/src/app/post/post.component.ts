@@ -59,6 +59,8 @@ export class PostComponent implements OnInit, OnDestroy {
   editComment: Comment = null;
   selectedComment: Comment = null;
   loggedInUser: Profile = null;
+  image: String = null;
+  video: String = null;
 
   // Sidebar
   @ViewChild('sidenav')
@@ -324,4 +326,19 @@ export class PostComponent implements OnInit, OnDestroy {
       }
   }
 
+  // mediaIsImage(url: String): boolean {
+  //   if (url.toLowerCase().endsWith('jpg') || url.toLowerCase().endsWith('png') || url.toLowerCase().endsWith('jpeg') ||
+  //       url.toLowerCase().endsWith('img') || url.toLowerCase().endsWith('gif')) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  mediaIsImage(url: String): boolean {
+    if (url.toLowerCase().includes('jpg') || url.toLowerCase().includes('png') || url.toLowerCase().includes('jpeg') ||
+        url.toLowerCase().includes('img') || url.toLowerCase().includes('gif')) {
+      return true;
+    }
+    return false;
+  }
 }
