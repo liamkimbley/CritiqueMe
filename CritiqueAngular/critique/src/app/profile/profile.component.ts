@@ -149,8 +149,8 @@ export class ProfileComponent implements OnInit {
     );
   };
 
-  deleteProfile = function(id: number) {
-    this.profService.destroy(id).subscribe(
+  deleteProfile = function(prof: Profile) {
+    this.profService.destroy(prof).subscribe(
       data => {
         this.auth.logout();
         this.router.navigateByUrl('login');

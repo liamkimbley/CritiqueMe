@@ -81,12 +81,17 @@ export class ProfileService {
     }
  }
 
-  public destroy(id: number) {
+  public destroy(prof: Profile) {
+    console.log(prof + ' in profile service');
     if (this.auth.checkLogin()) {
-      const headers = new HttpHeaders().set(
-        'Authorization', `Basic ${this.auth.getToken()}`
-      );
-        return this.http.patch(this.url + '/' + id, {headers}).pipe(
+      console.log('in auth');
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': `Basic ${this.auth.getToken()}`
+        })
+      };
+        return this.http.patch(this.url + '/' + prof.id, prof, httpOptions).pipe(
           catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);

@@ -82,9 +82,9 @@
           </div>
         </tr> -->
                 <div class="modal-footer">
-                  <button mat-raised-button color="primary" (click)="updateProfile(editProfile)" (click)="modal.close('Save click')">Save</button>
-                  <button mat-raised-button color="accent" (click)="editProfile = null" (click)="modal.dismiss('Cross click')">Cancel</button>
-                  <!-- <button mat-raised-button color="primary" (click)="deleteProfile(editProfile.id)" >Deactivate Profile</button> -->
+                  <button mat-raised-button color="primary" name="update" (click)="updateProfile(editProfile)" (click)="modal.close('Save click')">Save</button>
+                  <button mat-raised-button color="accent" name="cancel" (click)="editProfile = null" (click)="modal.dismiss('Cross click')">Cancel</button>
+                  <button mat-raised-button color="warn" name="delete" (click)="deleteProfile(editProfile)" (click)="modal.dismiss('Cross click')">Deactivate Profile</button>
                 </div>
               </form>
             </div>
