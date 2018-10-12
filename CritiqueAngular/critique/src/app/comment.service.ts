@@ -6,30 +6,38 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { Comment } from './models/comment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
-  private url = 'http://localhost:8080/api/posts/';
-  private commentUrl = 'http://localhost:8080/api/comments/';
+  // private url = 'http://localhost:8080/api/posts/';
+  // private commentUrl = 'http://localhost:8080/api/comments/';
+  private url = environment.baseUrl;
+  private postUrl = this.url + 'api/posts/';
+  private commentUrl = this.url + 'comments/';
 
-  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
-  public index(): Observable<Comment []> {
+  public index(): Observable<Comment[]> {
     if (this.auth.checkLogin()) {
       const headers = new HttpHeaders().set(
-        'Authorization', `Basic ${this.auth.getToken()}`
+        'Authorization',
+        `Basic ${this.auth.getToken()}`
       );
-      return this.http.get<Comment[]>(this.url, {headers})
-      .pipe(
+      return this.http.get<Comment[]>(this.postUrl, { headers }).pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError('Error: ' + err.status);
         })
       );
     } else {
-        this.router.navigateByUrl('login');
+      this.router.navigateByUrl('login');
     }
   }
 
@@ -37,8 +45,8 @@ export class CommentService {
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': `Basic ${this.auth.getToken()}`
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${this.auth.getToken()}`
         })
       };
       return this.http.get<Comment>(this.commentUrl + id, httpOptions).pipe(
@@ -56,14 +64,18 @@ export class CommentService {
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': `Basic ${this.auth.getToken()}`
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${this.auth.getToken()}`
         })
       };
       // console.log(comment);
       // console.log(id);
 
-      return this.http.post<Comment>(this.url + id + '/comments', comment, httpOptions);
+      return this.http.post<Comment>(
+        this.postUrl + id + '/comments',
+        comment,
+        httpOptions
+      );
     } else {
       this.router.navigateByUrl('login');
     }
@@ -75,11 +87,13 @@ export class CommentService {
         'Authorization',
         `Basic ${this.auth.getToken()}`
       );
-      return this.http.put<Comment>(this.commentUrl + id, comment, {headers}).pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error: ' + err.status);
-        })
+      return this.http
+        .put<Comment>(this.commentUrl + id, comment, { headers })
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('Error: ' + err.status);
+          })
         );
     } else {
       this.router.navigateByUrl('login');
@@ -90,8 +104,8 @@ export class CommentService {
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': `Basic ${this.auth.getToken()}`
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${this.auth.getToken()}`
         })
       };
       return this.http.delete(this.commentUrl + id, httpOptions).pipe(
@@ -109,17 +123,19 @@ export class CommentService {
     if (this.auth.checkLogin()) {
       const httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': `Basic ${this.auth.getToken()}`
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${this.auth.getToken()}`
         })
       };
       console.log(vote);
-      return this.http.post<Vote>(this.commentUrl + id + '/votes', vote, httpOptions).pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Error: ' + err.status);
-        })
-      );
+      return this.http
+        .post<Vote>(this.commentUrl + id + '/votes', vote, httpOptions)
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('Error: ' + err.status);
+          })
+        );
     } else {
       this.router.navigateByUrl('login');
     }

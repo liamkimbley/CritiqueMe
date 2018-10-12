@@ -41,9 +41,9 @@ export class PostComponent implements OnInit, OnDestroy {
     private profileService: ProfileService,
     private santitizer: DomSanitizer
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    // this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    // this.mobileQuery.addListener(this._mobileQueryListener);
   }
   // User can see posts but cannot open them to view comments
   // When they click a comment, ask them to sign in or sign up
@@ -65,8 +65,8 @@ export class PostComponent implements OnInit, OnDestroy {
   // Sidebar
   @ViewChild('sidenav')
   sidenav: MatSidenav;
-  mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  // mobileQuery: MediaQueryList;
+  // private _mobileQueryListener: () => void;
   reason = '';
   // Sidebar
 
@@ -270,7 +270,7 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    // this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   ngOnInit() {

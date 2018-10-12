@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -11,7 +12,8 @@ import { Observable, throwError } from 'rxjs';
 })
 export class UserService {
 
-  private url = 'http://localhost:8080/api/users/';
+  // private url = 'http://localhost:8080/api/users/';
+  private url = environment.baseUrl + 'api/users/';
 
   public index(): Observable<User []> {
     if (this.auth.checkLogin()) {
