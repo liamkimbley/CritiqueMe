@@ -252,8 +252,7 @@ export class PostComponent implements OnInit, OnDestroy {
   getUser() {
     this.profileService.show().subscribe(
       data => {
-        console.log(data);
-        const pr = data;
+        // console.log(data);
         this.loggedInUser = data;
       }
     );
