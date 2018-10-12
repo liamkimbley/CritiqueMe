@@ -113,6 +113,8 @@ export class ProfileComponent implements OnInit {
   getOneProfile = function() {
     this.profService.show().subscribe(
       data => {
+        console.log(data);
+
         this.profile = data;
         this.selectedUser = data.user;
         this.profSkills = data.skills;
