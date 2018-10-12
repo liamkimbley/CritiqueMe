@@ -5,9 +5,9 @@
   <div class="container">
     <div class="row">
       <div class="col" id="profileColumn">
-        <div class="editProfileButtonDiv">
-          <button *ngIf="!editProfile && profile.user === loggedInUser" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
-            (click)="open(content)">Edit Your Profile</button>
+        <div class="editProfileButtonDiv" *ngIf="!editProfile">
+          <button *ngIf="(profile.user === loggedInUser)" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
+            (click)="open(content)">Edit Profile</button>
         </div>
         <div class="profileInfo">
           <div class="profileHeader">
@@ -126,8 +126,7 @@
       <div class="col" id="userPostsColumn">
         <div *ngIf="!editProfile" class="profilePosts">
           <div class="newPostButtonDiv">
-            <button *ngIf="!newPost && profile.user === loggedInUser" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">Share
-              a New Post</button>
+            <button *ngIf="!newPost && profile.user === loggedInUser" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New Post</button>
           </div>
           <div class="postsBanner">
             <h3>{{profile.firstName}}'s Posts</h3>
