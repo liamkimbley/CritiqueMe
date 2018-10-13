@@ -69,15 +69,20 @@
 <div id="postCards" *ngFor="let prof of profiles">
     <mat-card class="postCard">
           <div class="row">
+            <div class="col">
             <mat-card-content>
               <img class="postProfilePic" src="{{prof.imageUrl}}">
             </mat-card-content>
             <mat-card-content>
-               <a [routerLink]="['/profile/'+prof.id]">
-                <h5 class="commentUsername">{{prof.user.username}}</h5>
-               </a>
+                <h5 class="postUsername">{{prof.user.username}}</h5>
             </mat-card-content>
             </div>
+            <div class="col">
+            <mat-card-content class="test1">
+                <a mat-raised-button color="primary" [routerLink]="['/profile/'+prof.id]">View {{prof.firstName}}'s Profile</a>
+            </mat-card-content>
+            </div>
+          </div>
         <mat-card-content>
             <p class="profSearchBio">{{prof.bio}}</p>
         </mat-card-content>
