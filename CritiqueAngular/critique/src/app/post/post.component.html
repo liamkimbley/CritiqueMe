@@ -18,7 +18,7 @@
         <div class="container" id="postsContainer">
           <!--  Sidebar page content: everything wanted on the page goes in here -->
           <!-- Go back to posts list from single post view -->
-          <div *ngIf="selected">
+          <div *ngIf="selected" class="alignBackBtn">
             <button class="buttons" mat-raised-button color="primary" (click)="goBack()">Back</button>
           </div>
           <!-- Go back to posts list from single post view -->
@@ -74,14 +74,14 @@
           <!-- Display list of posts -->
 
           <!-- Display single post -->
-          <div *ngIf="selected">
+          <div *ngIf="selected" class="container">
             <mat-card class="postCard">
               <mat-card-header>
                 <mat-card-content>
                   <img class="commentPic" src="{{selected.profile.imageUrl}}">
                 </mat-card-content>
                 <mat-card-content>
-                  <h2 class="commentUsername">{{selected.profile.user.username}}</h2>
+                  <h4 class="commentUsername">{{selected.profile.user.username}}</h4>
                 </mat-card-content>
               </mat-card-header>
               <mat-card-header>
@@ -89,14 +89,20 @@
                   <h1>{{selected.title}}</h1>
                 </mat-card-title>
               </mat-card-header>
+              <div class="row">
+                <div class="col">
               <mat-card-content class="commentText" *ngIf="selected.content">
                 <h6>{{selected.content}}</h6>
               </mat-card-content>
+              </div>
+              <div class="col">
               <mat-card-content *ngIf="selected.media">
                 <img class="postImage" src="{{selected.media}}" *ngIf="mediaIsImage(selected.media)">
                 <iframe *ngIf="!mediaIsImage(selected.media)" class="postImage" [src]="cleanUrl(selected.media)"
                   frameborder="0" allow='autoplay; encrypted-media'></iframe>
               </mat-card-content>
+              </div>
+              </div>
               <mat-card-content>
                 {{selected.createdDate | date: 'fullDate'}}
               </mat-card-content>
@@ -161,11 +167,11 @@
             </div>
             <!-- Update a comment -->
           </div>
+          </div>
           <!-- Display single post -->
           <!-- Sidebar content -->
-        </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
   </div>
-</div>
-<!-- Sidebar -->
+  <!-- Sidebar -->
