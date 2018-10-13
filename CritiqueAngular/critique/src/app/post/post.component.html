@@ -14,7 +14,7 @@
         </div>
       </mat-sidenav>
       <mat-sidenav-content>
-        <p><button id="categoryBtn" mat-raised-button color="accent" (click)="sidenav.open()"> Search Categories</button></p>
+        <p *ngIf="!selected"><button id="categoryBtn" mat-raised-button color="accent" (click)="sidenav.open()"> Search Categories</button></p>
         <div class="container" id="postsContainer">
           <!--  Sidebar page content: everything wanted on the page goes in here -->
           <!-- Go back to posts list from single post view -->
@@ -23,8 +23,8 @@
           </div>
           <!-- Go back to posts list from single post view -->
           <!-- Display list of posts -->
-          <h1 class="postHeader">{{selectedCategory.name}} Posts</h1>
           <div *ngIf="!selected">
+            <h1 class="postHeader">{{selectedCategory.name}} Posts</h1>
             <div id="postCards" *ngFor="let post of posts | category: selectedCategory">
               <mat-card class="postCard">
                 <div class="headerDiv">
