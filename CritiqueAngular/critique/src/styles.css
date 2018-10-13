@@ -1,8 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~font-awesome/css/font-awesome.css';
 
-
+i {
+  font-family: fontawesome !important;
+  font-style: normal !important;
+}
 body {
   background-color: lightgrey;
   margin-bottom: 200px;

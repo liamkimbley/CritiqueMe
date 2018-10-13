@@ -58,6 +58,7 @@ import {
   MatTooltipModule,
   MatTreeModule
 } from '@angular/material';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search.service';
 import { SearchResultsComponent } from './search-results/search-results.component';
@@ -119,7 +120,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     HomeService,
