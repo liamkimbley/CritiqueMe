@@ -6,6 +6,15 @@
 }
 
 .postUsername {
+  float: right;
+}
+
+.postUsername:hover {
+  float: right;
+  /* color: #8c1aff; */
+}
+
+.postUsername {
   color: black;
   float: left;
   margin-left: 20px;
@@ -43,4 +52,8 @@
 
 .date {
   float: right;
+}
+
+.test1 {
+  margin-left: 240px;
 }
