@@ -1,6 +1,7 @@
 <div class="container">
   <h1>CritiqueMe</h1>
   <div class="jumbotron jumbotron-fluid">
+    <!-- If not logged in -->
     <div *ngIf="!homeCheckLogin()">
       <div class="card-deck">
         <div class="card">
@@ -19,6 +20,28 @@
         </div>
       </div>
     </div>
+    <!-- If not logged in -->
+    <!-- If logged in -->
+    <div *ngIf="homeCheckLogin()" id="userWelcomePage">
+      <h2 id="welcomeHeader">Welcome back!</h2>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">View your Profile</h4>
+            <p class="card-text">See your past posts and if anyone has commented on them</p>
+            <button mat-raised-button color="accent" [routerLink]="['/profile']">My Profile</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Browse Posts</h4>
+            <p class="card-text">See who needs advice on their projects!</p>
+            <a mat-raised-button color="primary" [routerLink]="['/post']">Browse Posts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- If logged in -->
   </div>
   <h1>About CritiqueMe</h1>
   <div class="jumbotron jumbotron-fluid">
