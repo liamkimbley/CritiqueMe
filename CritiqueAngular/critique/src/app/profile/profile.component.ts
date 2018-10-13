@@ -92,8 +92,16 @@ export class ProfileComponent implements OnInit {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      this.newPost = null;
+      this.editPost = null;
+      this.selectedPost = null;
+      this.editProfile = null;
       return 'by clicking on a backdrop';
     } else {
+      this.newPost = null;
+      this.editPost = null;
+      this.selectedPost = null;
+      this.editProfile = null;
       return `with: ${reason}`;
     }
   }
