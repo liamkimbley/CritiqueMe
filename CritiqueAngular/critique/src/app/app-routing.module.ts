@@ -11,7 +11,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  // { path: '', component: HomeComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'navigation', component: NavigationComponent },
   { path: 'register', component: RegisterComponent },
@@ -21,7 +22,10 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'profile/firstname/:firstname', component: ProfileComponent },
   { path: 'profile/lastname/:lastname', component: ProfileComponent },
-  { path: 'profile/fullname/:firstname/:lastname', component: ProfileComponent },
+  {
+    path: 'profile/fullname/:firstname/:lastname',
+    component: ProfileComponent
+  },
   { path: 'profile/city/:city', component: ProfileComponent },
   { path: 'profile/state/:state', component: ProfileComponent },
   { path: 'profile/country/:country', component: ProfileComponent },
@@ -37,7 +41,8 @@ const routes: Routes = [
   { path: 'comments/:cid/vote', component: PostComponent },
   { path: 'search', component: SearchComponent },
   { path: 'search-results', component: SearchResultsComponent },
-  { path: '**', component: NotFoundComponent }
+  // { path: '**', component: NotFoundComponent }
+  { path: '**', pathMatch: 'full', redirectTo: 'home' }
   // make a not found component later
 ];
 
@@ -45,4 +50,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
