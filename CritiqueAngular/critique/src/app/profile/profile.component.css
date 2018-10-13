@@ -10,6 +10,7 @@ h1 {
   margin-left: 40px;
   margin-right: 40px;
 }
+
 /* *********** Profile Info *********** */
 .profileHeader {
   padding: 5px;
@@ -121,5 +122,49 @@ h3 {
 .postsBanner {
   background-color: #f2f2f2;
   padding: 0px;
+}
+
+#profilePostTitle {
+  padding: 5px;
+  font-size: medium;
+  font-weight: bold;
+}
+#profilePostSubtitle {
+  padding: 5px;
+}
+#selectedPostContent {
+  font-size: smaller;
+  padding-top: 0px;
+  padding-left: 15px;
+  margin-top: 0px;
+}
+#postData {
+  width: 50px;
+}
+.modal-body p {
+  word-wrap: break-word;
+}
+#mediaLink {
+  word-wrap: break-word;
+  padding-top: 15px;
+}
+#commentsDiv {
+  padding-top: 15px;
+  margin-bottom: 0px;
+}
+#commentsListDiv {
+  word-wrap: break-word;
+  margin-top: 0px;
+}
+#commenter {
+  margin-top: 0px;
+  padding-left: 15px;
+  font-size: small;
+  font-weight: 300;
+  color: gray;
+  font-style: oblique;
+}
+#comment {
+  font-size: smaller;
 }
 /* *********** Profile Posts *********** */

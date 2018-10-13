@@ -6,8 +6,8 @@
     <div class="row">
       <div class="col" id="profileColumn">
         <div class="editProfileButtonDiv" *ngIf="!editProfile">
-          <button *ngIf="(profile.user === loggedInUser)" class="editProfileButton" mat-raised-button color="primary" (click)="setEditProfile()"
-            (click)="open(content)"><i class="fas fa-edit"></i> Edit Profile</button>
+          <button *ngIf="(profile.user === loggedInUser)" class="editProfileButton" mat-raised-button color="primary"
+            (click)="setEditProfile()" (click)="open(content)"><i class="fas fa-edit"></i> Edit Profile</button>
         </div>
         <div class="profileInfo">
           <div class="profileHeader">
@@ -82,9 +82,12 @@
           </div>
         </tr> -->
                 <div class="modal-footer">
-                  <button mat-raised-button color="primary" name="update" (click)="updateProfile(editProfile)" (click)="modal.close('Save click')">Save</button>
-                  <button mat-raised-button color="accent" name="cancel" (click)="editProfile = null" (click)="modal.dismiss('Cross click')">Cancel</button>
-                  <button mat-raised-button color="warn" name="delete" (click)="deleteProfile(editProfile)" (click)="modal.dismiss('Cross click')">Deactivate Profile</button>
+                  <button mat-raised-button color="primary" name="update" (click)="updateProfile(editProfile)" (click)="modal.close('Save click')"><i
+                      class="far fa-save"></i> Save</button>
+                  <button mat-raised-button color="accent" name="cancel" (click)="editProfile = null" (click)="modal.dismiss('Cross click')"><i
+                      class="fas fa-ban"></i> Cancel</button>
+                  <button mat-raised-button color="warn" name="delete" (click)="deleteProfile(editProfile)" (click)="modal.dismiss('Cross click')"><i
+                      class="fas fa-minus-circle"></i> Deactivate Profile</button>
                 </div>
               </form>
             </div>
@@ -114,8 +117,10 @@
                 <input id="media" class="form-control" type="text" name="media" placeholder="Media" [(ngModel)]="newPost.media">
               </div>
               <div class="modal-footer">
-                <button mat-raised-button color="primary" (click)="addNewPost()" (click)="modal.close('Save click')">Share</button>
-                <button mat-raised-button color="accent" (click)="modal.dismiss('Cross click')" (click)="newPost = null">Cancel</button>
+                <button mat-raised-button color="primary" (click)="addNewPost()" (click)="modal.close('Save click')"><i
+                    class="fas fa-share"></i> Share</button>
+                <button mat-raised-button color="accent" (click)="modal.dismiss('Cross click')" (click)="newPost = null"><i
+                    class="fas fa-ban"></i> Cancel</button>
               </div>
             </form>
           </div>
@@ -126,7 +131,8 @@
       <div class="col" id="userPostsColumn">
         <div *ngIf="!editProfile" class="profilePosts">
           <div class="newPostButtonDiv">
-            <button *ngIf="!newPost && profile.user === loggedInUser" class="addPostButton" mat-raised-button color="accent" (click)="addPost()" (click)="open(newPostContent)">New Post</button>
+            <button *ngIf="!newPost && profile.user === loggedInUser" class="addPostButton" mat-raised-button color="accent"
+              (click)="addPost()" (click)="open(newPostContent)"><i class="far fa-edit"></i> New Post</button>
           </div>
           <div class="postsBanner">
             <h3>{{profile.firstName}}'s Posts</h3>
@@ -142,7 +148,8 @@
                   <p>{{post.content}}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                  <button mat-button color="primary" name="show" type="submit" (click)="displayPost(post)" (click)="open(viewPostContent)">View
+                  <button mat-button color="primary" name="show" type="submit" (click)="displayPost(post)" (click)="open(viewPostContent)"><i
+                      class="far fa-eye"></i> View
                     Post</button>
                 </mat-card-actions>
               </mat-card>
@@ -163,44 +170,41 @@
               </div>
               <div class="modal-body">
                 <mat-card>
-                  <table>
-                    <tr>
-                      <td>Post Title</td>
-                      <td>{{selectedPost.title}}</td>
-                    </tr>
-                    <tr>
-                      <td>Content</td>
-                      <td>{{selectedPost.content}}</td>
-                    </tr>
-                    <tr>
-                      <td>Media</td>
-                      <td>{{selectedPost.media}}</td>
-                    </tr>
-                    <tr>
-                      <td>Created</td>
-                      <td>{{selectedPost.createdDate}}</td>
-                      <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
-                      <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
-                    </tr>
-                    <!-- comments -->
-                    <mat-card>
-                      <td>Comments:</td>
-                      <tr>
-                        <div *ngFor="let c of selectedPost.comments">
-                          <td>{{c.content}}</td>
-                        </div>
-                      </tr>
-                    </mat-card>
-                  </table>
+                  <mat-card-header>
+                    <mat-card-title id="profilePostTitle">
+                      {{selectedPost.title}}
+                    </mat-card-title>
+                    <mat-card-subtitle id="profilePostSubtitle">
+                      Posted On {{selectedPost.createdDate | date: 'fullDate'}}
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                  <div class="container" id="selectedPostContent">
+                    {{selectedPost.content}}
+                    <div id="mediaLink">
+                      <strong>Media Link:</strong>
+                      {{selectedPost.media}}
+                    </div>
+                    <div id="commentsDiv">
+                      <strong>Comments:</strong>
+                      <div *ngFor="let c of selectedPost.comments" id="commentsListDiv">
+                        <span id="commenter"><strong>{{c.profile.user.username}} said:</strong></span>
+                        <p id="comment">{{c.content}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <input type="text" name="createdDate" placeholder="{{selectedPost.createdDate}}" disabled="disabled" /> -->
+                  <!-- <td><input type="text" name="updatedDate" placeholder="{{selectedPost.updatedDate}}" /></td> -->
+                  <!-- comments -->
                 </mat-card>
               </div>
               <div class="modal-footer" *ngIf="profile.user === loggedInUser">
                 <button mat-raised-button color="accent" name="cancel" type="submit" (click)="selectedPost = null"
-                  (click)="modal.dismiss('Cross click')">Back</button>
-                <button mat-raised-button color="primary" name="update" type="submit" (click)="editPost = selectedPost">Edit
+                  (click)="modal.dismiss('Cross click')"><i class="fas fa-angle-double-left"></i> Back</button>
+                <button mat-raised-button color="primary" name="update" type="submit" (click)="editPost = selectedPost"><i
+                    class="far fa-edit"></i> Edit
                   Post</button>
                 <button mat-raised-button color="warn" name="delete" type="submit" (click)="deletePost(selectedPost.id)"
-                  (click)="modal.dismiss('Cross click')">Delete
+                  (click)="modal.dismiss('Cross click')"><i class="fas fa-minus-circle"></i> Delete
                   Post</button>
               </div>
             </div>
@@ -232,11 +236,13 @@
               </div>
               <div class="modal-footer">
                 <button mat-raised-button color="primary" name="update" type="submit" (click)="updatePost(editPost)"
-                  (click)="modal.close('Save click')" (click)="editPost = null" (click)="selectedPost = null">Save</button>
+                  (click)="modal.close('Save click')" (click)="editPost = null" (click)="selectedPost = null"><i class="fas fa-save"></i>
+                  Save</button>
                 <button mat-raised-button color="accent" name="cancel" type="submit" (click)="editPost = null" (click)="selectedPost = null"
-                  (click)="modal.dismiss('Cross click')">Cancel</button>
+                  (click)="modal.dismiss('Cross click')"><i class="fas fa-ban"></i> Cancel</button>
                 <button mat-raised-button color="warn" name="delete" type="submit" (click)="modal.dismiss('Cross click')"
-                  (click)="deletePost(editPost.id)" (click)="editPost = null">Delete
+                  (click)="deletePost(editPost.id)" (click)="editPost = null"><i class="fas fa-minus-circle"></i>
+                  Delete
                   Post</button>
               </div>
             </div>
