@@ -74,7 +74,6 @@ public class PostController {
 		}
 	}
 
-//	***************************************** hard coded profile id into post (same as comments)
 	@RequestMapping(path = "posts", method = RequestMethod.POST)
 	public Post create(@RequestBody Post post, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		Post p = postServ.create(post, principal.getName());

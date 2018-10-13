@@ -28,11 +28,6 @@ public class VoteController {
 		return vs.findAllVotesByCommentId(cid);
 	}
 	
-//	@RequestMapping(path="comment/")
-//	public Vote findOneVoteForComment() {
-//		
-//	}
-	
 	@RequestMapping(path="comments/{cid}/votes", method=RequestMethod.POST)
 	public Vote createVote(@PathVariable Integer cid, @RequestBody Vote vote, Principal principal) {
 		return vs.createVote(vote, cid, principal.getName());

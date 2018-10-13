@@ -36,7 +36,6 @@ public class CommentController {
 		}
 	}
 
-//	************************************* hard coded profile id into comments (same as post)
 	@RequestMapping(path = "posts/{pid}/comments", method = RequestMethod.POST)
 	public Comment createComment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer pid,
 			@RequestBody Comment com, Principal principal) {

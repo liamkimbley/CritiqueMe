@@ -114,13 +114,15 @@ public class PostServiceImpl implements PostService {
 				for (int i = 0; i < comments.size(); i++) {
 					int totalPoints = 0;
 					List<Vote> votes = voteRepo.findByCommentId(comments.get(i).getId());
-					for (int j = 0; j < votes.size(); j++) {
-						if (votes.get(j).getVote() == true) {
-							totalPoints += 1;
-						}
-						if (votes.get(j).getVote() == false) {
-							totalPoints -= 1;
-						}
+					if (!votes.isEmpty()) {
+						for (int j = 0; j < votes.size(); j++) {
+							if (votes.get(j).getVote() == true) {
+								totalPoints += 1;
+							}
+							if (votes.get(j).getVote() == false) {
+								totalPoints -= 1;
+							}
+						} 
 					}
 					comments.get(i).setTotalPoints(totalPoints);
 				}
