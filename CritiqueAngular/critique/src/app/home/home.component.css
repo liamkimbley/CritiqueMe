@@ -34,3 +34,14 @@ h1 {
   margin-bottom: 15px;
   margin-top: 0px;
 }
+
+.personalPic {
+  width: 200px;
+  height: 300px;
+}
+
+.devName {
+  text-align: center;
+  margin-top: 20px;
+  margin-top: 20px;
+}

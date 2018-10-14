@@ -55,25 +55,23 @@
   </div>
 </div>
 
-<!-- pictures of us?? -->
-
-<!-- <div class="card-deck">
+<div class="card-deck" *ngIf="homeCheckLogin() || !homeCheckLogin()">
     <div class="card">
         <div class="card-body">
-            <img src="image/LiamKimbley.jpg" alt="Liam Kimbley">
-           <p>Liam</p>
+            <img class="personalPic" src="assets/images/rsz_image_from_ios.jpg" alt="Liam">
+           <h4 class="devName">Liam Kimbley</h4>
         </div>
     </div>
     <div class="card">
         <div class="card-body">
-
-        <p>Owen</p>
+            <img class="personalPic" src="assets/images/rsz_aboutmepicowen.jpg" alt="Owen">
+        <h4 class="devName">Owen Harris</h4>
         </div>
     </div>
     <div class="card">
       <div class="card-body">
-
-      <p>Sam</p>
+          <img class="personalPic" src="assets/images/rsz_samj.jpg" alt="Sam">
+      <h4 class="devName">Sam Janik</h4>
       </div>
     </div>
-</div> -->
+</div>

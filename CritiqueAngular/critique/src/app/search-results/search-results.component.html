@@ -10,13 +10,13 @@
 <div *ngIf="!selected">
   <div id="postCards" *ngFor="let post of posts">
     <mat-card class="postCard">
-        <!-- <div class="headerDiv"> -->
+        <div class="headerDiv">
           <div class="row">
             <div class="col">
           <mat-card-content>
             <img class="postProfilePic" src="{{post.profile.imageUrl}}">
           </mat-card-content>
-          <!-- </div> -->
+          </div>
           <!-- <div class="col"> -->
           <mat-card-content>
             <a [routerLink]="['/profile/'+post.profile.id]">
