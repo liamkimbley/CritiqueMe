@@ -14,22 +14,22 @@
           <mat-card-content>
             <img class="postProfilePic" src="{{post.profile.imageUrl}}">
           </mat-card-content>
-            <mat-card-content>
-              <a [routerLink]="['/profile/'+post.profile.id]">
-                <h5 class="postUsername">{{post.profile.user.username}}</h5>
-              </a>
-            </mat-card-content>
-              <mat-card-content>
-                <h2 class="postTitle">{{post.title}}</h2>
+          <mat-card-content>
+            <a [routerLink]="['/profile/'+post.profile.id]">
+              <h5 class="postUsername">{{post.profile.user.username}}</h5>
+            </a>
+          </mat-card-content>
+          <mat-card-content>
+            <h2 class="postTitle">{{post.title}}</h2>
+          </mat-card-content>
+        </div>
+        <div class="postDiv">
+          <div class="row">
+            <div class="col">
+              <mat-card-content class="postContent" *ngIf="post.content">
+                {{post.content}}
               </mat-card-content>
             </div>
-        <div class="postDiv">
-        <div class="row">
-          <div class="col">
-            <mat-card-content class="postContent" *ngIf="post.content">
-              {{post.content}}
-            </mat-card-content>
-          </div>
           <div class="col">
               <mat-card-content *ngIf="post.media">
                 <img class="postImage" src="{{post.media}}" *ngIf="mediaIsImage(post.media)">
