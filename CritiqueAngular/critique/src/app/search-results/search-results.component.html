@@ -11,27 +11,19 @@
   <div id="postCards" *ngFor="let post of posts">
     <mat-card class="postCard">
         <div class="headerDiv">
-          <div class="row">
-            <div class="col">
           <mat-card-content>
             <img class="postProfilePic" src="{{post.profile.imageUrl}}">
           </mat-card-content>
-          </div>
-          <!-- <div class="col"> -->
-          <mat-card-content>
-            <a [routerLink]="['/profile/'+post.profile.id]">
-              <h5 class="postUsername">{{post.profile.user.username}}</h5>
-            </a>
-          </mat-card-content>
-          </div>
-          <div class="col">
-          <mat-card-content>
-            <h2 class="postTitle">{{post.title}}</h2>
-          </mat-card-content>
-          </div>
-          </div>
-        <!-- </div> -->
-        <!-- <div class="postDiv"> -->
+            <mat-card-content>
+              <a [routerLink]="['/profile/'+post.profile.id]">
+                <h5 class="postUsername">{{post.profile.user.username}}</h5>
+              </a>
+            </mat-card-content>
+              <mat-card-content>
+                <h2 class="postTitle">{{post.title}}</h2>
+              </mat-card-content>
+            </div>
+        <div class="postDiv">
         <div class="row">
           <div class="col">
             <mat-card-content class="postContent" *ngIf="post.content">
@@ -45,11 +37,11 @@
               </mat-card-content>
           </div>
         </div>
-        <!-- </div> -->
+        </div>
         <div class="row">
             <div class="col">
               <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="displaySelectedPost(post)">View More</button>
+                  <a mat-raised-button color="primary" [routerLink]="['/profile/'+post.profile.id]">View {{post.profile.firstName}}'s Profile</a>
               </mat-card-actions>
             </div>
             <div class="col">
@@ -89,9 +81,6 @@
         <mat-card-content>
           <h6>{{prof.location.city}}, {{prof.location.state}}</h6>
         </mat-card-content>
-        <mat-card-actions>
-          <!-- <button mat-raised-button color="primary" (click)="displaySelectedPost(post)">View More</button> -->
-        </mat-card-actions>
     </mat-card>
   </div>
 
